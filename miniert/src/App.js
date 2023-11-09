@@ -7,15 +7,15 @@ import Dashboard from './Components/Dashboard/Dashboard.jsx';
 
 
 function App() {
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/" element={<Screen1/>}/>
+        <Route path="/forgotpass" element={<Screen1/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );
-}
-
+  }
 export default App;

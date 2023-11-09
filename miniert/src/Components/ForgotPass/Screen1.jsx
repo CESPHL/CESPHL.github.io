@@ -1,18 +1,38 @@
 import React from "react";
+import arrow from '../Assets/back_arrow.svg';
+import main from '../Assets/Framemain.svg';
+import key from '../Assets/Key.svg';
 import './main.css';
 
 export default function Screen1(){
+    const handleClick =() =>{
+        window.location.href ="/";
+    };
     return(
-        <div>
+        <div className = "forgot-form">
+            <div className="rectangle">
+                <div className ="title">            
+                <div className = "main">
+                    <img src= {main}/><span>Collabera Digital <br/>
+                    External Resource Timesheet</span>
+                    </div>
+                </div>
+            </div>
             <form action ="">
-                <h2> Forgot Password? </h2>
+                <div className ="padding">
+                <img src = {key}/><br/>
+                <span className="forgot"> Forgot Password? </span> 
+                </div>
                 <div className="subheading">Enter your email to receive reset instructions</div>
                 <div className="forgot-pass">
-                    <label>Email</label>
-                    <input type = "email" placeholder='Enter email'/>
+                    <label>Email</label> <br/>
+                    <input type = "email" placeholder='Enter email' required/>
                 </div>
-                <div className="return">Back to Log In</div>
+                <div className="return">
+                    <button onClick={handleClick}><img src = {arrow}/><span>Back to Log In</span></button>
+                    </div>
             </form>
-        </div>
+            </div>
+                
     )
 }

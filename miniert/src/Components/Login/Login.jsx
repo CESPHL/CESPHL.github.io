@@ -70,7 +70,7 @@ const Login = () => {
         <div className="login-btn">
           <button onClick={handleLogin}>Log In</button>
         </div>
-        <div className="forgot-pass">Forgot Password? <span>Click here.</span></div>
+        <div className="forgot-pass">Forgot Password? <span onClick={() => window.location.href='/forgotpass' }>Click here.</span></div>
       </div>
     </div>
   );
