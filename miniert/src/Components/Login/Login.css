@@ -1,0 +1,79 @@
+*{
+    font-family: 'Inter', sans-serif;
+}
+.form-container{
+    display: flex;
+    flex-direction: row;
+    margin: left;
+    padding-right:70px;
+}
+.img-container{
+    margin-right: 20px;
+}
+.subtext{
+    color: #656B75;
+    font-size: 16px;
+}
+.greeting{
+    padding-top: 230px;
+    color: #684CE2;
+    font-size: 40px;
+    font-weight: bold;
+}
+.greeting,.subtext, forgot-pass{
+    padding-left: 250px;
+}
+.inputs{
+    padding-left: 250px;
+    padding-top: 30px;
+}
+.input{
+    padding-top: 20px;
+}
+.input input{
+    height: 25px;
+    width: 530px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 8px;
+    border: 1px solid #D0D5DD;
+}
+.input label, .forgot-pass{
+    font-size: 14px;
+}
+label::after {
+    content: " *";
+    color: red;
+}
+.forgot-pass{
+    padding-top: 30px;
+    padding-left: 240px;
+    text-align: center;
+}
+.login-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 240px;
+    padding-top: 30px;
+}
+.login-btn button{
+    background-color: #684CE2 ;
+    color: white;
+    width: 300px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+button:hover{
+    background-color: rgba(104, 76, 226, 0.5);
+}
+.forgot-pass span{
+    color:#684CE2;
+    font-weight: bold;
+}
+.forgot-pass{
+    color:#656B75;
+}
