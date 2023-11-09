@@ -77,3 +77,23 @@ button:hover{
 .forgot-pass{
     color:#656B75;
 }
+@media (min-width: 768px) {
+    .greeting {
+        font-size: 40px;
+    }
+
+    .input input {
+        width: calc(100% - 20px);
+    }
+}
+@media (min-width: 992px) {
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+@media (min-width: 1200px) {
+    .form-container {
+        max-width: 600px;
+    }
+}
