@@ -1,10 +1,10 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
+import Login from './Components/Login/Login.jsx';
+import Dashboard from './Components/Dashboard/Dashboard.jsx';
 
-function App() {
+function routes() {
   return (
     <Router>
       <Switch>
@@ -15,4 +15,4 @@ function App() {
   );
 }
 
-export default App;
+export default routes;
