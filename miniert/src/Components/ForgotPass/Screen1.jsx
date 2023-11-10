@@ -13,14 +13,13 @@ export default function Screen1(){
             <div className="rectangle">
                 <div className ="title">            
                 <div className = "main">
-                    <img src= {main}/><span>Collabera Digital <br/>
+                    <img src= {main} alt="An SVG type of file"/><span>Collabera Digital <br/>
                     External Resource Timesheet</span>
                     </div>
                 </div>
             </div>
-            <form action ="">
                 <div className ="padding">
-                <img src = {key}/><br/>
+                <img src = {key} alt="key figure"/><br/>
                 <span className="forgot"> Forgot Password? </span> 
                 </div>
                 <div className="subheading">Enter your email to receive reset instructions</div>
@@ -29,10 +28,8 @@ export default function Screen1(){
                     <input type = "email" placeholder='Enter email' required/>
                 </div>
                 <div className="return">
-                    <button onClick={handleClick}><img src = {arrow}/><span>Back to Log In</span></button>
+                    <button onClick={handleClick}><img src = {arrow} alt="arrow button"/><span>Back to Log In</span></button>
                     </div>
-            </form>
             </div>
-                
     )
 }
