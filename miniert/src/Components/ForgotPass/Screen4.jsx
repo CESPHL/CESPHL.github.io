@@ -1,20 +1,19 @@
 import React from "react";
-import arrow from '../Assets/back_arrow.svg';
 import main from '../Assets/Framemain.svg';
-import key from '../Assets/Key.svg';
 import person from '../Assets/Person.svg';
 import nvmail from '../Assets/navbar_email.svg';
 import check from '../Assets/forget-pass check.svg';
 import bubble from '../Assets/desktopbubble.svg';
+import checkchange from '../Assets/Check_ring.svg';
 
-import './main.css';
+import './screen4.css';
 
 export default function Screen1(){
     const handleClick =() =>{
         window.location.href ="/";
     };
-    const submit =() =>{
-        window.location.href ="/sentemail";
+    const open =() =>{
+        window.location.href ="/resetpass";
     };
     return(
         <div className = "forgot-form">
@@ -60,23 +59,19 @@ export default function Screen1(){
                         <span>Collabera Digital 2023</span>
                     </div>
             </div>
+            <div className="form-group">
             <form action ="">
                 <div className ="padding">
-                    <img src = {key}/><br/>
-                    <span className="forgot"> Forgot Password? </span> 
+                    <img src = {checkchange}/><br/>
+                    <span className="forgot"> Password has been changed! </span> 
                 </div>
                 <div className="subheading">
-                    Enter your email to receive reset instructions
+                    Your password has been successfully updated. Click below<br/>
+                    to log in to your account.
                 </div>
-                <div className="forgot-pass">
-                    <label>Email</label> <br/>
-                    <input type = "email" placeholder='Enter email' required/>
-                </div>
-                <button className="submit-btn"onClick= {submit}> Submit Email</button>
-                <div className="return">
-                    <button onClick={handleClick}><img src = {arrow} alt="arrow key"/><span>Back to Log In</span></button>
-                    </div>
+                <button className="submit-btn" onClick={handleClick}> Back to log in</button>
             </form>
-            </div>    
+        </div>
+    </div>
     )
 }

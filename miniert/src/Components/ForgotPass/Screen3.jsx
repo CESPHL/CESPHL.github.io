@@ -1,13 +1,13 @@
 import React from "react";
 import arrow from '../Assets/back_arrow.svg';
 import main from '../Assets/Framemain.svg';
-import key from '../Assets/Key.svg';
 import person from '../Assets/Person.svg';
 import nvmail from '../Assets/navbar_email.svg';
+import lock from '../Assets/Lock.svg';
 import check from '../Assets/forget-pass check.svg';
 import bubble from '../Assets/desktopbubble.svg';
 
-import './main.css';
+import './screen3.css';
 
 export default function Screen1(){
     const handleClick =() =>{
@@ -62,17 +62,24 @@ export default function Screen1(){
             </div>
             <form action ="">
                 <div className ="padding">
-                    <img src = {key}/><br/>
-                    <span className="forgot"> Forgot Password? </span> 
+                    <img src = {lock}/><br/>
+                    <span className="forgot"> Set new Password</span> 
                 </div>
                 <div className="subheading">
-                    Enter your email to receive reset instructions
+                    Reset your password by inputting a new one. It must be different from <br/>your
+                    previously used passwords.
                 </div>
                 <div className="forgot-pass">
-                    <label>Email</label> <br/>
-                    <input type = "email" placeholder='Enter email' required/>
+                    <label>New Password</label> <br/>
+                    <input type = "password" placeholder='••••••••' required/><br/><br/>
+                    <label>Confirm Password</label> <br/>
+                    <input type = "password" placeholder='••••••••' required/>
                 </div>
-                <button className="submit-btn"onClick= {submit}> Submit Email</button>
+                <div className="conditions">
+                    <p>Must be at least 8 characters</p>
+                    <p>Must contain one special character</p>
+                </div>
+                <button className="submit-btn"onClick= {submit}>Reset Password</button>
                 <div className="return">
                     <button onClick={handleClick}><img src = {arrow} alt="arrow key"/><span>Back to Log In</span></button>
                     </div>

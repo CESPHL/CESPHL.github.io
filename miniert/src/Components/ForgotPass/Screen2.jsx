@@ -1,20 +1,20 @@
 import React from "react";
 import arrow from '../Assets/back_arrow.svg';
 import main from '../Assets/Framemain.svg';
-import key from '../Assets/Key.svg';
 import person from '../Assets/Person.svg';
 import nvmail from '../Assets/navbar_email.svg';
+import fpassemail from '../Assets/forget-pass email.svg';
 import check from '../Assets/forget-pass check.svg';
 import bubble from '../Assets/desktopbubble.svg';
 
-import './main.css';
+import './screen2.css';
 
 export default function Screen1(){
     const handleClick =() =>{
         window.location.href ="/";
     };
-    const submit =() =>{
-        window.location.href ="/sentemail";
+    const open =() =>{
+        window.location.href ="/resetpass";
     };
     return(
         <div className = "forgot-form">
@@ -61,22 +61,20 @@ export default function Screen1(){
                     </div>
             </div>
             <form action ="">
+            <div className="form-group">
                 <div className ="padding">
-                    <img src = {key}/><br/>
-                    <span className="forgot"> Forgot Password? </span> 
+                    <img src = {fpassemail}/><br/>
+                    <span className="forgot"> Check your email </span> 
                 </div>
                 <div className="subheading">
-                    Enter your email to receive reset instructions
+                    An email has been sent to ********@collaberadigital.com
                 </div>
-                <div className="forgot-pass">
-                    <label>Email</label> <br/>
-                    <input type = "email" placeholder='Enter email' required/>
-                </div>
-                <button className="submit-btn"onClick= {submit}> Submit Email</button>
+                <button className="submit-btn" onClick="open"> Open Email</button>
                 <div className="return">
                     <button onClick={handleClick}><img src = {arrow} alt="arrow key"/><span>Back to Log In</span></button>
                     </div>
+                    </div>
             </form>
-            </div>    
+            </div>
     )
 }
