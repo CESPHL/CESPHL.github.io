@@ -42,8 +42,7 @@ form{
     padding-left: 80px;
 }
 .list{
-    padding-top: 100px;
-    margin-left: 90px;
+    margin: 3rem 5rem;
 }
 .list img{
     border: 1px solid #8C8C8C;
@@ -59,9 +58,14 @@ form{
     margin: 0;
     padding: 0;
 }
-.item div{
-    position:relative;
+.item > div{
+    margin: 1rem 0;
 }
+
+.item > div > img {
+    margin-right: 1.5rem;
+}
+
 .item p, h5{
     margin:0;
 }
@@ -69,7 +73,7 @@ form{
     display:flex;
     flex-direction: column;
     display:inline-block;
-    vertical-align:top
+    vertical-align:top;
 }
 .item2,.item3,.item4{
     color: #A9AEB8;
