@@ -28,7 +28,7 @@ const Login = () => {
       if(response.ok){
         //Successful login
         console.log('Successfully logged in');
-        //redirect tp the dashboard or others
+        //redirect t0 the dashboard or others
         navigate('/dashboard');
     }else{
       //Failed login
@@ -70,7 +70,7 @@ const Login = () => {
         <div className="login-btn">
           <button onClick={handleLogin}>Log In</button>
         </div>
-        <div className="forgot-pass">Forgot Password? <span onClick={() => window.location.href='/forgotpass' }>Click here.</span></div>
+        <div className="forgot-pass">Forgot Password?<button onClick={() => window.location.href='/forgotpass' }><span >Click here.</span></button></div>
       </div>
     </div>
   );

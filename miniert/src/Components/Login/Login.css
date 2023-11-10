@@ -79,3 +79,14 @@ button:hover{
 .forgot-pass{
     color:#656B75;
 }
+
+.forgot-pass button{
+    border: none;
+    background-color:white;
+}
+.forgot-pass{
+    padding-left: 80px;
+}
+.forgot-pass button:hover{
+    background-color: none;
+}
