@@ -18,8 +18,9 @@ export default function Screen1(){
                     </div>
                 </div>
             </div>
+            <form action ="">
                 <div className ="padding">
-                <img src = {key} alt="key figure"/><br/>
+                <img src = {key} alt="key svg file"/><br/>
                 <span className="forgot"> Forgot Password? </span> 
                 </div>
                 <div className="subheading">Enter your email to receive reset instructions</div>
@@ -28,8 +29,10 @@ export default function Screen1(){
                     <input type = "email" placeholder='Enter email' required/>
                 </div>
                 <div className="return">
-                    <button onClick={handleClick}><img src = {arrow} alt="arrow button"/><span>Back to Log In</span></button>
+                    <button onClick={handleClick}><img src = {arrow} alt="arrow key"/><span>Back to Log In</span></button>
                     </div>
+            </form>
             </div>
+                
     )
 }
