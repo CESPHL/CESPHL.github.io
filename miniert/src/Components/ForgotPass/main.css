@@ -41,6 +41,28 @@ form{
     color: #656B75;
     padding-left: 80px;
 }
+.list img{
+    border: 1px solid #8C8C8C;
+    padding: 2px;
+    width: 25px;
+    border-radius: 5px;
+    position: sticky;
+}
+.list{
+    padding-top: 100px;
+    text-align: left;
+    padding-left: 90px;
+}
+.list span{
+    font-size: 14px;
+    position: absolute;
+    padding-left: 20px;
+}
+div.list .subtitle{
+    position: absolute;
+    padding-bottom: 50px;
+    font-size: 12px;
+}
 .forgot-form{
     display: flex;
     flex-direction: row;
