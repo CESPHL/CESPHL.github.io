@@ -1,21 +1,24 @@
 const express = require('express');
+const {
+    addTalent,
+    getTalents,
+    getOneTalent,
+    updateTalent
+} = require('../controllers/talentsController');
+
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.json({Message: 'GET ALL TALENTS'});
-});
+// Get all talents
+router.get('/', getTalents);
 
-router.get('/:id', (req, res) => {
-    res.json({Message: 'GET SINGLE TALENT'});
-});
+// Get specified talent
+router.get('/:id', getOneTalent);
 
-router.post('/', (req, res) => {
-    res.json({Message: 'CREATE NEW TALENT'});
-});
+// Add new talent
+router.post('/', addTalent);
 
-router.patch('/', (req, res) => {
-    res.json({Message: 'UPDATE TALENT'});
-});
+// Update talent
+router.patch('/:id', updateTalent);
 
 module.exports = router;
