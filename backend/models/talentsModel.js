@@ -19,10 +19,26 @@ const talentSchema = new Schema({
         type: String,
         required: true
     },
-    manager: {
-        type: Number,
+    contact_number: {
+        type: String,
         required: true
-    }
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    user_level: {
+        type: String,
+        required: true
+    },
+    client: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Client'
+    }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Talent', talentSchema);
