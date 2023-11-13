@@ -3,11 +3,13 @@
     overflow-y: hidden;
 }
 form{
-    padding-left: 100px;
     width: auto;
     height: auto;
     max-width: 100%;
     max-height: 100vh;
+}
+.form-group{
+    padding-left: 100px;
 }
 .main{
     padding-top: 20px;
@@ -40,10 +42,11 @@ form{
     font-size: 14px;
     color: #656B75;
     padding-left: 80px;
+    padding-bottom: 50px;
 }
 .list{
-    padding-top: 100px;
-    margin-left: 90px;
+    margin: 3rem 5rem;
+    padding-top: 80px;
 }
 .list img{
     border: 1px solid #8C8C8C;
@@ -76,12 +79,11 @@ form{
     display:inline-block;
     vertical-align:top;
 }
-.item2,.item1,.item4{
-    color: #A9AEB8;
-}
-.item3{
+.item2{
     color: black;
-    font-weight: bold;
+}
+.item1,.item3,.item4{
+    color: #A9AEB8;
 }
 .item p{
     position: absolute;
@@ -97,20 +99,6 @@ form{
 .forgot{
     font-size: 24px;
     font-weight: bold;
-}
-.forgot-pass input{
-    height: 25px;
-    width: 480px;
-    padding-left: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 8px;
-    border: 1px solid #D0D5DD;
-}
-.forgot-pass label{
-    color: black;
-    margin-left: -500px;
-    padding-bottom: 20px;
 }
 .padding{
     padding-top: 150px;
@@ -133,7 +121,7 @@ form{
     width: 15px;
 }
 .submit-btn{
-    width: 50%;
+    width: 70%;
     margin-left: 80px;
     border: none;
     border-radius: 8px;
