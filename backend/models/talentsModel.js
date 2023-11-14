@@ -35,6 +35,12 @@ const talentSchema = new Schema({
         type: String,
         required: true
     },
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpiry: {
+        type: Date
+    },
     client: [{
         type: Schema.Types.ObjectId,
         ref: 'Client'

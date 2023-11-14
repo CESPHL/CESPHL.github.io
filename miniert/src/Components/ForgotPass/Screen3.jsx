@@ -24,7 +24,7 @@ export default function Screen1(){
                         <img src= {main} alt=""/><span>Collabera Digital<br/>External Resource Timesheet</span>
                     </div>
                     <div className="list">
-                        <div class="item">
+                        <div className="item">
                             <div>
                                 <img src = {person} alt=""/> 
                                 <div className="item1">
