@@ -24,10 +24,10 @@ const getOneTalent = async(req, res) => {
 
 // Add new talent
 const addTalent = async(req, res) => {
-    const {employee_id, first_name, last_name, email, contact_number, username, password, user_level, client} = req.body;
+    const {employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients, attendance} = req.body;
 
     try {
-        const talent = await Talent.create({employee_id, first_name, last_name, email, contact_number, username, password, user_level, client});
+        const talent = await Talent.create({employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients, attendance});
         res.status(200).json(talent);
     }
     catch (error) {

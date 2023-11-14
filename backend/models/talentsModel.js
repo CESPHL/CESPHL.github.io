@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const attendanceSchema = new Schema({
-    timeIn: { type: String, required: true },
-    timeOut: { type: String, required: true },
+    time_in: { type: String, required: true },
+    time_out: { type: String, required: true },
     date: { type: String, required: true },
-    Day: { type: String, required: true },
-    ProjectName: { type: String, required: true },
-    OTtimeIn: { type: String, required: false },
-    OTtimeout: { type: String, required: false }
+    day: { type: String, required: true },
+    project_name: { type: String, required: true },
+    ot_time_in: { type: String, required: false },
+    ot_time_out: { type: String, required: false }
 });
 
 const talentSchema = new Schema({
@@ -23,6 +23,14 @@ const talentSchema = new Schema({
     user_level: { type: String, required: true },
     resetPasswordToken: { type: String },
     resetPasswordExpiry: { type: Date },
+    clients: [{
+        "client_id": { type: String, required: true},
+        "client_name": { type: String, required: true },
+        "sdm_sdl_name": { type: String, required: true },
+        "projects": [{
+            "project_name": { type: String, required: true }
+        }]
+    }],
     attendance: [attendanceSchema]
 }, { timestamps: true });
 
