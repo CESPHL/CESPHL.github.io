@@ -8,36 +8,36 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  
+
   const handleTogglePassword = () => {
     setPasswordVisible(!passwordVisible);
   };
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     //Make a post request to the backend
-    try{
-      const response = await  fetch('/login', {
+    try {
+      const response = await fetch('/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({username, password}),
+        body: JSON.stringify({ username, password }),
       });
-      if(response.ok){
+      if (response.ok) {
         //Successful login
         console.log('Successfully logged in');
         //redirect t0 the dashboard or others
         navigate('/dashboard');
-    }else{
-      //Failed login
-      console.log('Failed login');
-      //Make an error message.
+      } else {
+        //Failed login
+        console.log('Failed login');
+        //Make an error message.
+      }
+    } catch (error) {
+      console.error("Error during Login", error);
     }
-  }catch(error){
-    console.error("Error during Login", error);
-  }
   }
   return (
     <div className='form-container'>
@@ -54,7 +54,7 @@ const Login = () => {
             <input type="text" placeholder="Enter Username" required name='username' id='username' value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
           <div className="input password-input">
-            <label>Password</label><br/>
+            <label>Password</label><br />
             <input
               type={passwordVisible ? 'text' : 'password'}
               placeholder="Enter Password"
@@ -70,7 +70,7 @@ const Login = () => {
         <div className="login-btn">
           <button onClick={handleLogin}>Log In</button>
         </div>
-        <div className="forgot-pass">Forgot Password?<button onClick={() => window.location.href='/forgotpass' }><span >Click here.</span></button></div>
+        <div className="forgot-pass">Forgot Password?<button onClick={() => window.location.href = '/forgotpass'}><span >Click here.</span></button></div>
       </div>
     </div>
   );

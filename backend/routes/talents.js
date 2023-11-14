@@ -4,7 +4,7 @@ const {
     getTalents,
     getOneTalent,
     updateTalent
-} = require('../controllers/talentsController');
+} = require('../controllers/talentsController'); // Getting from database
 
 
 const router = express.Router();

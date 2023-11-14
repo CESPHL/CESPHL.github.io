@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import arrow from '../Assets/back_arrow.svg';
 import main from '../Assets/Framemain.svg';
 import key from '../Assets/Key.svg';
@@ -10,8 +10,31 @@ import bubble from '../Assets/desktopbubble.svg';
 import './main.css';
 
 export default function Screen1(){
+    const [email, setEmail] = useState('');
     const handleClick =() =>{
         window.location.href ="/";
+    };
+    const submit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('/forgot-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email})
+            });
+            if (response.ok) {
+                console.log("Email sent successfully.");
+                window.location.href ="/sentemail";
+            }
+            else {
+                console.log('Failed sending an email.');
+            }
+        }
+        catch (error) {
+            console.error("Error during login.", error);
+        }
     };
     return(
         <div className = "forgot-form">
@@ -64,7 +87,7 @@ export default function Screen1(){
                 </div>
                 <div className="forgot-pass">
                     <label>Email</label> <br/>
-                    <input type = "email" placeholder='Enter email' required/>
+                    <input type = "email" placeholder='Enter email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
                 </div>
                 <button className="submit-btn"> Submit Email</button>
                 <div className="return">

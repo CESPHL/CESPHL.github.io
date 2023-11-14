@@ -2,49 +2,55 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const talentSchema = new Schema({
-    employee_id: {
+const projectSchema = new Schema({
+    client_id: {
         type: Number,
         required: true
     },
-    first_name: {
+    client_name: {
         type: String,
         required: true
     },
-    last_name: {
+    project_name: {
         type: String,
         required: true
     },
-    email: {
+    handler_name: {
         type: String,
         required: true
     },
-    contact_number: {
+    handler_email: {
         type: String,
         required: true
     },
-    username: {
+    workshift: {
         type: String,
         required: true
     },
-    password: {
+    coretime: {
+        type: String,
+        required: true
+    }
+});
+
+const clientSchema = new Schema({
+    client_id: {
+        type: Number,
+        required: true
+    },
+    client_name: {
         type: String,
         required: true
     },
-    user_level: {
+    handler_name: {
         type: String,
         required: true
     },
-    resetPasswordToken: {
-        type: String
+    handler_work_number: {
+        type: String,
+        required: true
     },
-    resetPasswordExpiry: {
-        type: Date
-    },
-    client: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Client'
-    }]
+    projects: [projectSchema]
 }, { timestamps: true });
 
-module.exports = mongoose.model('Talent', talentSchema);
+module.exports = mongoose.model('Client', clientSchema);
