@@ -1,22 +1,33 @@
 // Import user types
 const Talent = require('../models/talentsModel');
 const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 const transporter = require('../emailConfig');
 
 // Find user from db
-const findUser = async(req, res) => {
-    const {username, password} = req.body;
+const findUser = async (req, res) => {
+    const { username, password } = req.body;
 
     try {
-        const user = await Talent.findOne({ username, password });
-
+        const user = await Talent.findOne({ username });
+        console.log(user);
         if (user) {
-            res.status(200).json({ message: 'Login successful' });
+            //Compare if the password is equal
+            console.log(user.password);
+            console.log(password);
+            const passwordMatch = await bcrypt.compare(password, user.password);
+            console.log(passwordMatch);
+
+            if (passwordMatch) {
+                res.status(200).json({ message: 'Login successful' });
+            } else {
+                res.status(401).json({ message: 'Password' });
+            }
         }
         else {
             // Insert code for other user types
-            res.status(401).json({ message: 'Login failed' });
+            res.status(401).json({ message: 'User not found' });
         }
     }
     catch (error) {
@@ -24,7 +35,7 @@ const findUser = async(req, res) => {
     }
 }
 
-const forgotPassword = async(req, res) => {
+const forgotPassword = async (req, res) => {
     const { email } = req.body;
     try {
         const user = await Talent.findOne({ email });
@@ -39,17 +50,17 @@ const forgotPassword = async(req, res) => {
             from: 'miniertmailer@gmail.com',
             to: email,
             subject: 'Password Reset Request',
-            text: `Click the link to reset your password: http://localhost:3000/reset-password?token=${token}`,
+            text: `Click the link to reset your password: http://localhost:3000/reset-password/${token}`,
         };
 
         function sendEmail() {
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
-                  console.log('Error sending email: ' + error);
+                    console.log('Error sending email: ' + error);
                 } else {
-                  console.log('Email sent: ' + info.response);
+                    console.log('Email sent: ' + info.response);
                 }
-              });
+            });
         }
 
         if (user) {
@@ -67,13 +78,13 @@ const forgotPassword = async(req, res) => {
 }
 
 const resetPass = async (req, res) => {
-    const { newPassword } = req.body;
+    const { password } = req.body;
     const token = req.params.token;
+    console.log(token);
 
     try {
         const user = await Talent.findOne({ resetPasswordToken: token });
         if (!user) {
-            console.log("Eval1");
             return res.status(400).json({ message: 'User not found with this token.' });
         }
         if (user.resetPasswordToken !== token) {
@@ -83,11 +94,14 @@ const resetPass = async (req, res) => {
             return res.status(400).json({ message: 'Token expired' });
         }
         if (Date.now() < user.resetPasswordExpiry && token === user.resetPasswordToken) {
-            user.password = newPassword;
+            console.log("Test");
+            const hashedPassword = await bcrypt.hash(password, 10);
+            user.password = hashedPassword;
+            console.log(user.password);
             user.resetPasswordToken = '';
             user.resetPasswordExpiry = null;
             await user.save();
-            return res.status(200).json({ message: 'Password reset.'});
+            return res.status(200).json({ message: 'Password reset.' });
         }
     }
     catch (error) {

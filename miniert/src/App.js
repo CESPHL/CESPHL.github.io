@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/resetsuccess" element={<Screen4/>}/>
-        <Route path="/reset-password" element={<Screen3/>}/>
+        <Route path="/reset-password/:token" element={<Screen3/>}/>
         <Route path="/sentemail" element={<Screen2/>}/>
         <Route path="/forgotpass" element={<Screen1/>}/>
         <Route path="/dashboard" element={<Dashboard />} />

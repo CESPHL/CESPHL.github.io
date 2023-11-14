@@ -2,6 +2,37 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const attendanceSchema = new Schema({
+    timeIn: {
+        type: String,
+        required: true
+    },
+    timeOut: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
+    },
+    Day: {
+        type: String,
+        required: true
+    },
+    ProjectName: {
+        type: String,
+        required: true
+    },
+    OTtimeIn: {
+        type: String,
+        required: false
+    },
+    OTtimeout: {
+        type: String,
+        required: false
+    }
+});
+
 const talentSchema = new Schema({
     employee_id: {
         type: Number,
@@ -44,7 +75,8 @@ const talentSchema = new Schema({
     client: [{
         type: Schema.Types.ObjectId,
         ref: 'Client'
-    }]
+    }],
+    attendance: [attendanceSchema]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Talent', talentSchema);
