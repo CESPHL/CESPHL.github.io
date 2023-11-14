@@ -58,13 +58,13 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/forgotpass">
+                <NavLink to="/forgotpass">{/*placeholder directory*/}
                   <img src={clock} />
                   <span className="inactive">Timesheet</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/resetpass">
+                <NavLink to="/resetpass">{/*placeholder directory*/}
                   <img src={profile} />
                   <span className="inactive">Profile</span>
                 </NavLink>
@@ -80,11 +80,11 @@ const Dashboard = () => {
           <h5>Dashboard</h5>
           <span><CurrentDate/></span>
       </div>
-    </div>
-    <div className="grid-container">
+      <div className="grid-container">
         <div className="grid-item">Regular Shift</div>
         <div className="grid-item">Overtime</div>
       </div>
+    </div>
     </div>
 
   );
