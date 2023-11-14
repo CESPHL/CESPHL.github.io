@@ -1,4 +1,4 @@
-import React , {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
@@ -17,7 +17,7 @@ const CurrentDate = () => {
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, []); 
+  }, []);
 
   const formattedDate = currentDate.toLocaleDateString('en-US', {
     month: 'long',
@@ -39,8 +39,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <div className="dashboard-content">
-        <div className="dash-navbar">
+      <div className="dash-navbar">
           <div className="dash-main">
             <img src={hourglass} alt="" />
             <span>
@@ -75,20 +74,20 @@ const Dashboard = () => {
             <img src={logicon} />
             <button onClick={handleLogin}>Log Out</button>
           </div>
-        </div>
+      </div>
+      <div className="dashboard-content">
         <div className="dash-text">
           <h5>Dashboard</h5>
-          <span><CurrentDate/></span>
-      </div>
-      <div className="grid-container">
-        <div className="grid-item">Regular Shift</div>
-        <div className="grid-item">Overtime</div>
+          <span><CurrentDate /></span>
+        </div>
+        <div className="grid-container">
+          <div className="grid-item">Regular Shift</div>
+          <div className="grid-item">Overtime</div>
+        </div>
       </div>
     </div>
-    </div>
-
   );
-  
+
 }
 
 export default Dashboard;
