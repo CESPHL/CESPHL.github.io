@@ -57,13 +57,13 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/forgotpass">
+                <NavLink to="/forgotpass">{/*placeholder directory*/}
                   <img src={clock} />
                   <span className="inactive">Timesheet</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/resetpass">
+                <NavLink to="/resetpass">{/*placeholder directory*/}
                   <img src={profile} />
                   <span className="inactive">Profile</span>
                 </NavLink>
