@@ -9,23 +9,23 @@ const getTalents = async(req, res) => {
 
 // Get one talent
 const getOneTalent = async(req, res) => {
-    const {id} = req.params;
+    const { employee_id } = req.params;
 
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: "Talent not found."})
-    };
-
-    const talent = await Talent.findById(id);
-    if (!talent) {
-        return res.status(404).json({error: 'Talent not found.'});
+    try {
+        const user = await Talent.findOne({ employee_id });
+        if (!user) {
+            return res.status(404).json({error: 'Talent not found.'});
+        }
+        res.status(200).json(user);
     }
-    res.status(200).json(talent);
+    catch (error) {
+        res.status(500).json({ message: 'Internal server error'});
+    }
 }
 
 // Add new talent
 const addTalent = async(req, res) => {
     const {employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients, attendance} = req.body;
-
     try {
         const talent = await Talent.create({employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients, attendance});
         res.status(200).json(talent);
@@ -37,23 +37,44 @@ const addTalent = async(req, res) => {
 
 // Update talent
 const updateTalent = async(req, res) => {
-    const {id} = req.params;
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: "Talent not found."})
-    };
+    const {employee_id} = req.params;
 
-    const talent = await Talent.findOneAndUpdate({_id: id}, {
-        ...req.body
-    });
-    if (!talent) {
-        return res.status(404).json({error: 'Talent not found.'});
+    try {
+        const talent = await Talent.findOneAndUpdate({employee_id: employee_id}, {
+            ...req.body
+        });
+        if (!talent) {
+            return res.status(404).json({error: 'Talent not found.'});
+        }
+        res.status(200).json(talent);
     }
-    res.status(200).json(talent);
+    catch (error) {
+        res.status(500).json({ message: 'Internal server error'});
+    }
+}
+
+const timeIn = async(req, res) => {
+    const { employee_id } = req.params
+    // console.log(employee_id);
+
+    console.log(req.body.date);
+
+    try {
+        const talent = await Talent.findOneAndUpdate({ employee_id: employee_id },
+            { "$push": { attendance: req.body }}, 
+        );
+        res.status(200).json(talent);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error'});
+    }
 }
 
 module.exports = {
     getTalents,
     getOneTalent,
     addTalent,
-    updateTalent
+    updateTalent,
+    timeIn
 }

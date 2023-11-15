@@ -7,6 +7,7 @@ const attendanceSchema = new Schema({
     time_out: { type: String, required: true },
     date: { type: String, required: true },
     day: { type: String, required: true },
+    client_name: { type: String, required: true},
     project_name: { type: String, required: true },
     ot_time_in: { type: String, required: false },
     ot_time_out: { type: String, required: false }
