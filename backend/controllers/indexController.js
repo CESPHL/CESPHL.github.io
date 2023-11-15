@@ -20,9 +20,9 @@ const findUser = async (req, res) => {
             console.log(passwordMatch);
 
             if (passwordMatch) {
-                res.status(200).json({ message: 'Login successful' });
+                res.status(200).json({ message: 'Login successful.' });
             } else {
-                res.status(401).json({ message: 'Password' });
+                res.status(401).json({ message: 'Login failed.' });
             }
         }
         else {
