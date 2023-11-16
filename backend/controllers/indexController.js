@@ -14,15 +14,12 @@ const findUser = async (req, res) => {
         console.log(user);
         if (user) {
             //Compare if the password is equal
-            console.log(user.password);
-            console.log(password);
             const passwordMatch = await bcrypt.compare(password, user.password);
-            console.log(passwordMatch);
 
             if (passwordMatch) {
-                res.status(200).json({ message: 'Login successful' });
+                res.status(200).json({ employee_id: user.employee_id });
             } else {
-                res.status(401).json({ message: 'Password' });
+                res.status(401).json({ message: 'Login failed.' });
             }
         }
         else {
@@ -31,6 +28,7 @@ const findUser = async (req, res) => {
         }
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }
