@@ -46,35 +46,56 @@ const Stopwatch = () => {
 		};
 	}, [isTimeIn]);
 
-	const handleTimeIn = () => {
-		setIsTimeIn(true);
-		setIsTimeOutDisabled(false);
-	};
+  const startTimer = () => {
+    setIsTimeIn(true);
+    setIsTimeOutDisabled(false);
+  };
 
-	const handleTimeOut = () => {
-		setIsTimeIn(false);
-		setIsTimeOutDisabled(true);
-	};
+  const handleTimeOut = () => {
+    setIsTimeIn(false);
+    setIsTimeOutDisabled(true);
+  };
 
-	return (
-		<div>
-			<div className="dash-timer">
-				<p>
-					{String(hours).padStart(2, '0')}:
-					{String(minutes).padStart(2, '0')}:
-					{String(seconds).padStart(2, '0')}
-				</p>
-			</div>
-			<div className="timer-btn">
-				<button onClick={handleTimeIn} disabled={isTimeIn} className="timein-btn">
-					Clock In
-				</button>
-				<button onClick={handleTimeOut} disabled={isTimeOutDisabled} className="timeout-btn">
-					Clock Out
-				</button>
-			</div>
-		</div>
-	);
+  const handleSave = () => {
+    setIsTimeIn(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsTimeIn(false);
+  };
+
+  return (
+    <div>
+      <div className="dash-timer">
+        <p>
+          {String(hours).padStart(2, '0')}:
+          {String(minutes).padStart(2, '0')}:
+          {String(seconds).padStart(2, '0')}
+        </p>
+      </div>
+      <div className="timer-btn">
+        <button onClick={handleSave} disabled={isTimeIn} className="timein-btn">
+          Clock In
+        </button>
+        <button onClick={handleTimeOut} disabled={isTimeOutDisabled} className="timeout-btn">
+          Clock Out
+        </button>
+      </div>
+      <ModalDash show={isTimeIn} handleClose={handleCloseModal} handleSave={startTimer}>
+        <div className="modal-content">
+          <p>Confirm Clock In</p>
+          </div>
+          <input type="name" disabled="disabled" value="Juan Dela Cruz" /><br />
+          <input type="date-time" disabled="disabled" value="November 06, 2023 | 09:29 AM" /><br />
+          <input type="client" disabled="disabled" value="GCash" />
+          <select>
+            <option value="" selected disabled> Select a Project</option>
+            <option value="">GCash-Mynt</option>
+            <option value="">Project Name</option>
+          </select>
+        </ModalDash>
+    </div>
+  );
 };
 
 const CurrentDate = () => {
@@ -160,15 +181,6 @@ class MyDashboard extends Component {
 
 	render() {
 		return (
-			<div>
-				<button type="button" onClick={this.showModal}>
-					Open Modal
-				</button>
-				{/* Pass the correct props to ModalDash */}
-				<ModalDash show={this.state.show} handleClose={this.hideModal}>
-					<p>Modal Content</p>
-				</ModalDash>
-
 				<div className="dashboard">
 					<div className="dash-navbar">
 						<div className="dash-main">
@@ -238,7 +250,6 @@ class MyDashboard extends Component {
 						</div>
 					</div>
 				</div>
-			</div>
 		);
 	}
 }
