@@ -261,7 +261,7 @@ table{
 	text-align: center;
 }
 
-.tableHeader, .tableContent div {
+.tableHeader, .tableContent > div {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
 }
