@@ -238,14 +238,14 @@ const TimesheetTable = () => {
 			<div className="tableContent">
 				{attendanceData.map(attendance => (
 					<div>
-						{attendance ? <p>{attendance.time_in}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.time_out}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.date}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.day}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.client_name}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.project_name}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
+						{attendance.time_in ? <p>{attendance.time_in}</p> : <p>----------</p>}
+						{attendance.time_out ? <p>{attendance.time_out}</p> : <p>----------</p>}
+						{attendance.date ? <p>{attendance.date}</p> : <p>----------</p>}
+						{attendance.day ? <p>{attendance.day}</p> : <p>----------</p>}
+						{attendance.client_name ? <p>{attendance.client_name}</p> : <p>----------</p>}
+						{attendance.project_name ? <p>{attendance.project_name}</p> : <p>----------</p>}
+						{attendance.ot_time_in ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
+						{attendance.ot_time_out ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
 					</div>
 				))}
 			</div>
