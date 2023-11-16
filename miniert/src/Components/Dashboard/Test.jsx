@@ -1,31 +1,49 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
-const TimesheetTable = () => {
+const TimesheetTable = (e) => {
+    e.preventDefault();
+    const getData = () => {
+        axios.get('http://localhost:4000/api/talents/10000/')
+        .then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 
-    const [timesheets, setTimesheets] = useState(null);
+    getData();
 
-    useEffect(() => {
-        const fetchTimesheets = async () => {
-            const response = await fetch('/api/talents/10000');
-            const json = await response.json();
-
-            if (response.ok) {
-                setTimesheets(json);
-            }
-        }
-        fetchTimesheets()
-    }, []);
-
-    return (
-        <div>
-            <h2>Test</h2>
-            <div>
-                {timesheets && timesheets.map((timesheet) => (
-                    <p key={timesheet.first_name}>{timesheet.last_name}</p>
-                ))}
-            </div>
-        </div>
-    );
-};
+    // Code from login (not working yet)
+    // try {
+    // 	const response = async () => {
+    // 		await fetch('/login', {
+    // 			method: 'POST',
+    // 			headers: {
+    // 				'Content-Type': 'application/json',
+    // 			},
+    // 			body: JSON.stringify({ }),
+    // 		})
+    // 	}
+    // 	if (response.ok) {
+    // 		// Retrieve data
+    // 	} else {
+    // 		//Make an error message.
+    // 		toast.error('Failed retrieving data.', {
+    // 			position: toast.POSITION.TOP_CENTER,
+    // 			autoClose: 5000,
+    // 			hideProgressBar: false,
+    // 			closeOnClick: true,
+    // 			pauseOnHover: true,
+    // 			draggable: true,
+    // 			progress: undefined,
+    // 			theme: "light",
+    // 		});
+    // 	}
+    // } catch (error) {
+    // 	console.error("Error during retrieval of data.", error);
+    // }
+}
 
 export default TimesheetTable;
