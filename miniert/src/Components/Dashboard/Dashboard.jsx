@@ -9,6 +9,26 @@ import clock from '../Assets/inactive-clock.svg';
 import profile from '../Assets/inactive-profile.svg';
 import axios from 'axios';
 
+const CurrentDate = () => {
+	const [currentDate, setCurrentDate] = useState(new Date());
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCurrentDate(new Date());
+		}, 1000);
+
+		return () => clearInterval(intervalId);
+	}, []);
+
+	const formattedDate = currentDate.toLocaleDateString('en-US', {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric',
+	});
+
+	return <p>{formattedDate}</p>;
+};
+
 const Stopwatch = () => {
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
@@ -58,13 +78,54 @@ const Stopwatch = () => {
 
   const handleSave = () => {
     setIsTimeIn(true);
+	  
   };
 
   const handleCloseModal = () => {
     setIsTimeIn(false);
   };
+  const [talentData, setTalentData] = useState([]);
+  const employee_id = localStorage.getItem('employee_id');
+
+  useEffect(() => {
+	axios.get(`http://localhost:4000/api/talents/${employee_id}`)
+	  .then(response => {
+		// Assuming the response is an array of objects
+		const data = response.data;
+		// Set the data in your component state
+		setTalentData(data);
+		console.log("DATAA", data);
+		// Log the first names
+		data.forEach(talent => console.log(talent.first_name));
+	  })
+	  .catch(err => {
+		console.log(err);
+	  });
+  }, []);
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCurrentDate(new Date());
+		}, 1000);
+
+		return () => clearInterval(intervalId);
+	}, []);
+
+	const formattedDate = currentDate.toLocaleDateString('en-US', {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric',
+	});
+  
+	const currentTime = new Date();
+	const options = { hour: 'numeric', minute: '2-digit', hour12: true };
+
+	const formattedTime = currentTime.toLocaleTimeString('en-US', options);
+
 
   return (
+	
     <div>
       <div className="dash-timer">
         <p>
@@ -85,44 +146,26 @@ const Stopwatch = () => {
         <div className="modal-content">
           <p>Confirm Clock In</p>
           </div>
-          <input type="name" disabled="disabled" value="Juan Dela Cruz" /><br />
-          <input type="date-time" disabled="disabled" value="November 06, 2023 | 09:29 AM" /><br />
+          <input type="name" disabled="disabled" value={talentData.first_name + " " + talentData.last_name} /><br />
+          <input type="date-time" disabled="disabled" value={formattedDate + " | " + formattedTime} /><br />
           <input type="client" disabled="disabled" value="GCash" />
           <select>
             <option value="" selected disabled> Select a Project</option>
             <option value="">GCash-Mynt</option>
-            <option value="">Project Name</option>
+            <option value="">Project Name</option>	
           </select>
         </ModalDash>
     </div>
   );
 };
 
-const CurrentDate = () => {
-	const [currentDate, setCurrentDate] = useState(new Date());
 
-	useEffect(() => {
-		const intervalId = setInterval(() => {
-			setCurrentDate(new Date());
-		}, 1000);
-
-		return () => clearInterval(intervalId);
-	}, []);
-
-	const formattedDate = currentDate.toLocaleDateString('en-US', {
-		month: 'long',
-		day: 'numeric',
-		year: 'numeric',
-	});
-
-	return <p>{formattedDate}</p>;
-};
 
 const TimesheetTable = () => {
 	const [attendanceData, setAttendanceData] = useState([]);
-
+	const employee_id = localStorage.getItem('employee_id');
 	useEffect(() => {
-		axios.get('http://localhost:4000/api/talents/10000/')
+		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
 			.then(response => {
 				setAttendanceData(response.data.attendance);
 				response.data.attendance.forEach(attendance => {
@@ -162,6 +205,12 @@ const TimesheetTable = () => {
 		</div>
 	);
 }
+
+const handleLogout = () => {
+	localStorage.removeItem('token');
+    localStorage.removeItem('employee_id');
+    localStorage.removeItem('user_level');
+  };
 
 class MyDashboard extends Component {
 	constructor(props) {
@@ -230,7 +279,7 @@ class MyDashboard extends Component {
 						<div className="logout-btn">
 							<img src={logicon} alt="logout icon" />
 							<NavLink to="/">
-								<button>Log Out</button>
+								<button onClick={handleLogout}>Log Out</button>
 							</NavLink>
 						</div>
 					</div>
