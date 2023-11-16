@@ -181,15 +181,6 @@ class MyDashboard extends Component {
 
 	render() {
 		return (
-			<div>
-				<button type="button" onClick={this.showModal}>
-					Open Modal
-				</button>
-				{/* Pass the correct props to ModalDash */}
-				<ModalDash show={this.state.show} handleClose={this.hideModal}>
-					<p>Modal Content</p>
-				</ModalDash>
-
 				<div className="dashboard">
 					<div className="dash-navbar">
 						<div className="dash-main">
@@ -259,7 +250,6 @@ class MyDashboard extends Component {
 						</div>
 					</div>
 				</div>
-			</div>
 		);
 	}
 }
