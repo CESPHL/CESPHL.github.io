@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 import ModalDash from '../../Components/DashModal/Modal.jsx';
+import ModalOT from '../../Components/DashModal/OTmodal.jsx';
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import dashicn from '../Assets/dashboard-icn.svg';
@@ -158,6 +159,95 @@ const Stopwatch = () => {
     </div>
   );
 };
+//FOR OVERTIME MODAL AND TIMER
+const StopwatchOT = () => {
+	const [hours, setHours] = useState(0);
+	const [minutes, setMinutes] = useState(0);
+	const [seconds, setSeconds] = useState(0);
+	const [isTimeIn, setIsTimeIn] = useState(false);
+	const [isTimeOutDisabled, setIsTimeOutDisabled] = useState(true);
+
+	useEffect(() => {
+		let interval;
+
+		if (isTimeIn) {
+			interval = setInterval(() => {
+				setSeconds((prevSeconds) => {
+					if (prevSeconds === 59) {
+						setMinutes((prevMinutes) => {
+							if (prevMinutes === 59) {
+								setHours((prevHours) => prevHours + 1);
+								return 0;
+							} else {
+								return prevMinutes + 1;
+							}
+						});
+						return 0;
+					} else {
+						return prevSeconds + 1;
+					}
+				});
+			}, 1000);
+		} else {
+			clearInterval(interval);
+		}
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, [isTimeIn]);
+
+  const startTimer = () => {
+    setIsTimeIn(true);
+    setIsTimeOutDisabled(false);
+  };
+
+  const handleTimeOut = () => {
+    setIsTimeIn(false);
+    setIsTimeOutDisabled(true);
+  };
+
+  const handleSave = () => {
+    setIsTimeIn(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsTimeIn(false);
+  };
+
+  return (
+    <div>
+      <div className="dash-timer">
+        <p>
+          {String(hours).padStart(2, '0')}:
+          {String(minutes).padStart(2, '0')}:
+          {String(seconds).padStart(2, '0')}
+        </p>
+      </div>
+      <div className="timer-btn">
+        <button onClick={handleSave} disabled={isTimeIn} className="timein-btn">
+          Clock In
+        </button>
+        <button onClick={handleTimeOut} disabled={isTimeOutDisabled} className="timeout-btn">
+          Clock Out
+        </button>
+      </div>
+      <ModalDash show={isTimeIn} handleClose={handleCloseModal} handleSave={startTimer}>
+        <div className="modal-content">
+          <p>Confirm Clock In <span>(Overtime)</span></p>
+          </div>
+          <input type="name" disabled="disabled" value="Juan Dela Cruz" /><br />
+          <input type="date-time" disabled="disabled" value="November 06, 2023 | 09:29 AM" /><br />
+          <input type="client" disabled="disabled" value="GCash" />
+          <select>
+            <option value="" selected disabled> Select a Project</option>
+            <option value="">GCash-Mynt</option>
+            <option value="">Project Name</option>
+          </select>
+        </ModalDash>
+    </div>
+  );
+};
 
 
 
@@ -191,14 +281,14 @@ const TimesheetTable = () => {
 			<div className="tableContent">
 				{attendanceData.map(attendance => (
 					<div>
-						{attendance ? <p>{attendance.time_in}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.time_out}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.date}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.day}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.client_name}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.project_name}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
-						{attendance ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
+						{attendance.time_in ? <p>{attendance.time_in}</p> : <p>----------</p>}
+						{attendance.time_out ? <p>{attendance.time_out}</p> : <p>----------</p>}
+						{attendance.date ? <p>{attendance.date}</p> : <p>----------</p>}
+						{attendance.day ? <p>{attendance.day}</p> : <p>----------</p>}
+						{attendance.client_name ? <p>{attendance.client_name}</p> : <p>----------</p>}
+						{attendance.project_name ? <p>{attendance.project_name}</p> : <p>----------</p>}
+						{attendance.ot_time_in ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
+						{attendance.ot_time_out ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
 					</div>
 				))}
 			</div>
@@ -230,15 +320,6 @@ class MyDashboard extends Component {
 
 	render() {
 		return (
-			<div>
-				<button type="button" onClick={this.showModal}>
-					Open Modal
-				</button>
-				{/* Pass the correct props to ModalDash */}
-				<ModalDash show={this.state.show} handleClose={this.hideModal}>
-					<p>Modal Content</p>
-				</ModalDash>
-
 				<div className="dashboard">
 					<div className="dash-navbar">
 						<div className="dash-main">
@@ -298,7 +379,7 @@ class MyDashboard extends Component {
 								</div>
 								<div className="grid-item">
 									<span>Overtime</span>
-									<Stopwatch />
+									<StopwatchOT />
 								</div>
 							</div>
 							<div className="tracked-hours">
@@ -308,7 +389,6 @@ class MyDashboard extends Component {
 						</div>
 					</div>
 				</div>
-			</div>
 		);
 	}
 }
