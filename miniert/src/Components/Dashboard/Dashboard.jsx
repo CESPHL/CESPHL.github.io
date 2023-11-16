@@ -45,7 +45,7 @@ const Stopwatch = () => {
     };
   }, [isTimeIn]);
 
-  const handleTimeIn = () => {
+  const startTimer = () => {
     setIsTimeIn(true);
     setIsTimeOutDisabled(false);
   };
@@ -53,6 +53,14 @@ const Stopwatch = () => {
   const handleTimeOut = () => {
     setIsTimeIn(false);
     setIsTimeOutDisabled(true);
+  };
+
+  const handleSave = () => {
+    setIsTimeIn(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsTimeIn(false);
   };
 
   return (
@@ -65,13 +73,26 @@ const Stopwatch = () => {
         </p>
       </div>
       <div className="timer-btn">
-        <button onClick={handleTimeIn} disabled={isTimeIn} className="timein-btn">
+        <button onClick={handleSave} disabled={isTimeIn} className="timein-btn">
           Clock In
         </button>
         <button onClick={handleTimeOut} disabled={isTimeOutDisabled} className="timeout-btn">
           Clock Out
         </button>
       </div>
+      <ModalDash show={isTimeIn} handleClose={handleCloseModal} handleSave={startTimer}>
+        <div className="modal-content">
+          <p>Confirm Clock In</p>
+          </div>
+          <input type="name" disabled="disabled" value="Juan Dela Cruz" /><br />
+          <input type="date-time" disabled="disabled" value="November 06, 2023 | 09:29 AM" /><br />
+          <input type="client" disabled="disabled" value="GCash" />
+          <select>
+            <option value="" selected disabled> Select a Project</option>
+            <option value="">GCash-Mynt</option>
+            <option value="">Project Name</option>
+          </select>
+        </ModalDash>
     </div>
   );
 };
@@ -115,14 +136,6 @@ class MyDashboard extends Component {
   render() {
     return (
       <div>
-      <button type="button" onClick={this.showModal}>
-        Open Modal
-      </button>
-      {/* Pass the correct props to ModalDash */}
-      <ModalDash show={this.state.show} handleClose={this.hideModal}>
-        <p>Modal Content</p>
-      </ModalDash>
-
         <div className="dashboard">
           <div className="dash-navbar">
             <div className="dash-main">
@@ -146,14 +159,14 @@ class MyDashboard extends Component {
                 </li>
                 <li>
                   <NavLink to="/forgotpass">
-                    {/*placeholder directory*/}
+                    {/* placeholder directory */}
                     <img src={clock} alt="clock icon" />
                     <span className="inactive">Timesheet</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/resetpass">
-                    {/*placeholder directory*/}
+                    {/* placeholder directory */}
                     <img src={profile} alt="profile icon" />
                     <span className="inactive">Profile</span>
                   </NavLink>
@@ -188,8 +201,9 @@ class MyDashboard extends Component {
               <div className="tracked-hours">
                 <h4>TRACKED HOURS</h4>
               </div>
-              <div class="tableContainer">
-                <div class="tableHeader">
+              <div className="tableContainer">
+                {/* placeholder for table content */}
+                <div className="tableHeader">
                   <h1>Time In</h1>
                   <h1>Time Out</h1>
                   <h1>Date</h1>
@@ -199,7 +213,7 @@ class MyDashboard extends Component {
                   <h1>OT Time In</h1>
                   <h1>OT Time In</h1>
                 </div>
-                <div class="tableContent">
+                <div className="tableContent">
                   <p>10:00</p>
                   <p>10:00</p>
                   <p>11/15/2023</p>
@@ -213,7 +227,7 @@ class MyDashboard extends Component {
             </div>
           </div>
         </div>
-        </div>
+      </div>
     );
   }
 }

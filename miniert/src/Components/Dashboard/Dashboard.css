@@ -152,7 +152,7 @@ body {
 .logout-btn button {
 	padding: 10px;
 	cursor: pointer;
-	background-color: white;
+	background-color: #f6f8fb;
 	color: red;
 	font-weight: bold;
 	border: none;
@@ -183,6 +183,7 @@ body {
 
 .dash-text {
 	border-bottom: 2px solid#D0D5DD;
+	background-color: white;
 	height: 3vh;
 	text-align: left;
 	flex-grow: 1;
