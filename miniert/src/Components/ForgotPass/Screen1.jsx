@@ -44,7 +44,7 @@ export default function Screen1(){
                         <img src= {main} alt=""/><span>Collabera Digital<br/>External Resource Timesheet</span>
                     </div>
                     <div className="list">
-                        <div class="first-item">
+                        <div className="first-item">
                             <div>
                                 <img src = {person} alt=""/> 
                                 <div className="item1">
@@ -89,7 +89,7 @@ export default function Screen1(){
                     <label>Email</label> <br/>
                     <input type = "email" placeholder='Enter email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
                 </div>
-                <button className="submit-btn"> Submit Email</button>
+                <button className="submit-btn" onClick={submit}> Submit Email</button>
                 <div className="return">
                     <button onClick={handleClick}><img src = {arrow} alt="arrow key"/><span>Back to Log In</span></button>
                     </div>
