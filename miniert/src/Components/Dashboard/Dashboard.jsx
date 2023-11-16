@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 import ModalDash from '../../Components/DashModal/Modal.jsx';
+import ModalOT from '../../Components/DashModal/OTmodal.jsx';
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import dashicn from '../Assets/dashboard-icn.svg';
@@ -84,6 +85,95 @@ const Stopwatch = () => {
       <ModalDash show={isTimeIn} handleClose={handleCloseModal} handleSave={startTimer}>
         <div className="modal-content">
           <p>Confirm Clock In</p>
+          </div>
+          <input type="name" disabled="disabled" value="Juan Dela Cruz" /><br />
+          <input type="date-time" disabled="disabled" value="November 06, 2023 | 09:29 AM" /><br />
+          <input type="client" disabled="disabled" value="GCash" />
+          <select>
+            <option value="" selected disabled> Select a Project</option>
+            <option value="">GCash-Mynt</option>
+            <option value="">Project Name</option>
+          </select>
+        </ModalDash>
+    </div>
+  );
+};
+//FOR OVERTIME MODAL AND TIMER
+const StopwatchOT = () => {
+	const [hours, setHours] = useState(0);
+	const [minutes, setMinutes] = useState(0);
+	const [seconds, setSeconds] = useState(0);
+	const [isTimeIn, setIsTimeIn] = useState(false);
+	const [isTimeOutDisabled, setIsTimeOutDisabled] = useState(true);
+
+	useEffect(() => {
+		let interval;
+
+		if (isTimeIn) {
+			interval = setInterval(() => {
+				setSeconds((prevSeconds) => {
+					if (prevSeconds === 59) {
+						setMinutes((prevMinutes) => {
+							if (prevMinutes === 59) {
+								setHours((prevHours) => prevHours + 1);
+								return 0;
+							} else {
+								return prevMinutes + 1;
+							}
+						});
+						return 0;
+					} else {
+						return prevSeconds + 1;
+					}
+				});
+			}, 1000);
+		} else {
+			clearInterval(interval);
+		}
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, [isTimeIn]);
+
+  const startTimer = () => {
+    setIsTimeIn(true);
+    setIsTimeOutDisabled(false);
+  };
+
+  const handleTimeOut = () => {
+    setIsTimeIn(false);
+    setIsTimeOutDisabled(true);
+  };
+
+  const handleSave = () => {
+    setIsTimeIn(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsTimeIn(false);
+  };
+
+  return (
+    <div>
+      <div className="dash-timer">
+        <p>
+          {String(hours).padStart(2, '0')}:
+          {String(minutes).padStart(2, '0')}:
+          {String(seconds).padStart(2, '0')}
+        </p>
+      </div>
+      <div className="timer-btn">
+        <button onClick={handleSave} disabled={isTimeIn} className="timein-btn">
+          Clock In
+        </button>
+        <button onClick={handleTimeOut} disabled={isTimeOutDisabled} className="timeout-btn">
+          Clock Out
+        </button>
+      </div>
+      <ModalDash show={isTimeIn} handleClose={handleCloseModal} handleSave={startTimer}>
+        <div className="modal-content">
+          <p>Confirm Clock In <span>(Overtime)</span></p>
           </div>
           <input type="name" disabled="disabled" value="Juan Dela Cruz" /><br />
           <input type="date-time" disabled="disabled" value="November 06, 2023 | 09:29 AM" /><br />
@@ -240,7 +330,7 @@ class MyDashboard extends Component {
 								</div>
 								<div className="grid-item">
 									<span>Overtime</span>
-									<Stopwatch />
+									<StopwatchOT />
 								</div>
 							</div>
 							<div className="tracked-hours">
