@@ -7,43 +7,44 @@ import logicon from '../Assets/logout.svg';
 import dashicn from '../Assets/dashboard-icn.svg';
 import clock from '../Assets/inactive-clock.svg';
 import profile from '../Assets/inactive-profile.svg';
+import axios from 'axios';
 
 const Stopwatch = () => {
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-  const [isTimeIn, setIsTimeIn] = useState(false);
-  const [isTimeOutDisabled, setIsTimeOutDisabled] = useState(true);
+	const [hours, setHours] = useState(0);
+	const [minutes, setMinutes] = useState(0);
+	const [seconds, setSeconds] = useState(0);
+	const [isTimeIn, setIsTimeIn] = useState(false);
+	const [isTimeOutDisabled, setIsTimeOutDisabled] = useState(true);
 
-  useEffect(() => {
-    let interval;
+	useEffect(() => {
+		let interval;
 
-    if (isTimeIn) {
-      interval = setInterval(() => {
-        setSeconds((prevSeconds) => {
-          if (prevSeconds === 59) {
-            setMinutes((prevMinutes) => {
-              if (prevMinutes === 59) {
-                setHours((prevHours) => prevHours + 1);
-                return 0;
-              } else {
-                return prevMinutes + 1;
-              }
-            });
-            return 0;
-          } else {
-            return prevSeconds + 1;
-          }
-        });
-      }, 1000);
-    } else {
-      clearInterval(interval);
-    }
+		if (isTimeIn) {
+			interval = setInterval(() => {
+				setSeconds((prevSeconds) => {
+					if (prevSeconds === 59) {
+						setMinutes((prevMinutes) => {
+							if (prevMinutes === 59) {
+								setHours((prevHours) => prevHours + 1);
+								return 0;
+							} else {
+								return prevMinutes + 1;
+							}
+						});
+						return 0;
+					} else {
+						return prevSeconds + 1;
+					}
+				});
+			}, 1000);
+		} else {
+			clearInterval(interval);
+		}
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isTimeIn]);
+		return () => {
+			clearInterval(interval);
+		};
+	}, [isTimeIn]);
 
   const startTimer = () => {
     setIsTimeIn(true);
@@ -98,138 +99,169 @@ const Stopwatch = () => {
 };
 
 const CurrentDate = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+	const [currentDate, setCurrentDate] = useState(new Date());
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCurrentDate(new Date());
+		}, 1000);
 
-    return () => clearInterval(intervalId);
-  }, []);
+		return () => clearInterval(intervalId);
+	}, []);
 
-  const formattedDate = currentDate.toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+	const formattedDate = currentDate.toLocaleDateString('en-US', {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric',
+	});
 
-  return <p>{formattedDate}</p>;
+	return <p>{formattedDate}</p>;
 };
 
+const TimesheetTable = () => {
+	const [attendanceData, setAttendanceData] = useState([]);
+
+	useEffect(() => {
+		axios.get('http://localhost:4000/api/talents/10000/')
+			.then(response => {
+				setAttendanceData(response.data.attendance);
+				response.data.attendance.forEach(attendance => {
+					console.log(attendance);
+				});
+			}).catch(err => {
+				console.log(err);
+			});
+	}, []);
+
+	return (
+		<div className="tableContainer">
+			<div className="tableHeader">
+				<h1>Time In</h1>
+				<h1>Time Out</h1>
+				<h1>Date</h1>
+				<h1>Day</h1>
+				<h1>Client</h1>
+				<h1>Project</h1>
+				<h1>OT Time In</h1>
+				<h1>OT Time Out</h1>
+			</div>
+			<div className="tableContent">
+				{attendanceData.map(attendance => (
+					<div>
+						{attendance ? <p>{attendance.time_in}</p> : <p>----------</p>}
+						{attendance ? <p>{attendance.time_out}</p> : <p>----------</p>}
+						{attendance ? <p>{attendance.date}</p> : <p>----------</p>}
+						{attendance ? <p>{attendance.day}</p> : <p>----------</p>}
+						{attendance ? <p>{attendance.client_name}</p> : <p>----------</p>}
+						{attendance ? <p>{attendance.project_name}</p> : <p>----------</p>}
+						{attendance ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
+						{attendance ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
+					</div>
+				))}
+			</div>
+		</div>
+	);
+}
+
 class MyDashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false,
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			show: false,
+		};
+	}
 
-  showModal = () => {
-    this.setState({ show: true });
-  };
+	showModal = () => {
+		this.setState({ show: true });
+	};
 
-  hideModal = () => {
-    this.setState({ show: false });
-  };
+	hideModal = () => {
+		this.setState({ show: false });
+	};
 
-  render() {
-    return (
-      <div>
-        <div className="dashboard">
-          <div className="dash-navbar">
-            <div className="dash-main">
-              <img src={hourglass} alt="" />
-              <span>
-                <span style={{ fontWeight: 'bold', color: '#684CE2', fontSize: '14px', paddingLeft: '0px' }}>
-                  Collabera Digital
-                </span>
-                <br />
-                External Resource Timesheet
-              </span>
-            </div>
-            <div className="dash-list">
-              <p>NAVIGATION</p>
-              <div className="dash-1">
-                <li>
-                  <NavLink to="/dashboard" activeClassName="active">
-                    <img src={dashicn} alt="dashboard icon" />
-                    <span>Dashboard</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/forgotpass">
-                    {/* placeholder directory */}
-                    <img src={clock} alt="clock icon" />
-                    <span className="inactive">Timesheet</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/resetpass">
-                    {/* placeholder directory */}
-                    <img src={profile} alt="profile icon" />
-                    <span className="inactive">Profile</span>
-                  </NavLink>
-                </li>
-              </div>
-            </div>
-            <div className="logout-btn">
-              <img src={logicon} alt="logout icon" />
-              <NavLink to="/">
-                <button>Log Out</button>
-              </NavLink>
-            </div>
-          </div>
-          <div className="dashboard-content">
-            <div className="dash-text">
-              <h5>Dashboard</h5>
-              <span>
-                <CurrentDate />
-              </span>
-            </div>
-            <div className="dashboard-main-content">
-              <div className="grid-container">
-                <div className="grid-item">
-                  <span>Regular Shift</span>
-                  <Stopwatch />
-                </div>
-                <div className="grid-item">
-                  <span>Overtime</span>
-                  <Stopwatch />
-                </div>
-              </div>
-              <div className="tracked-hours">
-                <h4>TRACKED HOURS</h4>
-              </div>
-              <div className="tableContainer">
-                {/* placeholder for table content */}
-                <div className="tableHeader">
-                  <h1>Time In</h1>
-                  <h1>Time Out</h1>
-                  <h1>Date</h1>
-                  <h1>Day</h1>
-                  <h1>Client</h1>
-                  <h1>Project</h1>
-                  <h1>OT Time In</h1>
-                  <h1>OT Time In</h1>
-                </div>
-                <div className="tableContent">
-                  <p>10:00</p>
-                  <p>10:00</p>
-                  <p>11/15/2023</p>
-                  <p>Monday</p>
-                  <p>Client 1</p>
-                  <p>Project 1</p>
-                  <p> - </p>
-                  <p> - </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<button type="button" onClick={this.showModal}>
+					Open Modal
+				</button>
+				{/* Pass the correct props to ModalDash */}
+				<ModalDash show={this.state.show} handleClose={this.hideModal}>
+					<p>Modal Content</p>
+				</ModalDash>
+
+				<div className="dashboard">
+					<div className="dash-navbar">
+						<div className="dash-main">
+							<img src={hourglass} alt="" />
+							<span>
+								<span style={{ fontWeight: 'bold', color: '#684CE2', fontSize: '14px', paddingLeft: '0px' }}>
+									Collabera Digital
+								</span>
+								<br />
+								External Resource Timesheet
+							</span>
+						</div>
+						<div className="dash-list">
+							<p>NAVIGATION</p>
+							<div className="dash-1">
+								<li>
+									<NavLink to="/dashboard" activeclassname="active">
+										<img src={dashicn} alt="dashboard icon" />
+										<span>Dashboard</span>
+									</NavLink>
+								</li>
+								<li>
+									<NavLink to="/forgotpass">
+										{/*placeholder directory*/}
+										<img src={clock} alt="clock icon" />
+										<span className="inactive">Timesheet</span>
+									</NavLink>
+								</li>
+								<li>
+									<NavLink to="/resetpass">
+										{/*placeholder directory*/}
+										<img src={profile} alt="profile icon" />
+										<span className="inactive">Profile</span>
+									</NavLink>
+								</li>
+							</div>
+						</div>
+						<div className="logout-btn">
+							<img src={logicon} alt="logout icon" />
+							<NavLink to="/">
+								<button>Log Out</button>
+							</NavLink>
+						</div>
+					</div>
+					<div className="dashboard-content">
+						<div className="dash-text">
+							<h5>Dashboard</h5>
+							<span>
+								<CurrentDate />
+							</span>
+						</div>
+						<div className="dashboard-main-content">
+							<div className="grid-container">
+								<div className="grid-item">
+									<span>Regular Shift</span>
+									<Stopwatch />
+								</div>
+								<div className="grid-item">
+									<span>Overtime</span>
+									<Stopwatch />
+								</div>
+							</div>
+							<div className="tracked-hours">
+								<h4>TRACKED HOURS</h4>
+							</div>
+							<TimesheetTable />
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default MyDashboard;
