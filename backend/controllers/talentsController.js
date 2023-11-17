@@ -60,7 +60,38 @@ const timeIn = async (req, res) => {
     const { employee_id } = req.params
     console.log(employee_id);
 
-    // console.log(req.body.date);
+    console.log("User entered date: " + req.body.date);
+
+    try {
+        const talent = await Talent.findOne({ employee_id: employee_id });
+        if (!talent) {
+            return res.status(404).json({ message: "No such user." });
+        }
+        else {
+            const existingDates = talent.attendance.map((attendance) => attendance.date);
+            const hasMatch = existingDates.forEach(attendanceDate => {
+                console.log("User entered date: " + req.body.date);
+                console.log("Date from database: " + attendanceDate);
+                if (attendanceDate === req.body.date) {
+                    return true;
+                }
+                return false;
+            });
+            console.log(hasMatch);
+            if (hasMatch != true) {
+                const talent = await Talent.findOneAndUpdate({ employee_id: employee_id },
+                    { $push: { attendance: req.body }}, 
+                );
+                res.status(200).json(talent);
+            }
+            else {
+                res.status().json()
+            }
+        }
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
 
     // try {
     //     const talent = await Talent.findOne({ employee_id: employee_id });
@@ -96,10 +127,6 @@ const timeIn = async (req, res) => {
     //     console.log(error);
     //     res.status(500).json({ message: 'Internal server error' });
     // }
-    const talent = await Talent.findOneAndUpdate({ employee_id: employee_id },
-        { $push: { attendance: req.body }}, 
-    );
-    res.status(200).json(talent);
 }
 
 const timeOut = async (req, res) => {
@@ -107,7 +134,7 @@ const timeOut = async (req, res) => {
     console.log(employee_id);
 
     const talent = await Talent.findOneAndUpdate({ employee_id: employee_id },
-        { $push: { attendance: req.body }}, 
+        { $push: { attendance: req.body } },
     );
     res.status(200).json(talent);
 }

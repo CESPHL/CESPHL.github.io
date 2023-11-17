@@ -81,6 +81,13 @@ body {
 	box-shadow: 2px 3px 4px #b3b3b3;
 }
 
+.dash-main > span > span {
+	font-weight: bold;
+	color: #684CE2;
+	font-size: 14px;
+	padding-left: 0px;
+}
+
 .dash-list {
 	text-align: left;
 	padding-top: 20px;

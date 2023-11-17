@@ -62,7 +62,7 @@ const Login = () => {
       } else {
         //Failed login
         console.log('Failed login');
-        //Make an error message.
+        // Make an error message.
         toast.error('Invalid username or password.', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 5000,
