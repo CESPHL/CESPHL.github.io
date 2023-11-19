@@ -32,18 +32,10 @@ const CurrentDate = () => {
 	return <p>{formattedDate}</p>;
 };
 
+
+
 const Stopwatch = () => {
-	const [hours, setHours] = useState(Number(localStorage.getItem('hours')));
-	const [minutes, setMinutes] = useState(Number(localStorage.getItem('minutes')));
-	const [seconds, setSeconds] = useState(Number(localStorage.getItem('seconds')));
-	console.log("Variable: " + hours);
-	console.log("Variable: " + minutes);
-	console.log("Variable: " + seconds);
-	console.log("Local: " + localStorage.getItem('hours'));
-	console.log("Local: " + localStorage.getItem('minutes'));
-	console.log("Local: " + localStorage.getItem('seconds'));
-	const [isTimeOutDisabled, setIsTimeOutDisabled] = useState(true);
-	const [isModalVisible, setIsModalVisible] = useState(false);
+	// Variables for data
 	const [talentData, setTalentData] = useState([]);
 	const employee_id = localStorage.getItem('employee_id');
 	const [currentDate, setCurrentDate] = useState(new Date());
@@ -58,19 +50,30 @@ const Stopwatch = () => {
 	});
 	const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	const currentDay = weekDay[currentTime.getDay()];
+	const [hours, setHours] = useState(0);
+	const [minutes, setMinutes] = useState(0);
+	const [seconds, setSeconds] = useState(0);
+
+	// Variables for modals
+	const [isTimeInModalVisible, setIsTimeInModalVisible] = useState(false);
+	const [isTimeOutModalVisible, setIsTimeOutModalVisible] = useState(false);
+
+	// Variables for buttons
+	const [isTimeInDisabled, setIsTimeInDisabled] = useState(isTimedIn);
+	const [isTimeOutDisabled, setIsTimeOutDisabled] = useState(!isTimedIn);
 
 
 	useEffect(() => {
 		let interval;
+
 		if (isTimedIn === true) {
 			interval = setInterval(() => {
 				setSeconds((prevSeconds) => {
-					localStorage.setItem("savedSeconds", seconds);
 					if (prevSeconds === 59) {
-						localStorage.setItem("savedMinutes", minutes);
+						// If seconds reach 59, reset to 0 and update minutes
 						setMinutes((prevMinutes) => {
 							if (prevMinutes === 59) {
-								localStorage.setItem("savedHours", hours);
+								// If minutes reach 59, reset to 0 and update hours
 								setHours((prevHours) => prevHours + 1);
 								return 0;
 							} else {
@@ -83,7 +86,6 @@ const Stopwatch = () => {
 					}
 				});
 			}, 1000);
-	
 		} else {
 			clearInterval(interval);
 		}
@@ -93,19 +95,61 @@ const Stopwatch = () => {
 		};
 	}, [isTimedIn]);
 
-	console.log("Hours: " + hours);
-	console.log("Minutes: " + minutes);
-	console.log("Seconds: " + seconds);
+	useEffect(() => {
+		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
+			.then(response => {
+				// Assuming the response is an array of objects
+				const data = response.data;
+				// Set the data in your component state
+				setTalentData(data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, []);
 
-	const visibleModal = () => {
-		setIsModalVisible(true);
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCurrentDate(new Date());
+		}, 1000);
+
+		return () => clearInterval(intervalId);
+	}, []);
+
+	// console.log("Hours: " + hours);
+	// console.log("Minutes: " + minutes);
+	// console.log("Seconds: " + seconds);
+
+	// localStorage.setItem("hours", hours);
+	// localStorage.setItem("minutes", minutes);
+	// localStorage.setItem("seconds", seconds);
+
+	// Opening and closing of the time in modal
+	const openTimeInModal = () => {
+		setIsTimeInModalVisible(true);
 	}
-
-	const handleCloseModal = () => {
-		setIsModalVisible(false);
+	const closeTimeInModal = () => {
+		setIsTimeInModalVisible(false);
 	};
 
-	const HandleSave = () => {
+	// Opening and closing of the time out modal
+	const openTimeOutModal = () => {
+		setIsTimeOutModalVisible(true);
+	}
+
+	const closeTimeOutModal = () => {
+		setIsTimeOutModalVisible(false);
+	}
+
+	// Get the user input from the modal then pass it to the api
+	// If successful
+	// Enable the time out button
+	// Disable the time in button
+	// Set the isTimedIn at the localStorage to true
+	// Save to database
+	// Close modal
+	// Start stopwatch
+	const HandleTimeIn = () => {
 		const projectName = document.getElementById("projectDropdown");
 		const selectedProject = projectName.options[projectName.selectedIndex].text;
 		const timeInData = {
@@ -118,11 +162,12 @@ const Stopwatch = () => {
 
 		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timein`, timeInData)
 			.then(res => {
-				console.log(res.status);
 				if (res.status === 200) {
+					setIsTimeInDisabled(true);
 					setIsTimeOutDisabled(false);
-					localStorage.setItem("isTimedIn", true);
-					handleCloseModal();
+					localStorage.setItem("isTimedIn", true); // Used in disabling the buttons
+					localStorage.setItem("isNormalShiftDone", false); // Used in disabling the buttons
+					closeTimeInModal();
 				}
 				else {
 					toast.error('There was trouble timing in.', {
@@ -139,8 +184,281 @@ const Stopwatch = () => {
 			})
 	};
 
+	// Get the current time and date and pass it to the api
+	// If successful
+	// Enable the OT time in button 
+	// Disable the time out button
+	// Change the stored isTimedIn value at the localStorage
+	// Save to database
+	// Close the modal
+	// Stop stopwatch
+	// If unsuccessful, display an error toast
 	const handleTimeOut = () => {
-		setIsTimeOutDisabled(true);
+		const projectName = document.getElementById("projectDropdown");
+		const selectedProject = projectName.options[projectName.selectedIndex].text;
+		const timeOutData = {
+			time_out: formattedTime,
+			date: formattedDate,
+			day: currentDay,
+			project_name: selectedProject,
+			client_name: document.getElementById("clientName").value
+		}
+
+		console.log(timeOutData);
+		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timeout`, timeOutData)
+			.then(res => {
+				if (res.status === 200) {
+					setIsTimeOutDisabled(true);
+					setIsTimeInDisabled(false)
+					localStorage.setItem("isTimedIn", false);
+					localStorage.setItem("isNormalShiftDone", true);
+					closeTimeOutModal();
+				}
+				else {
+					toast.error('There was trouble timing out.', {
+						position: toast.POSITION.TOP_CENTER,
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "light",
+					});
+				}
+			})
+			.catch(error => {
+				console.error('Error during timeout request:', error);
+				// Handle the error, e.g., show a toast message or log it
+				toast.error('There was an error during timeout request.', {
+					// ... other options for toast notification
+				});
+			});
+	};
+
+	return (
+		<div>
+			<div className="dash-timer">
+				<p id="hours">{localStorage.getItem("hours") ? String(hours).padStart(2, '0') : "00"}:</p>
+				<p id="minutes">{localStorage.getItem("minutes") ? String(minutes).padStart(2, '0') : "00"}:</p>
+				<p id="seconds">{localStorage.getItem("seconds") ? String(seconds).padStart(2, '0') : "00"}</p>
+			</div>
+			<div className="timer-btn">
+				<button onClick={openTimeInModal} disabled={isTimeInDisabled} className="timein-btn">
+					Clock In
+				</button>
+				<button onClick={openTimeOutModal} disabled={isTimeOutDisabled} className="timeout-btn">
+					Clock Out
+				</button>
+			</div>
+			<ModalDash id="timeInModal" show={isTimeInModalVisible} handleClose={closeTimeInModal} handleSave={HandleTimeIn}>
+				<div className="modal-content">
+					<p>Confirm Clock In</p>
+				</div>
+				<input type="text" id="talentName" name="name" disabled="disabled" value={talentData.first_name + " " + talentData.last_name} /><br />
+				<input type="text" id="timeIn" name="date-time" disabled="disabled" value={formattedDate + " | " + formattedTime} /><br />
+				<input type="text" id="clientName" name="client" disabled="disabled" value="GCash" />
+				<select id="projectDropdown">
+					<option defaultValue disabled> Select a Project</option>
+					<option>GCash-Mynt</option>
+					<option>Project Name</option>
+				</select>
+			</ModalDash>
+			<ModalDash id="timeOutModal" show={isTimeOutModalVisible} handleClose={closeTimeOutModal} handleSave={handleTimeOut}>
+				<div className="modal-content">
+					<p>Confirm Clock Out</p>
+				</div>
+				<input type="text" id="talentName" name="name" disabled="disabled" value={talentData.first_name + " " + talentData.last_name} /><br />
+				<input type="text" id="timeIn" name="date-time" disabled="disabled" value={formattedDate + " | " + formattedTime} /><br />
+				<input type="text" id="clientName" name="client" disabled="disabled" value="GCash" />
+				<select id="projectDropdown">
+					<option defaultValue disabled> Select a Project</option>
+					<option>GCash-Mynt</option>
+					<option>Project Name</option>
+				</select>
+			</ModalDash>
+		</div >
+	);
+};
+
+const OTStopwatch = () => {
+	// Variables for data
+	const [talentData, setTalentData] = useState([]);
+	const employee_id = localStorage.getItem('employee_id');
+	const [currentDate, setCurrentDate] = useState(new Date());
+	const currentTime = new Date();
+	const isTimedInOT = () => {
+		// To allow the time in OT
+		// isTimedIn should be false
+		// isNormalShiftDone should be true
+		// isTimedInOT should return false to clock in OT
+		let isTimedIn = JSON.parse(localStorage.getItem("isTimedInOT")); // True by default, is set to false after clicking time in OT button
+		let isNormalShiftDone = JSON.parse(localStorage.getItem("isNormalShiftDone")); // Set to true by clocking out of regular shift.
+		// console.log(isTimedIn);
+		// console.log(isNormalShiftDone);
+		if (isTimedIn === false && isNormalShiftDone === true) {
+			return false
+		}
+	};
+	// console.log(isTimedInOT());
+	const options = { hour: 'numeric', minute: '2-digit', hour12: true };
+	const formattedTime = currentTime.toLocaleTimeString('en-US', options);
+	const formattedDate = currentDate.toLocaleDateString('en-US', {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric',
+	});
+	const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	const currentDay = weekDay[currentTime.getDay()];
+	const [hours, setHours] = useState(0);
+	const [minutes, setMinutes] = useState(0);
+	const [seconds, setSeconds] = useState(0);
+
+	// Variables for modals
+	const [isTimeInOTModalVisible, setIsTimeInOTModalVisible] = useState(false);
+	const [isTimeOutOTModalVisible, setIsTimeOutOTModalVisible] = useState(false);
+
+	// Variables for buttons
+	const [isTimeInOTDisabled, setIsTimeInOTDisabled] = useState(isTimedInOT());
+	const [isTimeOutOTDisabled, setIsTimeOutOTDisabled] = useState(!isTimedInOT());
+
+
+	useEffect(() => {
+		let interval;
+
+		if (isTimedInOT === true) {
+			interval = setInterval(() => {
+				setSeconds((prevSeconds) => {
+					if (prevSeconds === 59) {
+						// If seconds reach 59, reset to 0 and update minutes
+						setMinutes((prevMinutes) => {
+							if (prevMinutes === 59) {
+								// If minutes reach 59, reset to 0 and update hours
+								setHours((prevHours) => prevHours + 1);
+								return 0;
+							} else {
+								return prevMinutes + 1;
+							}
+						});
+						return 0;
+					} else {
+						return prevSeconds + 1;
+					}
+				});
+			}, 1000);
+		} else {
+			clearInterval(interval);
+		}
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, [isTimedInOT()]);
+
+	// console.log("Hours: " + hours);
+	// console.log("Minutes: " + minutes);
+	// console.log("Seconds: " + seconds);
+
+	// localStorage.setItem("hours", hours);
+	// localStorage.setItem("minutes", minutes);
+	// localStorage.setItem("seconds", seconds);
+
+	// Opening and closing of the time in modal
+	const openTimeInOTModal = () => {
+		setIsTimeInOTModalVisible(true);
+	}
+	const closeTimeInOTModal = () => {
+		setIsTimeInOTModalVisible(false);
+	};
+
+	// Opening and closing of the time out modal
+	const openTimeOutOTModal = () => {
+		setIsTimeOutOTModalVisible(true);
+	}
+
+	const closeTimeOutOTModal = () => {
+		setIsTimeOutOTModalVisible(false);
+	}
+
+	// Get the user input from the modal then pass it to the api
+	// If successful
+	// Enable the time out button
+	// Disable the time in button
+	// Set the isTimedIn at the localStorage to true
+	// Save to database
+	// Close modal
+	// Start stopwatch
+	const HandleTimeInOT = () => {
+		const projectName = document.getElementById("projectDropdown");
+		const selectedProject = projectName.options[projectName.selectedIndex].text;
+		const timeInData = {
+			ot_time_in: formattedTime,
+			date: formattedDate,
+			day: currentDay,
+			project_name: selectedProject,
+			client_name: document.getElementById("clientName").value
+		}
+
+		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timeinOT`, timeInData)
+			.then(res => {
+				if (res.status === 200) {
+					setIsTimeInOTDisabled(true);
+					setIsTimeOutOTDisabled(false);
+					localStorage.setItem("isTimedIn", true);
+					closeTimeInOTModal();
+				}
+				else {
+					toast.error('There was trouble timing in.', {
+						position: toast.POSITION.TOP_CENTER,
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "light",
+					});
+				}
+			})
+	};
+
+	// Get the current time and date and pass it to the api
+	// If successful
+	// Enable the OT time in button 
+	// Disable the time out button
+	// Change the stored isTimedIn value at the localStorage
+	// Save to database
+	// Close the modal
+	// Stop stopwatch
+	// If unsuccessful, display an error toast
+	const HandleTimeOutOT = () => {
+		setIsTimeOutOTDisabled(true);
+		const timeOutData = {
+			ot_time_out: formattedTime,
+			date: formattedDate
+		}
+		console.log(timeOutData);
+		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timeoutOT`, timeOutData)
+			.then(res => {
+				if (res.status === 200) {
+					setIsTimeOutOTDisabled(true);
+					setIsTimeInOTDisabled(false)
+					localStorage.setItem("isTimedIn", false);
+					closeTimeOutOTModal();
+				}
+				else {
+					toast.error('There was trouble timing out.', {
+						position: toast.POSITION.TOP_CENTER,
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "light",
+					});
+				}
+			})
 	};
 
 	useEffect(() => {
@@ -165,31 +483,41 @@ const Stopwatch = () => {
 	}, []);
 
 	return (
-		<div>
+		<div id="OTGridItem">
 			<div className="dash-timer">
-				<p>
-					{localStorage.getItem('hours') ? localStorage.getItem('hours') :  String(hours).padStart(2, '0')}:
-					{localStorage.getItem('minutes') ? localStorage.getItem('seconds') : String(minutes).padStart(2, '0')}:
-					{localStorage.getItem('seconds') ? localStorage.getItem('seconds') : String(seconds).padStart(2, '0')}
-				</p>
+				<p id="hours">{localStorage.getItem("hours") ? String(hours).padStart(2, '0') : "00"}:</p>
+				<p id="minutes">{localStorage.getItem("minutes") ? String(minutes).padStart(2, '0') : "00"}:</p>
+				<p id="seconds">{localStorage.getItem("seconds") ? String(seconds).padStart(2, '0') : "00"}</p>
 			</div>
 			<div className="timer-btn">
-				<button onClick={visibleModal} disabled={isTimedIn} className="timein-btn">
+				<button onClick={openTimeInOTModal} disabled={isTimeInOTDisabled} className="timein-btn">
 					Clock In
 				</button>
-				<button onClick={handleTimeOut} disabled={isTimeOutDisabled} className="timeout-btn">
+				<button onClick={openTimeOutOTModal} disabled={isTimeOutOTDisabled} className="timeout-btn">
 					Clock Out
 				</button>
 			</div>
-			<ModalDash show={isModalVisible} handleClose={handleCloseModal} handleSave={HandleSave}>
+			<ModalDash id="timeInModal" show={isTimeInOTModalVisible} handleClose={closeTimeInOTModal} handleSave={HandleTimeInOT}>
 				<div className="modal-content">
-					<p>Confirm Clock In</p>
+					<p>Confirm Clock In (Overtime)</p>
 				</div>
 				<input type="text" id="talentName" name="name" disabled="disabled" value={talentData.first_name + " " + talentData.last_name} /><br />
 				<input type="text" id="timeIn" name="date-time" disabled="disabled" value={formattedDate + " | " + formattedTime} /><br />
 				<input type="text" id="clientName" name="client" disabled="disabled" value="GCash" />
 				<select id="projectDropdown">
-						// Pwedeng galing sa database
+					<option defaultValue disabled> Select a Project</option>
+					<option>GCash-Mynt</option>
+					<option>Project Name</option>
+				</select>
+			</ModalDash>
+			<ModalDash id="timeOutModal" show={isTimeOutOTModalVisible} handleClose={closeTimeOutOTModal} handleSave={HandleTimeOutOT}>
+				<div className="modal-content">
+					<p>Confirm Clock Out (Overtime)</p>
+				</div>
+				<input type="text" id="talentName" name="name" disabled="disabled" value={talentData.first_name + " " + talentData.last_name} /><br />
+				<input type="text" id="timeIn" name="date-time" disabled="disabled" value={formattedDate + " | " + formattedTime} /><br />
+				<input type="text" id="clientName" name="client" disabled="disabled" value="GCash" />
+				<select id="projectDropdown">
 					<option defaultValue disabled> Select a Project</option>
 					<option>GCash-Mynt</option>
 					<option>Project Name</option>
@@ -337,6 +665,7 @@ class MyDashboard extends Component {
 							</div>
 							<div className="grid-item">
 								<span>Overtime</span>
+								<OTStopwatch />
 							</div>
 						</div>
 						<div className="tracked-hours">

@@ -5,7 +5,9 @@ const {
     getOneTalent,
     updateTalent,
     timeIn,
-    timeOut
+    timeOut,
+    timeInOT,
+    timeOutOT
 } = require('../controllers/talentsController'); // Getting from database
 
 
@@ -28,5 +30,11 @@ router.patch('/:employee_id/timein', timeIn);
 
 // Time out
 router.patch('/:employee_id/timeout', timeOut);
+
+// Time in OT
+router.patch('/:employee_id/timeinOT', timeInOT);
+
+// Time out OT
+router.patch('/:employee_id/timeoutOT', timeOutOT);
 
 module.exports = router;
