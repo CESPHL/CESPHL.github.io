@@ -2,7 +2,6 @@ import React, { useState, useEffect, Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 import ModalDash from '../../Components/DashModal/Modal.jsx';
-import ModalOT from '../../Components/DashModal/OTmodal.jsx';
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import dashicn from '../Assets/dashboard-icn.svg';
@@ -11,6 +10,17 @@ import profile from '../Assets/inactive-profile.svg';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+// Variables for buttons
+let isClockInDisabled = JSON.parse(localStorage.getItem("isClockInDisabled")) ?? false;
+let isClockOutDisabled = JSON.parse(localStorage.getItem("isClockOutDisabled")) ?? true;
+let isClockInOTDisabled = JSON.parse(localStorage.getItem("isClockInOTDisabled")) ?? true;
+let isClockOutOTDisabled = JSON.parse(localStorage.getItem("isClockOutOTDisabled")) ?? true;
+
+console.log("isClockInDisabled: " + isClockInDisabled);
+console.log("isClockOutDisabled: " + isClockOutDisabled);
+console.log("isClockInOTDisabled: " + isClockInOTDisabled);
+console.log("isClockOutOTDisabled: " + isClockOutOTDisabled);
 
 const CurrentDate = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
@@ -32,15 +42,12 @@ const CurrentDate = () => {
 	return <p>{formattedDate}</p>;
 };
 
-
-
 const Stopwatch = () => {
 	// Variables for data
 	const [talentData, setTalentData] = useState([]);
 	const employee_id = localStorage.getItem('employee_id');
 	const [currentDate, setCurrentDate] = useState(new Date());
 	const currentTime = new Date();
-	const isTimedIn = JSON.parse(localStorage.getItem("isTimedIn"));
 	const options = { hour: 'numeric', minute: '2-digit', hour12: true };
 	const formattedTime = currentTime.toLocaleTimeString('en-US', options);
 	const formattedDate = currentDate.toLocaleDateString('en-US', {
@@ -58,15 +65,11 @@ const Stopwatch = () => {
 	const [isTimeInModalVisible, setIsTimeInModalVisible] = useState(false);
 	const [isTimeOutModalVisible, setIsTimeOutModalVisible] = useState(false);
 
-	// Variables for buttons
-	const [isTimeInDisabled, setIsTimeInDisabled] = useState(isTimedIn);
-	const [isTimeOutDisabled, setIsTimeOutDisabled] = useState(!isTimedIn);
-
 
 	useEffect(() => {
 		let interval;
 
-		if (isTimedIn === true) {
+		if (isClockInDisabled === true) {
 			interval = setInterval(() => {
 				setSeconds((prevSeconds) => {
 					if (prevSeconds === 59) {
@@ -93,7 +96,7 @@ const Stopwatch = () => {
 		return () => {
 			clearInterval(interval);
 		};
-	}, [isTimedIn]);
+	}, []);
 
 	useEffect(() => {
 		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
@@ -106,7 +109,7 @@ const Stopwatch = () => {
 			.catch(err => {
 				console.log(err);
 			});
-	}, []);
+	}, [employee_id]);
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
@@ -163,10 +166,15 @@ const Stopwatch = () => {
 		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timein`, timeInData)
 			.then(res => {
 				if (res.status === 200) {
-					setIsTimeInDisabled(true);
-					setIsTimeOutDisabled(false);
-					localStorage.setItem("isTimedIn", true); // Used in disabling the buttons
-					localStorage.setItem("isNormalShiftDone", false); // Used in disabling the buttons
+
+					isClockInDisabled = true;
+					isClockOutDisabled = false;
+					isClockInOTDisabled = true;
+					isClockOutOTDisabled = true;
+					localStorage.setItem("isClockInDisabled", isClockInDisabled); // Used in disabling the buttons when refreshing the page
+					localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons when refreshing the page
+					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
+					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page 
 					closeTimeInModal();
 				}
 				else {
@@ -208,10 +216,14 @@ const Stopwatch = () => {
 		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timeout`, timeOutData)
 			.then(res => {
 				if (res.status === 200) {
-					setIsTimeOutDisabled(true);
-					setIsTimeInDisabled(false)
-					localStorage.setItem("isTimedIn", false);
-					localStorage.setItem("isNormalShiftDone", true);
+					isClockInDisabled = false;
+					isClockOutDisabled = true;
+					isClockInOTDisabled = false;
+					isClockOutOTDisabled = true;
+					localStorage.setItem("isClockInDisabled", isClockInDisabled); // Used in disabling the buttons when refreshing the page
+					localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons when refreshing the page
+					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
+					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page
 					closeTimeOutModal();
 				}
 				else {
@@ -244,10 +256,10 @@ const Stopwatch = () => {
 				<p id="seconds">{localStorage.getItem("seconds") ? String(seconds).padStart(2, '0') : "00"}</p>
 			</div>
 			<div className="timer-btn">
-				<button onClick={openTimeInModal} disabled={isTimeInDisabled} className="timein-btn">
+				<button onClick={openTimeInModal} disabled={isClockInDisabled} className="timein-btn">
 					Clock In
 				</button>
-				<button onClick={openTimeOutModal} disabled={isTimeOutDisabled} className="timeout-btn">
+				<button onClick={openTimeOutModal} disabled={isClockOutDisabled} className="timeout-btn">
 					Clock Out
 				</button>
 			</div>
@@ -287,19 +299,6 @@ const OTStopwatch = () => {
 	const employee_id = localStorage.getItem('employee_id');
 	const [currentDate, setCurrentDate] = useState(new Date());
 	const currentTime = new Date();
-	const isTimedInOT = () => {
-		// To allow the time in OT
-		// isTimedIn should be false
-		// isNormalShiftDone should be true
-		// isTimedInOT should return false to clock in OT
-		let isTimedIn = JSON.parse(localStorage.getItem("isTimedInOT")); // True by default, is set to false after clicking time in OT button
-		let isNormalShiftDone = JSON.parse(localStorage.getItem("isNormalShiftDone")); // Set to true by clocking out of regular shift.
-		// console.log(isTimedIn);
-		// console.log(isNormalShiftDone);
-		if (isTimedIn === false && isNormalShiftDone === true) {
-			return false
-		}
-	};
 	// console.log(isTimedInOT());
 	const options = { hour: 'numeric', minute: '2-digit', hour12: true };
 	const formattedTime = currentTime.toLocaleTimeString('en-US', options);
@@ -310,50 +309,67 @@ const OTStopwatch = () => {
 	});
 	const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	const currentDay = weekDay[currentTime.getDay()];
-	const [hours, setHours] = useState(0);
-	const [minutes, setMinutes] = useState(0);
-	const [seconds, setSeconds] = useState(0);
+	const [hoursOT, setHoursOT] = useState(0);
+	const [minutesOT, setMinutesOT] = useState(0);
+	const [secondsOT, setSecondsOT] = useState(0);
 
 	// Variables for modals
 	const [isTimeInOTModalVisible, setIsTimeInOTModalVisible] = useState(false);
 	const [isTimeOutOTModalVisible, setIsTimeOutOTModalVisible] = useState(false);
 
-	// Variables for buttons
-	const [isTimeInOTDisabled, setIsTimeInOTDisabled] = useState(isTimedInOT());
-	const [isTimeOutOTDisabled, setIsTimeOutOTDisabled] = useState(!isTimedInOT());
-
-
 	useEffect(() => {
-		let interval;
+		let intervalOT;
 
-		if (isTimedInOT === true) {
-			interval = setInterval(() => {
-				setSeconds((prevSeconds) => {
-					if (prevSeconds === 59) {
+		if (!isClockInDisabled) {
+			intervalOT = setInterval(() => {
+				setSecondsOT((prevSecondsOT) => {
+					if (prevSecondsOT === 59) {
 						// If seconds reach 59, reset to 0 and update minutes
-						setMinutes((prevMinutes) => {
-							if (prevMinutes === 59) {
+						setMinutesOT((prevMinutesOT) => {
+							if (prevMinutesOT === 59) {
 								// If minutes reach 59, reset to 0 and update hours
-								setHours((prevHours) => prevHours + 1);
+								setHoursOT((prevHoursOT) => prevHoursOT + 1);
 								return 0;
 							} else {
-								return prevMinutes + 1;
+								return prevMinutesOT + 1;
 							}
 						});
 						return 0;
 					} else {
-						return prevSeconds + 1;
+						return prevSecondsOT + 1;
 					}
 				});
 			}, 1000);
-		} else {
-			clearInterval(interval);
+		}
+		else {
+			clearInterval(intervalOT);
 		}
 
 		return () => {
-			clearInterval(interval);
+			clearInterval(intervalOT);
 		};
-	}, [isTimedInOT()]);
+	}, [!isClockInOTDisabled]);
+
+	useEffect(() => {
+		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
+			.then(response => {
+				// Assuming the response is an array of objects
+				const data = response.data;
+				// Set the data in your component state
+				setTalentData(data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, [employee_id]);
+
+	useEffect(() => {
+		const intervalIdOT = setInterval(() => {
+			setCurrentDate(new Date());
+		}, 1000);
+
+		return () => clearInterval(intervalIdOT);
+	}, []);
 
 	// console.log("Hours: " + hours);
 	// console.log("Minutes: " + minutes);
@@ -392,19 +408,24 @@ const OTStopwatch = () => {
 		const projectName = document.getElementById("projectDropdown");
 		const selectedProject = projectName.options[projectName.selectedIndex].text;
 		const timeInData = {
-			ot_time_in: formattedTime,
 			date: formattedDate,
 			day: currentDay,
+			client_name: document.getElementById("clientName").value,
 			project_name: selectedProject,
-			client_name: document.getElementById("clientName").value
+			ot_time_in: formattedTime
 		}
 
 		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timeinOT`, timeInData)
 			.then(res => {
 				if (res.status === 200) {
-					setIsTimeInOTDisabled(true);
-					setIsTimeOutOTDisabled(false);
-					localStorage.setItem("isTimedIn", true);
+					isClockInDisabled = true;
+					isClockOutDisabled = true;
+					isClockInOTDisabled = true;
+					isClockOutOTDisabled = false;
+					localStorage.setItem("isClockInDisabled", isClockInDisabled); // Used in disabling the buttons
+					localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons
+					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons
+					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons
 					closeTimeInOTModal();
 				}
 				else {
@@ -420,6 +441,19 @@ const OTStopwatch = () => {
 					});
 				}
 			})
+			.catch(err => {
+				console.log(err);
+				toast.error(err, {
+					position: toast.POSITION.TOP_CENTER,
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+				});
+			})
 	};
 
 	// Get the current time and date and pass it to the api
@@ -432,18 +466,27 @@ const OTStopwatch = () => {
 	// Stop stopwatch
 	// If unsuccessful, display an error toast
 	const HandleTimeOutOT = () => {
-		setIsTimeOutOTDisabled(true);
+		const projectName = document.getElementById("projectDropdown");
+		const selectedProject = projectName.options[projectName.selectedIndex].text;
 		const timeOutData = {
+			date: formattedDate,
+			day: currentDay,
+			client_name: document.getElementById("clientName").value,
+			project_name: selectedProject,
 			ot_time_out: formattedTime,
-			date: formattedDate
 		}
 		console.log(timeOutData);
 		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timeoutOT`, timeOutData)
 			.then(res => {
 				if (res.status === 200) {
-					setIsTimeOutOTDisabled(true);
-					setIsTimeInOTDisabled(false)
-					localStorage.setItem("isTimedIn", false);
+					isClockInDisabled = false;
+					isClockOutDisabled = true;
+					isClockInOTDisabled = true;
+					isClockOutOTDisabled = true;
+					localStorage.setItem("isClockInDisabled", isClockInDisabled); // Used in disabling the buttons
+					localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons
+					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons
+					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons
 					closeTimeOutOTModal();
 				}
 				else {
@@ -459,41 +502,33 @@ const OTStopwatch = () => {
 					});
 				}
 			})
-	};
-
-	useEffect(() => {
-		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
-			.then(response => {
-				// Assuming the response is an array of objects
-				const data = response.data;
-				// Set the data in your component state
-				setTalentData(data);
-			})
 			.catch(err => {
 				console.log(err);
-			});
-	}, []);
-
-	useEffect(() => {
-		const intervalId = setInterval(() => {
-			setCurrentDate(new Date());
-		}, 1000);
-
-		return () => clearInterval(intervalId);
-	}, []);
+				toast.error(err, {
+					position: toast.POSITION.TOP_CENTER,
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+				});
+			})
+	};
 
 	return (
 		<div id="OTGridItem">
 			<div className="dash-timer">
-				<p id="hours">{localStorage.getItem("hours") ? String(hours).padStart(2, '0') : "00"}:</p>
-				<p id="minutes">{localStorage.getItem("minutes") ? String(minutes).padStart(2, '0') : "00"}:</p>
-				<p id="seconds">{localStorage.getItem("seconds") ? String(seconds).padStart(2, '0') : "00"}</p>
+				<p id="hoursOT">{localStorage.getItem("hoursOT") ? String(hoursOT).padStart(2, '0') : "00"}:</p>
+				<p id="minutesOT">{localStorage.getItem("minutesOT") ? String(minutesOT).padStart(2, '0') : "00"}:</p>
+				<p id="secondsOT">{localStorage.getItem("secondsOT") ? String(secondsOT).padStart(2, '0') : "00"}</p>
 			</div>
 			<div className="timer-btn">
-				<button onClick={openTimeInOTModal} disabled={isTimeInOTDisabled} className="timein-btn">
+				<button onClick={openTimeInOTModal} disabled={isClockInOTDisabled} className="timein-btn">
 					Clock In
 				</button>
-				<button onClick={openTimeOutOTModal} disabled={isTimeOutOTDisabled} className="timeout-btn">
+				<button onClick={openTimeOutOTModal} disabled={isClockOutOTDisabled} className="timeout-btn">
 					Clock Out
 				</button>
 			</div>
@@ -538,7 +573,7 @@ const TimesheetTable = () => {
 			}).catch(err => {
 				console.log(err);
 			});
-	}, []);
+	}, [employee_id]);
 
 	return (
 		<div className="tableContainer">
