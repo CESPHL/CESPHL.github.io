@@ -190,6 +190,19 @@ const Stopwatch = () => {
 					});
 				}
 			})
+			.catch(err => {
+				console.error(err);
+				toast.error('There was trouble timing in.', {
+					position: toast.POSITION.TOP_CENTER,
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+				});
+			})
 	};
 
 	// Get the current time and date and pass it to the api
@@ -239,13 +252,19 @@ const Stopwatch = () => {
 					});
 				}
 			})
-			.catch(error => {
-				console.error('Error during timeout request:', error);
-				// Handle the error, e.g., show a toast message or log it
-				toast.error('There was an error during timeout request.', {
-					// ... other options for toast notification
+			.catch(err => {
+				console.error(err);
+				toast.error('There was trouble timing in.', {
+					position: toast.POSITION.TOP_CENTER,
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
 				});
-			});
+			})
 	};
 
 	return (
