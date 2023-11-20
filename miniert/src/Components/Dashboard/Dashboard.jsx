@@ -57,9 +57,9 @@ const Stopwatch = () => {
 	});
 	const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	const currentDay = weekDay[currentTime.getDay()];
-	const [hours, setHours] = useState(0);
-	const [minutes, setMinutes] = useState(0);
-	const [seconds, setSeconds] = useState(0);
+	const [hours, setHours] = useState(parseInt(localStorage.getItem("hours")) || 0);
+	const [minutes, setMinutes] = useState(parseInt(localStorage.getItem("minutes")) || 0);
+	const [seconds, setSeconds] = useState(parseInt(localStorage.getItem("seconds")) || 0);
 
 	// Variables for modals
 	const [isTimeInModalVisible, setIsTimeInModalVisible] = useState(false);
@@ -68,8 +68,10 @@ const Stopwatch = () => {
 
 	useEffect(() => {
 		let interval;
-
-		if (isClockInDisabled === true) {
+		localStorage.setItem("hours", hours);
+   		localStorage.setItem("minutes", minutes);
+    	localStorage.setItem("seconds", seconds);
+		if (isClockOutDisabled === false) {
 			interval = setInterval(() => {
 				setSeconds((prevSeconds) => {
 					if (prevSeconds === 59) {
@@ -96,7 +98,7 @@ const Stopwatch = () => {
 		return () => {
 			clearInterval(interval);
 		};
-	}, []);
+	}, [hours, minutes, seconds]);
 
 	useEffect(() => {
 		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
@@ -119,13 +121,13 @@ const Stopwatch = () => {
 		return () => clearInterval(intervalId);
 	}, []);
 
-	// console.log("Hours: " + hours);
-	// console.log("Minutes: " + minutes);
-	// console.log("Seconds: " + seconds);
+	 console.log("Hours: " + hours);
+	 console.log("Minutes: " + minutes);
+	 console.log("Seconds: " + seconds);
 
-	// localStorage.setItem("hours", hours);
-	// localStorage.setItem("minutes", minutes);
-	// localStorage.setItem("seconds", seconds);
+	localStorage.setItem("hours", hours);
+	localStorage.setItem("minutes", minutes);
+	localStorage.setItem("seconds", seconds);
 
 	// Opening and closing of the time in modal
 	const openTimeInModal = () => {
@@ -175,6 +177,12 @@ const Stopwatch = () => {
 					localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons when refreshing the page
 					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
 					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page 
+					setHours(0);
+  					setMinutes(0);
+    				setSeconds(0);
+					localStorage.setItem("hours", 0);
+					localStorage.setItem("minutes", 0);
+					localStorage.setItem("seconds", 0);
 					closeTimeInModal();
 				}
 				else {
@@ -189,6 +197,19 @@ const Stopwatch = () => {
 						theme: "light",
 					});
 				}
+			})
+			.catch(err => {
+				console.error(err);
+				toast.error('There was trouble timing in.', {
+					position: toast.POSITION.TOP_CENTER,
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+				});
 			})
 	};
 
@@ -224,6 +245,15 @@ const Stopwatch = () => {
 					localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons when refreshing the page
 					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
 					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page
+					/*Create a localStorage object that will store the hours, minutes, seconds or just concatenate all of them together 
+					ex. 9:36:23, or another option just store the Hours
+					*/
+					setHours(0);
+  					setMinutes(0);
+    				setSeconds(0);
+					localStorage.setItem("hours", 0);
+					localStorage.setItem("minutes", 0);
+					localStorage.setItem("seconds", 0);
 					closeTimeOutModal();
 				}
 				else {
@@ -239,21 +269,27 @@ const Stopwatch = () => {
 					});
 				}
 			})
-			.catch(error => {
-				console.error('Error during timeout request:', error);
-				// Handle the error, e.g., show a toast message or log it
-				toast.error('There was an error during timeout request.', {
-					// ... other options for toast notification
+			.catch(err => {
+				console.error(err);
+				toast.error('There was trouble timing in.', {
+					position: toast.POSITION.TOP_CENTER,
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
 				});
-			});
+			})
 	};
 
 	return (
 		<div>
 			<div className="dash-timer">
-				<p id="hours">{localStorage.getItem("hours") ? String(hours).padStart(2, '0') : "00"}:</p>
-				<p id="minutes">{localStorage.getItem("minutes") ? String(minutes).padStart(2, '0') : "00"}:</p>
-				<p id="seconds">{localStorage.getItem("seconds") ? String(seconds).padStart(2, '0') : "00"}</p>
+				<p id="hours">{String(hours).padStart(2, '0')}:</p>
+				<p id="minutes">{String(minutes).padStart(2, '0')}:</p>
+				<p id="seconds">{String(seconds).padStart(2, '0')}</p>
 			</div>
 			<div className="timer-btn">
 				<button onClick={openTimeInModal} disabled={isClockInDisabled} className="timein-btn">
@@ -289,7 +325,7 @@ const Stopwatch = () => {
 					<option>Project Name</option>
 				</select>
 			</ModalDash>
-		</div >
+		</div>
 	);
 };
 
@@ -309,9 +345,9 @@ const OTStopwatch = () => {
 	});
 	const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	const currentDay = weekDay[currentTime.getDay()];
-	const [hoursOT, setHoursOT] = useState(0);
-	const [minutesOT, setMinutesOT] = useState(0);
-	const [secondsOT, setSecondsOT] = useState(0);
+	const [hoursOT, setHoursOT] = useState(parseInt(localStorage.getItem("hoursOT")) || 0);
+  	const [minutesOT, setMinutesOT] = useState(parseInt(localStorage.getItem("minutesOT")) || 0);
+  	const [secondsOT, setSecondsOT] = useState(parseInt(localStorage.getItem("secondsOT")) || 0);
 
 	// Variables for modals
 	const [isTimeInOTModalVisible, setIsTimeInOTModalVisible] = useState(false);
@@ -319,8 +355,10 @@ const OTStopwatch = () => {
 
 	useEffect(() => {
 		let intervalOT;
-
-		if (!isClockInDisabled) {
+		localStorage.setItem("hoursOT", hoursOT);
+   		localStorage.setItem("minutesOT", minutesOT);
+   		localStorage.setItem("secondsOT", secondsOT);
+		if (isClockOutOTDisabled === false) {
 			intervalOT = setInterval(() => {
 				setSecondsOT((prevSecondsOT) => {
 					if (prevSecondsOT === 59) {
@@ -348,7 +386,7 @@ const OTStopwatch = () => {
 		return () => {
 			clearInterval(intervalOT);
 		};
-	}, [!isClockInOTDisabled]);
+	}, [hoursOT, minutesOT, secondsOT]);
 
 	useEffect(() => {
 		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
@@ -426,6 +464,15 @@ const OTStopwatch = () => {
 					localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons
 					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons
 					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons
+					/*Create a localStorage object that will store the hours, minutes, seconds or just concatenate all of them together 
+					ex. 9:36:23, or another option just store the Hours
+					*/
+					setHoursOT(0);
+					setMinutesOT(0);
+					setSecondsOT(0);
+					localStorage.setItem("hoursOT", 0);
+   					localStorage.setItem("minutesOT", 0);
+   					localStorage.setItem("secondsOT", 0);
 					closeTimeInOTModal();
 				}
 				else {
@@ -487,6 +534,12 @@ const OTStopwatch = () => {
 					localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons
 					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons
 					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons
+					setHoursOT(0);
+					setMinutesOT(0);
+					setSecondsOT(0);
+					localStorage.setItem("hoursOT", 0);
+   					localStorage.setItem("minutesOT", 0);
+   					localStorage.setItem("secondsOT", 0);
 					closeTimeOutOTModal();
 				}
 				else {
@@ -520,9 +573,9 @@ const OTStopwatch = () => {
 	return (
 		<div id="OTGridItem">
 			<div className="dash-timer">
-				<p id="hoursOT">{localStorage.getItem("hoursOT") ? String(hoursOT).padStart(2, '0') : "00"}:</p>
-				<p id="minutesOT">{localStorage.getItem("minutesOT") ? String(minutesOT).padStart(2, '0') : "00"}:</p>
-				<p id="secondsOT">{localStorage.getItem("secondsOT") ? String(secondsOT).padStart(2, '0') : "00"}</p>
+			<p id="hours">{String(hoursOT).padStart(2, '0')}:</p>
+        	<p id="minutes">{String(minutesOT).padStart(2, '0')}:</p>
+        	<p id="seconds">{String(secondsOT).padStart(2, '0')}</p>
 			</div>
 			<div className="timer-btn">
 				<button onClick={openTimeInOTModal} disabled={isClockInOTDisabled} className="timein-btn">
@@ -558,7 +611,7 @@ const OTStopwatch = () => {
 					<option>Project Name</option>
 				</select>
 			</ModalDash>
-		</div >
+		</div>
 	);
 };
 
