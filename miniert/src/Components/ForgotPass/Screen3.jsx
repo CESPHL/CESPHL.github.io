@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import arrow from '../Assets/back_arrow.svg';
 import main from '../Assets/Framemain.svg';
-import person from '../Assets/Person.svg';
+import person from '../Assets/person-inactive.svg';
 import nvmail from '../Assets/navbar_email.svg';
 import lock from '../Assets/Lock.svg';
 import check from '../Assets/forget-pass check.svg';
-import bubble from '../Assets/desktopbubble.svg';
+import bubble from '../Assets/deets-active.svg';
 
 import './screen3.css';
 
@@ -80,36 +80,36 @@ export default function Screen1() {
             <div className="rectangle">
                 <div className="title">
                     <div className="main">
-                        <img src={main} alt="" /><span>Collabera Digital<br />External Resource Timesheet</span>
+                        <img src={main} alt="" /><span><b>Collabera Digital</b><br />External Resource Timesheet</span>
                     </div>
                     <div className="list">
                         <div className="item">
                             <div>
                                 <img src={person} alt="" />
                                 <div className="item1">
-                                    <h5>Email confirmation </h5>
-                                    <p>Provide your email for resent instructions.</p>
+                                    <h5 className="page-inactive">Email confirmation </h5>
+                                    <p className="page-inactive">Provide your email for resent instructions.</p>
                                 </div>
                             </div>
                             <div>
                                 <img src={nvmail} alt="" />
                                 <div className="item2">
-                                    <h5>Email Sent</h5>
-                                    <p>Reset Password link has been sent.</p>
+                                    <h5 className="page-inactive">Email Sent</h5>
+                                    <p className="page-inactive">Reset Password link has been sent.</p>
                                 </div>
                             </div>
                             <div>
                                 <img src={bubble} alt="" />
                                 <div className="item3">
-                                    <h5>New Password Details</h5>
-                                    <p>Input your new password in the field.</p>
+                                    <h5 className="page-active">New Password Details</h5>
+                                    <p className="page-active">Input your new password in the field.</p>
                                 </div>
                             </div>
                             <div>
                                 <img src={check} alt="" />
                                 <div className="item4">
-                                    <h5>Reset Complete</h5>
-                                    <p>Your password has been updated.</p>
+                                    <h5 className="page-inactive">Reset Complete</h5>
+                                    <p className="page-inactive">Your password has been updated.</p>
                                 </div>
                             </div>
                         </div>

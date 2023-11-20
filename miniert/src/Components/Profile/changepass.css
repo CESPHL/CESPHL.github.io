@@ -1,6 +1,5 @@
 body {
 	background-color: #f6f8fb;
-	position: relative;
 }
 
 .dashboard {
@@ -106,7 +105,7 @@ body {
 .dash-1 li a {
 	display: flex;
 	align-items: center;
-  height: 50px;
+    height: 50px;
 }
 
 .logout-btn button {
@@ -169,43 +168,54 @@ body {
 .dash-text span {
 	text-align: right;
 }
-.mainContent{
-	padding-top: 20px;
-	overflow-y: auto;
-}
-.mainContent h3{
+.change-pass-content h3{
 	padding-left: 50px;
 	margin-bottom: 30px;
+    padding-top: 20px;
 }
-.mainContent form{
-	padding-left: 50px;
+.pass-submitbtn{
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #684CE2;
+    margin-left: 20px;
 }
-.mainContent input {
-	width: 200px;
-	height: 15px;
-	padding: 5px;
-	border: 1px solid #D0D5DD;
-	border-radius: 8px;
-	width: 400px;
-	margin-bottom: 10px;
-	margin-top: 5px;
-	padding: 8px;
-	padding-left: 12px;
-  }
-.mainContent span{
-	font-size: 13px;
+.cancel-btn{
+    background-color: white;
+    border: 1px solid #D0D5DD;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    margin-left: 50px;
 }
-.mainContent input[disabled] {
-	background-color: #F4F5F5;
-  }
-  .change-pass-btn {
-	position: absolute;
-	top: 100px;
-	right: 40px;
-	padding: 10px;
-	border: none;
-	background-color: #684CE2;
-	color: white;
-	border-radius: 10px;
-	cursor: pointer;
-  }
+.cancel-btn:hover{
+    background-color: #A9AEB8;
+}
+#conditions{
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+#conditions p{
+    color: #667085;
+    text-align: left;
+    font-size: 13px;
+    font-weight: bold;
+    margin:5px 60px ;
+}
+.pass-fields{
+    padding-left: 50px;
+}
+.pass-fields label{
+    font-size: 13px;
+}
+.pass-fields input{
+    border-radius: 10px;
+    height: 30px;
+    border: 1px solid #D0D5DD;
+    margin-top: 10px;
+    padding:8px;
+    padding-left: 15px;
+    width: 400px;
+}

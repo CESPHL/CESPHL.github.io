@@ -79,12 +79,12 @@
     display:inline-block;
     vertical-align:top;
 }
-.item1,.item3,.item2{
+.page-inactive{
     color: #A9AEB8;
 }
-.item4{
-    color: black;
+.page-active{
     font-weight: bold;
+    color: #344054;
 }
 .item p{
     position: absolute;

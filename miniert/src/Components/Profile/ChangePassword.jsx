@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Profile.css';
+import './changepass.css';
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import dashicn from '../Assets/inactive-dash.svg';
 import clock from '../Assets/inactive-clock.svg';
 import profile from '../Assets/active-profile.svg';
-
+import ChangePassModal from '../../Components/DashModal/ChangePassModal.jsx';
 
 const CurrentDate = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -28,7 +28,17 @@ const CurrentDate = () => {
   return <p>{formattedDate}</p>;
 };
 
-const Profile1 = () => {
+const Profile = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleSave = () => {
+    // Perform save action here, for now show modal only
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   return (
     <div className="dashboard">
       <div className="dash-navbar">
@@ -79,25 +89,36 @@ const Profile1 = () => {
             <CurrentDate />
           </span>
         </div>
-        <div className="mainContent">
-        <h3>User Details</h3>
-        <NavLink to ="/changepass">
-        <button className="change-pass-btn">Change Password</button>
-        </NavLink>
-        <form>
-        <span>Employee ID</span><br/><input type="text" name="employeeID" disabled="disabled" value="2781082"/><br/>
-        <span>Employee Name</span><br/><input type="text" name="employeeName" disabled="disabled" value="Ian Dela Cruz"/><br/>
-        <span>Email Address</span><br/><input type="text" name="emailAdd" disabled="disabled" value="ian.delacruz@collaberadigital.com"/><br/>
-        <span>Contact Number</span><br/><input type="text" name="contactNum" disabled="disabled" value="09123456789"/><br/>
-        <span>Client Assigned</span><br/><input type="text" name="clientName" disabled="disabled" value="GCash"/><br/>
-        <span>Project Assigned</span><br/><input type="text" name="projectName" disabled="disabled" value="Mynt"/><br/>
-        <span>Reporting Manager</span><br/><input type="text" name="managerName" disabled="disabled" value="Sir Martin" /><br/>
-        <span>User Level</span><br/><input type="text" name="userLevel" disabled="disabled" value="Talent"/><br/>
-        </form>
+        <div className="change-pass-content">
+        <h3>Change Password</h3>
+        <div className="pass-fields">
+                    <label>Old Password</label> <br />
+                    <input type="password" placeholder='••••••••'/><br /><br />
+                    <label>New Password</label> <br />
+                    <input type="password" placeholder='••••••••'/> <br/><br/>
+                    <label>Confirm Password</label> <br />
+                    <input type="password" placeholder='••••••••'/>
+                </div>
+        </div>
+                <div className="conditions">
+                    <p>Must be at least 8 characters</p>
+                    <p>Must contain one special character</p>
+                </div>
+                <button className="cancel-btn">Cancel</button>
+                <button className="pass-submitbtn" onClick={handleSave}>Save</button>
+                <ChangePassModal
+                show={showModal}
+                handleClose={handleCloseModal}
+                handleSave={handleSave}>
+                    <p>Change Password</p>
+                    <span>Clicking yes will update your
+                        current password with the new one.
+                        <br/>Do you wish to continue?
+                    </span>
+                </ChangePassModal>
         </div>
       </div>
-    </div>
   );
 };
 
-export default Profile1;
+export default Profile;
