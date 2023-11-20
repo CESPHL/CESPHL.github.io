@@ -209,13 +209,13 @@ body {
 	text-align: center;
 }
 
-.tableHeader, .tableContent > div {
+.tableHeader {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
 	border-bottom: 1px solid #D0D5DD;
 
 }
-.tableContent p{
+.verticalContainerHeader p {
 	text-align: left;
 	padding-left: 30px;
 	font-weight: bold;
@@ -241,4 +241,13 @@ body {
 }
 .dropdown{
 	padding-top: 8px;
+}
+
+.verticalContainer {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+}
+
+.verticalContainerContent {
+	text-align: center !important;
 }

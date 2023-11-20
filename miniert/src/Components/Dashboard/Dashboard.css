@@ -259,7 +259,7 @@ table{
 	text-align: center;
 }
 
-.tableHeader, .tableContent > div {
+.tableHeader, .tableContentContainer {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
 }

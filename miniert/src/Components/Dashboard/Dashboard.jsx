@@ -69,8 +69,8 @@ const Stopwatch = () => {
 	useEffect(() => {
 		let interval;
 		localStorage.setItem("hours", hours);
-   		localStorage.setItem("minutes", minutes);
-    	localStorage.setItem("seconds", seconds);
+		localStorage.setItem("minutes", minutes);
+		localStorage.setItem("seconds", seconds);
 		if (isClockOutDisabled === false) {
 			interval = setInterval(() => {
 				setSeconds((prevSeconds) => {
@@ -121,14 +121,6 @@ const Stopwatch = () => {
 		return () => clearInterval(intervalId);
 	}, []);
 
-	 console.log("Hours: " + hours);
-	 console.log("Minutes: " + minutes);
-	 console.log("Seconds: " + seconds);
-
-	localStorage.setItem("hours", hours);
-	localStorage.setItem("minutes", minutes);
-	localStorage.setItem("seconds", seconds);
-
 	// Opening and closing of the time in modal
 	const openTimeInModal = () => {
 		setIsTimeInModalVisible(true);
@@ -178,8 +170,8 @@ const Stopwatch = () => {
 					localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
 					localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page 
 					setHours(0);
-  					setMinutes(0);
-    				setSeconds(0);
+					setMinutes(0);
+					setSeconds(0);
 					localStorage.setItem("hours", 0);
 					localStorage.setItem("minutes", 0);
 					localStorage.setItem("seconds", 0);
@@ -249,8 +241,8 @@ const Stopwatch = () => {
 					ex. 9:36:23, or another option just store the Hours
 					*/
 					setHours(0);
-  					setMinutes(0);
-    				setSeconds(0);
+					setMinutes(0);
+					setSeconds(0);
 					localStorage.setItem("hours", 0);
 					localStorage.setItem("minutes", 0);
 					localStorage.setItem("seconds", 0);
@@ -346,8 +338,8 @@ const OTStopwatch = () => {
 	const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	const currentDay = weekDay[currentTime.getDay()];
 	const [hoursOT, setHoursOT] = useState(parseInt(localStorage.getItem("hoursOT")) || 0);
-  	const [minutesOT, setMinutesOT] = useState(parseInt(localStorage.getItem("minutesOT")) || 0);
-  	const [secondsOT, setSecondsOT] = useState(parseInt(localStorage.getItem("secondsOT")) || 0);
+	const [minutesOT, setMinutesOT] = useState(parseInt(localStorage.getItem("minutesOT")) || 0);
+	const [secondsOT, setSecondsOT] = useState(parseInt(localStorage.getItem("secondsOT")) || 0);
 
 	// Variables for modals
 	const [isTimeInOTModalVisible, setIsTimeInOTModalVisible] = useState(false);
@@ -356,8 +348,8 @@ const OTStopwatch = () => {
 	useEffect(() => {
 		let intervalOT;
 		localStorage.setItem("hoursOT", hoursOT);
-   		localStorage.setItem("minutesOT", minutesOT);
-   		localStorage.setItem("secondsOT", secondsOT);
+		localStorage.setItem("minutesOT", minutesOT);
+		localStorage.setItem("secondsOT", secondsOT);
 		if (isClockOutOTDisabled === false) {
 			intervalOT = setInterval(() => {
 				setSecondsOT((prevSecondsOT) => {
@@ -471,8 +463,8 @@ const OTStopwatch = () => {
 					setMinutesOT(0);
 					setSecondsOT(0);
 					localStorage.setItem("hoursOT", 0);
-   					localStorage.setItem("minutesOT", 0);
-   					localStorage.setItem("secondsOT", 0);
+					localStorage.setItem("minutesOT", 0);
+					localStorage.setItem("secondsOT", 0);
 					closeTimeInOTModal();
 				}
 				else {
@@ -538,8 +530,8 @@ const OTStopwatch = () => {
 					setMinutesOT(0);
 					setSecondsOT(0);
 					localStorage.setItem("hoursOT", 0);
-   					localStorage.setItem("minutesOT", 0);
-   					localStorage.setItem("secondsOT", 0);
+					localStorage.setItem("minutesOT", 0);
+					localStorage.setItem("secondsOT", 0);
 					closeTimeOutOTModal();
 				}
 				else {
@@ -573,9 +565,9 @@ const OTStopwatch = () => {
 	return (
 		<div id="OTGridItem">
 			<div className="dash-timer">
-			<p id="hours">{String(hoursOT).padStart(2, '0')}:</p>
-        	<p id="minutes">{String(minutesOT).padStart(2, '0')}:</p>
-        	<p id="seconds">{String(secondsOT).padStart(2, '0')}</p>
+				<p id="hours">{String(hoursOT).padStart(2, '0')}:</p>
+				<p id="minutes">{String(minutesOT).padStart(2, '0')}:</p>
+				<p id="seconds">{String(secondsOT).padStart(2, '0')}</p>
 			</div>
 			<div className="timer-btn">
 				<button onClick={openTimeInOTModal} disabled={isClockInOTDisabled} className="timein-btn">
@@ -619,6 +611,7 @@ const OTStopwatch = () => {
 const TimesheetTable = () => {
 	const [attendanceData, setAttendanceData] = useState([]);
 	const employee_id = localStorage.getItem('employee_id');
+
 	useEffect(() => {
 		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
 			.then(response => {
@@ -628,32 +621,60 @@ const TimesheetTable = () => {
 			});
 	}, [employee_id]);
 
+	// Function to get the day of the week from a date
+	const getDayOfWeek = (dateString) => {
+		const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		const date = new Date(dateString);
+		return daysOfWeek[date.getDay()];
+	};
+
+	// Function to group attendance data by week
+	const groupByWeek = (data) => {
+		const groupedData = {};
+		data.forEach(attendance => {
+			const weekStartDate = new Date(attendance.date);
+			weekStartDate.setDate(weekStartDate.getDate() - weekStartDate.getDay()); // Set to the start of the week (Sunday)
+			const weekKey = weekStartDate.toISOString().split('T')[0]; // Use ISO date as the key
+			if (!groupedData[weekKey]) {
+				groupedData[weekKey] = [];
+			}
+			groupedData[weekKey].push(attendance);
+		});
+		return groupedData;
+	};
+
+	const groupedAttendanceData = groupByWeek(attendanceData);
+
 	return (
 		<div className="tableContainer">
-			<div className="tableHeader">
-				<h1>Time In</h1>
-				<h1>Time Out</h1>
-				<h1>Date</h1>
-				<h1>Day</h1>
-				<h1>Client</h1>
-				<h1>Project</h1>
-				<h1>OT Time In</h1>
-				<h1>OT Time Out</h1>
-			</div>
-			<div className="tableContent">
-				{attendanceData.map(attendance => (
-					<div key={attendance.date}>
-						{attendance.time_in ? <p>{attendance.time_in}</p> : <p>----------</p>}
-						{attendance.time_out ? <p>{attendance.time_out}</p> : <p>----------</p>}
-						{attendance.date ? <p>{attendance.date}</p> : <p>----------</p>}
-						{attendance.day ? <p>{attendance.day}</p> : <p>----------</p>}
-						{attendance.client_name ? <p>{attendance.client_name}</p> : <p>----------</p>}
-						{attendance.project_name ? <p>{attendance.project_name}</p> : <p>----------</p>}
-						{attendance.ot_time_in ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
-						{attendance.ot_time_out ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
+			{Object.keys(groupedAttendanceData).map(weekStartDate => (
+				<div key={weekStartDate}>
+					<div className="tableHeader">
+						<h1>Time In</h1>
+						<h1>Time Out</h1>
+						<h1>Date</h1>
+						<h1>Day</h1>
+						<h1>Client</h1>
+						<h1>Project</h1>
+						<h1>OT Time In</h1>
+						<h1>OT Time Out</h1>
 					</div>
-				))}
-			</div>
+					<div className="tableContent">
+						{groupedAttendanceData[weekStartDate].map(attendance => (
+							<div key={attendance.date} class="tableContentContainer">
+								{attendance.time_in ? <p>{attendance.time_in}</p> : <p>----------</p>}
+								{attendance.time_out ? <p>{attendance.time_out}</p> : <p>----------</p>}
+								{attendance.date ? <p>{attendance.date}</p> : <p>----------</p>}
+								{attendance.day ? <p>{attendance.day}</p> : <p>----------</p>}
+								{attendance.client_name ? <p>{attendance.client_name}</p> : <p>----------</p>}
+								{attendance.project_name ? <p>{attendance.project_name}</p> : <p>----------</p>}
+								{attendance.ot_time_in ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
+								{attendance.ot_time_out ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
+							</div>
+						))}
+					</div>
+				</div>
+			))}
 		</div>
 	);
 }
