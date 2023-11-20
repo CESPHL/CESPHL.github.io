@@ -76,11 +76,12 @@ form{
     display:inline-block;
     vertical-align:top;
 }
-.item2,.item1,.item4{
+.page-inactive{
     color: #A9AEB8;
 }
-.item3{
-    color: black;
+.page-active{
+    font-weight: bold;
+    color: #344054;
 }
 .item p{
     position: absolute;

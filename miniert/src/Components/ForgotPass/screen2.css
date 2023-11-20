@@ -82,8 +82,12 @@ form{
 .item2{
     color: black;
 }
-.item1,.item3,.item4{
+.page-inactive{
     color: #A9AEB8;
+}
+.page-active{
+    font-weight: bold;
+    color: #344054;
 }
 .item p{
     position: absolute;
@@ -106,7 +110,6 @@ form{
 }
 .return button{
     border: none;
-    background-color:white;
 }
 .return{
     padding-left: 80px;
