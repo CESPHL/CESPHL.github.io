@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const attendanceSchema = new Schema({
-    time_in: { type: String, required: true },
-    time_out: { type: String, required: true },
-    date: { type: String, required: true },
-    day: { type: String, required: true },
-    client_name: { type: String, required: true},
-    project_name: { type: String, required: true },
+    time_in: { type: String, required: false },
+    time_out: { type: String, required: false },
+    date: { type: String, required: false },
+    day: { type: String, required: false },
+    client_name: { type: String, required: false},
+    project_name: { type: String, required: false },
     ot_time_in: { type: String, required: false },
     ot_time_out: { type: String, required: false }
 });

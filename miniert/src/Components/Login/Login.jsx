@@ -28,14 +28,41 @@ const Login = () => {
         body: JSON.stringify({ username, password }),
       });
       if (response.ok) {
-        //Successful login
-        console.log('Successfully logged in');
-        //redirect t0 the dashboard or others
-        navigate('/dashboard');
+
+        //If response is successful then get the token
+        const responseData = await response.json();
+        const token = responseData.token;
+        const employee_id = responseData.employee_id;
+        const user_level = responseData.user_level;
+        
+        //set the token to the local storage
+        localStorage.setItem('token', token);
+        localStorage.setItem('employee_id', employee_id);
+        localStorage.setItem('user_level', user_level);
+
+        //Validate the token by sending request to the backend
+        const validationResponse = await fetch('/validate-token', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, //Sends token tin the headers
+          }
+        });
+
+        const validationData = await validationResponse.json();
+        const isTokenValid = validationData.isValid;
+
+        if (isTokenValid) {
+          navigate('/dashboard');
+          console.log('Token is valid');
+        } else {
+          console.log('Token validation failed');
+        }
+        
       } else {
         //Failed login
         console.log('Failed login');
-        //Make an error message.
+        // Make an error message.
         toast.error('Invalid username or password.', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 5000,

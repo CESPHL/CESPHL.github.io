@@ -2,6 +2,7 @@
 const Talent = require('../models/talentsModel');
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const transporter = require('../emailConfig');
 
@@ -17,9 +18,22 @@ const findUser = async (req, res) => {
             const passwordMatch = await bcrypt.compare(password, user.password);
 
             if (passwordMatch) {
-                res.status(200).json({ employee_id: user.employee_id });
+                const token = jwt.sign({
+                    employee_id: user.employee_id,
+                    user_level: user.user_level
+                  }, process.env.JWT_SECRET_KEY, {
+                    expiresIn: '15m'
+                  });
+                  
+                  // Respond with the token and additional user information
+                  res.status(200).json({
+                    token,
+                    employee_id: user.employee_id,
+                    user_level: user.user_level
+                  });
+                  
             } else {
-                res.status(401).json({ message: 'Login failed.' });
+                res.status(401).json({ message: 'Login failed Password Not Match' });
             }
         }
         else {
