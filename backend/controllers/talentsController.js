@@ -54,10 +54,10 @@ const updateTalent = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 }
-
+    
 // Find employee then check if there is an existing time in date.
 // If there is an existing date, don't save it and return a message.
-// If there is no existing date, save it to the database.
+// If there is no existing date, save it to the database on a new column.
 const timeIn = async (req, res) => {
     const { employee_id } = req.params
     try {
@@ -144,7 +144,7 @@ const timeInOT = async (req, res) => {
             return res.status(404).json({ message: "No such user." });
         }
         else {
-            const { date, ot_time_in } = req.body;
+            const { date, day, client_name, project_name, ot_time_in } = req.body;
 
             // Find the attendance entry with the current date that is submitted from the front end
             // entry.date = from database
@@ -153,6 +153,10 @@ const timeInOT = async (req, res) => {
             // If the attendance entry with the current date was found
             if (attendanceEntry) {
                 if (attendanceEntry.time_out) {
+                    attendanceEntry.date = date;
+                    attendanceEntry.day = day;
+                    attendanceEntry.client_name = client_name;
+                    attendanceEntry.project_name = project_name;
                     attendanceEntry.ot_time_in = ot_time_in;
                     await talent.save();
                     res.status(200).json({ message: "Saving OT time in data successful." });
@@ -183,31 +187,39 @@ const timeOutOT = async (req, res) => {
             return res.status(404).json({ message: "No such user." });
         }
         else {
-            const { date, ot_time_out } = req.body;
+            const { date, day, client_name, project_name, ot_time_out } = req.body;
+            console.log(req.body);
 
             // Find the attendance entry with the current date that is submitted from the front end
             // entry.date = from database
             // date = current date (user submitted)
             const attendanceEntry = talent.attendance.find(entry => entry.date === date);
-            console.log(ot_time_out);
-            console.log(date);
             if (attendanceEntry) {
                 if (attendanceEntry.ot_time_in) {
+                    attendanceEntry.date = date;
+                    attendanceEntry.day = day;
+                    attendanceEntry.client_name = client_name;
+                    attendanceEntry.project_name = project_name;
                     attendanceEntry.ot_time_out = ot_time_out;
                     await talent.save();
                     res.status(200).json({ message: "Saving OT time out data successful." });
                 }
                 else {
+                    console.log("No OT time in data found.");
                     res.status(400).json({ message: "No OT time in data found." });
                 }
             }
             else {
-                res.status(400).json({ message: "Did not find any matches for the current date." });
+                await Talent.findOneAndUpdate({ employee_id: employee_id },
+                    { $push: { attendance: req.body } },
+                );
+                res.status(200).json({ message: "Saving OT time out data successful." });
             }
         }
     }
     catch (error) {
         console.error(error);
+        console.log("Hehe");
         res.status(500).json({ message: 'Internal server error' });
     }
 }
