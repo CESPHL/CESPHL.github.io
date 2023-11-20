@@ -293,14 +293,13 @@ class MyDashboard extends Component {
 									</NavLink>
 								</li>
 								<li>
-									<NavLink to="/forgotpass">
-										{/*placeholder directory*/}
+									<NavLink to="/timesheet">
 										<img src={clock} alt="clock icon" />
 										<span className="inactive">Timesheet</span>
 									</NavLink>
 								</li>
 								<li>
-									<NavLink to="/resetpass">
+									<NavLink to="/profile">
 										{/*placeholder directory*/}
 										<img src={profile} alt="profile icon" />
 										<span className="inactive">Profile</span>

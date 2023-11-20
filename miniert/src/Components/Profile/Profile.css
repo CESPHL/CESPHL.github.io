@@ -160,85 +160,11 @@ body {
 .dash-text h5 {
 	margin-right: auto;
 }
+
+.dashboard-main-content {
+	padding: 2rem;
+}
+
 .dash-text span {
 	text-align: right;
-}
-.timesheet-content{
-	padding: 20px;
-	padding-top: 30px;
-}
-.filter{
-	display: flex;
-	flex-direction: row; 
-	padding-bottom: 20px;
-}
-.filter .MuiFormControl-root {
-	margin-right: 8px;
-	border-radius: 10px;
-	border: 1px solid #D0D5DD;
-	background-color: white;
-	height: 50px;
-	width: 40px;
-  }
-  .start-date-picker label.Mui {
-	color: green;
-  }
-  .filter select{
-	width: 130px;
-	height: 51px;
-	margin: 0;
-	border: 1px solid #D0D5DD;
-  }
-  table{
-	width: 100%;
-	border: 1px solid #D0D5DD;
-	border-radius: 10px;
-	text-align: center;
-	border-collapse: collapse;
-	background-color: white;
-	color: #656B75;
-	align-items: center;
-	justify-content: center;
-}
-
-.tableContainer {
-	background-color: white;
-	color: #656B75;
-	border: 1px solid #D0D5DD;
-	border-radius: 10px;
-	text-align: center;
-}
-
-.tableHeader, .tableContent > div {
-	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-	border-bottom: 1px solid #D0D5DD;
-
-}
-.tableContent p{
-	text-align: left;
-	padding-left: 30px;
-	font-weight: bold;
-}
-.tableHeader {
-	background-color: #F9FAFB;
-	border-bottom: 0.5px solid #A9AEB8;
-}
-
-.tableHeader h1{
-	font-size: 16px;
-	padding: 1rem;
-	margin: 0;	
-	background-color: #F9FAFB;
-}
-.table-title, .tableHeader, .tableContent{
-	border-bottom: 1px solid #D0D5DD;
-}
-.table-title h3{
-	text-align: left;
-	padding-left: 20px;
-	color:#684CE2;
-}
-.dropdown{
-	padding-top: 8px;
 }

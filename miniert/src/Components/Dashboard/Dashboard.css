@@ -232,16 +232,6 @@ body {
 	display: flex;
 	color:#684CE2;
 }
-tr{
-	border-bottom: 1px solid #D0D5DD;
-
-}
-th, tr, td{
-	padding: 10px;
-}
-td{
-	text-align: center;
-}
 table{
 	width: 100%;
 	border: 1px solid #D0D5DD;
