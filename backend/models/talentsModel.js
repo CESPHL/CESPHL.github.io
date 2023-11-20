@@ -10,7 +10,8 @@ const attendanceSchema = new Schema({
     client_name: { type: String, required: false},
     project_name: { type: String, required: false },
     ot_time_in: { type: String, required: false },
-    ot_time_out: { type: String, required: false }
+    ot_time_out: { type: String, required: false },
+    total_hours: { type: String, required: false}
 });
 
 const talentSchema = new Schema({

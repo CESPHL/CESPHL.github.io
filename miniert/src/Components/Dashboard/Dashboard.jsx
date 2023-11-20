@@ -160,7 +160,7 @@ const Stopwatch = () => {
 		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timein`, timeInData)
 			.then(res => {
 				if (res.status === 200) {
-
+					
 					isClockInDisabled = true;
 					isClockOutDisabled = false;
 					isClockInOTDisabled = true;
@@ -661,7 +661,7 @@ const TimesheetTable = () => {
 					</div>
 					<div className="tableContent">
 						{groupedAttendanceData[weekStartDate].map(attendance => (
-							<div key={attendance.date} class="tableContentContainer">
+							<div key={attendance.date} className="tableContentContainer">
 								{attendance.time_in ? <p>{attendance.time_in}</p> : <p>----------</p>}
 								{attendance.time_out ? <p>{attendance.time_out}</p> : <p>----------</p>}
 								{attendance.date ? <p>{attendance.date}</p> : <p>----------</p>}
