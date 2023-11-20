@@ -6,6 +6,8 @@ import Screen1 from './Components/ForgotPass/Screen1.jsx';
 import Screen2 from './Components/ForgotPass/Screen2.jsx';
 import Screen3 from './Components/ForgotPass/Screen3.jsx';
 import Screen4 from './Components/ForgotPass/Screen4.jsx';
+import Timesheet from './Components/Timesheet/Timesheet.jsx';
+import Profile from './Components/Profile/Profile.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
 
 
@@ -20,6 +22,8 @@ function App() {
         <Route path="/sentemail" element={<Screen2/>}/>
         <Route path="/forgotpass" element={<Screen1/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/timesheet" element={<Timesheet/>}/>
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </Router>
   );
