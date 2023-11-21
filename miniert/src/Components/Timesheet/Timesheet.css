@@ -6,6 +6,7 @@ body {
 	min-height: 100vh;
 	display: flex;
 }
+
 .dash-navbar {
 	top: 0;
 	flex-basis: 20%;
@@ -60,7 +61,7 @@ body {
 	min-height: 40px;
 	padding: 10px 0;
 	transition: background-color 0.2s ease-in-out;
-  height: 50px;
+	height: 50px;
 }
 
 .dash-1 a {
@@ -83,7 +84,7 @@ body {
 	border-left: 5px solid #684CE2;
 	font-weight: bold;
 	color: #344054;
-    height: 50px;
+	height: 50px;
 }
 
 .dash-1 span {
@@ -105,7 +106,7 @@ body {
 .dash-1 li a {
 	display: flex;
 	align-items: center;
-  height: 50px;
+	height: 50px;
 }
 
 .logout-btn button {
@@ -160,36 +161,59 @@ body {
 .dash-text h5 {
 	margin-right: auto;
 }
+
 .dash-text span {
 	text-align: right;
 }
-.timesheet-content{
+
+.timesheet-content {
 	padding: 20px;
 	padding-top: 30px;
 }
-.filter{
+
+.filter {
 	display: flex;
-	flex-direction: row; 
-	padding-bottom: 20px;
+	align-items: center;
+	margin-bottom: 20px;
 }
-.filter .MuiFormControl-root {
-	margin-right: 8px;
-	border-radius: 10px;
-	border: 1px solid #D0D5DD;
-	background-color: white;
-	height: 50px;
-	width: 40px;
-  }
-  .start-date-picker label.Mui {
-	color: green;
-  }
-  .filter select{
+
+.filter select {
 	width: 130px;
 	height: 51px;
 	margin: 0;
 	border: 1px solid #D0D5DD;
-  }
-  table{
+}
+
+.filter button {
+	border-radius: 50%;
+	width: 1.8rem;
+	height: 1.8rem;
+	font-size: 20px;
+	text-align: center;
+	border: 0;
+	background-color: #684CE2;
+	color: #FFFFFF;
+	padding: 0;
+}
+
+.filter button:hover {
+	cursor: pointer;
+}
+
+.filter button:disabled {
+	background-color: #d6ccff;
+	cursor: default;
+}
+
+.filter > * {
+	margin-right: 1rem;
+}
+
+.filter span {
+	font-weight: bold;
+}
+
+table {
 	width: 100%;
 	border: 1px solid #D0D5DD;
 	border-radius: 10px;
@@ -209,36 +233,61 @@ body {
 	text-align: center;
 }
 
-.tableHeader, .tableContent > div {
+.tableHeader {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
 	border-bottom: 1px solid #D0D5DD;
 
 }
-.tableContent p{
-	text-align: left;
-	padding-left: 30px;
-	font-weight: bold;
-}
+
 .tableHeader {
 	background-color: #F9FAFB;
 	border-bottom: 0.5px solid #A9AEB8;
 }
 
-.tableHeader h1{
+.tableHeader h1 {
 	font-size: 16px;
 	padding: 1rem;
-	margin: 0;	
+	margin: 0;
 	background-color: #F9FAFB;
 }
-.table-title, .tableHeader, .tableContent{
+
+.table-title,
+.tableHeader,
+.tableContent {
 	border-bottom: 1px solid #D0D5DD;
 }
-.table-title h3{
+
+.table-title h3 {
 	text-align: left;
 	padding-left: 20px;
-	color:#684CE2;
+	color: #684CE2;
 }
-.dropdown{
-	padding-top: 8px;
+
+.vertical-container {
+	display: flex;
+}
+
+.vertical-container-header {
+	flex-basis: 15%;
+}
+
+.vertical-container-header p {
+	text-align: left;
+	padding-left: 30px;
+	font-weight: bold;
+}
+
+.vertical-container-content {
+	flex-basis: 85%;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.vertical-container p:first-of-type {
+	background-color: #F9FAFB;
+	margin: 0;
+	padding: 1rem;
+	font-weight: bold;
+	border-bottom: #D0D5DD;
 }

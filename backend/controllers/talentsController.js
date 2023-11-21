@@ -224,6 +224,10 @@ const timeOutOT = async (req, res) => {
     }
 }
 
+const changePassword = async (req, res) => {
+    
+}
+
 module.exports = {
     getTalents,
     getOneTalent,
