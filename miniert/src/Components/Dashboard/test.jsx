@@ -1,102 +1,57 @@
-const TimesheetTable = () => {
-    const [attendanceData, setAttendanceData] = useState([]);
-    const employee_id = localStorage.getItem('employee_id');
+const attendanceData = [
+    {date: "November 13, 2023", time_in: "7: 00 AM", time_out: "7:00 PM", day: "Monday"},
+    {date: "November 14, 2023", time_in: "7: 00 AM", time_out: "7:00 PM", day: "Tuesday"},
+    {date: "November 15, 2023", time_in: "7: 00 AM", time_out: "7:00 PM", day: "Wednesday"},
+    {date: "November 16, 2023", time_in: "7: 00 AM", time_out: "7:00 PM", day: "Thursday"},
+    {date: "November 17, 2023", time_in: "7: 00 AM", time_out: "7:00 PM", day: "Friday"},
+    {date: "November 18, 2023", time_in: "7: 00 AM", time_out: "7:00 PM", day: "Saturday"},
+    {date: "November 20, 2023", time_in: "7: 00 AM", time_out: "7:00 PM", day: "Monday"},
+    {date: "November 21, 2023", time_in: "7: 00 AM", time_out: "7:00 PM", day: "Tuesday"},
+]
 
-    useEffect(() => {
-        axios.get(`http://localhost:4000/api/talents/${employee_id}`)
-            .then(response => {
-                setAttendanceData(response.data.attendance);
-            }).catch(err => {
-                console.log(err);
-            });
-    }, [employee_id]);
+// useEffect(() => {
+	// 	if (attendanceData.length > 0 && attendanceData.length <= 7) {
+	// 		const dummyColumns = [{}];
+	// 		for (let i = attendanceData.length; i <= 7; i++) {
+	// 			console.log(daysOfWeek[i]);
+	// 			dummyColumns.push(
+	// 				<div key={i} className="verticalContainerContent">
+	// 					<p>daysOfWeek[i].substring(0, 1)</p>
+	// 				</div>
+	// 			);
+	// 		}
+	// 		console.log(dummyColumns);
+	// 	}
+	// }, [attendanceData])
 
-    // Function to get the day of the week from a date
-    const getDayOfWeek = (dateString) => {
-        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const date = new Date(dateString);
-        return daysOfWeek[date.getDay()];
-    };
+	// useEffect(() => {
+	// 	if (startDate && endDate) {
+	// 		const filteredAttendanceData = attendanceData.filter(entry => {
+	// 			const date = entry.date; // Get date
+	// 			const dateObject = new Date(date + "UTC"); // Convert into the proper format
+	// 			const formattedDate = dateObject.toISOString().split('T')[0]; // Cut the string to match the format of startDate & endDate
+	// 			return formattedDate >= startDate && formattedDate <= endDate;
+	// 		});
+	// 		// Update the state only once at the end
+	// 		console.log(filteredAttendanceData);
+	// 		setAttendanceData(filteredAttendanceData);
+	// 	}
+	// }, [startDate, endDate, attendanceData]); // useEffect will re-run if startDate or endDate change
 
-    // Function to group attendance data by week
-    const groupByWeek = (data) => {
-        const groupedData = {};
-        data.forEach(attendance => {
-            const weekStartDate = new Date(attendance.date);
-            weekStartDate.setDate(weekStartDate.getDate() - weekStartDate.getDay()); // Set to the start of the week (Sunday)
-            const weekKey = weekStartDate.toISOString().split('T')[0]; // Use ISO date as the key
-            if (!groupedData[weekKey]) {
-                groupedData[weekKey] = [];
-            }
-            groupedData[weekKey].push(attendance);
-        });
-        return groupedData;
-    };
-
-    const groupedAttendanceData = groupByWeek(attendanceData);
-
-    return (
-        <div className="tableContainer">
-            {Object.keys(groupedAttendanceData).map(weekStartDate => (
-                <div key={weekStartDate}>
-                    <h2>Week starting from {weekStartDate}</h2>
-                    <div className="tableHeader">
-                        {/* your header elements here */}
-                    </div>
-                    <div className="tableContent">
-                        {groupedAttendanceData[weekStartDate].map(attendance => (
-                            <div key={attendance.date}>
-                                {/* your table content elements here */}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
-}
-
-export default TimesheetTable;
-
-
-const TimesheetTable = () => {
-	const [attendanceData, setAttendanceData] = useState([]);
-	const employee_id = localStorage.getItem('employee_id');
-	useEffect(() => {
-		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
-			.then(response => {
-				setAttendanceData(response.data.attendance);
-			}).catch(err => {
-				console.log(err);
-			});
-	}, [employee_id]);
-
-	return (
-		<div className="tableContainer">
-			<div className="tableHeader">
-				<h1>Time In</h1>
-				<h1>Time Out</h1>
-				<h1>Date</h1>
-				<h1>Day</h1>
-				<h1>Client</h1>
-				<h1>Project</h1>
-				<h1>OT Time In</h1>
-				<h1>OT Time Out</h1>
-			</div>
-			<div className="tableContent">
-				{attendanceData.map(attendance => (
-					<div key={attendance.date}>
-						{attendance.time_in ? <p>{attendance.time_in}</p> : <p>----------</p>}
-						{attendance.time_out ? <p>{attendance.time_out}</p> : <p>----------</p>}
-						{attendance.date ? <p>{attendance.date}</p> : <p>----------</p>}
-						{attendance.day ? <p>{attendance.day}</p> : <p>----------</p>}
-						{attendance.client_name ? <p>{attendance.client_name}</p> : <p>----------</p>}
-						{attendance.project_name ? <p>{attendance.project_name}</p> : <p>----------</p>}
-						{attendance.ot_time_in ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
-						{attendance.ot_time_out ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
-					</div>
-				))}
-			</div>
-		</div>
-	);
-}
+	// Function to generate dummy columns based on colCount
+	// const renderDummyColumns = () => {
+	// 	const dummyColumns = [];
+	// 	for (let i = colCount; i < 7; i++) {
+	// 		dummyColumns.push(
+	// 			<div key={`dummy-${i}`} className="verticalContainerContent">
+	// 				<p></p>
+	// 				<p></p>
+	// 				<p></p>
+	// 				<p></p>
+	// 				<p></p>
+	// 				<p></p>
+	// 			</div>
+	// 		);
+	// 	}
+	// 	return dummyColumns;
+	// };

@@ -160,7 +160,6 @@ const Stopwatch = () => {
 		axios.patch(`http://localhost:4000/api/talents/${employee_id}/timein`, timeInData)
 			.then(res => {
 				if (res.status === 200) {
-					
 					isClockInDisabled = true;
 					isClockOutDisabled = false;
 					isClockInOTDisabled = true;
