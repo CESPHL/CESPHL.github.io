@@ -9,7 +9,6 @@ import profile from '../Assets/active-profile.svg';
 import ChangePassModal from '../../Components/DashModal/ChangePassModal.jsx';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 
 const CurrentDate = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
@@ -49,7 +48,7 @@ const Profile = () => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ username, password }),
+				body: JSON.stringify({ oldPassword, password, password2 }),
 			});
 			if(response.ok) {
 				// If response is ok, 
