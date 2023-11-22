@@ -607,7 +607,7 @@ const OTStopwatch = () => {
 };
 
 
-const TimesheetTable = () => {
+const DashboardTimesheetTable = () => {
 	const [attendanceData, setAttendanceData] = useState([]);
 	const employee_id = localStorage.getItem('employee_id');
 
@@ -779,7 +779,7 @@ class MyDashboard extends Component {
 						<div className="tracked-hours">
 							<h4>TRACKED HOURS</h4>
 						</div>
-						<TimesheetTable />
+						<DashboardTimesheetTable />
 					</div>
 				</div>
 			</div>
