@@ -10,6 +10,7 @@ import Timesheet from './Components/Timesheet/Timesheet.jsx';
 import Profile from './Components/Profile/Profile.jsx';
 import ChangePass from './Components/Profile/ChangePassword.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
+import ManagerDashboard from './Components/ManagerDash/ManagerDash.jsx';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
         <Route path="/timesheet" element={<Timesheet/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/changepass" element={<ChangePass/>}/>
-
+        <Route path="/manage-accounts" element={<ManagerDashboard/>}/>
       </Routes>
     </Router>
   );
