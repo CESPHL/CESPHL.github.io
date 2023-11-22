@@ -7,7 +7,8 @@ const {
     timeIn,
     timeOut,
     timeInOT,
-    timeOutOT
+    timeOutOT,
+    changePassword
 } = require('../controllers/talentsController'); // Getting from database
 
 
@@ -36,5 +37,8 @@ router.patch('/:employee_id/timeinOT', timeInOT);
 
 // Time out OT
 router.patch('/:employee_id/timeoutOT', timeOutOT);
+
+// Change password
+router.post('/changepass/:employee_id', changePassword);
 
 module.exports = router;

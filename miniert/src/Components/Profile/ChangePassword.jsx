@@ -31,6 +31,7 @@ const CurrentDate = () => {
 };
 
 const Profile = () => {
+	const employee_id = localStorage.getItem('employee_id');
 	const [showModal, setShowModal] = useState(false);
 	const [oldPassword, setOldPassword] = useState('');
 	const [password, setPassword] = useState('');
@@ -40,24 +41,74 @@ const Profile = () => {
 		setShowModal(true);
 	}
 
+	const handleCloseModal = () => {
+		setShowModal(false);
+	};
+
+	const isPasswordValid = () => {
+		const passwordRegex = /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+		if (password !== password2) {
+			return false;
+		}
+		return passwordRegex.test(password);
+	};
+
+
 	const handleSave = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch('/login', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ oldPassword, password, password2 }),
-			});
-			if(response.ok) {
-				// If response is ok, 
+			if (isPasswordValid() === true) {
+				const response = await fetch(`http://localhost:4000/api/talents/changepass/${employee_id}`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ oldPassword, password, password2 }),
+				});
+				if (response.ok) {
+					// If response is ok, show a toast
+					handleCloseModal();
+					toast.success('Password successfully changed.', {
+						position: "top-center",
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "light",
+					});
+				}
+				else {
+					toast.error(response.json(), {
+						position: "top-center",
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "light",
+					});
+				}
+			}
+			else {
+				toast.error("Error. Please make sure your password meets the requirements and your inputs for new password and confirm password matches.", {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+				});
 			}
 		}
 		catch (err) {
 			console.log('Failed login');
 			// Make an error message.
-			toast.error('Invalid username or password.', {
+			toast.error('Something went wrong.', {
 				position: toast.POSITION.TOP_CENTER,
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -70,9 +121,6 @@ const Profile = () => {
 		}
 	};
 
-	const handleCloseModal = () => {
-		setShowModal(false);
-	};
 	return (
 		<div className="dashboard">
 			<ToastContainer

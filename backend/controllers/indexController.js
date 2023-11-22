@@ -92,7 +92,6 @@ const forgotPassword = async (req, res) => {
 const resetPass = async (req, res) => {
     const { password } = req.body;
     const token = req.params.token;
-    console.log(token);
 
     try {
         const user = await Talent.findOne({ resetPasswordToken: token });
@@ -106,7 +105,6 @@ const resetPass = async (req, res) => {
             return res.status(400).json({ message: 'Token expired' });
         }
         if (Date.now() < user.resetPasswordExpiry && token === user.resetPasswordToken) {
-            console.log("Test");
             const hashedPassword = await bcrypt.hash(password, 10);
             user.password = hashedPassword;
             console.log(user.password);

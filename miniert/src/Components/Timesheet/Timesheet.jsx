@@ -52,6 +52,29 @@ const Timesheet = () => {
 			const weeklyAttendance = [];
 
 			attendanceData.forEach((entry) => {
+				let TotalHours;
+				if (entry.time_in && entry.time_out) {
+					let startTimeStr = entry.time_in;
+					let endTimeStr = entry.time_out;
+
+					let startTimeHours = parseInt(startTimeStr.split(":")[0]);
+					let startTimeMinutes = parseInt(startTimeStr.split(":")[1].slice(0, 2));
+
+					let endTimeHours = parseInt(endTimeStr.split(":")[0]);
+					let endTimeMinutes = parseInt(endTimeStr.split(":")[1].slice(0, 2));
+
+					if (startTimeStr.includes("PM")) {
+						startTimeHours += 12; // Convert PM times to 24-hour format
+					}
+					if (endTimeStr.includes("PM")) {
+						endTimeHours += 12; // Convert PM times to 24-hour format
+					}
+
+					const timeDifferenceMinutes = (endTimeHours * 60 + endTimeMinutes) - (startTimeHours * 60 + startTimeMinutes);
+					const totalHours = Math.floor(timeDifferenceMinutes / 60);
+					TotalHours = totalHours;
+				}
+
 				const weekStartDate = new Date(entry.date);
 				weekStartDate.setDate(weekStartDate.getDate() - weekStartDate.getDay()); // Set to the first day of the week (Sunday)
 
@@ -61,7 +84,7 @@ const Timesheet = () => {
 				const weekKey = `${weekStartDate.toDateString()} - ${weekEndDate.toDateString()}`;
 
 				// Log date and weekKey for troubleshooting
-				console.log("Date:", entry.date, "Week:", weekKey);
+				// console.log("Date:", entry.date, "Week:", weekKey);
 
 				// Check if the week already exists in the array
 				const existingWeek = weeklyAttendance.find((week) => week.week === weekKey);
@@ -191,7 +214,7 @@ const Timesheet = () => {
 
 const TimesheetTable = ({ groupedData, selectedWeekIndex }) => {
 	if (!groupedData || groupedData.length === 0) {
-		console.log("No grouped data available");
+		// console.log("No grouped data available");
 		return <p>No data available</p>;
 	}
 
@@ -202,7 +225,7 @@ const TimesheetTable = ({ groupedData, selectedWeekIndex }) => {
 		return <p>No data available for the selected week</p>;
 	}
 
-	console.log("Selected week data:", selectedWeekData);
+	// console.log("Selected week data:", selectedWeekData);
 
 	// Function to extract the day from the date string
 	const getDayFromDate = (dateString) => {
@@ -229,10 +252,11 @@ const TimesheetTable = ({ groupedData, selectedWeekIndex }) => {
 					{selectedWeekData.entries.map((entry) => (
 						<div key={entry._id}>
 							<p>{entry.day.substring(0, 1)} <br /> {getDayFromDate(entry.date)}</p>
-							<p>{entry.time_in}</p>
-							<p>{entry.time_out}</p>
-							<p>{entry.ot_time_in}</p>
-							<p>{entry.ot_time_out}</p>
+							<p>{entry.time_in ? entry.time_in : "----------"}</p>
+							<p>{entry.time_out ? entry.time_out : "----------"}</p>
+							<p>{entry.ot_time_in ? entry.ot_time_in : "----------"}</p>
+							<p>{entry.ot_time_out ? entry.ot_time_out : "----------"}</p>
+							<p></p>
 						</div>
 					))}
 				</div>
