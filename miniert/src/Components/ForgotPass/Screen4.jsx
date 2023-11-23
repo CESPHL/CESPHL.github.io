@@ -9,11 +9,9 @@ import checkchange from '../Assets/Check_ring.svg';
 import './screen4.css';
 
 export default function Screen4(){
-    const handleClick =() =>{
+    const handleClick = (e) =>{
+        e.preventDefault();
         window.location.href ="/";
-    };
-    const open =() =>{
-        window.location.href ="/resetpass";
     };
     return(
         <div className = "forgot-form">
@@ -23,7 +21,7 @@ export default function Screen4(){
                         <img src= {main} alt=""/><span><b>Collabera Digital</b><br/>External Resource Timesheet</span>
                     </div>
                     <div className="list">
-                        <div class="item">
+                        <div className="item">
                             <div>
                                 <img src = {person} alt=""/> 
                                 <div className="item1">
@@ -62,7 +60,7 @@ export default function Screen4(){
             <div className="form-group">
             <form action ="">
                 <div className ="padding">
-                    <img src = {checkchange}/><br/>
+                    <img src = {checkchange} alt=""/><br/>
                     <span className="forgot"> Password has been changed! </span> 
                 </div>
                 <div className="subheading">

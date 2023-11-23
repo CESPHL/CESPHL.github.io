@@ -108,8 +108,7 @@ const ManageAccount = () => {
             </div>
             <div className="buttons">
               <button className="upload-btn">Upload</button>
-              <NavLink to="/manage-accounts/add-account">
-              <button className="add-btn">
+              <button className="add-btn" onClick={ c}>
                 Add
               </button>
               </NavLink>
