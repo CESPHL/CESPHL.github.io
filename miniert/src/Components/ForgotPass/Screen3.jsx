@@ -121,7 +121,7 @@ export default function Screen1() {
             </div>
             <form action="">
                 <div className="padding">
-                    <img src={lock} /><br />
+                    <img src={lock} alt=""/><br />
                     <span className="forgot"> Set new Password</span>
                 </div>
                 <div className="subheading">

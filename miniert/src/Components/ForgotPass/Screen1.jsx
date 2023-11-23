@@ -79,7 +79,7 @@ export default function Screen1(){
             </div>
             <form action ="">
                 <div className ="padding">
-                    <img src = {key}/><br/>
+                    <img src = {key} alt=""/><br/>
                     <span className="forgot"> Forgot Password? </span> 
                 </div>
                 <div className="subheading">

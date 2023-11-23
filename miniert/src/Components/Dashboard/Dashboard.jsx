@@ -608,9 +608,12 @@ const OTStopwatch = () => {
 
 
 const DashboardTimesheetTable = () => {
-	const [attendanceData, setAttendanceData] = useState([]);
 	const employee_id = localStorage.getItem('employee_id');
+	const [attendanceData, setAttendanceData] = useState([]);
+	const [currentWeekData, setCurrentWeekData] = useState([]);
+	const [dataWithDummy, setDataWithDummy] = useState([]);
 
+	// Get all data from database
 	useEffect(() => {
 		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
 			.then(response => {
@@ -620,60 +623,106 @@ const DashboardTimesheetTable = () => {
 			});
 	}, [employee_id]);
 
-	// Function to get the day of the week from a date
-	const getDayOfWeek = (dateString) => {
-		const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		const date = new Date(dateString);
-		return daysOfWeek[date.getDay()];
-	};
+	// Filter data to only show the current week
+	useEffect(() => {
+		const currentDate = new Date(); // Current date
+		const startOfWeek = new Date(currentDate);
+		startOfWeek.setDate(currentDate.getDate() - currentDate.getDay()); // Set to the start of the week (Sunday)
 
-	// Function to group attendance data by week
-	const groupByWeek = (data) => {
-		const groupedData = {};
-		data.forEach(attendance => {
-			const weekStartDate = new Date(attendance.date);
-			weekStartDate.setDate(weekStartDate.getDate() - weekStartDate.getDay()); // Set to the start of the week (Sunday)
-			const weekKey = weekStartDate.toISOString().split('T')[0]; // Use ISO date as the key
-			if (!groupedData[weekKey]) {
-				groupedData[weekKey] = [];
-			}
-			groupedData[weekKey].push(attendance);
+		const endOfWeek = new Date(startOfWeek);
+		endOfWeek.setDate(endOfWeek.getDate() + 6); // Set to the end of the week (Saturday)
+
+		const filteredData = attendanceData.filter((entry) => {
+			const entryDate = new Date(entry.date);
+			return entryDate >= startOfWeek && entryDate <= endOfWeek;
 		});
-		return groupedData;
-	};
 
-	const groupedAttendanceData = groupByWeek(attendanceData);
+		setCurrentWeekData(filteredData);
+	}, [attendanceData]);
+
+	// Once data is filtered, add dummy data with day
+	useEffect(() => {
+		const generateMissingDays = (startDate, endDate) => {
+			const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+			const startDateObj = new Date(startDate);
+			const endDateObj = new Date(endDate);
+			const missingDays = [];
+
+			for (
+				let dateObj = new Date(startDateObj);
+				dateObj <= endDateObj;
+				dateObj.setDate(dateObj.getDate() + 1)
+			) {
+				const dayOfWeek = daysOfWeek[dateObj.getDay()];
+				if (
+					!currentWeekData ||
+					!currentWeekData.find((entry) => entry.day === dayOfWeek)
+				) {
+					missingDays.push({
+						date: dateObj.toLocaleDateString('en-US', {
+							month: 'long',
+							day: 'numeric',
+							year: 'numeric',
+						}),
+						day: dayOfWeek,
+						_id: `dummy_${missingDays.length + 1}`,
+					});
+				}
+			}
+
+			return missingDays;
+		};
+
+		// Calculate the current week's start and end dates dynamically
+		const currentDate = new Date();
+		const startOfWeek = new Date(currentDate);
+		startOfWeek.setDate(currentDate.getDate() - currentDate.getDay()); // Set to the start of the week (Sunday)
+
+		const endOfWeek = new Date(startOfWeek);
+		endOfWeek.setDate(endOfWeek.getDate() + 6); // Set to the end of the week (Saturday)
+
+		// Filter data to only show the current week
+		const filteredData = attendanceData.filter((entry) => {
+			const entryDate = new Date(entry.date);
+			return entryDate >= startOfWeek && entryDate <= endOfWeek;
+		});
+
+		// Generate missing days
+		const missingDays = generateMissingDays(startOfWeek, endOfWeek);
+
+		// Combine filtered data and missing days
+		const combinedData = [...filteredData, ...missingDays];
+
+		// Use the state-setting function to update dataWithDummy
+		setDataWithDummy(combinedData);
+	}, [attendanceData, currentWeekData, setDataWithDummy]);
 
 	return (
 		<div className="tableContainer">
-			{Object.keys(groupedAttendanceData).map(weekStartDate => (
-				<div key={weekStartDate}>
-					<div className="tableHeader">
-						<h1>Time In</h1>
-						<h1>Time Out</h1>
-						<h1>Date</h1>
-						<h1>Day</h1>
-						<h1>Client</h1>
-						<h1>Project</h1>
-						<h1>OT Time In</h1>
-						<h1>OT Time Out</h1>
+			<div className="tableHeader">
+				<h1>Time In</h1>
+				<h1>Time Out</h1>
+				<h1>Date</h1>
+				<h1>Day</h1>
+				<h1>Client</h1>
+				<h1>Project</h1>
+				<h1>OT Time In</h1>
+				<h1>OT Time Out</h1>
+			</div>
+			<div className="tableContent">
+				{dataWithDummy && dataWithDummy.map(attendance => (
+					<div key={attendance._id} className={`${attendance.day}dashboard tableContentContainer`}>
+						<p>{attendance.time_in || '---'}</p>
+						<p>{attendance.time_out || '---'}</p>
+						<p>{attendance.date || '---'}</p>
+						<p>{attendance.day || '---'}</p>
+						<p>{attendance.client_name || '---'}</p>
+						<p>{attendance.project_name || '---'}</p>
+						<p>{attendance.ot_time_in || '---'}</p>
+						<p>{attendance.ot_time_out || '---'}</p>
 					</div>
-					<div className="tableContent">
-						{groupedAttendanceData[weekStartDate].map(attendance => (
-							<div key={attendance.date} className="tableContentContainer">
-								{attendance.time_in ? <p>{attendance.time_in}</p> : <p>----------</p>}
-								{attendance.time_out ? <p>{attendance.time_out}</p> : <p>----------</p>}
-								{attendance.date ? <p>{attendance.date}</p> : <p>----------</p>}
-								{attendance.day ? <p>{attendance.day}</p> : <p>----------</p>}
-								{attendance.client_name ? <p>{attendance.client_name}</p> : <p>----------</p>}
-								{attendance.project_name ? <p>{attendance.project_name}</p> : <p>----------</p>}
-								{attendance.ot_time_in ? <p>{attendance.ot_time_in}</p> : <p>----------</p>}
-								{attendance.ot_time_out ? <p>{attendance.ot_time_out}</p> : <p>----------</p>}
-							</div>
-						))}
-					</div>
-				</div>
-			))}
+				))}
+			</div>
 		</div>
 	);
 }

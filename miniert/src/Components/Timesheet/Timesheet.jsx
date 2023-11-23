@@ -35,7 +35,6 @@ const Timesheet = () => {
 	const [selectedWeekIndex, setSelectedWeekIndex] = useState(0); // Track the selected week index
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const [addDummyData, setAddDummyData] = useState([]);
 
 	useEffect(() => {
 		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
@@ -50,33 +49,36 @@ const Timesheet = () => {
 
 	useEffect(() => {
 		if (attendanceData.length > 0) {
-			// console.log(attendanceData);
 			const groupByWeek = (attendanceData) => {
 				const weeklyAttendance = [];
 				attendanceData.forEach((entry) => {
 					// Compututation of total hours 
 					let TotalHours; // Regular hours + OT Hours
+					let TotalMinutes;
 					if (entry.time_in && entry.time_out) {
 						let startTimeStr = entry.time_in;
 						let endTimeStr = entry.time_out;
 						let otTotalHours = 0;
+						let otTotalMinutes = 0;
+
 						// Only gets executed if entry has OT data
 						if (entry.ot_time_in && entry.ot_time_out) {
 							let otStartTimeStr = entry.ot_time_in;
 							let otEndTimeStr = entry.ot_time_out;
 							let otStartTimeHours = parseInt(otStartTimeStr.split(":")[0]);
-							let otStartTimeMinutes = parseInt(startTimeStr.split(":")[1].slice(0, 2));
+							let otStartTimeMinutes = parseInt(otStartTimeStr.split(":")[1].slice(0, 2));
 							let otEndTimeHours = parseInt(otEndTimeStr.split(":")[0]);
 							let otEndTimeMinutes = parseInt(otEndTimeStr.split(":")[1].slice(0, 2));
 							if (otStartTimeStr.includes("PM")) {
-								otStartTimeStr += 12; // Convert PM times to 24-hour format
+								otStartTimeHours += 12; // Convert PM times to 24-hour format
 							}
 							if (otEndTimeStr.includes("PM")) {
-								otEndTimeStr += 12; // Convert PM times to 24-hour format
+								otEndTimeHours += 12; // Convert PM times to 24-hour format
 							}
 
 							const otTimeDiffMinutes = (otEndTimeHours * 60 + otEndTimeMinutes) - (otStartTimeHours * 60 + otStartTimeMinutes);
 							otTotalHours = Math.floor(otTimeDiffMinutes / 60);
+							otTotalMinutes = otTimeDiffMinutes % 60;
 						}
 						let startTimeHours = parseInt(startTimeStr.split(":")[0]);
 						let startTimeMinutes = parseInt(startTimeStr.split(":")[1].slice(0, 2));
@@ -91,9 +93,12 @@ const Timesheet = () => {
 						}
 
 						const timeDifferenceMinutes = (endTimeHours * 60 + endTimeMinutes) - (startTimeHours * 60 + startTimeMinutes);
-						const totalHours = Math.floor(timeDifferenceMinutes / 60);
-						TotalHours = totalHours + otTotalHours;
+						TotalHours = Math.floor(timeDifferenceMinutes / 60) + otTotalHours;
+						TotalMinutes = (timeDifferenceMinutes % 60) + otTotalMinutes;
+
+						// console.log(entry);
 					}
+
 					// Grouping of data by week
 					const weekStartDate = new Date(entry.date);
 					weekStartDate.setDate(weekStartDate.getDate() - weekStartDate.getDay()); // Set to the first day of the week (Sunday)
@@ -106,15 +111,17 @@ const Timesheet = () => {
 					// Log date and weekKey for troubleshooting
 					// console.log("Date:", entry.date, "Week:", weekKey);
 
-					// Check if the week already exists in the array
+					// Check if the week already exists in the array and pushing it to the weeklyAttendance array
 					const existingWeek = weeklyAttendance.find((week) => week.week === weekKey);
 					if (existingWeek) {
 						entry.total_hours = TotalHours;
+						entry.total_minutes = TotalMinutes;
 						existingWeek.entries.push(entry);
 					}
 					else {
 						// If the week doesn't exist, create a new entry
 						entry.total_hours = TotalHours;
+						entry.total_minutes = TotalMinutes;
 						weeklyAttendance.push({
 							week: weekKey,
 							entries: [entry],
@@ -133,46 +140,28 @@ const Timesheet = () => {
 					weeklyAttendance.forEach((week) => {
 						const existingDays = week.entries.map((entry) => entry.day);
 						const missingDays = expectedDaysOfWeek.filter((day) => !existingDays.includes(day));
+						console.log(missingDays);
 						if (missingDays.length > 0) {
-							missingDays.forEach(day => {
+							missingDays.forEach((day, index) => {
+								// Determine the missing date based on the week's start date
+								const weekStartDate = new Date(week.entries[0].date); // Assuming the entries are sorted by date
+								const missingDate = new Date(weekStartDate);
+								missingDate.setDate(missingDate.getDate() + expectedDaysOfWeek.indexOf(day));
+
+								// Create the dummyObject with _id, day, and date properties
 								const dummyObject = {
-									time_in: "",
-									time_out: "",
-									date: "",
-									client_name: "",
-									total_hours: "",
-									project_name: "",
-									day: day
-								}
-								console.log(week.entries);
+									_id: index,
+									day: day,
+									date: missingDate.toISOString(), // Convert the date to a string or use any desired format
+								};
+
+								// Push the dummyObject into the week.entries array
+								week.entries.push(dummyObject);
 							});
 						}
 					});
 				};
-
 				appendData();
-
-				// if (existingWeek?.entries.length < 7) {
-				// 	const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-				// 	// console.log(existingWeek);
-				// 	// console.log(existingWeek.entries.length);
-				// 	console.log(existingWeek);
-				// 	const nextDayOfWeek = existingWeek.entries.length + 1;
-				// 	// console.log(nextDayOfWeek);
-				// 	// for (let i = nextDayOfWeek; i <= 7; i++) {
-				// 	// 	const dummyObject = {
-				// 	// 		time_in: "",
-				// 	// 		time_out: "",
-				// 	// 		date: "",
-				// 	// 		client_name: "",
-				// 	// 		total_hours: "",
-				// 	// 		project_name: "",
-				// 	// 		day: daysOfWeek[i]
-				// 	// 	}
-				// 	// 	// existingWeek.entries.push(entry);
-				// 	// }
-				// }
-
 				return weeklyAttendance;
 			};
 			setGroupedData(groupByWeek(attendanceData));
@@ -324,13 +313,13 @@ const TimesheetTable = ({ groupedData, selectedWeekIndex }) => {
 				</div>
 				<div className="vertical-container-content">
 					{selectedWeekData.entries.map((entry) => (
-						<div key={entry._id}>
-							<p>{entry.day.substring(0, 3)} <br /> {getDayFromDate(entry.date)}</p>
+						<div key={entry._id} className={entry.day}>
+							<p>{entry.day ? entry.day.substring(0, 3) : "---"} <br /> {getDayFromDate(entry.date) ? getDayFromDate(entry.date) : "---"}</p>
 							<p>{entry.time_in ? entry.time_in : "----------"}</p>
 							<p>{entry.time_out ? entry.time_out : "----------"}</p>
 							<p>{entry.ot_time_in ? entry.ot_time_in : "----------"}</p>
 							<p>{entry.ot_time_out ? entry.ot_time_out : "----------"}</p>
-							<p>{entry.total_hours ? entry.total_hours : "----------"}</p>
+							<p>{entry.total_hours ? `${entry.total_hours}h ${entry.total_minutes}m ` : "----------"}</p>
 						</div>
 					))}
 				</div>

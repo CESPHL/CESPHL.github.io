@@ -13,15 +13,16 @@ export default function Screen1(){
     const handleClick =() =>{
         window.location.href ="/";
     };
-    const open =() =>{
-        window.location.href ="/resetpass";
-    };
+    // Function should open the user's email provider
+    // const open =() =>{
+    //     window.location.href ="/resetpass";
+    // };
     return(
         <div className = "forgot-form">
             <div className="rectangle">
                 <div className ="title">            
                     <div className = "main">
-                        <img src= {main} alt=""/><span><b>Collabera Digita</b>l<br/>External Resource Timesheet</span>
+                        <img src= {main} alt=""/><span><b>Collabera Digital</b><br/>External Resource Timesheet</span>
                     </div>
                     <div className="list">
                         <div class="item">
@@ -63,7 +64,7 @@ export default function Screen1(){
             <form action ="">
             <div className="form-group">
                 <div className ="padding">
-                    <img src = {fpassemail}/><br/>
+                    <img src = {fpassemail} alt=""/><br/>
                     <span className="forgot"> Check your email </span> 
                 </div>
                 <div className="subheading">
