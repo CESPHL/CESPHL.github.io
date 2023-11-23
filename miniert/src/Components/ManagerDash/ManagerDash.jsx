@@ -84,7 +84,7 @@ const ManageAccount = () => {
       </div>
       <div className="dashboard-content">
         <div className="dash-text">
-          <h5>Manage Profile</h5>
+          <h4>Manage Accounts</h4>
           <span>
             <CurrentDate />
           </span>

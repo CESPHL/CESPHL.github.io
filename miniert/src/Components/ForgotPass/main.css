@@ -1,13 +1,13 @@
 *{
     font-family: 'Inter', sans-serif;
-    overflow-y: hidden;
 }
-form{
+.forgot-form{
     padding-left: 100px;
     width: auto;
     height: auto;
     max-width: 100%;
-    max-height: 100vh;
+    height: 100vh;
+    overflow:hidden;
 }
 .main{
     padding-top: 20px;
