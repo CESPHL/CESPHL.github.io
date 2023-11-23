@@ -21,17 +21,17 @@ const findUser = async (req, res) => {
                 const token = jwt.sign({
                     employee_id: user.employee_id,
                     user_level: user.user_level
-                  }, process.env.JWT_SECRET_KEY, {
+                }, process.env.JWT_SECRET_KEY, {
                     expiresIn: '15m'
-                  });
-                  
-                  // Respond with the token and additional user information
-                  res.status(200).json({
+                });
+
+                // Respond with the token and additional user information
+                res.status(200).json({
                     token,
                     employee_id: user.employee_id,
                     user_level: user.user_level
-                  });
-                  
+                });
+
             } else {
                 res.status(401).json({ message: 'Login failed Password Not Match' });
             }
@@ -65,14 +65,13 @@ const forgotPassword = async (req, res) => {
             text: `Click the link to reset your password: http://localhost:3000/reset-password/${token}`,
         };
 
-        function sendEmail() {
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.log('Error sending email: ' + error);
-                } else {
-                    console.log('Email sent: ' + info.response);
-                }
-            });
+        async function sendEmail() {
+            try {
+                const info = await transporter.sendMail(mailOptions);
+                console.log('Email sent: ' + info.response);
+            } catch (error) {
+                console.log('Error sending email: ' + error);
+            }
         }
 
         if (user) {
