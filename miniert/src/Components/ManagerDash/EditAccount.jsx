@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './addAccount.css';
+import './EditAccount.css';
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import accIcon from '../Assets/acc-active.svg';
@@ -11,7 +11,7 @@ import AddAccModal from '../../Components/DashModal/AddAccModal.jsx';
 
 
 const CurrentDate = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -21,7 +21,7 @@ const CurrentDate = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const formattedDate = currentDate.toLocaleDateString('en-US', {
+const formattedDate = currentDate.toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
@@ -30,7 +30,7 @@ const CurrentDate = () => {
   return <p>{formattedDate}</p>;
 }
 const AddAccount = () => {
-	const [showModal, setShowModal] = useState(false);
+const [showModal, setShowModal] = useState(false);
   
 	const handleOpenModal = () => {
 	  setShowModal(true);
@@ -94,28 +94,47 @@ const AddAccount = () => {
       </div>
       <div className="dashboard-content">
         <div className="dash-text">
-          <h4>Add Account</h4>
+          <h4>Edit Account</h4>
           <span>
             <CurrentDate />
           </span>
       </div>
-	  <div className="add-mainContent">
-					<form>
-						<span>Client ID</span><br /><input type="text" placeholder="Enter client ID" required /><br />
-						<span>Client Name</span><br /><input type="text" placeholder="Enter client name" required/><br />
-						<span>Location</span><br /><input type="text" placeholder="Enter client address"required/><br />
-						<span>Client POC Name</span><br /><input type="text" placeholder="Enter client POC name" required/><br />
-						<span>Client POC Email</span><br /><input type="text" placeholder="Enter client POC email" required/><br />
-						<span>SDM/SDL</span><br /><input type="text" placeholder="Enter SDM/SDL"required /><br />
-						<span>SDM/SDL Email</span><br /><input type="text" placeholder="Enter SDM/SDL email" required/><br />
-						<span>SDM/SDL Contact No.</span><br /><input type="text" placeholder="Enter SDM/SDL Contact No."required/><br />
-						<span>Project</span><br /><input type="text" placeholder="Enter Project"required/><br />
-						<NavLink to ="/manage-accounts">
-						<button>Cancel</button>
-						</NavLink>
-						<input type="submit" value="Add" class ="add-btn1" onClick={handleOpenModal}/>
-					</form>
-				</div>
+	  <div className="custom-add-mainContent">
+     <h3>Account Details</h3>
+     <form>
+    <span>Client ID</span><br />
+    <textarea rows="1" cols="50" required></textarea><br />
+
+    <span>Client Name</span><br />
+    <textarea rows="1" cols="50" required></textarea><br />
+
+    <span>Location</span><br />
+    <textarea rows="4" cols="50" style={{ resize: 'none', height: '50px' }} required></textarea><br />
+
+    <span>Client POC Name</span><br />
+    <textarea rows="1" cols="50" required></textarea><br />
+
+    <span>Client POC Email</span><br />
+    <textarea rows="1" cols="50" required></textarea><br />
+
+    <span>SDM/SDL</span><br />
+    <textarea rows="1" cols="50" required></textarea><br />
+
+    <span>SDM/SDL Email</span><br />
+    <textarea rows="1" cols="50" required></textarea><br />
+
+    <span>SDM/SDL Contact No.</span><br />
+    <textarea rows="1" cols="50" required></textarea><br />
+
+    <span>Project</span><br />
+    <textarea rows="1" cols="50" required></textarea><br />
+
+        <NavLink to="/manage-accounts">
+        <button>Cancel</button>
+        </NavLink>
+        <input type="submit" value="Save" className="custom-add-btn1" onClick={handleOpenModal}/>
+        </form>
+        </div>
 				{/*add conditions for when the modal opens.
 				for now, it shows upon clicking the yes button*/}
 				<AddAccModal

@@ -93,7 +93,7 @@ const ManageAccount = () => {
       </div>
       <div className="dashboard-content">
         <div className="dash-text">
-          <h5>Manage Profile</h5>
+          <h4>Manage Accounts</h4>
           <span>
             <CurrentDate />
           </span>
@@ -117,12 +117,32 @@ const ManageAccount = () => {
             </div>
             <div className="buttons">
               <button className="upload-btn">Upload</button>
+              <NavLink to="/manage-accounts/add-account">"
               <button className="add-btn">
                 Add
               </button>
+              </NavLink>
             </div>
           </div>
-        )}
+    <div className="customTableContainer">
+   <div className="customTableHeader">
+    <h1>ID</h1>
+    <h1>Name</h1>
+    <h1>SDM/SDL</h1>
+    <h1>SDM/SDL Email</h1>
+    <h1>SDM/SDL Contact</h1>
+    <h1>Actions</h1>
+  </div>
+  <div className="customTableContent">
+    <p>---</p>
+    <p>---</p>
+    <p>---</p>
+    <p>---</p>
+    <p>---</p>
+    <p><img src = {view}/><img src={edit}/></p>
+  </div>
+  </div>
+      </div>
       </div>
     </div>
   );
