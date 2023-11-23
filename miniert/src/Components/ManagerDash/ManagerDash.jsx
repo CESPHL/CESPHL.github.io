@@ -7,6 +7,9 @@ import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
+import view from '../Assets/view-icn.svg';
+import edit from '../Assets/edit-icn.svg';
+
 
 const CurrentDate = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -29,19 +32,6 @@ const CurrentDate = () => {
 };
 
 const ManageAccount = () => {
-  const [isDashboardVisible, setDashboardVisibility] = useState(true);
-  const [isSearchBarVisible, setSearchBarVisibility] = useState(true);
-
-  const handleToggleDashboard = () => {
-    setDashboardVisibility(!isDashboardVisible);
-    setSearchBarVisibility(false);
-  };
-
-  const handleToggleSearchBar = () => {
-    setSearchBarVisibility(!isSearchBarVisible);
-    setDashboardVisibility(false);
-  };
-
   return (
     <div className="dashboard">
       <div className="dash-navbar">
@@ -98,7 +88,7 @@ const ManageAccount = () => {
             <CurrentDate />
           </span>
         </div>
-        {isDashboardVisible && (
+        <div className="manage-content">
           <div className="search-bar">
             <form action=" ">
               <input type="text" placeholder="Search Client" />
@@ -117,7 +107,7 @@ const ManageAccount = () => {
             </div>
             <div className="buttons">
               <button className="upload-btn">Upload</button>
-              <NavLink to="/manage-accounts/add-account">"
+              <NavLink to="/manage-accounts/add-account">
               <button className="add-btn">
                 Add
               </button>
@@ -140,11 +130,11 @@ const ManageAccount = () => {
     <p>---</p>
     <p>---</p>
     <p><img src = {view}/><img src={edit}/></p>
-  </div>
-  </div>
-      </div>
-      </div>
     </div>
+    </div>
+      </div>
+      </div>
+      </div>
   );
 };
 
