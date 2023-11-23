@@ -12,23 +12,23 @@ import edit from '../Assets/edit-icn.svg';
 
 
 const CurrentDate = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+	const [currentDate, setCurrentDate] = useState(new Date());
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCurrentDate(new Date());
+		}, 1000);
 
-    return () => clearInterval(intervalId);
-  }, []);
+		return () => clearInterval(intervalId);
+	}, []);
 
-  const formattedDate = currentDate.toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+	const formattedDate = currentDate.toLocaleDateString('en-US', {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric',
+	});
 
-  return <p>{formattedDate}</p>;
+	return <p>{formattedDate}</p>;
 };
 
 const ManageAccount = () => {
@@ -50,7 +50,7 @@ const ManageAccount = () => {
 					<div className="dash-1">
 						<li>
 							<NavLink to="/manage-accounts">
-								<img src={accIcon} alt="dashboard icon" activeclassname="active"/>
+								<img src={accIcon} alt="dashboard icon" activeclassname="active" />
 								<span>Manage Accounts</span>
 							</NavLink>
 						</li>
@@ -60,7 +60,7 @@ const ManageAccount = () => {
 								<span className="inactive">Manage Talents</span>
 							</NavLink>
 						</li>
-                        <li>
+						<li>
 							<NavLink to="/timesheet">
 								<img src={reports} alt="clock icon" />
 								<span className="inactive">Reports</span>
@@ -69,7 +69,7 @@ const ManageAccount = () => {
 						<li>
 							<NavLink to="/profile">
 								<img src={profile} alt="profile icon" />
-								<span  className="inactive">Profile</span>
+								<span className="inactive">Profile</span>
 							</NavLink>
 						</li>
 					</div>
