@@ -9,43 +9,43 @@ import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
 
 const CurrentDate = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+	const [currentDate, setCurrentDate] = useState(new Date());
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCurrentDate(new Date());
+		}, 1000);
 
-    return () => clearInterval(intervalId);
-  }, []);
+		return () => clearInterval(intervalId);
+	}, []);
 
-  const formattedDate = currentDate.toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+	const formattedDate = currentDate.toLocaleDateString('en-US', {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric',
+	});
 
-  return <p>{formattedDate}</p>;
+	return <p>{formattedDate}</p>;
 };
 
 const ManageAccount = () => {
-  const [isDashboardVisible, setDashboardVisibility] = useState(true);
-  const [isSearchBarVisible, setSearchBarVisibility] = useState(true);
+	const [isDashboardVisible, setDashboardVisibility] = useState(true);
+	const [isSearchBarVisible, setSearchBarVisibility] = useState(true);
 
-  const handleToggleDashboard = () => {
-    setDashboardVisibility(!isDashboardVisible);
-    setSearchBarVisibility(false);
-  };
+	const handleToggleDashboard = () => {
+		setDashboardVisibility(!isDashboardVisible);
+		setSearchBarVisibility(false);
+	};
 
-  const handleToggleSearchBar = () => {
-    setSearchBarVisibility(!isSearchBarVisible);
-    setDashboardVisibility(false);
-  };
+	const handleToggleSearchBar = () => {
+		setSearchBarVisibility(!isSearchBarVisible);
+		setDashboardVisibility(false);
+	};
 
-  return (
-    <div className="dashboard">
-      <div className="dash-navbar">
-      <div className="dash-main">
+	return (
+		<div className="dashboard">
+			<div className="dash-navbar">
+				<div className="dash-main">
 					<img src={hourglass} alt="" />
 					<span>
 						<span style={{ fontWeight: 'bold', color: '#684CE2', fontSize: '14px', paddingLeft: '0px' }}>
@@ -60,7 +60,7 @@ const ManageAccount = () => {
 					<div className="dash-1">
 						<li>
 							<NavLink to="/manage-accounts">
-								<img src={accIcon} alt="dashboard icon" activeclassname="active"/>
+								<img src={accIcon} alt="dashboard icon" activeclassname="active" />
 								<span>Manage Accounts</span>
 							</NavLink>
 						</li>
@@ -70,7 +70,7 @@ const ManageAccount = () => {
 								<span className="inactive">Manage Talents</span>
 							</NavLink>
 						</li>
-                        <li>
+						<li>
 							<NavLink to="/timesheet">
 								<img src={reports} alt="clock icon" />
 								<span className="inactive">Reports</span>
@@ -79,7 +79,7 @@ const ManageAccount = () => {
 						<li>
 							<NavLink to="/profile">
 								<img src={profile} alt="profile icon" />
-								<span  className="inactive">Profile</span>
+								<span className="inactive">Profile</span>
 							</NavLink>
 						</li>
 					</div>
@@ -90,15 +90,15 @@ const ManageAccount = () => {
 						<button>Log Out</button>
 					</NavLink>
 				</div>
-      </div>
-      <div className="dashboard-content">
-        <div className="dash-text">
-          <h4>Manage Accounts</h4>
-          <span>
-            <CurrentDate />
-          </span>
-        </div>
-        {isDashboardVisible && (
+			</div>
+			<div className="dashboard-content">
+				<div className="dash-text">
+					<h4>Manage Accounts</h4>
+					<span>
+						<CurrentDate />
+					</span>
+				</div>
+				{isDashboardVisible && (
           <div className="search-bar">
             <form action=" ">
               <input type="text" placeholder="Search Client" />
@@ -143,8 +143,8 @@ const ManageAccount = () => {
   </div>
   </div>
       </div>
-      </div>
-    </div>
+		</div>
+    </div >
   );
 };
 
