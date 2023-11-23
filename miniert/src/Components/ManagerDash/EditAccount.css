@@ -175,6 +175,8 @@ body {
 }
 .custom-add-mainContent{
 	padding-top: 30px;
+	height: 100vh;
+    overflow-y: hidden;
 }
 .custom-add-mainContent h3{
     padding-left: 50px;
@@ -199,6 +201,7 @@ body {
 	margin-top: 5px;
 	padding: 8px;
 	padding-left: 12px;
+	overflow-y: hidden;
   }
 .custom-add-mainContent span{
 	font-size: 13px;

@@ -34,7 +34,6 @@ function App() {
         <Route path="/manage-accounts" element={<ManagerDashboard/>}/>
         <Route path="/manage-accounts/add-account" element={<AddAccount/>}/>
         <Route path="/manage-accounts/edit-account" element={<EditAccount/>}/>
-
       </Routes>
     </Router>
   );
