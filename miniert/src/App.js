@@ -11,6 +11,8 @@ import Profile from './Components/Profile/Profile.jsx';
 import ChangePass from './Components/Profile/ChangePassword.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import ManagerDashboard from './Components/ManagerDash/ManagerDash.jsx';
+import AddAccount from './Components/ManagerDash/AddAccount.jsx';
+
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/changepass" element={<ChangePass/>}/>
         <Route path="/manage-accounts" element={<ManagerDashboard/>}/>
+        <Route path="/manage-accounts/add-account" element={<AddAccount/>}/>
+
       </Routes>
     </Router>
   );

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './managerDash.css';
+import './addAccount.css';
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
-import view from '../Assets/view-icn.svg';
-import edit from '../Assets/edit-icn.svg';
+import AddAccModal from '../../Components/DashModal/AddAccModal.jsx';
 
 
 const CurrentDate = () => {
@@ -29,10 +28,21 @@ const CurrentDate = () => {
   });
 
   return <p>{formattedDate}</p>;
-};
-
-const ManageAccount = () => {
-
+}
+const AddAccount = () => {
+	const [showModal, setShowModal] = useState(false);
+  
+	const handleOpenModal = () => {
+	  setShowModal(true);
+	}
+  
+	const handleCloseModal = () => {
+	  setShowModal(false);
+	};
+  
+	const handleSave = async (e) => {
+	  e.preventDefault();
+	}
   return (
     <div className="dashboard">
       <div className="dash-navbar">
@@ -88,54 +98,38 @@ const ManageAccount = () => {
           <span>
             <CurrentDate />
           </span>
-        </div>
-        <div className="main-content">
-          <div className="search-bar">
-            <form action=" ">
-              <input type="text" placeholder="Search Client" />
-            </form>
-            <div className="client-dropdown">
-              <select>
-                <option>Client</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-              </select>
-              <select>
-                <option>Sort</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-              </select>
-            </div>
-            <div className="buttons">
-              <button className="upload-btn">Upload</button>
-              <button className="add-btn" onClick={ c}>
-                Add
-              </button>
-              </NavLink>
-            </div>
-          </div>
-    <div className="customTableContainer">
-   <div className="customTableHeader">
-    <h1>ID</h1>
-    <h1>Name</h1>
-    <h1>SDM/SDL</h1>
-    <h1>SDM/SDL Email</h1>
-    <h1>SDM/SDL Contact</h1>
-    <h1>Actions</h1>
-  </div>
-  <div className="customTableContent">
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p><img src = {view}/><img src={edit}/></p>
-  </div>
-  </div>
       </div>
+	  <div className="add-mainContent">
+					<form>
+						<span>Client ID</span><br /><input type="text" placeholder="Enter client ID" required /><br />
+						<span>Client Name</span><br /><input type="text" placeholder="Enter client name" required/><br />
+						<span>Location</span><br /><input type="text" placeholder="Enter client address"required/><br />
+						<span>Client POC Name</span><br /><input type="text" placeholder="Enter client POC name" required/><br />
+						<span>Client POC Email</span><br /><input type="text" placeholder="Enter client POC email" required/><br />
+						<span>SDM/SDL</span><br /><input type="text" placeholder="Enter SDM/SDL"required /><br />
+						<span>SDM/SDL Email</span><br /><input type="text" placeholder="Enter SDM/SDL email" required/><br />
+						<span>SDM/SDL Contact No.</span><br /><input type="text" placeholder="Enter SDM/SDL Contact No."required/><br />
+						<span>Project</span><br /><input type="text" placeholder="Enter Project"required/><br />
+						<NavLink to ="/manage-accounts">
+						<button>Cancel</button>
+						</NavLink>
+						<input type="submit" value="Add" class ="add-btn1" onClick={handleOpenModal}/>
+					</form>
+				</div>
+				{/*add conditions for when the modal opens.
+				for now, it shows upon clicking the yes button*/}
+				<AddAccModal
+					show={showModal}
+					handleClose={handleCloseModal}
+					handleSave={handleSave}>
+					<p>Add Account</p>
+					<span>Clicking yes will add the account details and its project to the system.
+						<br />Do you wish to continue?
+					</span>
+				</AddAccModal>
       </div>
       </div>
   );
 };
 
-export default ManageAccount;
+export default AddAccount;
