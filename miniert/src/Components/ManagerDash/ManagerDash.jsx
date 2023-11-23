@@ -108,10 +108,12 @@ const ManageAccount = () => {
             </div>
             <div className="buttons">
               <button className="upload-btn">Upload</button>
-              <button className="add-btn" onClick={ c}>
+              <NavLink to="/manage-accounts/add-account">"
+              <button className="add-btn">
                 Add
               </button>
               </NavLink>
+              </div>
             </div>
           </div>
     <div className="customTableContainer">
@@ -132,7 +134,6 @@ const ManageAccount = () => {
     <p><img src = {view}/><img src={edit}/></p>
   </div>
   </div>
-      </div>
       </div>
       </div>
   );
