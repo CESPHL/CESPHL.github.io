@@ -7,9 +7,6 @@ import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
-import view from '../Assets/view-icn.svg';
-import edit from '../Assets/edit-icn.svg';
-
 
 const CurrentDate = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -32,6 +29,18 @@ const CurrentDate = () => {
 };
 
 const ManageAccount = () => {
+  const [isDashboardVisible, setDashboardVisibility] = useState(true);
+  const [isSearchBarVisible, setSearchBarVisibility] = useState(true);
+
+  const handleToggleDashboard = () => {
+    setDashboardVisibility(!isDashboardVisible);
+    setSearchBarVisibility(false);
+  };
+
+  const handleToggleSearchBar = () => {
+    setSearchBarVisibility(!isSearchBarVisible);
+    setDashboardVisibility(false);
+  };
 
   return (
     <div className="dashboard">
@@ -89,7 +98,7 @@ const ManageAccount = () => {
             <CurrentDate />
           </span>
         </div>
-        <div className="main-content">
+        {isDashboardVisible && (
           <div className="search-bar">
             <form action=" ">
               <input type="text" placeholder="Search Client" />
@@ -108,33 +117,14 @@ const ManageAccount = () => {
             </div>
             <div className="buttons">
               <button className="upload-btn">Upload</button>
-              <button className="add-btn" onClick={ c}>
+              <button className="add-btn">
                 Add
               </button>
-              </NavLink>
             </div>
           </div>
-    <div className="customTableContainer">
-   <div className="customTableHeader">
-    <h1>ID</h1>
-    <h1>Name</h1>
-    <h1>SDM/SDL</h1>
-    <h1>SDM/SDL Email</h1>
-    <h1>SDM/SDL Contact</h1>
-    <h1>Actions</h1>
-  </div>
-  <div className="customTableContent">
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p><img src = {view}/><img src={edit}/></p>
-  </div>
-  </div>
+        )}
       </div>
-      </div>
-      </div>
+    </div>
   );
 };
 

@@ -11,6 +11,7 @@ const corsOptions = {
 const talentsRoutes = require('./routes/talents');
 const indexRoutes = require('./routes/index');
 const clientRoutes = require('./routes/clients');
+const managerRoutes = require('./routes/managers');
 
 const app = express();
 
@@ -23,8 +24,9 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/talents', talentsRoutes);
-app.use('/api/clients', clientRoutes)
+app.use('/api/clients', clientRoutes);
 app.use('/', indexRoutes);
+app.use('/api/managers', managerRoutes)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
