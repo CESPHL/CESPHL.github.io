@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import './addAccount.css';
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
-import accIcon from '../Assets/acc-active.svg';
-import talents from '../Assets/mng-talent-inactive.svg';
+import accIcon from '../Assets/building-inactive.svg';
+import talents from '../Assets/talents-active.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
 import AddAccModal from '../../Components/DashModal/AddAccModal.jsx';
@@ -62,13 +62,13 @@ const AddAccount = () => {
 						<li>
 							<NavLink to="/manage-accounts">
 								<img src={accIcon} alt="dashboard icon" activeclassname="active"/>
-								<span>Manage Accounts</span>
+								<span className="inactive">Manage Accounts</span>
 							</NavLink>
 						</li>
 						<li>
 							<NavLink to="/manage-talents">
 								<img src={talents} alt="clock icon" />
-								<span className="inactive">Manage Talents</span>
+								<span >Manage Talents</span>
 							</NavLink>
 						</li>
                         <li>

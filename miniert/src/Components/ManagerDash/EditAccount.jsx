@@ -66,19 +66,21 @@ const [showModal, setShowModal] = useState(false);
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/timesheet">
+							<NavLink to="/manage-talents">
 								<img src={talents} alt="clock icon" />
 								<span className="inactive">Manage Talents</span>
 							</NavLink>
 						</li>
                         <li>
-							<NavLink to="/timesheet">
+							<NavLink to="/reports">
+                                {/*page is non-existent. placeholder only. change the correct directory. */}
 								<img src={reports} alt="clock icon" />
 								<span className="inactive">Reports</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/profile">
+							<NavLink to="/profile-managers">
+                                {/*page is non-existent. placeholder only. change the correct directory. */}
 								<img src={profile} alt="profile icon" />
 								<span  className="inactive">Profile</span>
 							</NavLink>

@@ -14,6 +14,8 @@ import ManagerDashboard from './Components/ManagerDash/ManagerDash.jsx';
 import AddAccount from './Components/ManagerDash/AddAccount.jsx';
 import EditAccount from './Components/ManagerDash/EditAccount.jsx';
 import ManageTalent from './Components/ManagerDash/ManageTalent.jsx';
+import AddTalent from './Components/ManagerDash/AddTalent.jsx';
+
 
 
 
@@ -37,6 +39,7 @@ function App() {
         <Route path="/manage-accounts/add-account" element={<AddAccount/>}/>
         <Route path="/manage-accounts/edit-account" element={<EditAccount/>}/>
         <Route path="/manage-talents" element={<ManageTalent/>}/>
+        <Route path="/manage-talents/add-account" element={<AddTalent/>}/>
       </Routes>
     </Router>
   );

@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import './managerDash.css';
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
-import accIcon from '../Assets/acc-active.svg';
-import talents from '../Assets/mng-talent-inactive.svg';
+import accIcon from '../Assets/building-inactive.svg';
+import talents from '../Assets/talents-active.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
 import view from '../Assets/view-icn.svg';
@@ -57,19 +57,19 @@ const ManageAccount = () => {
 						<li>
 							<NavLink to="/manage-talents">
 								<img src={talents} alt="clock icon" activeclassname="active"/>
-								<span className="active">Manage Talents</span>
+								<span>Manage Talents</span>
 							</NavLink>
 						</li>
 						<li>
 							<NavLink to="/reports">
-                                {/*page is non-existent. placeholder only. change the correct directory. */}
+                            {/*page is non-existent. placeholder only. change to correct directory. */}
 								<img src={reports} alt="clock icon" />
 								<span className="inactive">Reports</span>
 							</NavLink>
 						</li>
 						<li>
 							<NavLink to="/profile-managers"> 
-                            {/*page is non-existent. placeholder only. change the correct directory. */}
+                            {/*page is non-existent. placeholder only. change to correct directory. */}
 								<img src={profile} alt="profile icon" />
 								<span className="inactive">Profile</span>
 							</NavLink>
@@ -109,7 +109,7 @@ const ManageAccount = () => {
             </div>
             <div className="buttons">
               <button className="upload-btn">Upload</button>
-              <NavLink to="/manage-accounts/add-account">
+              <NavLink to="/manage-talents/add-account">
               <button className="add-btn">
                 Add
               </button>
@@ -118,11 +118,11 @@ const ManageAccount = () => {
           </div>
     <div className="customTableContainer">
    <div className="customTableHeader">
-    <h1>Project ID</h1>
-    <h1>Client Name</h1>
-    <h1>SDM/SDL</h1>
-    <h1>SDM/SDL Email</h1>
-    <h1>SDM/SDL Contact</h1>
+    <h1>Talent ID</h1>
+    <h1>Talent Name</h1>
+    <h1>Email</h1>
+    <h1>Contact No.</h1>
+    <h1>Role</h1>
     <h1>Actions</h1>
   </div>
   <div className="customTableContent">
