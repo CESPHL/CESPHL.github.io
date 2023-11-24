@@ -22,26 +22,32 @@ import AddTalent from './Components/ManagerDash/AddTalent.jsx';
 
 
 function App() {
+	const [message, setMessage] = useState("");
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/resetsuccess" element={<Screen4/>}/>
-        <Route path="/reset-password/:token" element={<Screen3/>}/>
-        <Route path="/sentemail" element={<Screen2/>}/>
-        <Route path="/forgotpass" element={<Screen1/>}/>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/timesheet" element={<Timesheet/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/profile/changepass" element={<ChangePass/>}/>
-        <Route path="/manage-accounts" element={<ManagerDashboard/>}/>
-        <Route path="/manage-accounts/add-account" element={<AddAccount/>}/>
-        <Route path="/manage-accounts/edit-account" element={<EditAccount/>}/>
-        <Route path="/manage-talents" element={<ManageTalent/>}/>
-        <Route path="/manage-talents/add-account" element={<AddTalent/>}/>
-      </Routes>
-    </Router>
-  );
-  }
+	useEffect(() => {
+		fetch("https://YOUR_BACKEND_URL.com")
+			.then((res) => res.json())
+			.then((data) => setMessage(data.message));
+	}, []);
+	return (
+		<Router>
+			<Routes>
+				<Route path="/" element={<Login />} />
+				<Route path="/resetsuccess" element={<Screen4 />} />
+				<Route path="/reset-password/:token" element={<Screen3 />} />
+				<Route path="/sentemail" element={<Screen2 />} />
+				<Route path="/forgotpass" element={<Screen1 />} />
+				<Route path="/dashboard" element={<Dashboard />} />
+				<Route path="/timesheet" element={<Timesheet />} />
+				<Route path="/profile" element={<Profile />} />
+				<Route path="/profile/changepass" element={<ChangePass />} />
+				<Route path="/manage-accounts" element={<ManagerDashboard />} />
+				<Route path="/manage-accounts/add-account" element={<AddAccount />} />
+				<Route path="/manage-accounts/edit-account" element={<EditAccount />} />
+				<Route path="/manage-talents" element={<ManageTalent />} />
+				<Route path="/manage-talents/add-account" element={<AddTalent />} />
+			</Routes>
+		</Router>
+	);
+}
 export default App;
