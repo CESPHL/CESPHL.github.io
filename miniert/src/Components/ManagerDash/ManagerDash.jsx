@@ -129,7 +129,11 @@ const ManageAccount = () => {
     <p>---</p>
     <p>---</p>
     <p>---</p>
-    <p><img src = {view}/><img src={edit}/></p>
+    <p><img src = {view}/>
+    <NavLink to ="/manage-accounts/edit-account">
+    <img src={edit}/>
+    </NavLink>
+    </p>
     </div>
     </div>
       </div>
