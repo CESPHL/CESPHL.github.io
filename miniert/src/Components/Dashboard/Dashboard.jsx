@@ -111,7 +111,6 @@ const Stopwatch = () => {
 			.catch(err => {
 				console.log(err);
 			});
-		console.log(formattedTime);
 	}, [employee_id]);
 
 	useEffect(() => {
