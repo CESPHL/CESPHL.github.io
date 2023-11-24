@@ -7,6 +7,9 @@ import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
+import view from '../Assets/view-icn.svg';
+import edit from '../Assets/edit-icn.svg';
+
 
 const CurrentDate = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
@@ -29,19 +32,6 @@ const CurrentDate = () => {
 };
 
 const ManageAccount = () => {
-	const [isDashboardVisible, setDashboardVisibility] = useState(true);
-	const [isSearchBarVisible, setSearchBarVisibility] = useState(true);
-
-	const handleToggleDashboard = () => {
-		setDashboardVisibility(!isDashboardVisible);
-		setSearchBarVisibility(false);
-	};
-
-	const handleToggleSearchBar = () => {
-		setSearchBarVisibility(!isSearchBarVisible);
-		setDashboardVisibility(false);
-	};
-
 	return (
 		<div className="dashboard">
 			<div className="dash-navbar">
@@ -98,54 +88,52 @@ const ManageAccount = () => {
 						<CurrentDate />
 					</span>
 				</div>
-				{isDashboardVisible && (
-          <div className="search-bar">
-            <form action=" ">
-              <input type="text" placeholder="Search Client" />
-            </form>
-            <div className="client-dropdown">
-              <select>
-                <option>Client</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-              </select>
-              <select>
-                <option>Sort</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-              </select>
-            </div>
-            <div className="buttons">
-              <button className="upload-btn">Upload</button>
-              <NavLink to="/manage-accounts/add-account">"
-              <button className="add-btn">
-                Add
-              </button>
-              </NavLink>
-            </div>
-          </div>
-    <div className="customTableContainer">
-   <div className="customTableHeader">
-    <h1>ID</h1>
-    <h1>Name</h1>
-    <h1>SDM/SDL</h1>
-    <h1>SDM/SDL Email</h1>
-    <h1>SDM/SDL Contact</h1>
-    <h1>Actions</h1>
-  </div>
-  <div className="customTableContent">
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p>---</p>
-    <p><img src = {view}/><img src={edit}/></p>
-  </div>
-  </div>
-      </div>
+				<div className="search-bar">
+					<form action=" ">
+						<input type="text" placeholder="Search Client" />
+					</form>
+					<div className="client-dropdown">
+						<select>
+							<option>Client</option>
+							<option>Option 1</option>
+							<option>Option 2</option>
+						</select>
+						<select>
+							<option>Sort</option>
+							<option>Option 1</option>
+							<option>Option 2</option>
+						</select>
+					</div>
+					<div className="buttons">
+						<button className="upload-btn">Upload</button>
+						<NavLink to="/manage-accounts/add-account">"
+							<button className="add-btn">
+								Add
+							</button>
+						</NavLink>
+					</div>
+				</div>
+				<div className="customTableContainer">
+					<div className="customTableHeader">
+						<h1>ID</h1>
+						<h1>Name</h1>
+						<h1>SDM/SDL</h1>
+						<h1>SDM/SDL Email</h1>
+						<h1>SDM/SDL Contact</h1>
+						<h1>Actions</h1>
+					</div>
+					<div className="customTableContent">
+						<p>---</p>
+						<p>---</p>
+						<p>---</p>
+						<p>---</p>
+						<p>---</p>
+						<p><img src={view} /><img src={edit} /></p>
+					</div>
+				</div>
+			</div>
 		</div>
-    </div >
-  );
+	);
 };
 
 export default ManageAccount;
