@@ -9,6 +9,7 @@ import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
 import view from '../Assets/view-icn.svg';
 import edit from '../Assets/edit-icn.svg';
+import axios from 'axios';
 
 
 const CurrentDate = () => {
@@ -32,6 +33,21 @@ const CurrentDate = () => {
 };
 
 const ManageAccount = () => {
+
+	const [clientData, setClientData] = useState([]);
+
+	useEffect(() => {
+		axios.get(`http://localhost:4000/api/clients`)
+			.then(response => {
+				const data = response.data;
+				setClientData(data);
+				console.log(clientData);
+			})
+			.catch(err => {
+				console.error(err);
+			});
+	}, []);
+
 	return (
 		<div className="dashboard">
 			<div className="dash-navbar">
