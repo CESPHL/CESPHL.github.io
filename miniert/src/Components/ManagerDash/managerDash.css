@@ -152,7 +152,9 @@ body {
 	justify-content: space-between;
 	align-items: center;
 }
-
+.manage-content{
+	padding: 20px;
+}
 .dash-text span {
 	font-weight: bold;
 	font-size: 13px;

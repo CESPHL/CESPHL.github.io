@@ -110,7 +110,7 @@ const Profile1 = () => {
 				</div>
 				<div className="mainContent">
 					<h3>User Details</h3>
-					<NavLink to="/changepass">
+					<NavLink to="/profile/changepass">
 						<button className="change-pass-btn">Change Password</button>
 					</NavLink>
 					<form>
