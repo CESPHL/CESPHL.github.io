@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors =  require('cors');
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://mini-ert-collph.onrender.com',
     credentials: true,
     optionalSuccessStatus:200
 }

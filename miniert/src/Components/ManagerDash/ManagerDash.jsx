@@ -46,7 +46,7 @@ const ManageAccount = () => {
 			.catch(err => {
 				console.error(err);
 			});
-	}, []);
+	}, [clientData]);
 
 	return (
 		<div className="dashboard">
