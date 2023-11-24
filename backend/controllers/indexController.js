@@ -1,5 +1,6 @@
 // Import user types
 const Talent = require('../models/talentsModel');
+const Manager = require('../models/managersModel');
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -9,18 +10,15 @@ const transporter = require('../emailConfig');
 // Find user from db
 const findUser = async (req, res) => {
     const { username, password } = req.body;
-
     try {
-        const user = await Talent.findOne({ username });
-        console.log(user);
-        if (user) {
+        const talent = await Talent.findOne({ username });
+        if (talent) {
             //Compare if the password is equal
-            const passwordMatch = await bcrypt.compare(password, user.password);
-
-            if (passwordMatch) {
+            const passwordMatchTalent = await bcrypt.compare(password, talent.password);
+            if (passwordMatchTalent) {
                 const token = jwt.sign({
-                    employee_id: user.employee_id,
-                    user_level: user.user_level
+                    employee_id: talent.employee_id,
+                    user_level: talent.user_level
                 }, process.env.JWT_SECRET_KEY, {
                     expiresIn: '15m'
                 });
@@ -28,17 +26,42 @@ const findUser = async (req, res) => {
                 // Respond with the token and additional user information
                 res.status(200).json({
                     token,
-                    employee_id: user.employee_id,
-                    user_level: user.user_level
+                    employee_id: talent.employee_id,
+                    user_level: talent.user_level
                 });
-
-            } else {
+            }
+            else {
                 res.status(401).json({ message: 'Login failed Password Not Match' });
             }
         }
         else {
             // Insert code for other user types
-            res.status(401).json({ message: 'User not found' });
+            const manager = await Manager.findOne({ username });
+            const passwordMatchManager = await bcrypt.compare(password, manager.password);
+
+            console.log('Input Password:', password);
+            console.log('Stored Password:', manager.password);
+            console.log('Password Match:', passwordMatchManager);
+
+            if (passwordMatchManager) {
+                // Your existing code for successful password match
+                const token = jwt.sign({
+                    employee_id: manager.employee_id,
+                    user_level: manager.user_level
+                }, process.env.JWT_SECRET_KEY, {
+                    expiresIn: '15m'
+                });
+
+                res.status(200).json({
+                    token,
+                    employee_id: manager.employee_id,
+                    user_level: manager.user_level
+                });
+            } else {
+                // Log additional information if needed
+                console.error('Password does not match.');
+                res.status(401).json({ message: 'User not found or incorrect password' });
+            }
         }
     }
     catch (error) {

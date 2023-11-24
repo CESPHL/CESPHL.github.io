@@ -13,4 +13,4 @@ const adminSchema = new Schema({
     user_level: { type: String, required: true },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Talent', talentSchema);
+module.exports = mongoose.model('Admin', adminSchema);

@@ -12,6 +12,7 @@ const talentsRoutes = require('./routes/talents');
 const indexRoutes = require('./routes/index');
 const clientRoutes = require('./routes/clients');
 const managerRoutes = require('./routes/managers');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
@@ -26,7 +27,8 @@ app.use((req, res, next) => {
 app.use('/api/talents', talentsRoutes);
 app.use('/api/clients', clientRoutes);
 app.use('/', indexRoutes);
-app.use('/api/managers', managerRoutes)
+app.use('/api/managers', managerRoutes);
+app.use('/api/admin', adminRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

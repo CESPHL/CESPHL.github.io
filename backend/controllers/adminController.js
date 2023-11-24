@@ -34,9 +34,11 @@ const getOneUser = async (req, res) => {
 const addManager = async (req, res) => {
     const { employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log(hashedPassword);
     try {
-        const talent = await Talent.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients, attendance });
-        res.status(200).json(talent);
+        console.log('Hashed Password:', hashedPassword);
+        const manager = await Manager.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients, attendance });
+        res.status(200).json(manager);
     }
     catch (error) {
         res.status(400).json({ error: error.message });
