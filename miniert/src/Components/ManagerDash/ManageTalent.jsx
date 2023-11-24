@@ -9,7 +9,6 @@ import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
 import view from '../Assets/view-icn.svg';
 import edit from '../Assets/edit-icn.svg';
-import axios from 'axios';
 
 
 const CurrentDate = () => {
@@ -33,25 +32,10 @@ const CurrentDate = () => {
 };
 
 const ManageAccount = () => {
-
-	const [clientData, setClientData] = useState([]);
-
-	useEffect(() => {
-		axios.get(`http://localhost:4000/api/clients`)
-			.then(response => {
-				const data = response.data;
-				setClientData(data);
-				console.log(clientData);
-			})
-			.catch(err => {
-				console.error(err);
-			});
-	}, []);
-
-	return (
-		<div className="dashboard">
-			<div className="dash-navbar">
-				<div className="dash-main">
+  return (
+    <div className="dashboard">
+      <div className="dash-navbar">
+      <div className="dash-main">
 					<img src={hourglass} alt="" />
 					<span>
 						<span style={{ fontWeight: 'bold', color: '#684CE2', fontSize: '14px', paddingLeft: '0px' }}>
@@ -66,24 +50,26 @@ const ManageAccount = () => {
 					<div className="dash-1">
 						<li>
 							<NavLink to="/manage-accounts">
-								<img src={accIcon} alt="dashboard icon" activeclassname="active" />
-								<span>Manage Accounts</span>
+								<img src={accIcon} alt="dashboard icon"/>
+								<span className="inactive">Manage Accounts</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/timesheet">
-								<img src={talents} alt="clock icon" />
-								<span className="inactive">Manage Talents</span>
+							<NavLink to="/manage-talents">
+								<img src={talents} alt="clock icon" activeclassname="active"/>
+								<span className="active">Manage Talents</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/timesheet">
+							<NavLink to="/reports">
+                                {/*page is non-existent. placeholder only. change the correct directory. */}
 								<img src={reports} alt="clock icon" />
 								<span className="inactive">Reports</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/profile">
+							<NavLink to="/profile-managers"> 
+                            {/*page is non-existent. placeholder only. change the correct directory. */}
 								<img src={profile} alt="profile icon" />
 								<span className="inactive">Profile</span>
 							</NavLink>
@@ -132,7 +118,7 @@ const ManageAccount = () => {
           </div>
     <div className="customTableContainer">
    <div className="customTableHeader">
-    <h1>Client ID</h1>
+    <h1>Project ID</h1>
     <h1>Client Name</h1>
     <h1>SDM/SDL</h1>
     <h1>SDM/SDL Email</h1>
@@ -146,9 +132,7 @@ const ManageAccount = () => {
     <p>---</p>
     <p>---</p>
     <p><img src = {view}/>
-    <NavLink to ="/manage-accounts/edit-account">
     <img src={edit}/>
-    </NavLink>
     </p>
     </div>
     </div>
