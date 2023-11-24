@@ -112,7 +112,7 @@ const AddAccount = () => {
 						<span>SDM/SDL Email</span><br /><input type="text" placeholder="Enter SDM/SDL email" required/><br />
 						<span>SDM/SDL Contact No.</span><br /><input type="text" placeholder="Enter SDM/SDL Contact No."required/><br />
 						<span>Project</span><br /><input type="text" placeholder="Enter Project"required/><br />
-						<NavLink to ="/manage-accounts">
+						<NavLink to ="/manage-talents">
 						<button>Cancel</button>
 						</NavLink>
 						<input type="submit" value="Add" class ="add-btn1" onClick={handleOpenModal}/>
