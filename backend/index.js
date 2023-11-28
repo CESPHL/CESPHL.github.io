@@ -3,9 +3,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const corsOptions = {
-  origin: "https://cesphl-github-io-backend.vercel.app/",
+  origin: "https://cesphl-github-io-frontend.vercel.app",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  optionalSuccessStatus: 200,
+  optionsSuccessStatus: 204,
 };
 
 const talentsRoutes = require("./routes/talents");
