@@ -2,7 +2,7 @@
 const Talent = require('../models/talentsModel');
 const Manager = require('../models/managersModel');
 const crypto = require('crypto');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const transporter = require('../emailConfig');

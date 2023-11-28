@@ -1,5 +1,5 @@
 const Talent = require('../models/talentsModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Get list of talents
 const getTalents = async (req, res) => {

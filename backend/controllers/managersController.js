@@ -1,5 +1,5 @@
 const Manager = require('../models/managersModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Get list of talents
 const getManagers = async (req, res) => {

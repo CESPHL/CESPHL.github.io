@@ -1,6 +1,6 @@
 const Talent = require('../models/talentsModel');
 const Manager = require('../models/managersModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Get list of users (Admins, Managers, Talents)
 const getUsers = async (req, res) => {
