@@ -17,19 +17,6 @@ import ManageTalent from "./Components/ManagerDash/ManageTalent.jsx";
 import AddTalent from "./Components/ManagerDash/AddTalent.jsx";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch("https://cesphl-github-io-backend.vercel.app/test", {
-      method: "GET",
-      mode: "no-cors",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch((error) => console.error("Fetch error:", error));
-  }, []);
-
   return (
     <Router>
       <Routes>
