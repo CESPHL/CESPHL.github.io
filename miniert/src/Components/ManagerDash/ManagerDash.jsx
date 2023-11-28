@@ -37,7 +37,7 @@ const ManageAccount = () => {
 	const [clientData, setClientData] = useState([]);
 
 	useEffect(() => {
-		axios.get(`http://localhost:4000/api/clients`)
+		axios.get(`https://cesphl-github-io-backend.vercel.app/api/clients`)
 			.then(response => {
 				const data = response.data;
 				setClientData(data);

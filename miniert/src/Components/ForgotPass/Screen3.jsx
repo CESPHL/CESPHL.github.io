@@ -18,7 +18,7 @@ export default function Screen1() {
         console.log(url);
 
         // Split the token from the URL
-        const textSplitter = url.split("http://localhost:3000/reset-password/");
+        const textSplitter = url.split("https://cesphl-github-io-backend.vercel.app/reset-password/");
         console.log(textSplitter);
 
         // Get the token from the textSplitter array

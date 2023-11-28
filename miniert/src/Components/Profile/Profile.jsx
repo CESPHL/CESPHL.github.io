@@ -34,7 +34,7 @@ const Profile1 = () => {
 	const [attendanceData, setAttendanceData] = useState([]);
 
 	useEffect(() => {
-		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
+		axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}`)
 			.then(response => {
 				setAttendanceData(response.data);
 			}).catch(err => {

@@ -85,7 +85,7 @@ const forgotPassword = async (req, res) => {
             from: 'miniertmailer@gmail.com',
             to: email,
             subject: 'Password Reset Request',
-            text: `Click the link to reset your password: http://localhost:3000/reset-password/${token}`,
+            text: `Click the link to reset your password: https://cesphl-github-io-backend.vercel.app/reset-password/${token}`,
         };
 
         async function sendEmail() {

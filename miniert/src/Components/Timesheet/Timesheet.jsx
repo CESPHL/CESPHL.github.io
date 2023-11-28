@@ -37,7 +37,7 @@ const Timesheet = () => {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		axios.get(`http://localhost:4000/api/talents/${employee_id}`)
+		axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}`)
 			.then(response => {
 				setAttendanceData(response.data.attendance);
 				setLoading(false);

@@ -58,7 +58,7 @@ const Profile = () => {
 		e.preventDefault();
 		try {
 			if (isPasswordValid() === true) {
-				const response = await fetch(`http://localhost:4000/api/talents/changepass/${employee_id}`, {
+				const response = await fetch(`https://cesphl-github-io-backend.vercel.app/api/talents/changepass/${employee_id}`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
