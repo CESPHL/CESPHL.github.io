@@ -32,7 +32,7 @@ app.use('/api/admin', adminRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        app.listen(process.env.PORT, () => {
+        app.listen(process.env.PORT || 3000, () => {
             console.log(`Connected to db & listening on port ${process.env.PORT}`);
         });
     })
