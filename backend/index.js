@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors =  require('cors');
 const corsOptions = {
-    origin: 'https://mini-ert-collph.onrender.com',
+    origin: 'https://cesphl-github-io-backend.vercel.app/',
     credentials: true,
     optionalSuccessStatus:200
 }
