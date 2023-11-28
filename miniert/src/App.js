@@ -25,7 +25,7 @@ function App() {
 	const [message, setMessage] = useState("");
 
 	useEffect(() => {
-		fetch("https://mini-ert.onrender.com")
+		fetch("https://cesphl-github-io-backend-m1syxzyze-dummy-lastnames-projects.vercel.app/")
 			.then((res) => res.json())
 			.then((data) => setMessage(data.message));
 	}, []);
