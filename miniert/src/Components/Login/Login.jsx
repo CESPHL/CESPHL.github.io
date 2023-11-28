@@ -22,6 +22,7 @@ const Login = () => {
 		try {
 			const response = await fetch('/login', {
 				method: 'POST',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -43,6 +44,7 @@ const Login = () => {
 				//Validate the token by sending request to the backend
 				const validationResponse = await fetch('/validate-token', {
 					method: 'POST',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json',
 						'Authorization': `Bearer ${token}`, //Sends token tin the headers
