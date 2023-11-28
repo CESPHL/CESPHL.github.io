@@ -25,7 +25,7 @@ function App() {
 	const [message, setMessage] = useState("");
 
 	useEffect(() => {
-		fetch("https://cesphl-github-io-backend-m1syxzyze-dummy-lastnames-projects.vercel.app/")
+		fetch("https://cesphl-github-io-backend-ny1mjivfy-dummy-lastnames-projects.vercel.app/")
 			.then((res) => res.json())
 			.then((data) => setMessage(data.message));
 	}, []);
