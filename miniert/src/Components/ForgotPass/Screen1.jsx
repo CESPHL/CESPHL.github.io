@@ -19,6 +19,7 @@ export default function Screen1(){
         try {
             const response = await fetch('/forgot-password', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
