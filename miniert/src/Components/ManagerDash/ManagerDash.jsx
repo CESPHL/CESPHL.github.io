@@ -41,12 +41,12 @@ const ManageAccount = () => {
 			.then(response => {
 				const data = response.data;
 				setClientData(data);
-				console.log(clientData);
 			})
 			.catch(err => {
 				console.error(err);
 			});
 	}, []);
+	console.log(clientData);
 
 	return (
 		<div className="dashboard">
