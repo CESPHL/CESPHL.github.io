@@ -18,13 +18,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const backendUrl = "https://cesphl-github-io-backend.vercel.app/";
+    const backendUrl = "https://cesphl-github-io-backend.vercel.app/login";
     console.log("Fetching from:", backendUrl);
 
     //Make a post request to the backend
     try {
       const response = await fetch(backendUrl, {
-        method: "GET",
+        method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",

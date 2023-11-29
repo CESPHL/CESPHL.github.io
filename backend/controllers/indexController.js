@@ -11,58 +11,59 @@ const transporter = require('../emailConfig');
 const findUser = async (req, res) => {
     const { username, password } = req.body;
     try {
-        const talent = await Talent.findOne({ username });
-        if (talent) {
-            //Compare if the password is equal
-            const passwordMatchTalent = await bcrypt.compare(password, talent.password);
-            if (passwordMatchTalent) {
-                const token = jwt.sign({
-                    employee_id: talent.employee_id,
-                    user_level: talent.user_level
-                }, process.env.JWT_SECRET_KEY, {
-                    expiresIn: '15m'
-                });
+        res.send(`Hello, this is the login path! ${ username } ${ password }`);
+        // const talent = await Talent.findOne({ username });
+        // if (talent) {
+        //     //Compare if the password is equal
+        //     const passwordMatchTalent = await bcrypt.compare(password, talent.password);
+        //     if (passwordMatchTalent) {
+        //         const token = jwt.sign({
+        //             employee_id: talent.employee_id,
+        //             user_level: talent.user_level
+        //         }, process.env.JWT_SECRET_KEY, {
+        //             expiresIn: '15m'
+        //         });
 
-                // Respond with the token and additional user information
-                res.status(200).json({
-                    token,
-                    employee_id: talent.employee_id,
-                    user_level: talent.user_level
-                });
-            }
-            else {
-                res.status(401).json({ message: 'Login failed Password Not Match' });
-            }
-        }
-        else {
-            // Insert code for other user types
-            const manager = await Manager.findOne({ username });
-            const passwordMatchManager = await bcrypt.compare(password, manager.password);
+        //         // Respond with the token and additional user information
+        //         res.status(200).json({
+        //             token,
+        //             employee_id: talent.employee_id,
+        //             user_level: talent.user_level
+        //         });
+        //     }
+        //     else {
+        //         res.status(401).json({ message: 'Login failed Password Not Match' });
+        //     }
+        // }
+        // else {
+        //     // Insert code for other user types
+        //     const manager = await Manager.findOne({ username });
+        //     const passwordMatchManager = await bcrypt.compare(password, manager.password);
 
-            console.log('Input Password:', password);
-            console.log('Stored Password:', manager.password);
-            console.log('Password Match:', passwordMatchManager);
+        //     console.log('Input Password:', password);
+        //     console.log('Stored Password:', manager.password);
+        //     console.log('Password Match:', passwordMatchManager);
 
-            if (passwordMatchManager) {
-                // Your existing code for successful password match
-                const token = jwt.sign({
-                    employee_id: manager.employee_id,
-                    user_level: manager.user_level
-                }, process.env.JWT_SECRET_KEY, {
-                    expiresIn: '15m'
-                });
+        //     if (passwordMatchManager) {
+        //         // Your existing code for successful password match
+        //         const token = jwt.sign({
+        //             employee_id: manager.employee_id,
+        //             user_level: manager.user_level
+        //         }, process.env.JWT_SECRET_KEY, {
+        //             expiresIn: '15m'
+        //         });
 
-                res.status(200).json({
-                    token,
-                    employee_id: manager.employee_id,
-                    user_level: manager.user_level
-                });
-            } else {
-                // Log additional information if needed
-                console.error('Password does not match.');
-                res.status(401).json({ message: 'User not found or incorrect password' });
-            }
-        }
+        //         res.status(200).json({
+        //             token,
+        //             employee_id: manager.employee_id,
+        //             user_level: manager.user_level
+        //         });
+        //     } else {
+        //         // Log additional information if needed
+        //         console.error('Password does not match.');
+        //         res.status(401).json({ message: 'User not found or incorrect password' });
+        //     }
+        // }
     }
     catch (error) {
         console.log(error);
