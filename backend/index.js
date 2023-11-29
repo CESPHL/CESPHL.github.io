@@ -28,6 +28,10 @@ app.use("/", indexRoutes);
 app.use("/api/managers", managerRoutes);
 app.use("/api/admin", adminRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello, this is the root path!");
+});
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
