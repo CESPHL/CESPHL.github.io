@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/login', findUser);
 router.post('/forgot-password', forgotPassword);
 router.post('/reset-password/:token', resetPass);
-router.post('/validate-token', authenticateToken, (req,res)=>{
+router.post('/validate-token', authenticateToken, (req,res) => {
   res.json({ isValid: true });
 });
 
