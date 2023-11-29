@@ -18,7 +18,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const backendUrl = "https://your-backend-url"; // replace with your actual backend URL
+    const backendUrl = "https://cesphl-github-io-backend.vercel.app/";
     console.log("Fetching from:", backendUrl);
 
     //Make a post request to the backend
