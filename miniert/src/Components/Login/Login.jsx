@@ -18,9 +18,12 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    const backendUrl = "https://your-backend-url"; // replace with your actual backend URL
+    console.log("Fetching from:", backendUrl);
+
     //Make a post request to the backend
     try {
-      const response = await fetch("/", {
+      const response = await fetch(backendUrl, {
         method: "GET",
         credentials: "include",
         headers: {
