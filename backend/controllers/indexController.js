@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const transporter = require('../emailConfig');
 
-// Find user from db
+// Find user from db 
 const findUser = async (req, res) => {
     const { username, password } = req.body;
     try {
