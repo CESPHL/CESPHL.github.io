@@ -37,7 +37,7 @@ const ManageAccount = () => {
 	const [clientData, setClientData] = useState([]);
 
 	useEffect(() => {
-		axios.get(`https://cesphl-github-io-backend.vercel.app/api/clients`)
+		axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers`)
 			.then(response => {
 				const data = response.data;
 				setClientData(data);
@@ -141,6 +141,15 @@ const ManageAccount = () => {
     <h1>SDM/SDL Contact</h1>
     <h1>Actions</h1>
   </div>
+  { clientData.map((client) => (
+	<div className="customTableContent" key={ client.client_id }>
+		<p>{ client.client_id }</p>
+		<p>{ client.client_name }</p>
+		<p>{ client.handler_name }</p>
+		<p>{ client.client_name }</p>
+		<p>{ client.handler_work_number }</p>
+	</div>
+  ))}
   <div className="customTableContent">
     <p>---</p>
     <p>---</p>

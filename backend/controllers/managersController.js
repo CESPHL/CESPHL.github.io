@@ -1,13 +1,6 @@
 const Manager = require('../models/managersModel');
-const bcrypt = require('bcryptjs');
 
-// Get list of talents
-const getManagers = async (req, res) => {
-    const managers = await Manager.find({}).sort({ createdAt: -1});
-    res.status(200).json(managers);
-}
-
-// Get one talent
+// Get one manager
 const getOneManager = async (req, res) => {
     const { employee_id } = req.params;
 
@@ -23,18 +16,7 @@ const getOneManager = async (req, res) => {
     }
 }
 
-const addManager = async (req, res) => {
-    const { employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    try {
-        const manager = await Manager.create({ employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients });
-        res.status(200).json(manager);
-    }
-    catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
-
+// Update own profile
 const updateManager = async (req, res) => {
     const { employee_id } = req.params;
 
@@ -53,8 +35,6 @@ const updateManager = async (req, res) => {
 }
 
 module.exports = {
-    getManagers,
     getOneManager,
-    addManager,
     updateManager
 }
