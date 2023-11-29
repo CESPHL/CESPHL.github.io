@@ -199,7 +199,7 @@ const Stopwatch = () => {
           localStorage.setItem("minutes", 0);
           localStorage.setItem("seconds", 0);
           closeTimeInModal();
-		  location.reload();
+          window.location.reload();
         } else if (res.status === 500) {
           toast.error("You are only allowed one time in per day.", {
             position: toast.POSITION.TOP_CENTER,
@@ -274,7 +274,7 @@ const Stopwatch = () => {
           localStorage.setItem("minutes", 0);
           localStorage.setItem("seconds", 0);
           closeTimeOutModal();
-		  location.reload();
+          window.location.reload();
         } else {
           toast.error("You are only allowed one time out per day.", {
             position: toast.POSITION.TOP_CENTER,
@@ -486,7 +486,9 @@ const OTStopwatch = () => {
 
   useEffect(() => {
     axios
-      .get(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}`)
+      .get(
+        `https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}`
+      )
       .then((response) => {
         // Assuming the response is an array of objects
         const data = response.data;
@@ -575,7 +577,7 @@ const OTStopwatch = () => {
           localStorage.setItem("minutesOT", 0);
           localStorage.setItem("secondsOT", 0);
           closeTimeInOTModal();
-		  location.reload();
+          window.location.reload();
         } else {
           toast.error("You are only allowed one time in for OT per day.", {
             position: toast.POSITION.TOP_CENTER,
@@ -646,7 +648,7 @@ const OTStopwatch = () => {
           localStorage.setItem("minutesOT", 0);
           localStorage.setItem("secondsOT", 0);
           closeTimeOutOTModal();
-		  location.reload();
+          window.location.reload();
         } else {
           toast.error("You are only allowed one time out per day.", {
             position: toast.POSITION.TOP_CENTER,
@@ -793,7 +795,9 @@ const DashboardTimesheetTable = () => {
   // Get all data from database
   useEffect(() => {
     axios
-      .get(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}`)
+      .get(
+        `https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}`
+      )
       .then((response) => {
         setAttendanceData(response.data.attendance);
       })
