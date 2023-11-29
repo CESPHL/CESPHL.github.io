@@ -31,6 +31,7 @@ const findUser = async (req, res) => {
                 });
             }
             else {
+                console.log("Login failed Password Not Match");
                 res.status(401).json({ message: 'Login failed Password Not Match' });
             }
         }
