@@ -25,6 +25,7 @@ export default function Screen1(){
                 },
                 body: JSON.stringify({email})
             });
+            console.log("Fetching from:", backendUrl);
             if (response.ok) {
                 console.log("Email sent successfully.");
                 window.location.href ="/sentemail";
