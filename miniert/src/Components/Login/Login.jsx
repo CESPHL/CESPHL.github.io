@@ -28,42 +28,48 @@ const Login = () => {
         },
       });
       if (response.ok) {
-        //If response is successful then get the token
-        const responseData = await response.json();
-        const token = responseData.token;
-        const employee_id = responseData.employee_id;
-        const user_level = responseData.user_level;
-
-        //set the token to the local storage
-        localStorage.setItem("token", token);
-        localStorage.setItem("employee_id", employee_id);
-        localStorage.setItem("user_level", user_level);
-
-        //Validate the token by sending request to the backend
-        const validationResponse = await fetch("/validate-token", {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, //Sends token tin the headers
-          },
-        });
-
-        const validationData = await validationResponse.json();
-        const isTokenValid = validationData.isValid;
-
-        if (isTokenValid) {
-          // navigate('/dashboard');
-          console.log("Token is valid");
-          console.log(user_level);
-          if (user_level === "Talent") {
-            navigate("/dashboard");
-          } else if (user_level === "Manager") {
-            navigate("/manage-accounts");
-          }
+        if (response.ok) {
+          const responseData = await response.text();
+          console.log(responseData); // Log the response from the server
         } else {
-          console.log("Token validation failed");
+          console.log("Failed to fetch data from the root path");
         }
+        // //If response is successful then get the token
+        // const responseData = await response.json();
+        // const token = responseData.token;
+        // const employee_id = responseData.employee_id;
+        // const user_level = responseData.user_level;
+
+        // //set the token to the local storage
+        // localStorage.setItem("token", token);
+        // localStorage.setItem("employee_id", employee_id);
+        // localStorage.setItem("user_level", user_level);
+
+        // //Validate the token by sending request to the backend
+        // const validationResponse = await fetch("/validate-token", {
+        //   method: "POST",
+        //   credentials: "include",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Bearer ${token}`, //Sends token tin the headers
+        //   },
+        // });
+
+        // const validationData = await validationResponse.json();
+        // const isTokenValid = validationData.isValid;
+
+        // if (isTokenValid) {
+        //   // navigate('/dashboard');
+        //   console.log("Token is valid");
+        //   console.log(user_level);
+        //   if (user_level === "Talent") {
+        //     navigate("/dashboard");
+        //   } else if (user_level === "Manager") {
+        //     navigate("/manage-accounts");
+        //   }
+        // } else {
+        //   console.log("Token validation failed");
+        // }
       } else {
         //Failed login
         console.log("Failed login");
