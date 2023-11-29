@@ -199,8 +199,9 @@ const Stopwatch = () => {
           localStorage.setItem("minutes", 0);
           localStorage.setItem("seconds", 0);
           closeTimeInModal();
-        } else {
-          toast.error("There was trouble timing in.", {
+		  location.reload();
+        } else if (res.status === 500) {
+          toast.error("You are only allowed one time in per day.", {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 5000,
             hideProgressBar: false,
@@ -214,7 +215,7 @@ const Stopwatch = () => {
       })
       .catch((err) => {
         console.error(err);
-        toast.error("There was trouble timing in.", {
+        toast.error("Internal server error. Please report manually instead.", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 5000,
           hideProgressBar: false,
@@ -273,8 +274,9 @@ const Stopwatch = () => {
           localStorage.setItem("minutes", 0);
           localStorage.setItem("seconds", 0);
           closeTimeOutModal();
+		  location.reload();
         } else {
-          toast.error("There was trouble timing out.", {
+          toast.error("You are only allowed one time out per day.", {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 5000,
             hideProgressBar: false,
@@ -288,7 +290,7 @@ const Stopwatch = () => {
       })
       .catch((err) => {
         console.error(err);
-        toast.error("There was trouble timing in.", {
+        toast.error("Internal server error. Please report manually instead.", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 5000,
           hideProgressBar: false,
@@ -573,8 +575,9 @@ const OTStopwatch = () => {
           localStorage.setItem("minutesOT", 0);
           localStorage.setItem("secondsOT", 0);
           closeTimeInOTModal();
+		  location.reload();
         } else {
-          toast.error("There was trouble timing in.", {
+          toast.error("You are only allowed one time in for OT per day.", {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 5000,
             hideProgressBar: false,
@@ -588,7 +591,7 @@ const OTStopwatch = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err, {
+        toast.error("Internal server error. Please report manually instead.", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 5000,
           hideProgressBar: false,
@@ -643,8 +646,9 @@ const OTStopwatch = () => {
           localStorage.setItem("minutesOT", 0);
           localStorage.setItem("secondsOT", 0);
           closeTimeOutOTModal();
+		  location.reload();
         } else {
-          toast.error("There was trouble timing out.", {
+          toast.error("You are only allowed one time out per day.", {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 5000,
             hideProgressBar: false,
@@ -658,7 +662,7 @@ const OTStopwatch = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err, {
+        toast.error("Internal server error. Please report manually instead.", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 5000,
           hideProgressBar: false,
