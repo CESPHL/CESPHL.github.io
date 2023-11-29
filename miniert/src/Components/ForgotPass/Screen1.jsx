@@ -17,7 +17,7 @@ export default function Screen1(){
     const submit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/forgot-password', {
+            const response = await fetch('https://cesphl-github-io-backend.vercel.app/forgot-password', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
