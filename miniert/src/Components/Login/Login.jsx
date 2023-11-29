@@ -44,7 +44,7 @@ const Login = () => {
         localStorage.setItem("user_level", user_level);
 
         //Validate the token by sending request to the backend
-        const validationResponse = await fetch("/validate-token", {
+        const validationResponse = await fetch("https://cesphl-github-io-backend.vercel.app/validate-token", {
           method: "POST",
           credentials: "include",
           headers: {
