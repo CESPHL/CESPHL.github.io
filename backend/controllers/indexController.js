@@ -74,7 +74,7 @@ const findUser = async (req, res) => {
 const forgotPassword = async (req, res) => {
     const { email } = req.body;
     try {
-        res.send(`Hello, this is the forgotpassword path! ${ email } `);
+        console.log("Successfully connected to the forgot password route.");
         const user = await Talent.findOne({ email });
         const token = crypto.randomBytes(20).toString('hex');
         const expirationTime = Date.now() + 30 * 60 * 1000;
@@ -89,7 +89,7 @@ const forgotPassword = async (req, res) => {
             subject: 'Password Reset Request',
             text: `Click the link to reset your password: https://cesphl-github-io-backend.vercel.app/reset-password/${token}`,
         };
-
+        console.log("Trying to send email...");
         async function sendEmail() {
             try {
                 const info = await transporter.sendMail(mailOptions);
