@@ -75,38 +75,38 @@ const forgotPassword = async (req, res) => {
     const { email } = req.body;
     try {
         res.send(`Hello, this is the forgotpassword path! ${ email } `);
-        // const user = await Talent.findOne({ email });
-        // const token = crypto.randomBytes(20).toString('hex');
-        // const expirationTime = Date.now() + 30 * 60 * 1000;
-        // user.resetPasswordToken = token;
-        // user.resetPasswordExpiry = expirationTime;
-        // await user.save();
+        const user = await Talent.findOne({ email });
+        const token = crypto.randomBytes(20).toString('hex');
+        const expirationTime = Date.now() + 30 * 60 * 1000;
+        user.resetPasswordToken = token;
+        user.resetPasswordExpiry = expirationTime;
+        await user.save();
 
 
-        // const mailOptions = {
-        //     from: 'miniertmailer@gmail.com',
-        //     to: email,
-        //     subject: 'Password Reset Request',
-        //     text: `Click the link to reset your password: https://cesphl-github-io-backend.vercel.app/reset-password/${token}`,
-        // };
+        const mailOptions = {
+            from: 'miniertmailer@gmail.com',
+            to: email,
+            subject: 'Password Reset Request',
+            text: `Click the link to reset your password: https://cesphl-github-io-backend.vercel.app/reset-password/${token}`,
+        };
 
-        // async function sendEmail() {
-        //     try {
-        //         const info = await transporter.sendMail(mailOptions);
-        //         console.log('Email sent: ' + info.response);
-        //     } catch (error) {
-        //         console.log('Error sending email: ' + error);
-        //     }
-        // }
+        async function sendEmail() {
+            try {
+                const info = await transporter.sendMail(mailOptions);
+                console.log('Email sent: ' + info.response);
+            } catch (error) {
+                console.log('Error sending email: ' + error);
+            }
+        }
 
-        // if (user) {
-        //     res.status(200).json({ message: 'Password instructions sent to your email.' });
-        //     sendEmail();
-        // }
-        // else {
-        //     // Insert code for other user types
-        //     res.status(401).json({ message: 'Email not found' });
-        // }
+        if (user) {
+            res.status(200).json({ message: 'Password instructions sent to your email.' });
+            sendEmail();
+        }
+        else {
+            // Insert code for other user types
+            res.status(401).json({ message: 'Email not found' });
+        }
     }
     catch (error) {
         res.status(500).json({ message: 'Internal server error' });
