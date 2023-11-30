@@ -18,9 +18,7 @@ const findUser = async (req, res) => {
         const admin = await Admin.findOne({ username });
         if (talent) {
             //Compare if the password is equal
-            console.log("Found talent");
             const passwordMatchTalent = await bcrypt.compare(password, talent.password);
-            console.log(passwordMatchTalent);
             if (passwordMatchTalent) {
                 console.log("Talent password match");
                 const token = jwt.sign({
@@ -43,11 +41,8 @@ const findUser = async (req, res) => {
             }
         }
         if (manager) {
-            console.log("Found manager");
             const passwordMatchManager = await bcrypt.compare(password, manager.password);
-            console.log(passwordMatchManager);
             if (passwordMatchManager) {
-                console.log("Manager password match");
                 const token = jwt.sign({
                     employee_id: manager.employee_id,
                     user_level: manager.user_level
@@ -68,11 +63,8 @@ const findUser = async (req, res) => {
             }
         }
         if (admin) {
-            console.log("Found admin");
             const passwordMatchAdmin = await bcrypt.compare(password, admin.password);
-            console.log(passwordMatchAdmin);
             if (passwordMatchAdmin) {
-                console.log("Admin password match");
                 const token = jwt.sign({
                     employee_id: admin.employee_id,
                     user_level: admin.user_level
