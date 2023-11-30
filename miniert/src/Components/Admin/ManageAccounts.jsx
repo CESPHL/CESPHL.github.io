@@ -120,18 +120,6 @@ const ManageAccount = () => {
             <form action=" ">
               <input type="text" placeholder="Search Client" />
             </form>
-            <div className="client-dropdown">
-              <select>
-                <option>Client</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-              </select>
-              <select>
-                <option>Sort</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-              </select>
-            </div>
             <div className="buttons">
               <button className="upload-btn">Upload</button>
               <NavLink to="/manage-accounts/add-account">
