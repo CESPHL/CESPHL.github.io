@@ -113,16 +113,11 @@ const ManageUsers = () => {
                 <div className="manage-content">
                     <div className="search-bar">
                         <form action=" ">
-                            <input type="text" placeholder="Search Client" />
+                            <input type="text" placeholder="Search user by name" />
                         </form>
                         <div className="client-dropdown">
                             <select>
                                 <option>Client</option>
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                            </select>
-                            <select>
-                                <option>Sort</option>
                                 <option>Option 1</option>
                                 <option>Option 2</option>
                             </select>
