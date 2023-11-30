@@ -9,6 +9,8 @@ import users from "../Assets/users-inactive.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
+import modal from "../Modals/Modal.jsx";
+import Modal from "../Modals/Modal.jsx";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -32,6 +34,19 @@ const CurrentDate = () => {
 
 const Profile = () => {
     const employee_id = localStorage.getItem("employee_id");
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    }
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
+
+    const handleSave = async (e) => {
+        e.preventDefault();
+    }
 
     return (
         <div className="dashboard">
@@ -96,7 +111,35 @@ const Profile = () => {
                         <CurrentDate />
                     </span>
                 </div>
+                <div className="user-form">
+                    <form>
+                        <label>Employee ID</label>
+                        <input type="text" />
+                        <label>First Name</label>
+                        <input type="text" />
+                        <label>Last Name</label>
+                        <input type="text" />
+                        <label>Email Address</label>
+                        <input type="text" />
+                        <label>Contact Number</label>
+                        <input type="text" />
+                        <label>Username</label>
+                        <input type="text" />
+                        <label>Password</label>
+                        <input type="text" />
+                        <label>User Level</label>
+                        <input type="text" />
+                    </form>
+                    <NavLink to="/admin/manage-users">
+                        <button>Cancel</button>
+                    </NavLink>
+                    <input type="button" value="Add" />
+                </div>
             </div>
+            <Modal show={showModal} handleClose={handleCloseModal} handleSave={handleSave}>
+                <p>Add User</p>
+                <p>Clicking yes will add the account details and its project to the system.</p>
+            </Modal>
         </div>
     );
 };
