@@ -3,7 +3,8 @@ const {
     getUsers,
     getOneUser,
     addManager,
-    addTalent
+    addTalent,
+    addAdmin
 } = require('../controllers/adminController'); 
 
 const router = express.Router();
@@ -19,5 +20,8 @@ router.post('/', addManager);
 
 // Add talent
 router.post('/', addTalent);
+
+// Add admin
+router.post('/', addAdmin);
 
 module.exports = router;

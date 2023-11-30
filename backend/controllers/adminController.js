@@ -1,5 +1,6 @@
 const Talent = require('../models/talentsModel');
 const Manager = require('../models/managersModel');
+const Admin = require('../models/adminModel');
 const bcrypt = require('bcryptjs');
 
 // Get list of users (Admins, Managers, Talents)
@@ -55,9 +56,22 @@ const addTalent = async (req, res) => {
     }
 }
 
+const addAdmin = async (req, res) => {
+    const { employee_id, first_name, last_name, email, contact_number, username, password, user_level } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    try {
+        const admin = await Admin.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level });
+        res.status(200).json(admin);
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
 module.exports = {
     getUsers,
     getOneUser,
     addManager,
-    addTalent
+    addTalent,
+    addAdmin
 }
