@@ -1,6 +1,7 @@
 // Import user types
 const Talent = require('../models/talentsModel');
 const Manager = require('../models/managersModel');
+const Admin = require('../models/adminModel');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -12,6 +13,8 @@ const findUser = async (req, res) => {
     const { username, password } = req.body;
     try {
         const talent = await Talent.findOne({ username });
+        const manager = await Manager.findOne({ username });
+        const admin = await Admin.findOne({ username });
         if (talent) {
             //Compare if the password is equal
             const passwordMatchTalent = await bcrypt.compare(password, talent.password);
@@ -31,21 +34,13 @@ const findUser = async (req, res) => {
                 });
             }
             else {
-                console.log("Login failed Password Not Match");
-                res.status(401).json({ message: 'Login failed Password Not Match' });
+                console.log("Login failed. Password does not match.");
+                res.status(401).json({ message: 'Login failed. Password does not match.' });
             }
         }
-        else {
-            // Insert code for other user types
-            const manager = await Manager.findOne({ username });
+        if (manager) {
             const passwordMatchManager = await bcrypt.compare(password, manager.password);
-
-            console.log('Input Password:', password);
-            console.log('Stored Password:', manager.password);
-            console.log('Password Match:', passwordMatchManager);
-
             if (passwordMatchManager) {
-                // Your existing code for successful password match
                 const token = jwt.sign({
                     employee_id: manager.employee_id,
                     user_level: manager.user_level
@@ -53,16 +48,41 @@ const findUser = async (req, res) => {
                     expiresIn: '15m'
                 });
 
+                // Respond with the token and additional user information
                 res.status(200).json({
                     token,
                     employee_id: manager.employee_id,
                     user_level: manager.user_level
                 });
-            } else {
-                // Log additional information if needed
-                console.error('Password does not match.');
-                res.status(401).json({ message: 'User not found or incorrect password' });
             }
+            else {
+                console.log("Login failed. Password does not match.");
+                res.status(401).json({ message: 'Login failed. Password does not match.' });
+            }
+        }
+        if (admin) {
+            const passwordMatchAdmin = await bcrypt.compare(password, admin.password);
+            if (passwordMatchAdmin) {
+                const token = jwt.sign({
+                    employee_id: admin.employee_id,
+                    user_level: admin.user_level
+                }, process.env.JWT_SECRET_KEY, {
+                    expiresIn: '15m'
+                });
+
+                res.status(200).json({
+                    token,
+                    employee_id: admin.employee_id,
+                    user_level: admin.user_level
+                });
+            }
+            else {
+                console.log("Login failed. Password does not match.");
+                res.status(401).json({ message: 'Login failed. Password does not match.' });
+            }
+        }
+        else {
+            res.status(401).json({ message: 'User not found or incorrect password' });
         }
     }
     catch (error) {
