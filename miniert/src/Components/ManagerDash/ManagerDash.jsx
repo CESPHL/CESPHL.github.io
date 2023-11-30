@@ -46,7 +46,6 @@ const ManageAccount = () => {
 				console.error(err);
 			});
 	}, [employee_id]);
-	console.log(clientData);
 
 	return (
 		<div className="dashboard">
