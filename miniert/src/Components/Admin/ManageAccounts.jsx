@@ -4,8 +4,8 @@ import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
-import reports from "../Assets/report-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
+import users from "../Assets/users-inactive.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
@@ -72,7 +72,7 @@ const ManageAccount = () => {
           <p>NAVIGATION</p>
           <div className="dash-1">
             <li>
-              <NavLink to="/manage-accounts">
+              <NavLink to="/admin/manage-accounts">
                 <img
                   src={accIcon}
                   alt="dashboard icon"
@@ -82,20 +82,20 @@ const ManageAccount = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/manage-talents">
+              <NavLink to="/admin/manage-users">
+                <img src={users} alt="users icon" />
+                <span className="inactive">Manage Users</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/manage-talents">
+                {/*page is non-existent. placeholder only. change the correct directory. */}
                 <img src={talents} alt="clock icon" />
                 <span className="inactive">Manage Talents</span>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/reports">
-                {/*page is non-existent. placeholder only. change the correct directory. */}
-                <img src={reports} alt="clock icon" />
-                <span className="inactive">Reports</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/profile-managers">
+              <NavLink to="admin/profile">
                 {/*page is non-existent. placeholder only. change the correct directory. */}
                 <img src={profile} alt="profile icon" />
                 <span className="inactive">Profile</span>
