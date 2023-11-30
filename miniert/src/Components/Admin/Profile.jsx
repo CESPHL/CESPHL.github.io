@@ -101,4 +101,4 @@ const Profile = () => {
     );
 };
 
-export default ManageTalents;
+export default Profile;
