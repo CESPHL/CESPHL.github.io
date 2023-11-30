@@ -110,6 +110,56 @@ const ManageUsers = () => {
                         <CurrentDate />
                     </span>
                 </div>
+                <div className="manage-content">
+                    <div className="search-bar">
+                        <form action=" ">
+                            <input type="text" placeholder="Search Client" />
+                        </form>
+                        <div className="client-dropdown">
+                            <select>
+                                <option>Client</option>
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                            </select>
+                            <select>
+                                <option>Sort</option>
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                            </select>
+                        </div>
+                        <div className="buttons">
+                            <button className="upload-btn">Upload</button>
+                            <NavLink to="/manage-accounts/add-account">
+                                <button className="add-btn">Add</button>
+                            </NavLink>
+                        </div>
+                    </div>
+                    <div className="customTableContainer">
+                        <div className="customTableHeader">
+                            <h1>ID</h1>
+                            <h1>Name</h1>
+                            <h1>Email</h1>
+                            <h1>Contact No.</h1>
+                            <h1>User Level</h1>
+                            <h1>Actions</h1>
+                        </div>
+                        {/* {clientData.clients ? clientData.clients.map((client) => (
+                            <div className="customTableContent" key={client.client_id}>
+                                <p>{client.client_id}</p>
+                                <p>{client.client_name}</p>
+                                <p>{client.sdm_sdl_name}</p>
+                                <p>{client.sdm_sdl_email}</p>
+                                <p>{client.sdm_sdl_contact}</p>
+                                <p>
+                                    <img src={view} />
+                                    <NavLink to="/manage-accounts/edit-account">
+                                        <img src={edit} />
+                                    </NavLink>
+                                </p>
+                            </div>
+                        )) : (<p>Loading...</p>)} */}
+                    </div>
+                </div>
             </div>
         </div>
     );
