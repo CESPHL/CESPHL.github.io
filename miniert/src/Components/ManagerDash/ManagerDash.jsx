@@ -151,29 +151,21 @@ const ManageAccount = () => {
               <h1>SDM/SDL Contact</h1>
               <h1>Actions</h1>
             </div>
-            {clientData.clients.map((client) => (
+            {clientData.clients ? clientData.clients.map((client) => (
               <div className="customTableContent" key={client.client_id}>
                 <p>{client.client_id}</p>
                 <p>{client.client_name}</p>
                 <p>{client.sdm_sdl_name}</p>
                 <p>{client.sdm_sdl_email}</p>
                 <p>{client.sdm_sdl_contact}</p>
-                {/* Additional properties from the client object */}
-              </div>
-            ))}
-            <div className="customTableContent">
-              <p>---</p>
-              <p>---</p>
-              <p>---</p>
-              <p>---</p>
-              <p>---</p>
-              <p>
+                <p>
                 <img src={view} />
                 <NavLink to="/manage-accounts/edit-account">
                   <img src={edit} />
                 </NavLink>
               </p>
-            </div>
+              </div>
+            )) : (<p>Loading...</p>)}
           </div>
         </div>
       </div>
