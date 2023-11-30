@@ -10,6 +10,7 @@ const transporter = require('../emailConfig');
 
 // Find user from db 
 const findUser = async (req, res) => {
+    console.log("Login attempt.");
     const { username, password } = req.body;
     try {
         const talent = await Talent.findOne({ username });

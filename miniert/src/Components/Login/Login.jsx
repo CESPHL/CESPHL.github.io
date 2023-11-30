@@ -69,7 +69,8 @@ const Login = () => {
                     else if (user_level === "Admin") {
                         navigate("/admin/manage-accounts");
                     }
-                } else {
+                }
+                else {
                     console.log("Token validation failed");
                 }
             } else {
