@@ -75,9 +75,9 @@ const Profile = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="admin/profile">
+                            <NavLink to="/admin/profile">
                                 <img src={profile} alt="profile icon" activeclassname="active" />
-                                <span >Profile</span>
+                                <span>Profile</span>
                             </NavLink>
                         </li>
                     </div>
@@ -91,7 +91,7 @@ const Profile = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>Manage Users</h4>
+                    <h4>Profile</h4>
                     <span>
                         <CurrentDate />
                     </span>

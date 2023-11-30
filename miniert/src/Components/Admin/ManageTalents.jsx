@@ -76,7 +76,7 @@ const ManageTalents = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="admin/profile">
+                            <NavLink to="/admin/profile">
                                 <img src={profile} alt="profile icon" />
                                 <span className="inactive">Profile</span>
                             </NavLink>
@@ -92,7 +92,7 @@ const ManageTalents = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>Manage Users</h4>
+                    <h4>Manage Talents</h4>
                     <span>
                         <CurrentDate />
                     </span>

@@ -76,7 +76,7 @@ const ManageUsers = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="admin/profile">
+                            <NavLink to="/admin/profile">
                                 <img src={profile} alt="profile icon" />
                                 <span className="inactive">Profile</span>
                             </NavLink>
