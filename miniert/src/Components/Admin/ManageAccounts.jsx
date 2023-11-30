@@ -89,14 +89,12 @@ const ManageAccount = () => {
             </li>
             <li>
               <NavLink to="/admin/manage-talents">
-                {/*page is non-existent. placeholder only. change the correct directory. */}
                 <img src={talents} alt="clock icon" />
                 <span className="inactive">Manage Talents</span>
               </NavLink>
             </li>
             <li>
               <NavLink to="admin/profile">
-                {/*page is non-existent. placeholder only. change the correct directory. */}
                 <img src={profile} alt="profile icon" />
                 <span className="inactive">Profile</span>
               </NavLink>

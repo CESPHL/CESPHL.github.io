@@ -18,6 +18,9 @@ import AddTalent from "./Components/ManagerDash/AddTalent.jsx";
 
 // Admin pages
 import AdminManageAccounts from "./Components/Admin/ManageAccounts.jsx";
+import AdminManageUsers from "./Components/Admin/ManageUsers.jsx";
+import AdminManageTalents from "./Components/Admin/ManageTalents";
+import AdminProfile from "./Components/Admin/Profile";
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
         <Route path="/manage-talents" element={<ManageTalent />} />
         <Route path="/manage-talents/add-account" element={<AddTalent />} />
         <Route path="/admin/manage-accounts" element={<AdminManageAccounts />} />
+        <Route path="/admin/manage-users" element={<AdminManageUsers />} />
+        <Route path="/admin/manage-talents" element={<AdminManageTalents />} />
+        <Route path="/admin/profile" element={<AdminProfile />} />
       </Routes>
     </Router>
   );
