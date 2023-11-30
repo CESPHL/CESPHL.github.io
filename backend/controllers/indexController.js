@@ -29,7 +29,7 @@ const findUser = async (req, res) => {
                 });
 
                 // Respond with the token and additional user information
-                res.status(200).json({
+                return res.status(200).json({
                     token,
                     employee_id: talent.employee_id,
                     user_level: talent.user_level
@@ -37,7 +37,7 @@ const findUser = async (req, res) => {
             }
             else {
                 console.log("Login failed. Password does not match.");
-                res.status(401).json({ message: 'Login failed. Password does not match.' });
+                return res.status(401).json({ message: 'Login failed. Password does not match.' });
             }
         }
         if (manager) {
@@ -52,7 +52,7 @@ const findUser = async (req, res) => {
                 });
 
                 // Respond with the token and additional user information
-                res.status(200).json({
+                return res.status(200).json({
                     token,
                     employee_id: manager.employee_id,
                     user_level: manager.user_level
@@ -60,7 +60,7 @@ const findUser = async (req, res) => {
             }
             else {
                 console.log("Login failed. Password does not match.");
-                res.status(401).json({ message: 'Login failed. Password does not match.' });
+                return res.status(401).json({ message: 'Login failed. Password does not match.' });
             }
         }
         if (admin) {
@@ -74,7 +74,7 @@ const findUser = async (req, res) => {
                     expiresIn: '15m'
                 });
 
-                res.status(200).json({
+                return res.status(200).json({
                     token,
                     employee_id: admin.employee_id,
                     user_level: admin.user_level
@@ -82,16 +82,16 @@ const findUser = async (req, res) => {
             }
             else {
                 console.log("Login failed. Password does not match.");
-                res.status(401).json({ message: 'Login failed. Password does not match.' });
+                return res.status(401).json({ message: 'Login failed. Password does not match.' });
             }
         }
         else {
-            res.status(401).json({ message: 'User not found or incorrect password' });
+            return res.status(401).json({ message: 'User not found or incorrect password' });
         }
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
     }
 }
 
