@@ -35,7 +35,7 @@ const ManageUsers = () => {
     const [userData, setUserData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/`)
             .then((response) => {
                 const data = response.data;
                 setUserData(data);
