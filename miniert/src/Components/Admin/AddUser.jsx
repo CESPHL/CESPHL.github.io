@@ -91,7 +91,7 @@ const Profile = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>Profile</h4>
+                    <h4>Add User</h4>
                     <span>
                         <CurrentDate />
                     </span>
