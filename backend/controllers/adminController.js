@@ -7,7 +7,8 @@ const bcrypt = require('bcryptjs');
 const getUsers = async (req, res) => {
     const talents = await Talent.find({}).sort({ createdAt: -1 });
     const managers = await Manager.find({}).sort({ createdAt: -1 });
-    res.status(200).json(talents, managers);
+    const admins = await Admin.find({}).sort({ createdAt: -1 });
+    res.status(200).json(talents, managers, admins);
 }
 
 // Get one user 

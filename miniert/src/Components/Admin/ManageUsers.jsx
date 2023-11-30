@@ -34,6 +34,19 @@ const ManageUsers = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [userData, setUserData] = useState([]);
 
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin`)
+            .then((response) => {
+                const data = response.data;
+                setUserData(data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }, [employee_id]);
+
+    console.log(userData);
+
     return (
         <div className="dashboard">
             <div className="dash-navbar">
