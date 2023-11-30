@@ -8,10 +8,12 @@ const getUsers = async (req, res) => {
     const talents = await Talent.find({}).sort({ createdAt: -1 });
     const managers = await Manager.find({}).sort({ createdAt: -1 });
     const admins = await Admin.find({}).sort({ createdAt: -1 });
-    console.log(talents);
-    console.log(managers);
-    console.log(admins);
-    res.status(200).json(talents, managers, admins);
+    const data = [...talents, ...managers, ...admins];
+    // console.log(talents);
+    // console.log(managers);
+    // console.log(admins);
+    console.log(data);
+    res.status(200).json(data);
 }
 
 // Get one user 
