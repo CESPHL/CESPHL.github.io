@@ -43,7 +43,9 @@ const findUser = async (req, res) => {
         if (manager) {
             console.log("Found manager");
             const passwordMatchManager = await bcrypt.compare(password, manager.password);
+            console.log(passwordMatchManager);
             if (passwordMatchManager) {
+                console.log("Test");
                 const token = jwt.sign({
                     employee_id: manager.employee_id,
                     user_level: manager.user_level
