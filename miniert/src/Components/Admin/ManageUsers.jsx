@@ -129,7 +129,7 @@ const ManageUsers = () => {
                         </div>
                         <div className="buttons">
                             <button className="upload-btn">Upload</button>
-                            <NavLink to="/manage-accounts/add-account">
+                            <NavLink to="/admin/manage-users/add-user">
                                 <button className="add-btn">Add</button>
                             </NavLink>
                         </div>
@@ -143,13 +143,13 @@ const ManageUsers = () => {
                             <h1>User Level</h1>
                             <h1>Actions</h1>
                         </div>
-                        {/* {clientData.clients ? clientData.clients.map((client) => (
-                            <div className="customTableContent" key={client.client_id}>
-                                <p>{client.client_id}</p>
-                                <p>{client.client_name}</p>
-                                <p>{client.sdm_sdl_name}</p>
-                                <p>{client.sdm_sdl_email}</p>
-                                <p>{client.sdm_sdl_contact}</p>
+                        {userData ? userData.map((user) => (
+                            <div className="customTableContent" key={user.employee_id}>
+                                <p>{user.employee_id}</p>
+                                <p>{`${user.first_name} ${user.last_name}`}</p>
+                                <p>{user.email}</p>
+                                <p>{user.contact_number}</p>
+                                <p>{user.user_level}</p>
                                 <p>
                                     <img src={view} />
                                     <NavLink to="/manage-accounts/edit-account">
@@ -157,7 +157,7 @@ const ManageUsers = () => {
                                     </NavLink>
                                 </p>
                             </div>
-                        )) : (<p>Loading...</p>)} */}
+                        )) : (<p>Loading...</p>)}
                     </div>
                 </div>
             </div>
