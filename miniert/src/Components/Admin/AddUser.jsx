@@ -34,7 +34,7 @@ const CurrentDate = () => {
 
 const Profile = () => {
     const [showModal, setShowModal] = useState(false);
-    let empId, firstName, lastName, email, contactNo, username, password, userLevel;
+    let empId, firstName, lastName, email, contactNo, username, password, userLevel, userLevelValue;
     empId = document.getElementById("empId").value;
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
@@ -42,10 +42,11 @@ const Profile = () => {
     contactNo = document.getElementById("contactNo").value;
     username = document.getElementById("username").value;
     password = document.getElementById("password").value;
-    userLevel = document.getElementById("userLevel").options[selectedIndex].value;
+    userLevel = document.getElementById("userLevel").value;
+    userLevelValue = userLevel.value;
 
     const handleOpenModal = () => {
-        console.log(empId, firstName, lastName, email, contactNo, username, password, userLevel);
+        console.log(empId, firstName, lastName, email, contactNo, username, password, userLevel, userLevelValue);
     }
 
     const handleCloseModal = () => {
