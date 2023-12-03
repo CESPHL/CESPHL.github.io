@@ -1,7 +1,7 @@
 .user-form {
     display: flex;
     flex-direction: column;
-    margin: 2rem;
+    margin: 4rem;
 }
 
 .user-form > form {
@@ -14,11 +14,16 @@
 }
 
 .user-form > form > input, .user-form > form > select {
-    margin: 0.1rem 0 1rem 0;
+    margin: 0.2rem 0 1rem 0;
     padding: 0.5rem;
     font-size: 14px;
     border-radius: 7px;
     border: 1px solid #D0D5DD;
+}
+
+.user-form > form > div {
+    display: flex;
+    flex-direction: flex-end;
 }
 
 .btn {
@@ -38,3 +43,4 @@
     color: #FFFFFF;
     background-color: #684CE2;
 }
+
