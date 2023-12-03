@@ -33,7 +33,6 @@ const CurrentDate = () => {
 };
 
 const Profile = () => {
-    const employee_id = localStorage.getItem("employee_id");
     const [showModal, setShowModal] = useState(false);
 
     const handleOpenModal = () => {
@@ -133,7 +132,7 @@ const Profile = () => {
                     <NavLink to="/admin/manage-users">
                         <button>Cancel</button>
                     </NavLink>
-                    <input type="button" value="Add" />
+                    <input type="button" value="Add" onClick={handleOpenModal}/>
                 </div>
             </div>
             <Modal show={showModal} handleClose={handleCloseModal} handleSave={handleSave}>
