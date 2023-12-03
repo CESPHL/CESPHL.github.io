@@ -113,22 +113,22 @@ const Profile = () => {
                 </div>
                 <div className="user-form">
                     <form>
-                        <label>Employee ID</label>
-                        <input type="text" placeholder="Enter ID" />
-                        <label>First Name</label>
-                        <input type="text" placeholder="Enter first name" />
-                        <label>Last Name</label>
-                        <input type="text" placeholder="Enter last name" />
-                        <label>Email Address</label>
-                        <input type="text" placeholder="Enter email" />
-                        <label>Contact Number</label>
-                        <input type="text" placeholder="Enter contact no." />
-                        <label>Username</label>
-                        <input type="text" placeholder="Enter username" />
-                        <label>Password</label>
-                        <input type="text" placeholder="Enter password" />
-                        <label>User Level</label>
-                        <select>
+                        <label for="empId">Employee ID</label>
+                        <input type="text" placeholder="Enter ID" name="empId" id="empId" required />
+                        <label for="firstName">First Name</label>
+                        <input type="text" placeholder="Enter first name" name="firstName" id="firstName" required />
+                        <label for="lastName">Last Name</label>
+                        <input type="text" placeholder="Enter last name" name="lastName" id="lastName" required />
+                        <label for="email">Email Address</label>
+                        <input type="text" placeholder="Enter email" name="email" id="email" required />
+                        <label for="contactNo">Contact Number</label>
+                        <input type="text" placeholder="Enter contact no." name="contactNo" id="contactNo" required />
+                        <label for="username">Username</label>
+                        <input type="text" placeholder="Enter username" name="username" id="username" required />
+                        <label for="password">Password</label>
+                        <input type="text" placeholder="Enter password" name="password" id="password" required />
+                        <label for="userLevel">User Level</label>
+                        <select name="userLevel" id="userLevel" required>
                             <option disabled selected>Select</option>
                             <option value="Talent">Talent</option>
                             <option value="Manager">Manager</option>
