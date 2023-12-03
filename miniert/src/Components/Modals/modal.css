@@ -38,12 +38,13 @@
 }
 
 .modal-description {
-    margin: 0 3rem 3rem 3rem;
+    margin: 0 1rem 1rem 3rem;
 }
 
 .modal-content > div:last-of-type {
     display: flex;
     justify-content: flex-end;
+    margin: 1rem;
 }
 
 .btn {
@@ -68,5 +69,5 @@
     border: 1px solid #684CE2;
     color: #FFFFFF;
     font-weight: 500;
-    flex-basis: 20%;
+    flex-basis: 25%;
 }
