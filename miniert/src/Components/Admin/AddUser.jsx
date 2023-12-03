@@ -32,20 +32,20 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 };
 
-const Profile = () => {
+const AddUser = () => {
     const [showModal, setShowModal] = useState(false);
     let empId, firstName, lastName, email, contactNo, username, password, userLevel, userLevelValue;
-    empId = document.getElementById("empId").value;
-    firstName = document.getElementById("firstName").value;
-    lastName = document.getElementById("lastName").value;
-    email = document.getElementById("email").value;
-    contactNo = document.getElementById("contactNo").value;
-    username = document.getElementById("username").value;
-    password = document.getElementById("password").value;
-    userLevel = document.getElementById("userLevel").value;
-    userLevelValue = userLevel.value;
 
     const handleOpenModal = () => {
+        empId = document.getElementById("empId").value;
+        firstName = document.getElementById("firstName").value;
+        lastName = document.getElementById("lastName").value;
+        email = document.getElementById("email").value;
+        contactNo = document.getElementById("contactNo").value;
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+        userLevel = document.getElementById("userLevel").value;
+        userLevelValue = userLevel.value;
         console.log(empId, firstName, lastName, email, contactNo, username, password, userLevel, userLevelValue);
     }
 
@@ -167,4 +167,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default AddUser;
