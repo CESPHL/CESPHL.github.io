@@ -19,7 +19,6 @@
     font-size: 14px;
     border-radius: 7px;
     border: 1px solid #D0D5DD;
-    width: 100%; /* To be removed. Affected by another css file called modal.css */
 }
 
 .user-form > form > div {

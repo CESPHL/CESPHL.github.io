@@ -31,17 +31,12 @@
 	padding-left: 10px;
 }
 
-.modal-main input,
-select {
+.modal-main input {
 	border-radius: 8px;
 	padding: 8px;
 	width: 80%;
 	margin-top: 15px;
 	margin-left: 50px;
-}
-
-.modal-main select {
-	width: 83%;
 }
 
 .modal-main select:focus {
