@@ -31,8 +31,7 @@
 	padding-left: 10px;
 }
 
-.modal-main input,
-select {
+.modal-main input {
 	border-radius: 8px;
 	padding: 8px;
 	width: 80%;
