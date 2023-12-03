@@ -56,16 +56,3 @@
     background-color: #684CE2;
     flex-basis: 20%;
 }
-
-.btn-close {
-    background: 0;
-    border: 0;
-}
-
-.btn-save {
-    background-color: #684CE2;
-    border: 1px solid #684CE2;
-    color: #FFFFFF;
-    font-weight: 500;
-    flex-basis: 15%;
-}
