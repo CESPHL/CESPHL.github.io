@@ -136,9 +136,9 @@ const Profile = () => {
                         </select>
                         <div>
                             <NavLink to="/admin/manage-users">
-                                <button>Cancel</button>
+                                <input type="button" className="btn btn-cancel" value="Cancel" />
                             </NavLink>
-                            <input type="button" value="Add" onClick={handleOpenModal} />
+                            <input type="button" className="btn btn-submit" value="Add" onClick={handleOpenModal} />
                         </div>
                     </form>
                 </div>
