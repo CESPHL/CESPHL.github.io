@@ -12,7 +12,6 @@
 	border-radius: 10px;
 	background: white;
 	width: 600px;
-	height: 350px;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -29,37 +28,9 @@
 	display: none;
 }
 
-.modal-main :first-child {
+.modal-main > div:first-of-type {
     padding: 0 1rem;
 	font-weight: bold;
 	display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #D0D5DD;
-}
-
-.modal-main span {
-	color: red;
-}
-
-.buttons-container {
-	display: flex;
-	justify-content: flex-end;
-	margin: 1rem 3rem;
-}
-
-.modal-main > div > button {
-	flex-basis: 25%;
-	padding: 0.7rem 0;
-	border-radius: 10px;
-}
-
-.close-btn {
-	background: 0;
-	border: 0;
-}
-
-.save-btn {
-	background-color: #684CE2;
-	border: 0;
-	color: #FFF;
 }

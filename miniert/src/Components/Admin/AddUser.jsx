@@ -150,8 +150,8 @@ const Profile = () => {
                 </div>
                 <p>Clicking yes will add the account details and its project to the system.</p>
                 <div className="buttons-container">
-                    <button className="close-btn" onClick={handleCloseModal}> Close</button>
-                    <button className="save-btn" onClick={handleSave}>Yes, Add</button>
+                    <button className="btn btn-close" onClick={handleCloseModal}> Close</button>
+                    <button className="btn btn-save" onClick={handleSave}>Yes, Add</button>
                 </div>
             </Modal>
         </div>
