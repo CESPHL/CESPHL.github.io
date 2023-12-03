@@ -11,6 +11,7 @@ import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
 import modal from "../Modals/Modal.jsx";
 import Modal from "../Modals/Modal.jsx";
+import './addUser.css';
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
