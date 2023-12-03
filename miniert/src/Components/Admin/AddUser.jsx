@@ -9,7 +9,6 @@ import users from "../Assets/users-inactive.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
-import modal from "../Modals/Modal.jsx";
 import Modal from "../Modals/Modal.jsx";
 import './addUser.css';
 
@@ -143,7 +142,7 @@ const Profile = () => {
                     </form>
                 </div>
             </div>
-            <Modal show={showModal} handleClose={handleCloseModal} handleSave={handleSave}>
+            <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                 <div>
                     <p>Add User</p>
                     <p>X</p>

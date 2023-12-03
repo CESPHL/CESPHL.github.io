@@ -6,7 +6,7 @@ const Modal = ({ show, handleClose, children, handleSave }) => {
 
 	return (
 		<div className={showHideClassName}>
-			<section className="modal-main">
+			<section className="modal-content">
 				{children}
 			</section>
 		</div>
