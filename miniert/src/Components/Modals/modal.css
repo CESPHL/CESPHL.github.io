@@ -30,9 +30,11 @@
 }
 
 .modal-main :first-child {
+    padding: 0 1rem;
 	font-weight: bold;
 	display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #D0D5DD;
 }
 
 .modal-main span {
