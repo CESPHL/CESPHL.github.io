@@ -114,26 +114,33 @@ const Profile = () => {
                 <div className="user-form">
                     <form>
                         <label>Employee ID</label>
-                        <input type="text" />
+                        <input type="text" placeholder="Enter ID" />
                         <label>First Name</label>
-                        <input type="text" />
+                        <input type="text" placeholder="Enter first name" />
                         <label>Last Name</label>
-                        <input type="text" />
+                        <input type="text" placeholder="Enter last name" />
                         <label>Email Address</label>
-                        <input type="text" />
+                        <input type="text" placeholder="Enter email" />
                         <label>Contact Number</label>
-                        <input type="text" />
+                        <input type="text" placeholder="Enter contact no." />
                         <label>Username</label>
-                        <input type="text" />
+                        <input type="text" placeholder="Enter username" />
                         <label>Password</label>
-                        <input type="text" />
+                        <input type="text" placeholder="Enter password" />
                         <label>User Level</label>
-                        <input type="text" />
+                        <select>
+                            <option disabled selected>Select</option>
+                            <option value="Talent">Talent</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                        <div>
+                            <NavLink to="/admin/manage-users">
+                                <button>Cancel</button>
+                            </NavLink>
+                            <input type="button" value="Add" onClick={handleOpenModal} />
+                        </div>
                     </form>
-                    <NavLink to="/admin/manage-users">
-                        <button>Cancel</button>
-                    </NavLink>
-                    <input type="button" value="Add" onClick={handleOpenModal}/>
                 </div>
             </div>
             <Modal show={showModal} handleClose={handleCloseModal} handleSave={handleSave}>

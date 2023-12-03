@@ -1,10 +1,16 @@
 .user-form {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    margin: 2rem;
 }
 
-.user-form form {
+.user-form > form {
     display: flex;
     flex-direction: column;
+}
+
+.user-form > form > input {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: 16px;
 }
