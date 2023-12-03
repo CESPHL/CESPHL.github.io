@@ -24,7 +24,7 @@
 
 .user-form > form > div {
     display: flex;
-    flex-direction: flex-end;
+    justify-content: flex-end;
 }
 
 .btn {
