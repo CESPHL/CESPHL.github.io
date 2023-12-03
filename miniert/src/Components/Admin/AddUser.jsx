@@ -34,9 +34,18 @@ const CurrentDate = () => {
 
 const Profile = () => {
     const [showModal, setShowModal] = useState(false);
+    let empId, firstName, lastName, email, contactNo, username, password, userLevel;
+    empId = document.getElementById("empId").value;
+    firstName = document.getElementById("firstName").value;
+    lastName = document.getElementById("lastName").value;
+    email = document.getElementById("email").value;
+    contactNo = document.getElementById("contactNo").value;
+    username = document.getElementById("username").value;
+    password = document.getElementById("password").value;
+    userLevel = document.getElementById("userLevel").options[selectedIndex].value;
 
     const handleOpenModal = () => {
-        setShowModal(true);
+        console.log(empId, firstName, lastName, email, contactNo, username, password, userLevel);
     }
 
     const handleCloseModal = () => {
@@ -128,7 +137,7 @@ const Profile = () => {
                         <input type="text" placeholder="Enter password" name="password" id="password" required />
                         <label for="userLevel">User Level</label>
                         <select name="userLevel" id="userLevel" required>
-                            <option disabled selected>Select</option>
+                            <option disabled selected value="">Select</option>
                             <option value="Talent">Talent</option>
                             <option value="Manager">Manager</option>
                             <option value="Admin">Admin</option>
