@@ -144,7 +144,10 @@ const Profile = () => {
                 </div>
             </div>
             <Modal show={showModal} handleClose={handleCloseModal} handleSave={handleSave}>
-                <p>Add User</p>
+                <div>
+                    <p>Add User</p>
+                    <p>X</p>
+                </div>
                 <p>Clicking yes will add the account details and its project to the system.</p>
             </Modal>
         </div>

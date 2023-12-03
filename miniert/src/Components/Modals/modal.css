@@ -16,6 +16,9 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .display-block {
@@ -28,23 +31,8 @@
 
 .modal-main :first-child {
 	font-weight: bold;
-	padding-left: 10px;
-}
-
-.modal-main input {
-	border-radius: 8px;
-	padding: 8px;
-	width: 80%;
-	margin-top: 15px;
-	margin-left: 50px;
-}
-
-.modal-main select {
-	width: 83%;
-}
-
-.modal-main select:focus {
-	border: 1px solid #D0D5DD;
+	display: flex;
+    justify-content: space-between;
 }
 
 .modal-main span {
