@@ -45,8 +45,10 @@ const AddUser = () => {
         username = document.getElementById("username").value;
         password = document.getElementById("password").value;
         userLevel = document.getElementById("userLevel").value;
-        userLevelValue = userLevel.value;
-        console.log(empId, firstName, lastName, email, contactNo, username, password, userLevel, userLevelValue);
+
+        if (empId != null && firstName != null && lastName != null && email != null && contactNo != null && username != null && password != null && userLevel != null) {
+            setShowModal(true);
+        }
     }
 
     const handleCloseModal = () => {
