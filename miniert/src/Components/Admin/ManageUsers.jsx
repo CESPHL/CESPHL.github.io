@@ -123,7 +123,7 @@ const ManageUsers = () => {
                         </div>
                     </div>
                     <div className="customTableContainer">
-                        <div className="customTableHeader">
+                        <div className="customTableHeader" style="padding-left: 20px;">
                             <h1>ID</h1>
                             <h1>Name</h1>
                             <h1>Email</h1>
