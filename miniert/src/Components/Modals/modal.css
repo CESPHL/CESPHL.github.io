@@ -29,12 +29,12 @@
 }
 
 .modal-content > div:first-of-type {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 	font-weight: bold;
 	display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #D0D5DD;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .modal-description {
@@ -44,7 +44,7 @@
 .modal-content > div:last-of-type {
     display: flex;
     justify-content: flex-end;
-    margin: 2rem;
+    margin: 1.5rem;
 }
 
 .btn {
