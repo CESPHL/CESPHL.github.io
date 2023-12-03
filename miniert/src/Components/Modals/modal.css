@@ -40,3 +40,32 @@
 .modal-description {
     margin-bottom: 3rem;
 }
+
+.modal-content > div:last-of-type {
+    display: flex;
+    
+}
+
+.btn {
+    font-size: 14px;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-close {
+    background: 0;
+    border: 0;
+    margin-right: 1rem;
+}
+
+.btn-save {
+    background-color: #684CE2;
+    border: 1px solid #684CE2;
+    color: #FFFFFF;
+    font-weight: 500;
+    flex-basis: 15%;
+}
