@@ -33,4 +33,10 @@
 	font-weight: bold;
 	display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #D0D5DD;
+    margin-bottom: 2rem;
+}
+
+.modal-description {
+    margin-bottom: 3rem;
 }
