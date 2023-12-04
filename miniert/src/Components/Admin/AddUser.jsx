@@ -82,7 +82,7 @@ const AddUser = () => {
         }
         catch (error) {
             console.error(error);
-        } 
+        }
     };
 
 
