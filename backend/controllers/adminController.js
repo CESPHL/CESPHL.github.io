@@ -34,28 +34,27 @@ const getOneUser = async (req, res) => {
 
 // Add user
 const addUser = async (req, res) => {
-    console.log("Add user");
-    // const { employee_id, first_name, last_name, email, contact_number, username, password, user_level } = req.body;
-    // const hashedPassword = await bcrypt.hash(password, 10);
+    const { employee_id, first_name, last_name, email, contact_number, username, password, user_level } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // try {
-    //     if (user_level == "Talent") {
-    //         const talent = await Talent.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients, attendance });
-    //         res.status(200).json(talent);
-    //     }
-    //     if (user_level == "Manager") {
-    //         const manager = await Manager.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients });
-    //         res.status(200).json(manager);
-    //     }
-    //     if (user_level == "Admin") {
-    //         const admin = await Admin.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level });
-    //         res.status(200).json(admin);
-    //     }
-    // }
-    // catch (error) {
-    //     console.error("Error:", error);
-    //     return res.status(500).json({ message: "Internal server error.", error: error.message });
-    // }
+    try {
+        if (user_level == "Talent") {
+            const talent = await Talent.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients, attendance });
+            res.status(200).json(talent);
+        }
+        if (user_level == "Manager") {
+            const manager = await Manager.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients });
+            res.status(200).json(manager);
+        }
+        if (user_level == "Admin") {
+            const admin = await Admin.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level });
+            res.status(200).json(admin);
+        }
+    }
+    catch (error) {
+        console.error("Error:", error);
+        return res.status(500).json({ message: "Internal server error.", error: error.message });
+    }
 }
 
 module.exports = {
