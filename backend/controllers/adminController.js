@@ -50,7 +50,6 @@ const addUser = async (req, res) => {
             const admin = await Admin.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level });
             res.status(200).json(admin);
         }
-        return res.status(400).json({ error: error.message });
     }
     catch (error) {
         console.error("Error:", error);
