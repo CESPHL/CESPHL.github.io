@@ -74,6 +74,7 @@ const AddUser = () => {
         axios.post(backendUrl, employeeInfo)
             .then((res) => {
                 console.log(res);
+                console.log("Success");
             })
             .catch((err) => {
                 console.error(err);
