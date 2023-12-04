@@ -66,7 +66,7 @@ const AddUser = () => {
         password = document.getElementById("password").value;
         userLevel = document.getElementById("userLevel").value;
 
-        let employeeInfo = empId, firstName, lastName, email, contactNo, username, password, userLevel;
+        let employeeInfo = { empId, firstName, lastName, email, contactNo, username, password, userLevel };
         console.log(employeeInfo);
 
         if (employeeInfo) {
