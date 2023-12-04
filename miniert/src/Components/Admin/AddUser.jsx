@@ -67,15 +67,17 @@ const AddUser = () => {
         userLevel = document.getElementById("userLevel").value;
 
         let employeeInfo = empId, firstName, lastName, email, contactNo, username, password, userLevel;
+        console.log(employeeInfo);
 
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/admin/`, employeeInfo)
-        .then((res) => {
-            console.log(employeeInfo);
-            console.log(res);
-        })
-        .catch((err) => {
-            console.error(err);
-        })
+        if (employeeInfo) {
+            axios.post(`https://cesphl-github-io-backend.vercel.app/api/admin/`, employeeInfo)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
+        }
     }
 
     return (
