@@ -4,10 +4,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "https://cesphl-github-io-frontend.vercel.app",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
-  optionsSuccessStatus: 204,
+    origin: [
+        "https://cesphl-github-io-frontend.vercel.app",
+        "https://cesphl-github-io-frontend.vercel.app/admin/manage-users/add-user",
+        // Add other allowed origins as needed
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
 };
 
 const talentsRoutes = require("./routes/talents");
@@ -29,16 +33,16 @@ app.use("/api/managers", managerRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hello, this is the root path!");
+    res.send("Hello, this is the root path!");
 });
 
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(`Connected to db & listening on port ${process.env.PORT}`);
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+        app.listen(process.env.PORT || 3000, () => {
+            console.log(`Connected to db & listening on port ${process.env.PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.log(error);
     });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
