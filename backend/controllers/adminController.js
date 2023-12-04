@@ -28,10 +28,11 @@ const getOneUser = async (req, res) => {
         res.status(200).json(user);
     }
     catch (error) {
-        res.status(500).json({ messagaea: "Internal server error."});
+        res.status(500).json({ message: "Internal server error."});
     }
 }
 
+// Add user
 const addUser = async (req, res) => {
     const { employee_id, first_name, last_name, email, contact_number, username, password, user_level } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -52,7 +53,7 @@ const addUser = async (req, res) => {
         return res.status(400).json({ error: error.message });
     }
     catch {
-
+        return res.status(500).json({ message: "Internal server error." });
     }
 }
 
