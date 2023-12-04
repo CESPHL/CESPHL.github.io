@@ -67,6 +67,19 @@ const AddUser = () => {
         const userLevel = document.getElementById("userLevel").value;
 
         const employeeInfo = { empId, firstName, lastName, email, contactNo, username, password, userLevel };
+
+        const backendUrl = "https://cesphl-github-io-backend.vercel.app/api/admin";
+        console.log("Fetching from", backendUrl);
+
+        try  {
+            axios.post(backendUrl, employeeInfo)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.error(err);
+            })
+        }
     };
 
 
