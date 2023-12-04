@@ -39,11 +39,11 @@ const addUser = async (req, res) => {
 
     try {
         if (user_level == "Talent") {
-            const talent = await Talent.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients, attendance });
+            const talent = await Talent.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level });
             res.status(200).json(talent);
         }
         if (user_level == "Manager") {
-            const manager = await Manager.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients });
+            const manager = await Manager.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level });
             res.status(200).json(manager);
         }
         if (user_level == "Admin") {
