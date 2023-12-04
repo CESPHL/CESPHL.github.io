@@ -68,13 +68,25 @@ const AddUser = () => {
 
         const employeeInfo = { empId, firstName, lastName, email, contactNo, username, password, userLevel };
 
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/admin/`, employeeInfo)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((err) => {
-                console.error(err);
+        try {
+            const response = await fetch(`https://cesphl-github-io-backend.vercel.app/api/admin/`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({employeeInfo})
             });
+            if (response.ok) {
+                console.log("User successfully added.");
+            }
+            else {
+                console.log("There was a problem adding the user. Try again later.");
+            }
+        }
+        catch (error) {
+            console.log("There was a problem adding the user. Try again later.");
+        }
     };
 
 
