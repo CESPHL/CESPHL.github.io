@@ -2,29 +2,24 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const app = express();
 
 const corsOptions = {
-    origin: [
-        "https://cesphl-github-io-frontend.vercel.app",
-        "https://cesphl-github-io-frontend.vercel.app/admin/manage-users/add-user",
-        // Add other allowed origins as needed
-    ],
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     optionsSuccessStatus: 204,
 };
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight requests
+app.use(express.json());
 
 const talentsRoutes = require("./routes/talents");
 const indexRoutes = require("./routes/index");
 const clientRoutes = require("./routes/clients");
 const managerRoutes = require("./routes/managers");
 const adminRoutes = require("./routes/admin");
-
-const app = express();
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Handle preflight requests
-app.use(express.json());
 
 app.use("/api/talents", talentsRoutes);
 app.use("/api/clients", clientRoutes);
