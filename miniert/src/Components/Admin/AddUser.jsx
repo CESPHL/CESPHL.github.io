@@ -57,25 +57,25 @@ const AddUser = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        empId = document.getElementById("empId").value;
-        firstName = document.getElementById("firstName").value;
-        lastName = document.getElementById("lastName").value;
-        email = document.getElementById("email").value;
-        contactNo = document.getElementById("contactNo").value;
-        username = document.getElementById("username").value;
-        password = document.getElementById("password").value;
-        userLevel = document.getElementById("userLevel").value;
+        const empId = document.getElementById("empId").value;
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const contactNo = document.getElementById("contactNo").value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const userLevel = document.getElementById("userLevel").value;
 
-        let employeeInfo = { empId, firstName, lastName, email, contactNo, username, password, userLevel }
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/admin/`, employeeInfo)
-            .then((res) => {
-                console.log(employeeInfo);
-                console.log(res);
-            })
-            .catch((err) => {
-                console.error(err);
-            })
-    }
+        const employeeInfo = { empId, firstName, lastName, email, contactNo, username, password, userLevel };
+
+        try {
+            const response = await axios.post("https://cesphl-github-io-backend.vercel.app/api/admin/", employeeInfo);
+            console.log("Response:", response.data);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
 
     return (
         <div className="dashboard">
