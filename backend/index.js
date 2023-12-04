@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-    origin: "https://cesphl-github-io-frontend.vercel.app/",
+    origin: "https://cesphl-github-io-frontend.vercel.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     optionsSuccessStatus: 204,
