@@ -57,6 +57,22 @@ const AddUser = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
+        empId = document.getElementById("empId").value;
+        firstName = document.getElementById("firstName").value;
+        lastName = document.getElementById("lastName").value;
+        email = document.getElementById("email").value;
+        contactNo = document.getElementById("contactNo").value;
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+        userLevel = document.getElementById("userLevel").value;
+
+        axios.post(`https://cesphl-github-io-backend.vercel.app/api/admin/`)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.error(err);
+        })
     }
 
     return (
@@ -157,7 +173,7 @@ const AddUser = () => {
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                 <div>
                     <p>Add User</p>
-                    <p>X</p>
+                    <input type="button" value="&#10006;" />
                 </div>
                 <p className="modal-description">Clicking yes will add the account details and its project to the system.</p>
                 <div>

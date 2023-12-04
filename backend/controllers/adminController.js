@@ -32,48 +32,32 @@ const getOneUser = async (req, res) => {
     }
 }
 
-// Add manager
-const addManager = async (req, res) => {
-    const { employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    try {
-        const manager = await Manager.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients });
-        res.status(200).json(manager);
-    }
-    catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
-
-// Add talent
-const addTalent = async (req, res) => {
-    const { employee_id, first_name, last_name, email, contact_number, username, password, user_level, clients, attendance } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    try {
-        const talent = await Talent.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients, attendance });
-        res.status(200).json(talent);
-    }
-    catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
-
-const addAdmin = async (req, res) => {
+const addUser = async (req, res) => {
     const { employee_id, first_name, last_name, email, contact_number, username, password, user_level } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
+
     try {
-        const admin = await Admin.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level });
-        res.status(200).json(admin);
+        if (user_level == "Talent") {
+            const talent = await Talent.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients, attendance });
+            res.status(200).json(talent);
+        }
+        if (user_level == "Manager") {
+            const manager = await Manager.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level, clients });
+            res.status(200).json(manager);
+        }
+        if (user_level == "Admin") {
+            const admin = await Admin.create({ employee_id, first_name, last_name, email, contact_number, username, password: hashedPassword, user_level });
+            res.status(200).json(admin);
+        }
+        return res.status(400).json({ error: error.message });
     }
-    catch (error) {
-        res.status(400).json({ error: error.message });
+    catch {
+
     }
 }
 
 module.exports = {
     getUsers,
     getOneUser,
-    addManager,
-    addTalent,
-    addAdmin
+    addUser
 }
