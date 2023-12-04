@@ -68,12 +68,13 @@ const AddUser = () => {
 
         const employeeInfo = { empId, firstName, lastName, email, contactNo, username, password, userLevel };
 
-        try {
-            const response = await axios.post("https://cesphl-github-io-backend.vercel.app/api/admin/", employeeInfo);
-            console.log("Response:", response.data);
-        } catch (error) {
-            console.error("Error:", error);
-        }
+        axios.post(`https://cesphl-github-io-backend.vercel.app/api/admin/`, employeeInfo)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     };
 
 
