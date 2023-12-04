@@ -34,7 +34,7 @@ const CurrentDate = () => {
 
 const AddUser = () => {
     const [showModal, setShowModal] = useState(false);
-    let empId, firstName, lastName, email, contactNo, username, password, userLevel, userLevelValue;
+    let empId, firstName, lastName, email, contactNo, username, password, userLevel;
 
     const handleOpenModal = () => {
         empId = document.getElementById("empId").value;
@@ -66,8 +66,11 @@ const AddUser = () => {
         password = document.getElementById("password").value;
         userLevel = document.getElementById("userLevel").value;
 
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/admin/`)
+        let employeeInfo = empId, firstName, lastName, email, contactNo, username, password, userLevel;
+
+        axios.post(`https://cesphl-github-io-backend.vercel.app/api/admin/`, employeeInfo)
         .then((res) => {
+            console.log(employeeInfo);
             console.log(res);
         })
         .catch((err) => {

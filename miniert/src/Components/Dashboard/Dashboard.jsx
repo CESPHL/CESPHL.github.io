@@ -177,11 +177,7 @@ const Stopwatch = () => {
       client_name: document.getElementById("clientName").value,
     };
 
-    axios
-      .patch(
-        `https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timein`,
-        timeInData
-      )
+    axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timein`, timeInData)
       .then((res) => {
         if (res.status === 200) {
           isClockInDisabled = true;
