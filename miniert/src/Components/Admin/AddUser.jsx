@@ -71,18 +71,13 @@ const AddUser = () => {
         const backendUrl = "https://cesphl-github-io-backend.vercel.app/api/admin";
         console.log("Fetching from", backendUrl);
 
-        try {
-            axios.post(backendUrl, employeeInfo)
+        axios.post(backendUrl, employeeInfo)
             .then((res) => {
                 console.log(res);
             })
             .catch((err) => {
                 console.error(err);
             })
-        }
-        catch (error) {
-            console.error(error);
-        }
     };
 
 
