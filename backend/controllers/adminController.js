@@ -14,6 +14,7 @@ const getUsers = async (req, res) => {
 
 // Get one user 
 const getOneUser = async (req, res) => {
+    console.log("Getting user info");
     const { employee_id } = req.params;
     try {
         const talent = await Talent.findOne({ employee_id });
