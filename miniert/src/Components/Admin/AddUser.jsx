@@ -6,11 +6,11 @@ import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
 import users from "../Assets/users-inactive.svg";
-import view from "../Assets/view-icn.svg";
-import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
 import Modal from "../Modals/Modal.jsx";
 import './addUser.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -106,6 +106,18 @@ const AddUser = () => {
 
     return (
         <div className="dashboard">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="dash-navbar">
                 <div className="dash-main">
                     <img src={hourglass} alt="" />
