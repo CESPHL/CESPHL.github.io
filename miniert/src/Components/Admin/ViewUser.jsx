@@ -39,7 +39,7 @@ const ViewUser = () => {
     console.log(findEmployee);
 
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}/`)
             .then((response) => {
                 const data = response.data;
                 setUserData(data);
