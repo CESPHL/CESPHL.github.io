@@ -40,15 +40,82 @@ const ViewUser = () => {
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}`)
-        .then((response) => {
-            const data = response.data;
-            setUserData(data);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+            .then((response) => {
+                const data = response.data;
+                setUserData(data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }, [employee_id]);
     console.log(userData);
+
+    return (
+        <div className="dashboard">
+            <div className="dash-navbar">
+                <div className="dash-main">
+                    <img src={hourglass} alt="" />
+                    <span>
+                        <span
+                            style={{
+                                fontWeight: "bold",
+                                color: "#684CE2",
+                                fontSize: "14px",
+                                paddingLeft: "0px",
+                            }}
+                        >
+                            Collabera Digital
+                        </span>
+                        <br />
+                        External Resource Timesheet
+                    </span>
+                </div>
+                <div className="dash-list">
+                    <p>NAVIGATION</p>
+                    <div className="dash-1">
+                        <li>
+                            <NavLink to="/admin/manage-accounts">
+                                <img src={accIcon} alt="dashboard icon" />
+                                <span className="inactive">Manage Accounts</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/admin/manage-users">
+                                <img src={users} alt="users icon" activeclassname="active" />
+                                <span>Manage Users</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/admin/manage-talents">
+                                <img src={talents} alt="clock icon" />
+                                <span className="inactive">Manage Talents</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/admin/profile">
+                                <img src={profile} alt="profile icon" />
+                                <span className="inactive">Profile</span>
+                            </NavLink>
+                        </li>
+                    </div>
+                </div>
+                <div className="logout-btn">
+                    <img src={logicon} alt="logout icon" />
+                    <NavLink to="/">
+                        <button>Log Out</button>
+                    </NavLink>
+                </div>
+            </div>
+            <div className="dashboard-content">
+                <div className="dash-text">
+                    <h4>View User</h4>
+                    <span>
+                        <CurrentDate />
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default ViewUser;

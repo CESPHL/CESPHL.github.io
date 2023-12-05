@@ -139,10 +139,10 @@ const ManageUsers = () => {
                                 <p>{user.contact_number}</p>
                                 <p>{user.user_level}</p>
                                 <p>
-                                    <NavLink to={`/manage-users/view-user/${user.employee_id}`}>
+                                    <NavLink to={`/admin/manage-users/view-user/${user.employee_id}`}>
                                         <img src={view} />
                                     </NavLink>
-                                    <NavLink to={`/manage-users/edit-user/${user.employee_id}`}>
+                                    <NavLink to={`/admin/manage-users/edit-user/${user.employee_id}`}>
                                         <img src={edit} />
                                     </NavLink>
                                 </p>
