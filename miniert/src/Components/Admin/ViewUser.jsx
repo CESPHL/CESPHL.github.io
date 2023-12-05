@@ -38,9 +38,16 @@ const ViewUser = () => {
     const findEmployee = window.location.href.split("/").pop();
     console.log(findEmployee);
 
-    // useEffect(() => {
-    //     axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/`);
-    // }, [employee_id]);
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}`)
+        .then((response) => {
+            const data = response.data;
+            setUserData(data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }, [employee_id]);
 };
 
 export default ViewUser;
