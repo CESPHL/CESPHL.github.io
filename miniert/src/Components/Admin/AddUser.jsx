@@ -55,8 +55,7 @@ const AddUser = () => {
         setShowModal(false);
     }
 
-    const handleSave = async (e) => {
-        e.preventDefault();
+    const handleSave = () => {
         const empId = document.getElementById("empId").value;
         const firstName = document.getElementById("firstName").value;
         const lastName = document.getElementById("lastName").value;
@@ -71,16 +70,37 @@ const AddUser = () => {
         const backendUrl = "https://cesphl-github-io-backend.vercel.app/api/admin";
         console.log("Fetching from", backendUrl);
 
-        try {
-            const response = await axios.post(backendUrl, employeeInfo, {
-                withCredentials: true, // Include credentials in the request (cookies, if any)
+        axios.post(backendUrl, employeeInfo)
+            .then((res) => {
+                if (res.status === 200) {
+                    console.log(res);
+                }
+                else if (res.status === 500) {
+                    toast.error("Internal server error. Please try again later.", {
+                        position: toast.POSITION.TOP_CENTER,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
             })
-            console.log(response);
-            console.log("Success");
-        }
-        catch (error) {
-            console.error(error);
-        }
+            .catch((err) => {
+                console.error(err);
+                toast.error("Internal server error. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
     };
 
 
