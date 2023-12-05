@@ -65,7 +65,16 @@ const AddUser = () => {
         const password = document.getElementById("password").value;
         const userLevel = document.getElementById("userLevel").value;
 
-        const employeeInfo = { empId, firstName, lastName, email, contactNo, username, password, userLevel };
+        const employeeInfo = { 
+            employee_id: empId,
+            first_name: firstName, 
+            last_name: lastName, 
+            email: email, 
+            contact_number: contactNo, 
+            username: username, 
+            password: password, 
+            user_level: userLevel 
+        };
 
         const backendUrl = "https://cesphl-github-io-backend.vercel.app/api/admin";
         console.log("Fetching from", backendUrl);
