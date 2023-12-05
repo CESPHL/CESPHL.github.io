@@ -48,6 +48,7 @@ const ViewUser = () => {
             console.error(err);
         });
     }, [employee_id]);
+    console.log(userData);
 };
 
 export default ViewUser;
