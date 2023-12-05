@@ -19,14 +19,18 @@ const getOneUser = async (req, res) => {
     try {
         const talent = await Talent.findOne({ employee_id });
         const manager = await Manager.findOne({ employee_id });
+        const admin = await Admin.findOne({ employee_id });
 
-        if (!talent) {
-            return res.status(404).json({ error: 'Talent not found.' });
+        if (talent) {
+            return res.status(200).json(talent);
         }
-        if (!manager) {
-            return res.status(404).json({ error: 'Manager not found.' });
+        if (manager) {
+            return res.status(200).json(manager);
         }
-        res.status(200).json(user);
+        if (admin) {
+            return res.status(200).json(admin);
+        }
+        res.status(404).json({ message: "No such user." });
     }
     catch (error) {
         res.status(500).json({ message: "Internal server error." });

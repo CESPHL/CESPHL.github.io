@@ -43,6 +43,7 @@ const ViewUser = () => {
             .then((response) => {
                 const data = response.data;
                 setUserData(data);
+                console.log(userData);
             })
             .catch((err) => {
                 console.error(err);
