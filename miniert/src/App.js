@@ -45,7 +45,7 @@ function App() {
         <Route path="/admin/manage-accounts" element={<AdminManageAccounts />} />
         <Route path="/admin/manage-users" element={<AdminManageUsers />} />
         <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />
-        <Route path="/admin/manage-users/view-user" element={<AdminViewUser />} />
+        <Route path="/admin/manage-users/view-user/:employee_id" element={<AdminViewUser />} />
         <Route path="/admin/manage-talents" element={<AdminManageTalents />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
       </Routes>
