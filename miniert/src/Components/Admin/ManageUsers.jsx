@@ -139,8 +139,10 @@ const ManageUsers = () => {
                                 <p>{user.contact_number}</p>
                                 <p>{user.user_level}</p>
                                 <p>
-                                    <img src={view} />
-                                    <NavLink to="/manage-accounts/edit-account">
+                                    <NavLink to={`/manage-users/view-user/${user.employee_id}`}>
+                                        <img src={view} />
+                                    </NavLink>
+                                    <NavLink to={`/manage-users/edit-user/${user.employee_id}`}>
                                         <img src={edit} />
                                     </NavLink>
                                 </p>
