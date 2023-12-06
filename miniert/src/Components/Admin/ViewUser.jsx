@@ -40,7 +40,6 @@ const ViewUser = () => {
             .then((response) => {
                 const data = response.data;
                 setUserData(data);
-                console.log(userData);
                 document.getElementById("empId").value = data.employee_id;
                 document.getElementById("employeeName").value = `${data.first_name} ${data.last_name}`;
                 document.getElementById("email").value = data.email;
@@ -70,7 +69,11 @@ const ViewUser = () => {
                     theme: "light",
                 });
             });
-    }, [employee_id]);
+    }, [findEmployee]);
+
+    useEffect(() => {
+        console.log(userData);
+    }, [userData]);
 
     return (
         <div className="dashboard">
