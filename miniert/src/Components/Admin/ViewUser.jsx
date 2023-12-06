@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
@@ -37,7 +37,7 @@ const ViewUser = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [userData, setUserData] = useState();
     const findEmployee = window.location.href.split("/").pop();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}/`)
@@ -82,11 +82,11 @@ const ViewUser = () => {
     }, [findEmployee]);
 
     const redirectToEditUser = () => {
-        history.push(`/api/admin/manage-users/edit-user/${findEmployee}`);
+        navigate.push(`/api/admin/manage-users/edit-user/${findEmployee}`);
     };
 
     const redirectToViewTalent = () => {
-        history.push(`/api/admin/manage-users/view-user/${findEmployee}/view-talent`);
+        navigate.push(`/api/admin/manage-users/view-user/${findEmployee}/view-talent`);
     };
 
     return (
