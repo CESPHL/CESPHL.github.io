@@ -30,7 +30,7 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 };
 
-const ViewUser = () => {
+const EditUser = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [userData, setUserData] = useState();
     const findEmployee = window.location.href.split("/").pop();
@@ -140,42 +140,29 @@ const ViewUser = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>View User</h4>
+                    <h4>Edit User</h4>
                     <span>
                         <CurrentDate />
                     </span>
                 </div>
                 <div className="user-container">
-                    <div className="user-header">
-                        <h3>User Details</h3>
-                        <div>
-                            {userData.user_level === "Manager" && (
-                                <NavLink to={`admin/manage-users/view-user/${userData.employee_id}/view-talents`}>
-                                    <button className="btn btn-cancel">View Talents</button>
-                                </NavLink>
-                            )}
-                            <NavLink to={`admin/manage-users/edit-user/${userData.employee_id}`}>
-                                <button className="btn btn-submit">Edit</button>
-                            </NavLink>
-                        </div>
-                    </div>
                     <div className="user-info">
                         <label for="empId">Employee ID</label>
-                        <input type="text" name="empId" id="empId" disabled />
+                        <input type="text" name="empId" id="empId" disabled required />
                         <label for="employeeName">Employee Name</label>
-                        <input type="text" name="employeeName" id="employeeName" disabled />
+                        <input type="text" name="employeeName" id="employeeName" disabled required />
                         <label for="email">Email Address</label>
-                        <input type="text" name="email" id="email" disabled />
+                        <input type="text" name="email" id="email" disabled required />
                         <label for="contactNo">Contact Number</label>
-                        <input type="text" name="contactNo" id="contactNo" disabled />
+                        <input type="text" name="contactNo" id="contactNo" disabled required />
                         <label for="assignedClient">Client Assigned</label>
-                        <input type="text" name="assignedClient" id="assignedClient" disabled />
+                        <input type="text" name="assignedClient" id="assignedClient" disabled required />
                         <label for="assignedProject">Project Assigned</label>
-                        <input type="text" name="assignedProject" id="assignedProject" disabled />
+                        <input type="text" name="assignedProject" id="assignedProject" disabled required />
                         <label for="reportingManager">Reporting Manager</label>
-                        <input type="text" name="reportingManager" id="reportingManager" disabled />
+                        <input type="text" name="reportingManager" id="reportingManager" disabled required />
                         <label for="userLevel">User Level</label>
-                        <input type="text" name="userLevel" id="userLevel" disabled />
+                        <input type="text" name="userLevel" id="userLevel" disabled required />
                     </div>
                 </div>
             </div>
@@ -183,4 +170,4 @@ const ViewUser = () => {
     );
 };
 
-export default ViewUser;
+export default EditUser;

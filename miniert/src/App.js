@@ -21,6 +21,7 @@ import AdminManageAccounts from "./Components/Admin/ManageAccounts.jsx";
 import AdminManageUsers from "./Components/Admin/ManageUsers.jsx";
 import AdminAddUsers from "./Components/Admin/AddUser.jsx";
 import AdminViewUser from "./Components/Admin/ViewUser.jsx";
+import AdminEditUser from"./Components/Admin/EditUser.jsx";
 import AdminManageTalents from "./Components/Admin/ManageTalents";
 import AdminProfile from "./Components/Admin/Profile";
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/admin/manage-users" element={<AdminManageUsers />} />
         <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />
         <Route path="/admin/manage-users/view-user/:employee_id" element={<AdminViewUser />} />
+        <Route path="/admin/manage-users/edit-user/:employee_id" element={<AdminEditUser />} />
         <Route path="/admin/manage-talents" element={<AdminManageTalents />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
       </Routes>
