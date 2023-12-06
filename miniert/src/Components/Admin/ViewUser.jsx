@@ -8,7 +8,10 @@ import profile from "../Assets/inactive-profile.svg";
 import users from "../Assets/users-inactive.svg";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+
+// CSS
 import "react-toastify/dist/ReactToastify.css";
+import "./viewUser.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
