@@ -165,9 +165,11 @@ const ViewUser = () => {
                                     <button className="btn btn-cancel">View Talents</button>
                                 </NavLink>
                             : null }
-                            <NavLink to={`admin/manage-users/edit-user/${userData.employee_id}`}>
-                                <button className="btn btn-submit">Edit</button>
-                            </NavLink>
+                            { userData ? 
+                                <NavLink to={`admin/manage-users/edit-user/${userData.employee_id}`}>
+                                    <button className="btn btn-submit">Edit</button>
+                                </NavLink> 
+                            : <p>Loading...</p>}
                         </div>
                     </div>
                     <div className="user-info">
