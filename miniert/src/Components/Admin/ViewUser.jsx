@@ -45,9 +45,15 @@ const ViewUser = () => {
                 document.getElementById("email").value = data.email;
                 document.getElementById("contactNo").value = data.contact_number;
                 if (data.user_level !== "Admin") {
-                    document.getElementById("assignedClient");
-                    document.getElementById("assignedProject");
-                    document.getElementById("reportingManager");
+                    const clientDetails = data.clients || [];
+                    const clientNames = clientDetails.map(client => client.client_name);
+                    const clientProjectsStrings = clientDetails.map(client => {
+                        const projectNames = client.projects.map(project => project.project_name);
+                        return `${client.client_name}: ${projectNames.join(', ')}`;
+                    });
+                    document.getElementById("assignedClient").value = clientNames.join(', ');
+                    document.getElementById("assignedProject").value = clientProjectsStrings.join(', ');
+                    document.getElementById("reportingManager").value = data.manager_name;
                 }
                 else {
                     document.getElementById("assignedClient").value = "N/A";
