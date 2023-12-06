@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
@@ -37,7 +37,6 @@ const ViewUser = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [userData, setUserData] = useState();
     const findEmployee = window.location.href.split("/").pop();
-    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}/`)
@@ -80,14 +79,6 @@ const ViewUser = () => {
                 });
             });
     }, [findEmployee]);
-
-    const redirectToEditUser = () => {
-        navigate.push(`/api/admin/manage-users/edit-user/${findEmployee}`);
-    };
-
-    const redirectToViewTalent = () => {
-        navigate.push(`/api/admin/manage-users/view-user/${findEmployee}/view-talent`);
-    };
 
     return (
         <div className="dashboard">
@@ -168,12 +159,16 @@ const ViewUser = () => {
                     <div className="user-header">
                         <h3>User Details</h3>
                         <div>
-                            { userData?.user_level === "Manager" ? 
-                                <button className="btn btn-cancel" onClick={redirectToEditUser}>View Talents</button>
-                            : null }
-                            { userData ? 
-                                <button className="btn btn-submit" onClick={redirectToViewTalent}>Edit</button>
-                            : <p>Loading...</p>}
+                            {userData?.user_level === "Manager" ?
+                                <Link to={`/admin/manage-users/view-user/${userData.employee_id}/view-talent`}>
+                                    <button className="btn btn-cancel">View Talent</button>
+                                </Link>
+                                : null}
+                            {userData ?
+                                <Link to={`/admin/manage-users/edit-user/${userData.employee_id}`}>
+                                    <button className="btn btn-submit">Edit</button>
+                                </Link>
+                                : <p>Loading...</p>}
                         </div>
                     </div>
                     <div className="user-info">
