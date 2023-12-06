@@ -148,21 +148,21 @@ const EditUser = () => {
                 <div className="user-container">
                     <div className="user-info">
                         <label for="empId">Employee ID</label>
-                        <input type="text" name="empId" id="empId" disabled required />
+                        <input type="text" name="empId" id="empId" required />
                         <label for="employeeName">Employee Name</label>
-                        <input type="text" name="employeeName" id="employeeName" disabled required />
+                        <input type="text" name="employeeName" id="employeeName" required />
                         <label for="email">Email Address</label>
-                        <input type="text" name="email" id="email" disabled required />
+                        <input type="text" name="email" id="email" required />
                         <label for="contactNo">Contact Number</label>
-                        <input type="text" name="contactNo" id="contactNo" disabled required />
+                        <input type="text" name="contactNo" id="contactNo" required />
                         <label for="assignedClient">Client Assigned</label>
-                        <input type="text" name="assignedClient" id="assignedClient" disabled required />
+                        <input type="text" name="assignedClient" id="assignedClient" required />
                         <label for="assignedProject">Project Assigned</label>
-                        <input type="text" name="assignedProject" id="assignedProject" disabled required />
+                        <input type="text" name="assignedProject" id="assignedProject" required />
                         <label for="reportingManager">Reporting Manager</label>
-                        <input type="text" name="reportingManager" id="reportingManager" disabled required />
+                        <input type="text" name="reportingManager" id="reportingManager" required />
                         <label for="userLevel">User Level</label>
-                        <input type="text" name="userLevel" id="userLevel" disabled required />
+                        <input type="text" name="userLevel" id="userLevel" required />
                     </div>
                 </div>
             </div>

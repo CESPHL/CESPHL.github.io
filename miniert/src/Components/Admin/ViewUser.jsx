@@ -39,6 +39,7 @@ const ViewUser = () => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}/`)
             .then((response) => {
                 const data = response.data;
+                setUserData(data);
                 document.getElementById("empId").value = data.employee_id;
                 document.getElementById("employeeName").value = `${data.first_name} ${data.last_name}`;
                 document.getElementById("email").value = data.email;
