@@ -45,7 +45,7 @@
 .input label, .forgot-pass{
     font-size: 14px;
 }
-label::after {
+required-label::after {
     content: " *";
     color: red;
 }

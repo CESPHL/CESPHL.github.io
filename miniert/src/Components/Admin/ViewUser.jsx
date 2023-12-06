@@ -160,14 +160,14 @@ const ViewUser = () => {
                     <div className="user-header">
                         <h3>User Details</h3>
                         <div>
-                            {/* {userData.user_level === "Manager" && (
+                            { userData?.user_level === "Manager" ? 
                                 <NavLink to={`admin/manage-users/view-user/${userData.employee_id}/view-talents`}>
                                     <button className="btn btn-cancel">View Talents</button>
                                 </NavLink>
-                            )} */}
-                            {/* <NavLink to={`admin/manage-users/edit-user/${userData.employee_id}`}>
+                            : null }
+                            <NavLink to={`admin/manage-users/edit-user/${userData.employee_id}`}>
                                 <button className="btn btn-submit">Edit</button>
-                            </NavLink> */}
+                            </NavLink>
                         </div>
                     </div>
                     <div className="user-info">

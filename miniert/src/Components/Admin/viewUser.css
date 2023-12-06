@@ -1,0 +1,21 @@
+.user-container {
+    margin: 3rem;
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info input {
+    margin: 0.2rem 0 1rem 0;
+    padding: 0.5rem;
+    font-size: 14px;
+    border-radius: 7px;
+    border: 1px solid #D0D5DD;
+}
