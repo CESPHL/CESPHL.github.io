@@ -156,9 +156,9 @@ const ViewUser = () => {
                                     <button className="btn btn-cancel">View Talents</button>
                                 </NavLink>
                             )} */}
-                            <NavLink to={`admin/manage-users/edit-user/${userData.employee_id}`}>
+                            {/* <NavLink to={`admin/manage-users/edit-user/${userData.employee_id}`}>
                                 <button className="btn btn-submit">Edit</button>
-                            </NavLink>
+                            </NavLink> */}
                         </div>
                     </div>
                     <div className="user-info">
