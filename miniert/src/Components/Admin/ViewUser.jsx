@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
@@ -37,6 +37,7 @@ const ViewUser = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [userData, setUserData] = useState();
     const findEmployee = window.location.href.split("/").pop();
+    const history = useHistory();
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}/`)
@@ -80,9 +81,13 @@ const ViewUser = () => {
             });
     }, [findEmployee]);
 
-    useEffect(() => {
-        console.log(userData);
-    }, [userData]);
+    const redirectToEditUser = () => {
+        history.push(`/api/admin/manage-users/edit-user/${findEmployee}`);
+    };
+
+    const redirectToViewTalent = () => {
+        history.push(`/api/admin/manage-users/view-user/${findEmployee}/view-talent`);
+    };
 
     return (
         <div className="dashboard">
@@ -164,14 +169,10 @@ const ViewUser = () => {
                         <h3>User Details</h3>
                         <div>
                             { userData?.user_level === "Manager" ? 
-                                <NavLink to={`admin/manage-users/view-user/${userData.employee_id}/view-talents`}>
-                                    <button className="btn btn-cancel">View Talents</button>
-                                </NavLink>
+                                <button className="btn btn-cancel" onClick={redirectToEditUser}>View Talents</button>
                             : null }
                             { userData ? 
-                                <NavLink to={`admin/manage-users/edit-user/${userData.employee_id}`}>
-                                    <button className="btn btn-submit">Edit</button>
-                                </NavLink> 
+                                <button className="btn btn-submit" onClick={redirectToViewTalent}>Edit</button>
                             : <p>Loading...</p>}
                         </div>
                     </div>
