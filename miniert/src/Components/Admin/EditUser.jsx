@@ -196,9 +196,11 @@ const EditUser = () => {
                 <div className="user-container">
                     <div className="user-info">
                         <label className="required-label" for="empId">Employee ID</label>
-                        <input type="text" name="empId" id="empId" required />
-                        <label className="required-label" for="employeeName">Employee Name</label>
-                        <input type="text" name="employeeName" id="employeeName" required />
+                        <input type="text" name="empId" id="empId" required disabled/>
+                        <label className="required-label" for="firstName">First Name</label>
+                        <input type="text" name="employeeName" id="firstName" required />
+                        <label className="required-label" for="lastName">Last Name</label>
+                        <input type="text" name="employeeName" id="lastName" required />
                         <label className="required-label" for="email">Email Address</label>
                         <input type="text" name="email" id="email" required />
                         <label className="required-label" for="contactNo">Contact Number</label>
@@ -210,7 +212,7 @@ const EditUser = () => {
                         <label className="required-label" for="reportingManager">Reporting Manager</label>
                         <input type="text" name="reportingManager" id="reportingManager" required />
                         <label className="required-label" for="userLevel">User Level</label>
-                        <input type="text" name="userLevel" id="userLevel" required />
+                        <input type="text" name="userLevel" id="userLevel" required disabled/>
                     </div>
                     <div>
                         <NavLink to="/admin/manage-users">
@@ -223,7 +225,7 @@ const EditUser = () => {
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                 <div>
                     <p>Edit User</p>
-                    <input type="button" value="&#10006;" />
+                    <input type="button" className="header-close-btn" value="&#10006;" />
                 </div>
                 <p className="modal-description">Clicking yes will update all the changes made to this user. Do you wish to continue?</p>
                 <div>
