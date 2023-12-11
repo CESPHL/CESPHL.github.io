@@ -99,8 +99,6 @@ const EditUser = () => {
             user_level: userLevel
         };
 
-        console.log(employeeInfo);
-
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}`, employeeInfo)
             .then((response) => {
                 console.log(response);
@@ -221,14 +219,14 @@ const EditUser = () => {
                         <NavLink to="/admin/manage-users">
                             <input type="button" className="btn btn-cancel" value="Cancel" />
                         </NavLink>
-                        <input type="button" className="btn btn-submit" value="Add" onClick={handleOpenModal} />
+                        <input type="button" className="btn btn-submit" value="Save" onClick={handleOpenModal} />
                     </div>
                 </div>
             </div>
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                 <div>
                     <p>Edit User</p>
-                    <input type="button" className="header-close-btn" value="&#10006;" />
+                    <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal}/>
                 </div>
                 <p className="modal-description">Clicking yes will update all the changes made to this user. Do you wish to continue?</p>
                 <div>

@@ -38,9 +38,10 @@
 }
 
 .header-close-btn {
-    background-color: 0;
+    background: 0;
     border: 0;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .modal-description {
