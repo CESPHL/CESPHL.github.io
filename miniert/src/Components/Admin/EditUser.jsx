@@ -9,7 +9,6 @@ import users from "../Assets/users-inactive.svg";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "../Modals/Modal.jsx";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -36,6 +35,7 @@ const EditUser = () => {
     const [showModal, setShowModal] = useState(false);
     const findEmployee = window.location.href.split("/").pop();
 
+    // Get user data from database using url
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}/`)
             .then((response) => {
@@ -96,6 +96,25 @@ const EditUser = () => {
             manager_name: reportingManager,
             user_level: userLevel
         };
+
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}`, employeeInfo)
+            .then((response) => {
+                console.log(response);
+                handleCloseModal();
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Internal server error. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
     }
 
     return (

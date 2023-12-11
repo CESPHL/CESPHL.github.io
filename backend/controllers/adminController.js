@@ -64,11 +64,18 @@ const addUser = async (req, res) => {
 
 // Edit user
 const editUser = async (req, res) => {
+    const findEmployee = JSON.stringify(req.params);
+    // Use a regular expression to match the employee_id value
+    const match = findEmployee.match(/"employee_id":"(\d+)"/);
+
+    // Extract the employee_id value from the match
+    const employeeToFind = match ? match[1] : null;
+
     const { employee_id, first_name, last_name, email, contact_number, manager_name, user_level } = req.body;
 
     try {
         if (user_level == "Talent") {
-            const talent = await Talent.findOneAndUpdate({ employee_id: employee_id }, {
+            const talent = await Talent.findOneAndUpdate({ employee_id: employeeToFind }, {
                 ...req.body
             });
             if (!talent) {
@@ -77,7 +84,7 @@ const editUser = async (req, res) => {
             res.status(200).json(talent);
         }
         if (user_level == "Manager") {
-            const manager = await Manager.findOneAndUpdate({ employee_id: employee_id }, {
+            const manager = await Manager.findOneAndUpdate({ employee_id: employeeToFind }, {
                 ...req.body
             });
             if (!manager) {
@@ -86,7 +93,7 @@ const editUser = async (req, res) => {
             res.status(200).json(manager);
         }
         if (user_level == "Admin") {
-            const admin = await Admin.findOneAndUpdate({ employee_id: employee_id }, {
+            const admin = await Admin.findOneAndUpdate({ employee_id: employeeToFind }, {
                 ...req.body
             });
             if (!admin) {
