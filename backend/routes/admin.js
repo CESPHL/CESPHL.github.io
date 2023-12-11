@@ -18,6 +18,6 @@ router.get('/:employee_id', getOneUser);
 router.post('/', addUser);
 
 // Edit user
-router.patch('/', editUser);
+router.patch('/:employee_id', editUser);
 
 module.exports = router;
