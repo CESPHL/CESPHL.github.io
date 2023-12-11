@@ -47,13 +47,9 @@ const EditUser = () => {
                 document.getElementById("email").value = data.email;
                 document.getElementById("contactNo").value = data.contact_number;
                 if (data.user_level !== "Admin") {
-                    document.getElementById("assignedClient");
-                    document.getElementById("assignedProject");
-                    document.getElementById("reportingManager");
+                    document.getElementById("reportingManager").value = data.manager_name;
                 }
                 else {
-                    document.getElementById("assignedClient").value = "N/A";
-                    document.getElementById("assignedProject").value = "N/A";
                     document.getElementById("reportingManager").value = "N/A";
                 }
                 document.getElementById("userLevel").value = data.user_level;
@@ -101,7 +97,16 @@ const EditUser = () => {
 
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}`, employeeInfo)
             .then((response) => {
-                console.log(response);
+                toast.success("User edited successfully.", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 handleCloseModal();
             })
             .catch((err) => {
@@ -206,10 +211,6 @@ const EditUser = () => {
                         <input type="text" name="email" id="email" required />
                         <label className="required-label" for="contactNo">Contact Number</label>
                         <input type="text" name="contactNo" id="contactNo" required />
-                        <label className="required-label" for="assignedClient">Client Assigned</label>
-                        <input type="text" name="assignedClient" id="assignedClient" required />
-                        <label className="required-label" for="assignedProject">Project Assigned</label>
-                        <input type="text" name="assignedProject" id="assignedProject" required />
                         <label className="required-label" for="reportingManager">Reporting Manager</label>
                         <input type="text" name="reportingManager" id="reportingManager" required />
                         <label className="required-label" for="userLevel">User Level</label>
