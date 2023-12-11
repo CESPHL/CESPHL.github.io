@@ -139,7 +139,7 @@ const ManageUsers = () => {
                                 <p>{user.email}</p>
                                 <p>{user.contact_number}</p>
                                 <p>{user.user_level}</p>
-                                <p className="table-buttons">
+                                <p>
                                     <NavLink to={`/admin/manage-users/view-user/${user.employee_id}`}>
                                         <img src={view} />
                                     </NavLink>

@@ -12,7 +12,7 @@
 .table-header {
     background-color: #F9FAFB;
     border-bottom: 1px solid #D0D5DD;
-    padding: 1rem;
+    padding: 1rem 0;
 }
 
 .table-content {
@@ -37,9 +37,6 @@
 .table-content p {
     font-size: 16px;
     color: #656B75;
-}
-
-.table-buttons {
     display: flex;
     align-items: center;
 }
