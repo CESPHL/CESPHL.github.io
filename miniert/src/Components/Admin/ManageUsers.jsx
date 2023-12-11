@@ -9,6 +9,7 @@ import users from "../Assets/users-inactive.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
+import "./ManageUsers.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
