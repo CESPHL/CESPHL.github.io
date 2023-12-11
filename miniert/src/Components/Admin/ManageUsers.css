@@ -1,0 +1,28 @@
+.table-container {
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+}
+
+.table-header, .table-content {
+    display: grid;
+    grid-template-columns: 1fr, 2fr, 3fr, 1fr, 1fr, 1fr;
+}
+
+.table-header {
+    background-color: #F9FAFB;
+}
+
+.table-content {
+    border-bottom: 1px solid #D0D5DD;
+}
+
+.table-header h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #656B75;
+}
+
+.table-content p {
+    font-size: 16px;
+    color: #656B75;
+}
