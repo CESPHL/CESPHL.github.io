@@ -9,6 +9,7 @@ import users from "../Assets/users-inactive.svg";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "../Modals/Modal.jsx";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
