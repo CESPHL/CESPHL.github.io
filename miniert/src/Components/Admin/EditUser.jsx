@@ -42,7 +42,8 @@ const EditUser = () => {
             .then((response) => {
                 const data = response.data;
                 document.getElementById("empId").value = data.employee_id;
-                document.getElementById("employeeName").value = `${data.first_name} ${data.last_name}`;
+                document.getElementById("firstName").value = data.first_name;
+                document.getElementById("lastName").value = data.last_name;
                 document.getElementById("email").value = data.email;
                 document.getElementById("contactNo").value = data.contact_number;
                 if (data.user_level !== "Admin") {
@@ -97,6 +98,8 @@ const EditUser = () => {
             manager_name: reportingManager,
             user_level: userLevel
         };
+
+        console.log(employeeInfo);
 
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/admin/${findEmployee}`, employeeInfo)
             .then((response) => {
