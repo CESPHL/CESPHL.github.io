@@ -6,6 +6,7 @@
 .table-header, .table-content {
     display: grid;
     grid-template-columns: 1fr 2fr 3fr 1fr 1fr 1fr;
+    
 }
 
 .table-header {
@@ -14,6 +15,11 @@
 
 .table-content {
     border-bottom: 1px solid #D0D5DD;
+    background-color: #FFFFFF;
+}
+
+.table-header h1, .table-content p {
+    margin: 1rem 0 1rem 2rem;
 }
 
 .table-header h1 {
