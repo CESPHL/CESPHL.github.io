@@ -96,6 +96,22 @@ const Profile = () => {
                         <CurrentDate />
                     </span>
                 </div>
+                <div className="mainContent">
+                    <h3>User Details</h3>
+                    <NavLink to="/profile/changepass">
+                        <button className="change-pass-btn">Change Password</button>
+                    </NavLink>
+                    <form>
+                        <span>Employee ID</span><br /><input type="text" name="employeeID" id="employeeID" disabled="disabled" value="---" /><br />
+                        <span>Employee Name</span><br /><input type="text" name="employeeName" id="employeeName" disabled="disabled" value="---" /><br />
+                        <span>Email Address</span><br /><input type="text" name="emailAdd" id="emailAdd" disabled="disabled" value="---" /><br />
+                        <span>Contact Number</span><br /><input type="text" name="contactNum" id="contactNum" disabled="disabled" value="---" /><br />
+                        <span>Client Assigned</span><br /><input type="text" name="clientName" id="clientName" disabled="disabled" value="---" /><br />
+                        <span>Project Assigned</span><br /><input type="text" name="projectName" id="projectName" disabled="disabled" value="---" /><br />
+                        <span>Reporting Manager</span><br /><input type="text" name="managerName" id="managerName" disabled="disabled" value="---" /><br />
+                        <span>User Level</span><br /><input type="text" name="userLevel" id="userLevel" disabled="disabled" value="---" /><br />
+                    </form>
+                </div>
             </div>
         </div>
     );

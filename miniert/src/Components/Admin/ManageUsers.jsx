@@ -122,8 +122,8 @@ const ManageUsers = () => {
                             </NavLink>
                         </div>
                     </div>
-                    <div className="customTableContainer">
-                        <div className="customTableHeader">
+                    <div className="table-container">
+                        <div className="table-header">
                             <h1>ID</h1>
                             <h1>Name</h1>
                             <h1>Email</h1>
@@ -132,7 +132,7 @@ const ManageUsers = () => {
                             <h1>Actions</h1>
                         </div>
                         {userData ? userData.map((user) => (
-                            <div className="customTableContent" key={user.employee_id}>
+                            <div className="table-content" key={user.employee_id}>
                                 <p>{user.employee_id}</p>
                                 <p>{`${user.first_name} ${user.last_name}`}</p>
                                 <p>{user.email}</p>

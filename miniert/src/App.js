@@ -23,7 +23,7 @@ import AdminAddUsers from "./Components/Admin/AddUser.jsx";
 import AdminViewUser from "./Components/Admin/ViewUser.jsx";
 import AdminEditUser from"./Components/Admin/EditUser.jsx";
 import AdminManageTalents from "./Components/Admin/ManageTalents";
-import AdminProfile from "./Components/Profile/Profile.jsx";
+import AdminProfile from "./Components/Admin/Profile.jsx";
 
 function App() {
   return (
