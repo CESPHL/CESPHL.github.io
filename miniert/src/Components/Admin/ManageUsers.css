@@ -11,6 +11,7 @@
 
 .table-header {
     background-color: #F9FAFB;
+    border-bottom: 1px solid #D0D5DD;
 }
 
 .table-content {
@@ -18,17 +19,20 @@
     background-color: #FFFFFF;
 }
 
-.table-header h1, .table-content p {
-    margin: 1rem 0 1rem 2rem;
+.table-content:last-of-type {
+    border-bottom: 0;
 }
+
 
 .table-header h1 {
     font-size: 16px;
     font-weight: 600;
     color: #656B75;
+    margin: 1rem 0 1rem 1.5rem;
 }
 
 .table-content p {
+    margin: 0.5rem 0 0.5rem 1.5rem;
     font-size: 16px;
     color: #656B75;
 }
