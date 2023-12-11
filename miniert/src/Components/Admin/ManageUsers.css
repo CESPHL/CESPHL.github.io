@@ -12,6 +12,7 @@
 .table-header {
     background-color: #F9FAFB;
     border-bottom: 1px solid #D0D5DD;
+    padding: 1rem;
 }
 
 .table-content {
@@ -29,7 +30,7 @@
     color: #656B75;
 }
 
-.table-header h1, .table-header p {
+.table-header h1, .table-content p {
     margin: 0 0 0 1.5rem;
 }
 
