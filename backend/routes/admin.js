@@ -2,7 +2,8 @@ const express = require('express');
 const {
     getUsers,
     getOneUser,
-    addUser
+    addUser,
+    editUser
 } = require('../controllers/adminController'); 
 
 const router = express.Router();
@@ -15,5 +16,8 @@ router.get('/:employee_id', getOneUser);
 
 // Add user
 router.post('/', addUser);
+
+// Edit user
+router.patch('/', editUser);
 
 module.exports = router;

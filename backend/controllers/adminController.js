@@ -62,8 +62,48 @@ const addUser = async (req, res) => {
     }
 }
 
+// Edit user
+const editUser = async (req, res) => {
+    const { employee_id, first_name, last_name, email, contact_number, manager_name, user_level } = req.body;
+
+    try {
+        if (user_level == "Talent") {
+            const talent = await Talent.findOneAndUpdate({ employee_id: employee_id }, {
+                ...req.body
+            });
+            if (!talent) {
+                return res.status(404).json({ error: "Talent not found." });
+            }
+            res.status(200).json(talent);
+        }
+        if (user_level == "Manager") {
+            const manager = await Manager.findOneAndUpdate({ employee_id: employee_id }, {
+                ...req.body
+            });
+            if (!manager) {
+                return res.status(404).json({ error: "Manager not found." });
+            }
+            res.status(200).json(manager);
+        }
+        if (user_level == "Admin") {
+            const admin = await Admin.findOneAndUpdate({ employee_id: employee_id }, {
+                ...req.body
+            });
+            if (!admin) {
+                return res.status(404).json({ error: "Admin not found." });
+            }
+            res.status(200).json(admin);
+        }
+    }
+    catch (error) {
+        console.error("Error:", error);
+        return res.status(500).json({ message: "Internal server error.", error: error.message });
+    }
+}
+
 module.exports = {
     getUsers,
     getOneUser,
-    addUser
+    addUser,
+    editUser
 }

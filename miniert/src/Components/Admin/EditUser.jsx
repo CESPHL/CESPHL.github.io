@@ -32,7 +32,7 @@ const CurrentDate = () => {
 
 const EditUser = () => {
     const employee_id = localStorage.getItem("employee_id");
-    const [userData, setUserData] = useState();
+    const [showModal, setShowModal] = useState(false);
     const findEmployee = window.location.href.split("/").pop();
 
     useEffect(() => {
@@ -69,6 +69,33 @@ const EditUser = () => {
                 });
             });
     }, [employee_id]);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    }
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
+
+    const handleSave = () => {
+        const empId = document.getElementById("empId").value;
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const contactNo = document.getElementById("contactNo").value;
+        const reportingManager = document.getElementById("reportingManager").value
+        const userLevel = document.getElementById("userLevel").value;
+        const employeeInfo = {
+            employee_id: empId,
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            contact_number: contactNo,
+            manager_name: reportingManager,
+            user_level: userLevel
+        };
+    }
 
     return (
         <div className="dashboard">
@@ -164,8 +191,25 @@ const EditUser = () => {
                         <label className="required-label" for="userLevel">User Level</label>
                         <input type="text" name="userLevel" id="userLevel" required />
                     </div>
+                    <div>
+                        <NavLink to="/admin/manage-users">
+                            <input type="button" className="btn btn-cancel" value="Cancel" />
+                        </NavLink>
+                        <input type="button" className="btn btn-submit" value="Add" onClick={handleOpenModal} />
+                    </div>
                 </div>
             </div>
+            <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
+                <div>
+                    <p>Edit User</p>
+                    <input type="button" value="&#10006;" />
+                </div>
+                <p className="modal-description">Clicking yes will update all the changes made to this user. Do you wish to continue?</p>
+                <div>
+                    <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
+                    <button className="btn btn-save" onClick={handleSave}>Yes, Save</button>
+                </div>
+            </Modal>
         </div>
     );
 };

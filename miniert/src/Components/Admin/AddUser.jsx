@@ -34,21 +34,9 @@ const CurrentDate = () => {
 
 const AddUser = () => {
     const [showModal, setShowModal] = useState(false);
-    let empId, firstName, lastName, email, contactNo, username, password, userLevel;
 
     const handleOpenModal = () => {
-        empId = document.getElementById("empId").value;
-        firstName = document.getElementById("firstName").value;
-        lastName = document.getElementById("lastName").value;
-        email = document.getElementById("email").value;
-        contactNo = document.getElementById("contactNo").value;
-        username = document.getElementById("username").value;
-        password = document.getElementById("password").value;
-        userLevel = document.getElementById("userLevel").value;
-
-        if (empId != null && firstName != null && lastName != null && email != null && contactNo != null && username != null && password != null && userLevel != null) {
-            setShowModal(true);
-        }
+        setShowModal(true);
     }
 
     const handleCloseModal = () => {
