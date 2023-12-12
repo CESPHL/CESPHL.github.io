@@ -70,7 +70,17 @@ const AddUser = () => {
         axios.post(backendUrl, employeeInfo)
             .then((res) => {
                 if (res.status === 200) {
-                    console.log(res);
+                    toast.success("User added successfully.", {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
+                    handleCloseModal();
                 }
                 else if (res.status === 500) {
                     toast.error("Internal server error. Please try again later.", {
@@ -211,7 +221,7 @@ const AddUser = () => {
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                 <div>
                     <p>Add User</p>
-                    <input type="button" value="&#10006;" />
+                    <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                 </div>
                 <p className="modal-description">Clicking yes will add the account details and its project to the system.</p>
                 <div>
