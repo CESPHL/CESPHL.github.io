@@ -90,7 +90,7 @@ const AddUser = () => {
                     document.getElementById("contactNo").value = "";
                     document.getElementById("username").value = "";
                     document.getElementById("password").value = "";
-                    document.getElementById("reportingManager").value;
+                    document.getElementById("reportingManager").value = "";
                     document.getElementById("userLevel").value = "";
                 }
                 else if (res.status === 500) {
