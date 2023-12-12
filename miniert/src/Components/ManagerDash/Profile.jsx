@@ -6,8 +6,6 @@ import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
 import users from "../Assets/users-inactive.svg";
-import view from "../Assets/view-icn.svg";
-import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
 
 const CurrentDate = () => {

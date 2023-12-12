@@ -53,13 +53,13 @@ const ViewAccount = () => {
                         </li>
                         <li>
                             <NavLink to="/manage-talents">
-                                <img src={users} alt="users icon" />
+                                <img src={talents} alt="talents icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/reports">
-                                <img src={talents} alt="clock icon" />
+                                <img src={reports} alt="reports icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
                         </li>

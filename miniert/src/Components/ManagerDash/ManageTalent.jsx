@@ -56,13 +56,13 @@ const ManageAccount = () => {
                         </li>
                         <li>
                             <NavLink to="/manage-talents">
-                                <img src={users} alt="users icon" activeclassname="active" />
+                                <img src={talents} alt="talents icon" activeclassname="active" />
                                 <span>Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/reports">
-                                <img src={talents} alt="clock icon" />
+                                <img src={reports} alt="reports icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
                         </li>
