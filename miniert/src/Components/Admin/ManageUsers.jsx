@@ -52,12 +52,9 @@ const ManageUsers = () => {
             });
     }, [employee_id]);
 
-    console.log(userData);
-
     const handleOpenModal = (selectedEmp) => {
         setShowModal(true);
         setUserToBeDeleted(selectedEmp);
-        console.log(userToDelete);
     }
 
     const handleCloseModal = () => {
