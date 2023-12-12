@@ -39,7 +39,7 @@ const ManageUsers = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [userData, setUserData] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [userToDelete, setUserToBeDeleted] = useState();
+    const [userToDelete, setUserToBeDeleted] = useState({});
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/`)
@@ -54,7 +54,7 @@ const ManageUsers = () => {
 
     const handleOpenModal = (selectedEmp, userLevel) => {
         setShowModal(true);
-        setUserToBeDeleted(selectedEmp, userLevel);
+        setUserToBeDeleted({ employee_id: selectedEmp, user_level: userLevel });
     }
 
     const handleCloseModal = () => {
@@ -63,34 +63,34 @@ const ManageUsers = () => {
 
     const handleDelete = () => {
         console.log(userToDelete);
-        // axios.delete(`https://cesphl-github-io-backend.vercel.app/api/admin/${userToDelete}`)
-        //     .then((response) => {
-        //         console.log(response);
-        //         toast.success("User deleted successfully.", {
-        //             position: "top-center",
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //             });
-        //         handleCloseModal();
-        //     })
-        //     .catch((err) => {
-        //         console.error(err);
-        //         toast.error("Internal server error. Please try again later.", {
-        //             position: toast.POSITION.TOP_CENTER,
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //         });
-        //     });
+        axios.delete(`https://cesphl-github-io-backend.vercel.app/api/admin/${userToDelete}`)
+            .then((response) => {
+                console.log(response);
+                toast.success("User deleted successfully.", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                handleCloseModal();
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Internal server error. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
     }
 
     return (
