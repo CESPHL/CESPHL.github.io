@@ -53,15 +53,15 @@ const AddUser = () => {
         const password = document.getElementById("password").value;
         const userLevel = document.getElementById("userLevel").value;
 
-        const employeeInfo = { 
+        const employeeInfo = {
             employee_id: empId,
-            first_name: firstName, 
-            last_name: lastName, 
-            email: email, 
-            contact_number: contactNo, 
-            username: username, 
-            password: password, 
-            user_level: userLevel 
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            contact_number: contactNo,
+            username: username,
+            password: password,
+            user_level: userLevel
         };
 
         const backendUrl = "https://cesphl-github-io-backend.vercel.app/api/admin";
@@ -79,8 +79,16 @@ const AddUser = () => {
                         draggable: true,
                         progress: undefined,
                         theme: "light",
-                        });
+                    });
                     handleCloseModal();
+                    document.getElementById("empId").value = "";
+                    document.getElementById("firstName").value = "";
+                    document.getElementById("lastName").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("contactNo").value = "";
+                    document.getElementById("username").value = "";
+                    document.getElementById("password").value = "";
+                    document.getElementById("userLevel").value = "";
                 }
                 else if (res.status === 500) {
                     toast.error("Internal server error. Please try again later.", {
