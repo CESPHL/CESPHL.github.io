@@ -41,6 +41,7 @@ const getOneUser = async (req, res) => {
 const addUser = async (req, res) => {
     const { employee_id, first_name, last_name, email, contact_number, username, password, manager_name, user_level } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log(req.body);
 
     try {
         if (user_level == "Talent") {

@@ -66,6 +66,8 @@ const AddUser = () => {
             user_level: userLevel
         };
 
+        console.log(employeeInfo);
+
         const backendUrl = "https://cesphl-github-io-backend.vercel.app/api/admin";
         console.log("Fetching from", backendUrl);
 

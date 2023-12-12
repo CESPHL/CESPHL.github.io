@@ -33,7 +33,7 @@ const talentSchema = new Schema({
             "project_name": { type: String, required: true }
         }]
     }],
-    manager: {type: String, required: false },
+    manager_name: {type: String, required: false },
     attendance: [attendanceSchema]
 }, { timestamps: true });
 
