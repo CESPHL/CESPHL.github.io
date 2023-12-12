@@ -62,8 +62,7 @@ const ManageUsers = () => {
     }
 
     const handleDelete = () => {
-        console.log(userToDelete);
-        axios.delete(`https://cesphl-github-io-backend.vercel.app/api/admin/${userToDelete.employee_id}`)
+        axios.delete(`https://cesphl-github-io-backend.vercel.app/api/admin/${userToDelete.employee_id}`, { data: { userToDelete }})
             .then((response) => {
                 console.log(response);
                 toast.success("User deleted successfully.", {
