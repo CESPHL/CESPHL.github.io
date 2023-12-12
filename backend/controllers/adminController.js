@@ -116,21 +116,21 @@ const deleteUser = async (req, res) => {
 
     try {
         if (req.body.user_level === "Talent") {
-            const talent = await Talent.findOneAndDelete(req.body.employee_id);
+            const talent = await Talent.findOneAndDelete({ employee_id: req.body.employee_id });
             if (!talent) {
                 return res.status(404).json({ error: "Talent not found." });
             }
             res.status(200).json({ message: "User deleted successfully." });
         }
         if (req.body.user_level === "Manager") {
-            const manager = await Manager.findOneAndDelete(req.body.employee_id);
+            const manager = await Manager.findOneAndDelete({ employee_id: req.body.employee_id });
             if (!manager) {
                 return res.status(404).json({ error: "Manager not found." });
             }
             res.status(200).json({ message: "User deleted successfully." });
         }
         if (req.body.user_level === "Admin") {
-            const admin = await Admin.findOneAndDelete(req.body.employee_id);
+            const admin = await Admin.findOneAndDelete({ employee_id: req.body.employee_id });
             if (!admin) {
                 return res.status(404).json({ error: "Admin not found." });
             }
