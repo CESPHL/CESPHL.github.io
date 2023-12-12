@@ -3,7 +3,8 @@ const {
     getUsers,
     getOneUser,
     addUser,
-    editUser
+    editUser,
+    deleteUser
 } = require('../controllers/adminController'); 
 
 const router = express.Router();
@@ -19,5 +20,8 @@ router.post('/', addUser);
 
 // Edit user
 router.patch('/:employee_id', editUser);
+
+// Delete user
+router.delete('/:employee_id', deleteUser);
 
 module.exports = router;

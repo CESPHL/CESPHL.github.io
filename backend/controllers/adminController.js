@@ -108,9 +108,15 @@ const editUser = async (req, res) => {
     }
 }
 
+// Delete user
+const deleteUser = async (req, res) => {
+    console.log("delete user");
+}
+
 module.exports = {
     getUsers,
     getOneUser,
     addUser,
-    editUser
+    editUser,
+    deleteUser
 }

@@ -8,8 +8,12 @@ import profile from "../Assets/inactive-profile.svg";
 import users from "../Assets/users-inactive.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
+import deleteicon from "../Assets/trash-icon.svg";
 import axios from "axios";
 import "./ManageUsers.css";
+import Modal from "../Modals/Modal.jsx";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -34,6 +38,8 @@ const CurrentDate = () => {
 const ManageUsers = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [userData, setUserData] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [userToDelete, setUserToBeDeleted] = useState();
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/`)
@@ -47,6 +53,20 @@ const ManageUsers = () => {
     }, [employee_id]);
 
     console.log(userData);
+
+    const handleOpenModal = (selectedEmp) => {
+        setShowModal(true);
+        setUserToBeDeleted(selectedEmp);
+        console.log(userToDelete);
+    }
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
+
+    const handleDelete = () => {
+        console.log(userToDelete);
+    }
 
     return (
         <div className="dashboard">
@@ -146,12 +166,24 @@ const ManageUsers = () => {
                                     <NavLink to={`/admin/manage-users/edit-user/${user.employee_id}`}>
                                         <img src={edit} />
                                     </NavLink>
+                                    <button onClick={handleOpenModal(user.employee_id)}>${deleteicon}</button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
                     </div>
                 </div>
             </div>
+            <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
+                <div>
+                    <p>Delete User</p>
+                    <input type="button" value="&#10006;" />
+                </div>
+                <p className="modal-description">Clicking yes will remove the account from the system. Are you sure?</p>
+                <div>
+                    <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
+                    <button className="btn btn-save" onClick={handleDelete}>Yes, Delete</button>
+                </div>
+            </Modal>
         </div>
     );
 };
