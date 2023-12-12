@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "./managerDash.css";
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
-import reports from "../Assets/report-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
+import users from "../Assets/users-inactive.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
@@ -31,23 +30,8 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 };
 
-const ManageAccount = () => {
+const Profile = () => {
     const employee_id = localStorage.getItem("employee_id");
-    const [clientData, setClientData] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get(
-                `https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`
-            )
-            .then((response) => {
-                const data = response.data;
-                setClientData(data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }, [employee_id]);
 
     return (
         <div className="dashboard">
@@ -74,8 +58,8 @@ const ManageAccount = () => {
                     <div className="dash-1">
                         <li>
                             <NavLink to="/manage-accounts">
-                                <img src={accIcon} alt="dashboard icon" activeclassname="active" />
-                                <span>Manage Accounts</span>
+                                <img src={accIcon} alt="dashboard icon" />
+                                <span className="inactive">Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
@@ -92,8 +76,8 @@ const ManageAccount = () => {
                         </li>
                         <li>
                             <NavLink to="/manager/profile">
-                                <img src={profile} alt="profile icon" />
-                                <span className="inactive">Profile</span>
+                                <img src={profile} alt="profile icon" activeclassname="active" />
+                                <span>Profile</span>
                             </NavLink>
                         </li>
                     </div>
@@ -107,52 +91,30 @@ const ManageAccount = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>Manage Accounts</h4>
+                    <h4>Profile</h4>
                     <span>
                         <CurrentDate />
                     </span>
                 </div>
-                <div className="manage-content">
-                    <div className="search-bar">
-                        <form action=" ">
-                            <input type="text" placeholder="Search Client" />
-                        </form>
-                        <div className="buttons">
-                            <button className="upload-btn">Upload</button>
-                            <NavLink to="/manage-accounts/add-account">
-                                <button className="add-btn">Add</button>
-                            </NavLink>
-                        </div>
-                    </div>
-                    <div className="customTableContainer">
-                        <div className="customTableHeader">
-                            <h1>Client ID</h1>
-                            <h1>Client Name</h1>
-                            <h1>SDM/SDL</h1>
-                            <h1>SDM/SDL Email</h1>
-                            <h1>SDM/SDL Contact</h1>
-                            <h1>Actions</h1>
-                        </div>
-                        {clientData.clients ? clientData.clients.map((client) => (
-                            <div className="customTableContent" key={client.client_id}>
-                                <p>{client.client_id}</p>
-                                <p>{client.client_name}</p>
-                                <p>{client.sdm_sdl_name}</p>
-                                <p>{client.sdm_sdl_email}</p>
-                                <p>{client.sdm_sdl_contact}</p>
-                                <p>
-                                    <img src={view} />
-                                    <NavLink to="/manage-accounts/edit-account">
-                                        <img src={edit} />
-                                    </NavLink>
-                                </p>
-                            </div>
-                        )) : (<p>Loading...</p>)}
-                    </div>
+                <div className="mainContent">
+                    <h3>User Details</h3>
+                    <NavLink to="/profile/changepass">
+                        <button className="change-pass-btn">Change Password</button>
+                    </NavLink>
+                    <form>
+                        <span>Employee ID</span><br /><input type="text" name="employeeID" id="employeeID" disabled="disabled" value="---" /><br />
+                        <span>Employee Name</span><br /><input type="text" name="employeeName" id="employeeName" disabled="disabled" value="---" /><br />
+                        <span>Email Address</span><br /><input type="text" name="emailAdd" id="emailAdd" disabled="disabled" value="---" /><br />
+                        <span>Contact Number</span><br /><input type="text" name="contactNum" id="contactNum" disabled="disabled" value="---" /><br />
+                        <span>Client Assigned</span><br /><input type="text" name="clientName" id="clientName" disabled="disabled" value="---" /><br />
+                        <span>Project Assigned</span><br /><input type="text" name="projectName" id="projectName" disabled="disabled" value="---" /><br />
+                        <span>Reporting Manager</span><br /><input type="text" name="managerName" id="managerName" disabled="disabled" value="---" /><br />
+                        <span>User Level</span><br /><input type="text" name="userLevel" id="userLevel" disabled="disabled" value="---" /><br />
+                    </form>
                 </div>
             </div>
         </div>
     );
 };
 
-export default ManageAccount;
+export default Profile;

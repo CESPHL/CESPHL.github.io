@@ -57,36 +57,34 @@ const [showModal, setShowModal] = useState(false);
 					</span>
 				</div>
 				<div className="dash-list">
-					<p>NAVIGATION</p>
-					<div className="dash-1">
-						<li>
-							<NavLink to="/manage-accounts">
-								<img src={accIcon} alt="dashboard icon" activeclassname="active"/>
-								<span>Manage Accounts</span>
-							</NavLink>
-						</li>
-						<li>
-							<NavLink to="/manage-talents">
-								<img src={talents} alt="clock icon" />
-								<span className="inactive">Manage Talents</span>
-							</NavLink>
-						</li>
+                    <p>NAVIGATION</p>
+                    <div className="dash-1">
                         <li>
-							<NavLink to="/reports">
-                                {/*page is non-existent. placeholder only. change the correct directory. */}
-								<img src={reports} alt="clock icon" />
-								<span className="inactive">Reports</span>
-							</NavLink>
-						</li>
-						<li>
-							<NavLink to="/profile-managers">
-                                {/*page is non-existent. placeholder only. change the correct directory. */}
-								<img src={profile} alt="profile icon" />
-								<span  className="inactive">Profile</span>
-							</NavLink>
-						</li>
-					</div>
-				</div>
+                            <NavLink to="/manage-accounts">
+                                <img src={accIcon} alt="dashboard icon" activeclassname="active" />
+                                <span>Manage Accounts</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/manage-talents">
+                                <img src={users} alt="users icon" />
+                                <span className="inactive">Manage Talents</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/reports">
+                                <img src={talents} alt="clock icon" />
+                                <span className="inactive">Reports</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/manager/profile">
+                                <img src={profile} alt="profile icon" />
+                                <span className="inactive">Profile</span>
+                            </NavLink>
+                        </li>
+                    </div>
+                </div>
 				<div className="logout-btn">
 					<img src={logicon} alt="logout icon" />
 					<NavLink to="/">

@@ -67,20 +67,18 @@ const AddAccount = () => {
                         </li>
                         <li>
                             <NavLink to="/manage-talents">
-                                <img src={talents} alt="clock icon" />
+                                <img src={users} alt="users icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/reports">
-                                {/*page is non-existent. placeholder only. change the correct directory. */}
-                                <img src={reports} alt="clock icon" />
+                                <img src={talents} alt="clock icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/profile-managers">
-                                {/*page is non-existent. placeholder only. change the correct directory. */}
+                            <NavLink to="/manager/profile">
                                 <img src={profile} alt="profile icon" />
                                 <span className="inactive">Profile</span>
                             </NavLink>

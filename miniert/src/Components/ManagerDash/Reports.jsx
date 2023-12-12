@@ -74,8 +74,8 @@ const ManageAccount = () => {
                     <div className="dash-1">
                         <li>
                             <NavLink to="/manage-accounts">
-                                <img src={accIcon} alt="dashboard icon" activeclassname="active" />
-                                <span>Manage Accounts</span>
+                                <img src={accIcon} alt="dashboard icon" />
+                                <span className="inactive">Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
@@ -86,8 +86,8 @@ const ManageAccount = () => {
                         </li>
                         <li>
                             <NavLink to="/reports">
-                                <img src={talents} alt="clock icon" />
-                                <span className="inactive">Reports</span>
+                                <img src={talents} alt="clock icon" activeclassname="active" />
+                                <span>Reports</span>
                             </NavLink>
                         </li>
                         <li>
@@ -107,48 +107,10 @@ const ManageAccount = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>Manage Accounts</h4>
+                    <h4>Reports</h4>
                     <span>
                         <CurrentDate />
                     </span>
-                </div>
-                <div className="manage-content">
-                    <div className="search-bar">
-                        <form action=" ">
-                            <input type="text" placeholder="Search Client" />
-                        </form>
-                        <div className="buttons">
-                            <button className="upload-btn">Upload</button>
-                            <NavLink to="/manage-accounts/add-account">
-                                <button className="add-btn">Add</button>
-                            </NavLink>
-                        </div>
-                    </div>
-                    <div className="customTableContainer">
-                        <div className="customTableHeader">
-                            <h1>Client ID</h1>
-                            <h1>Client Name</h1>
-                            <h1>SDM/SDL</h1>
-                            <h1>SDM/SDL Email</h1>
-                            <h1>SDM/SDL Contact</h1>
-                            <h1>Actions</h1>
-                        </div>
-                        {clientData.clients ? clientData.clients.map((client) => (
-                            <div className="customTableContent" key={client.client_id}>
-                                <p>{client.client_id}</p>
-                                <p>{client.client_name}</p>
-                                <p>{client.sdm_sdl_name}</p>
-                                <p>{client.sdm_sdl_email}</p>
-                                <p>{client.sdm_sdl_contact}</p>
-                                <p>
-                                    <img src={view} />
-                                    <NavLink to="/manage-accounts/edit-account">
-                                        <img src={edit} />
-                                    </NavLink>
-                                </p>
-                            </div>
-                        )) : (<p>Loading...</p>)}
-                    </div>
                 </div>
             </div>
         </div>
