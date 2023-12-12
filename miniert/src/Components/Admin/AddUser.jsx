@@ -51,6 +51,7 @@ const AddUser = () => {
         const contactNo = document.getElementById("contactNo").value;
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
+        const reportingManager = document.getElementById("reportingManager").value;
         const userLevel = document.getElementById("userLevel").value;
 
         const employeeInfo = {
@@ -61,6 +62,7 @@ const AddUser = () => {
             contact_number: contactNo,
             username: username,
             password: password,
+            manager_name: reportingManager,
             user_level: userLevel
         };
 
@@ -88,6 +90,7 @@ const AddUser = () => {
                     document.getElementById("contactNo").value = "";
                     document.getElementById("username").value = "";
                     document.getElementById("password").value = "";
+                    document.getElementById("reportingManager").value;
                     document.getElementById("userLevel").value = "";
                 }
                 else if (res.status === 500) {
@@ -210,6 +213,8 @@ const AddUser = () => {
                         <input type="text" placeholder="Enter username" name="username" id="username" required />
                         <label for="password">Password</label>
                         <input type="text" placeholder="Enter password" name="password" id="password" required />
+                        <label for="reportingManager">Reporting Manager</label>
+                        <input type="text" placeholder="Enter manager name" name="reportingManager" id="reportingManager" required />
                         <label for="userLevel">User Level</label>
                         <select name="userLevel" id="userLevel" required>
                             <option disabled selected value="">Select</option>

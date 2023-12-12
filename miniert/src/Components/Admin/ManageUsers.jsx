@@ -73,7 +73,7 @@ const ManageUsers = () => {
                     draggable: true,
                     progress: undefined,
                     theme: "light",
-                    });
+                });
                 handleCloseModal();
                 window.location.reload();
             })
@@ -122,8 +122,8 @@ const ManageUsers = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/admin/manage-users">
-                                <img src={users} alt="users icon" activeclassname="active" />
+                            <NavLink to="/admin/manage-users" activeclassname="active">
+                                <img src={users} alt="users icon" />
                                 <span>Manage Users</span>
                             </NavLink>
                         </li>

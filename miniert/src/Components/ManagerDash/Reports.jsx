@@ -36,17 +36,14 @@ const ManageAccount = () => {
     const [clientData, setClientData] = useState([]);
 
     useEffect(() => {
-        axios
-            .get(
-                `https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`
-            )
-            .then((response) => {
-                const data = response.data;
-                setClientData(data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+        .then((response) => {
+            const data = response.data;
+            setClientData(data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
     }, [employee_id]);
 
     return (
@@ -111,6 +108,28 @@ const ManageAccount = () => {
                     <span>
                         <CurrentDate />
                     </span>
+                </div>
+                <div className="manage-content">
+                    <div className="search-bar">
+                        <form action=" ">
+                            <input type="text" placeholder="Search user by name" />
+                        </form>
+                        <div className="buttons">
+                            <button className="upload-btn">Upload</button>
+                            <NavLink to="/admin/manage-users/add-user">
+                                <button className="add-btn">Add</button>
+                            </NavLink>
+                        </div>
+                    </div>
+                    <div className="table-container">
+                        <div className="table-header">
+                            <h1>ID</h1>
+                            <h1>Talent Name</h1>
+                            <h1>Email</h1>
+                            <h1>Contact No.</h1>
+                            <h1>Actions</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -70,8 +70,8 @@ const ManageTalents = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/admin/manage-talents">
-                                <img src={talents} alt="clock icon" activeclassname="active" />
+                            <NavLink to="/admin/manage-talents" activeclassname="active">
+                                <img src={talents} alt="clock icon" />
                                 <span>Manage Talents</span>
                             </NavLink>
                         </li>
