@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import "./managerDash.css";
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
+import reports from "../Assets/report-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
-import users from "../Assets/users-inactive.svg";
+import view from "../Assets/view-icn.svg";
+import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
 
 const CurrentDate = () => {
@@ -62,13 +65,13 @@ const Profile = () => {
                         </li>
                         <li>
                             <NavLink to="/manage-talents">
-                                <img src={users} alt="users icon" />
+                                <img src={talents} alt="users icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/reports">
-                                <img src={talents} alt="clock icon" />
+                                <img src={reports} alt="clock icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
                         </li>
