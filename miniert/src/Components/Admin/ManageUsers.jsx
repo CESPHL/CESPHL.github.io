@@ -62,7 +62,7 @@ const ManageUsers = () => {
     }
 
     const handleDelete = () => {
-        console.log(userToDelete);
+        console.log("astig");
     }
 
     return (
