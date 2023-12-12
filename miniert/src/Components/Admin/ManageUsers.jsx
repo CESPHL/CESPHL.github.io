@@ -52,9 +52,9 @@ const ManageUsers = () => {
             });
     }, [employee_id]);
 
-    const handleOpenModal = (selectedEmp) => {
+    const handleOpenModal = (selectedEmp, userLevel) => {
         setShowModal(true);
-        setUserToBeDeleted(selectedEmp);
+        setUserToBeDeleted(selectedEmp, userLevel);
     }
 
     const handleCloseModal = () => {
@@ -62,8 +62,35 @@ const ManageUsers = () => {
     }
 
     const handleDelete = () => {
-        console.log("astig");
         console.log(userToDelete);
+        // axios.delete(`https://cesphl-github-io-backend.vercel.app/api/admin/${userToDelete}`)
+        //     .then((response) => {
+        //         console.log(response);
+        //         toast.success("User deleted successfully.", {
+        //             position: "top-center",
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //             theme: "light",
+        //             });
+        //         handleCloseModal();
+        //     })
+        //     .catch((err) => {
+        //         console.error(err);
+        //         toast.error("Internal server error. Please try again later.", {
+        //             position: toast.POSITION.TOP_CENTER,
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //             theme: "light",
+        //         });
+        //     });
     }
 
     return (
@@ -164,7 +191,7 @@ const ManageUsers = () => {
                                     <NavLink to={`/admin/manage-users/edit-user/${user.employee_id}`}>
                                         <img src={edit} />
                                     </NavLink>
-                                    <button onClick={() => handleOpenModal(user.employee_id)}><img src={deleteicon} alt="delete" /></button>
+                                    <button className="delete-btn" onClick={() => handleOpenModal(user.employee_id, user.user_level)}><img src={deleteicon} alt="delete" /></button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
@@ -174,7 +201,7 @@ const ManageUsers = () => {
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                 <div>
                     <p>Delete User</p>
-                    <input type="button" value="&#10006;" />
+                    <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                 </div>
                 <p className="modal-description">Clicking yes will remove the account from the system. Are you sure?</p>
                 <div>
