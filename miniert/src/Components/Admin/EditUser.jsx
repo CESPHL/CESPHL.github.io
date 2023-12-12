@@ -83,7 +83,7 @@ const EditUser = () => {
         const lastName = document.getElementById("lastName").value;
         const email = document.getElementById("email").value;
         const contactNo = document.getElementById("contactNo").value;
-        const reportingManager = document.getElementById("reportingManager").value
+        const reportingManager = document.getElementById("reportingManager").value;
         const userLevel = document.getElementById("userLevel").value;
         const employeeInfo = {
             employee_id: empId,
