@@ -63,6 +63,7 @@ const ManageUsers = () => {
 
     const handleDelete = () => {
         console.log("astig");
+        console.log(userToDelete);
     }
 
     return (
@@ -163,7 +164,7 @@ const ManageUsers = () => {
                                     <NavLink to={`/admin/manage-users/edit-user/${user.employee_id}`}>
                                         <img src={edit} />
                                     </NavLink>
-                                    <button onClick={handleOpenModal(user.employee_id)}>${deleteicon}</button>
+                                    <button onClick={() => handleOpenModal(user.employee_id)}><img src={deleteicon} alt="delete" /></button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
