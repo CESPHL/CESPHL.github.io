@@ -38,6 +38,7 @@ const CurrentDate = () => {
 const ManageAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [employeeData, setEmployeeData] = useState();
+    const [selectedEmployee, setSelectedEmployee] = useState();
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents`)
@@ -81,6 +82,19 @@ const ManageAccount = () => {
     useEffect(() => {
         console.log(employeeData);
     }, [employeeData]);
+
+    const handleOpenModal = (empId) => {
+        setShowModal(true);
+        setSelectedEmployee({ employee_id: empId } );
+    }
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
+
+    const handleExport = () => {
+        console.log("Export");
+    }
 
     return (
         <div className="dashboard">
@@ -166,7 +180,7 @@ const ManageAccount = () => {
                                 <p>{employee.email}</p>
                                 <p>{employee.contact_number}</p>
                                 <p>
-                                <button className="delete-btn"><img src={exporticon} alt="export" /></button>
+                                <button className="delete-btn"><img src={exporticon} alt="export" onClick={handleOpenModal()}/></button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
@@ -183,8 +197,8 @@ const ManageAccount = () => {
                     <input type="date" id="endDate"/>
                 </form>
                 <div>
-                    <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
-                    <button className="btn btn-save" onClick={handleDelete}>Export</button>
+                    <button className="btn btn-close" onClick={handleCloseModal}>Cancel</button>
+                    <button className="btn btn-save" onClick={handleExport}>Export</button>
                 </div>
             </Modal>
         </div>
