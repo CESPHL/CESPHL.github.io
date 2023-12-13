@@ -80,7 +80,7 @@ const ManageAccount = () => {
     useEffect(() => {
         console.log(employeeData);
     }, [employeeData]);
-    
+
     return (
         <div className="dashboard">
             <div className="dash-navbar">
@@ -164,15 +164,17 @@ const ManageAccount = () => {
                             <h1>Contact No.</h1>
                             <h1>Actions</h1>
                         </div>
-                        <div className="table-content">
-                            <p>---</p>
-                            <p>---</p>
-                            <p>---</p>
-                            <p>---</p>
-                            <p>
+                        {employeeData ? employeeData.map((employee) => (
+                            <div className="table-content" key={employee.employee_id}>
+                                <p>{employee.employee_id}</p>
+                                <p>{`${employee.first_name} ${employee.last_name}`}</p>
+                                <p>{employee.email}</p>
+                                <p>{employee.contact_number}</p>
+                                <p>
                                 <button className="delete-btn"><img src={exporticon} alt="export" /></button>
-                            </p>
-                        </div>
+                                </p>
+                            </div>
+                        )) : (<p>Loading...</p>)}
                     </div>
                 </div>
             </div>
