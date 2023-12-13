@@ -47,7 +47,7 @@ const ManageAccount = () => {
             .catch((err) => {
                 console.error(err);
             });
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/manager/${employee_id}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
             .then((response) => {
                 console.log(response.data);
             })
