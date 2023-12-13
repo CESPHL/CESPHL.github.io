@@ -42,15 +42,11 @@ const ManageAccount = () => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents`)
             .then((response) => {
                 const data = response.data;
-                console.log(data);
                 axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
                     .then((response) => {
                         const managerName = `${response.data.first_name} ${response.data.last_name}`;
-                        console.log(managerName);
                         const filteredData = data.filter(item => item.manager_name === managerName);
-                        console.log(filteredData);
                         setEmployeeData(filteredData);
-                        console.log(employeeData);
                     })
                     .catch((err) => {
                         console.error(err);
@@ -81,6 +77,10 @@ const ManageAccount = () => {
             });
     }, [employee_id]);
 
+    useEffect(() => {
+        console.log(employeeData);
+    }, [employeeData]);
+    
     return (
         <div className="dashboard">
             <div className="dash-navbar">
