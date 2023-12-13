@@ -39,7 +39,6 @@ const ManageAccount = () => {
     const employee_id = localStorage.getItem('employee_id');
     const [employeeData, setEmployeeData] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [selectedEmployee, setSelectedEmployee] = useState(null);
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents`)
@@ -80,9 +79,8 @@ const ManageAccount = () => {
             });
     }, [employee_id]);
 
-    const handleOpenModal = (empId) => {
+    const handleOpenModal = () => {
         setShowModal(true);
-        setSelectedEmployee({ employee_id: empId });
     };
 
     const handleCloseModal = () => {
@@ -91,7 +89,6 @@ const ManageAccount = () => {
 
     const handleExport = () => {
         console.log('Export');
-        console.log(employeeData);
     };
 
     return (
@@ -178,7 +175,7 @@ const ManageAccount = () => {
                                 <p>{employee.email}</p>
                                 <p>{employee.contact_number}</p>
                                 <p>
-                                    <button className="delete-btn" onClick={() => handleOpenModal(employeeData.employee_id)} ><img src={exporticon} alt="export"/></button>
+                                    <button className="delete-btn" onClick={handleOpenModal} ><img src={exporticon} alt="export"/></button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
