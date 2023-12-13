@@ -36,10 +36,10 @@ const CurrentDate = () => {
 };
 
 const ManageAccount = () => {
-    const employee_id = localStorage.getItem("employee_id");
-    const [employeeData, setEmployeeData] = useState();
+    const employee_id = localStorage.getItem('employee_id');
+    const [employeeData, setEmployeeData] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [selectedEmployee, setSelectedEmployee] = useState();
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents`)
@@ -48,12 +48,12 @@ const ManageAccount = () => {
                 axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
                     .then((response) => {
                         const managerName = `${response.data.first_name} ${response.data.last_name}`;
-                        const filteredData = data.filter(item => item.manager_name === managerName);
+                        const filteredData = data.filter((item) => item.manager_name === managerName);
                         setEmployeeData(filteredData);
                     })
                     .catch((err) => {
                         console.error(err);
-                        toast.error("Manager not found.", {
+                        toast.error('Manager not found.', {
                             position: toast.POSITION.TOP_CENTER,
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -61,13 +61,13 @@ const ManageAccount = () => {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                            theme: "light",
+                            theme: 'light',
                         });
-                    })
+                    });
             })
             .catch((err) => {
                 console.error(err);
-                toast.error("Internal Server Error. Please try again later.", {
+                toast.error('Internal Server Error. Please try again later.', {
                     position: toast.POSITION.TOP_CENTER,
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -75,27 +75,24 @@ const ManageAccount = () => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: 'light',
                 });
             });
     }, [employee_id]);
 
-    useEffect(() => {
-        console.log(employeeData);
-    }, [employeeData]);
-
     const handleOpenModal = (empId) => {
         setShowModal(true);
-        setSelectedEmployee({ employee_id: empId } );
-    }
+        setSelectedEmployee({ employee_id: empId });
+    };
 
     const handleCloseModal = () => {
         setShowModal(false);
-    }
+    };
 
     const handleExport = () => {
-        console.log("Export");
-    }
+        console.log('Export');
+        console.log(employeeData);
+    };
 
     return (
         <div className="dashboard">
@@ -181,7 +178,7 @@ const ManageAccount = () => {
                                 <p>{employee.email}</p>
                                 <p>{employee.contact_number}</p>
                                 <p>
-                                <button className="delete-btn"><img src={exporticon} alt="export" onClick={handleOpenModal()}/></button>
+                                    <button className="delete-btn"><img src={exporticon} alt="export" onClick={handleOpenModal()} /></button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
@@ -194,8 +191,8 @@ const ManageAccount = () => {
                     <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                 </div>
                 <form>
-                    <input type="date" id="startDate"/>
-                    <input type="date" id="endDate"/>
+                    <input type="date" id="startDate" />
+                    <input type="date" id="endDate" />
                 </form>
                 <div>
                     <button className="btn btn-close" onClick={handleCloseModal}>Cancel</button>
