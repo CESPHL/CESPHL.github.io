@@ -130,13 +130,13 @@ const ManageAccount = () => {
                             <h1>Contact No.</h1>
                             <h1>Actions</h1>
                         </div>
-                        <div className="table-content" key={user.employee_id}>
+                        <div className="table-content">
                                 <p>---</p>
                                 <p>---</p>
                                 <p>---</p>
                                 <p>---</p>
                                 <p>
-                                    <button className="delete-btn" onClick={() => handleOpenModal(user.employee_id, user.user_level)}><img src={exporticon} alt="export" /></button>
+                                    <button className="delete-btn"><img src={exporticon} alt="export" /></button>
                                 </p>
                             </div>
                     </div>
