@@ -7,6 +7,7 @@ import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import reports from "../Assets/report-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
+import exporticon from "../Assets/export.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
@@ -129,6 +130,15 @@ const ManageAccount = () => {
                             <h1>Contact No.</h1>
                             <h1>Actions</h1>
                         </div>
+                        <div className="table-content" key={user.employee_id}>
+                                <p>---</p>
+                                <p>---</p>
+                                <p>---</p>
+                                <p>---</p>
+                                <p>
+                                    <button className="delete-btn" onClick={() => handleOpenModal(user.employee_id, user.user_level)}><img src={exporticon} alt="export" /></button>
+                                </p>
+                            </div>
                     </div>
                 </div>
             </div>
