@@ -36,7 +36,6 @@ const CurrentDate = () => {
 
 const ManageAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
-    let managerName;
     const [employeeData, setEmployeeData] = useState();
 
     useEffect(() => {
@@ -44,9 +43,15 @@ const ManageAccount = () => {
             .then((response) => {
                 const data = response.data;
                 console.log(data);
-                const managerName = axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+                axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
                     .then((response) => {
-                        return `${response.data.first_name} ${response.data.last_name}`;
+                        const managerName = response.data.manager_name;
+                        console.log(managerName);
+                        console.log(response);
+                        // const filteredData = data.filter(item => item.manager_name === managerName);
+                        // console.log(filteredData);
+                        // setEmployeeData(filteredData);
+                        // console.log(employeeData);
                     })
                     .catch((err) => {
                         console.error(err);
@@ -61,11 +66,6 @@ const ManageAccount = () => {
                             theme: "light",
                         });
                     })
-                console.log(managerName);
-                const filteredData = data.filter(item => item.manager_name === managerName);
-                console.log(filteredData);
-                setEmployeeData(filteredData);
-                console.log(employeeData);
             })
             .catch((err) => {
                 console.error(err);
@@ -81,10 +81,6 @@ const ManageAccount = () => {
                 });
             });
     }, [employee_id]);
-
-    useEffect(() => {
-        console.log(employeeData);
-    }, [employeeData])
 
     return (
         <div className="dashboard">
