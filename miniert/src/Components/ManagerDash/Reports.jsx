@@ -178,7 +178,7 @@ const ManageAccount = () => {
                                 <p>{employee.email}</p>
                                 <p>{employee.contact_number}</p>
                                 <p>
-                                    <button className="delete-btn"><img src={exporticon} alt="export" onClick={handleOpenModal()} /></button>
+                                    <button className="delete-btn" onClick={() => handleOpenModal(user.employee_id)} ><img src={exporticon} alt="export"/></button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
