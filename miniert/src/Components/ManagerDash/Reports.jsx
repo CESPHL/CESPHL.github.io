@@ -11,6 +11,7 @@ import exporticon from "../Assets/export.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
+import Modal from "../Modals/Modal.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -149,12 +150,6 @@ const ManageAccount = () => {
                         <form action=" ">
                             <input type="text" placeholder="Search user by name" />
                         </form>
-                        <div className="buttons">
-                            <button className="upload-btn">Upload</button>
-                            <NavLink to="/admin/manage-users/add-user">
-                                <button className="add-btn">Add</button>
-                            </NavLink>
-                        </div>
                     </div>
                     <div className="table-container">
                         <div className="table-header">
@@ -178,6 +173,20 @@ const ManageAccount = () => {
                     </div>
                 </div>
             </div>
+            <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
+                <div>
+                    <p>Export</p>
+                    <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
+                </div>
+                <form>
+                    <input type="date" id="startDate"/>
+                    <input type="date" id="endDate"/>
+                </form>
+                <div>
+                    <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
+                    <button className="btn btn-save" onClick={handleDelete}>Export</button>
+                </div>
+            </Modal>
         </div>
     );
 };
