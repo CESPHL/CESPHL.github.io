@@ -34,18 +34,19 @@ const CurrentDate = () => {
 
 const ManageAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
-    const [employeeData, setEmployeeData] = useState([]);
-
+    const [employeeData, setEmployeeData] = useState();
+    
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents`)
-        .then((response) => {
-            const data = response.data;
-            setEmployeeData(data);
-            console.log(employeeData);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+            .then((response) => {
+                const data = response.data;
+                console.log(data);
+                setEmployeeData(data);
+                console.log(employeeData);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }, [employee_id]);
 
     return (
@@ -132,14 +133,14 @@ const ManageAccount = () => {
                             <h1>Actions</h1>
                         </div>
                         <div className="table-content">
-                                <p>---</p>
-                                <p>---</p>
-                                <p>---</p>
-                                <p>---</p>
-                                <p>
-                                    <button className="delete-btn"><img src={exporticon} alt="export" /></button>
-                                </p>
-                            </div>
+                            <p>---</p>
+                            <p>---</p>
+                            <p>---</p>
+                            <p>---</p>
+                            <p>
+                                <button className="delete-btn"><img src={exporticon} alt="export" /></button>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
