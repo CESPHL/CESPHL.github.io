@@ -45,13 +45,12 @@ const ManageAccount = () => {
                 console.log(data);
                 axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
                     .then((response) => {
-                        const managerName = response.data.manager_name;
+                        const managerName = `${response.data.first_name} ${response.data.last_name}`;
                         console.log(managerName);
-                        console.log(response);
-                        // const filteredData = data.filter(item => item.manager_name === managerName);
-                        // console.log(filteredData);
-                        // setEmployeeData(filteredData);
-                        // console.log(employeeData);
+                        const filteredData = data.filter(item => item.manager_name === managerName);
+                        console.log(filteredData);
+                        setEmployeeData(filteredData);
+                        console.log(employeeData);
                     })
                     .catch((err) => {
                         console.error(err);
