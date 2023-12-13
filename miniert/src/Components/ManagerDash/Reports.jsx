@@ -82,6 +82,10 @@ const ManageAccount = () => {
             });
     }, [employee_id]);
 
+    useEffect(() => {
+        console.log(employeeData);
+    }, [employeeData])
+
     return (
         <div className="dashboard">
             <div className="dash-navbar">
