@@ -42,18 +42,40 @@ const ManageAccount = () => {
             .then((response) => {
                 const data = response.data;
                 console.log(data);
-                setEmployeeData(data);
+                const managerName = axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+                    .then((response) => {
+                        return `${response.data.first_name} ${response.data.last_name}`;
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        toast.error("Manager not found.", {
+                            position: toast.POSITION.TOP_CENTER,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    })
+                console.log(managerName);
+                const filteredData = data.filter(item => item.manager_name === managerName);
+                setEmployeeData(filteredData);
             })
             .catch((err) => {
                 console.error(err);
+                toast.error("Internal Server Error. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             });
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((err) => {
-                console.error(err);
-            })
     }, [employee_id]);
 
     return (
