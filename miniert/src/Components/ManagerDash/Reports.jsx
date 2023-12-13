@@ -38,6 +38,7 @@ const CurrentDate = () => {
 const ManageAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [employeeData, setEmployeeData] = useState();
+    const [showModal, setShowModal] = useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState();
 
     useEffect(() => {
