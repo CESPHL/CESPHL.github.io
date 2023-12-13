@@ -34,13 +34,14 @@ const CurrentDate = () => {
 
 const ManageAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
-    const [clientData, setClientData] = useState([]);
+    const [employeeData, setEmployeeData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents`)
         .then((response) => {
             const data = response.data;
-            setClientData(data);
+            setEmployeeData(data);
+            console.log(employeeData);
         })
         .catch((err) => {
             console.error(err);
