@@ -34,19 +34,26 @@ const CurrentDate = () => {
 
 const ManageAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
+    let managerName;
     const [employeeData, setEmployeeData] = useState();
-    
+
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents`)
             .then((response) => {
                 const data = response.data;
                 console.log(data);
                 setEmployeeData(data);
-                console.log(employeeData);
             })
             .catch((err) => {
                 console.error(err);
             });
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/manager/${employee_id}`)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.error(err);
+            })
     }, [employee_id]);
 
     return (
