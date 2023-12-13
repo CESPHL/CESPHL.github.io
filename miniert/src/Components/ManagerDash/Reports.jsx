@@ -63,7 +63,9 @@ const ManageAccount = () => {
                     })
                 console.log(managerName);
                 const filteredData = data.filter(item => item.manager_name === managerName);
+                console.log(filteredData);
                 setEmployeeData(filteredData);
+                console.log(employeeData);
             })
             .catch((err) => {
                 console.error(err);
