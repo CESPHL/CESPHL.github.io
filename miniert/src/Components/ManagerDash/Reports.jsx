@@ -102,9 +102,6 @@ const ManageAccount = () => {
         const startDate = new Date(startDateString);
         const endDate = new Date(endDateString);
 
-        console.log(startDate);
-        console.log(endDate);
-
         const formatDate = (date) => {
             return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
         };
@@ -115,14 +112,18 @@ const ManageAccount = () => {
         console.log(formattedStartDate); // Outputs: November 5, 2023
         console.log(formattedEndDate);   // Outputs: November 15, 2023
 
-        const selectedEmployeeData = employeeData.filter((employee) => employee.employee_id === selectedEmployee);
+        const selectedEmployeeData = employeeData.find((employee) => employee.employee_id === selectedEmployee);
         console.log(selectedEmployeeData);
 
-        const filteredAttendance = selectedEmployee.attendance.filter((record) => {
-            const recordDate = new Date(record.date);
-            return recordDate >= formattedStartDate && recordDate <= formattedEndDate;
-        });
-        console.log(filteredAttendance);
+        if (selectedEmployeeData) {
+            const filteredAttendance = selectedEmployeeData.attendance.filter((record) => {
+                const recordDate = new Date(record.date);
+                return recordDate >= startDate && recordDate <= endDate;
+            });
+            console.log(filteredAttendance);
+        } else {
+            console.log("Selected employee not found in the data.");
+        }
 
         // const filteredData = data.map((employee) => {
         //     const filteredAttendance = employee.attendance.filter((record) => {
