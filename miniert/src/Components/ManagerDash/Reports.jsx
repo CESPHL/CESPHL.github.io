@@ -105,12 +105,22 @@ const ManageAccount = () => {
         console.log(startDate);
         console.log(endDate);
 
+        const formatDate = (date) => {
+            return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        };
+
+        const formattedStartDate = formatDate(startDate);
+        const formattedEndDate = formatDate(endDate);
+
+        console.log(formattedStartDate); // Outputs: November 5, 2023
+        console.log(formattedEndDate);   // Outputs: November 15, 2023
+
         const selectedEmployeeData = employeeData.filter((employee) => employee.employee_id === selectedEmployee);
         console.log(selectedEmployeeData);
 
         const filteredAttendance = selectedEmployee.attendance.filter((record) => {
             const recordDate = new Date(record.date);
-            return recordDate >= startDate && recordDate <= endDate;
+            return recordDate >= formattedStartDate && recordDate <= formattedEndDate;
         });
         console.log(filteredAttendance);
 
