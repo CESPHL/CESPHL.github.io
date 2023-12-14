@@ -109,9 +109,6 @@ const ManageAccount = () => {
         const formattedStartDate = formatDate(startDate);
         const formattedEndDate = formatDate(endDate);
 
-        console.log(formattedStartDate); // Outputs: November 5, 2023
-        console.log(formattedEndDate);   // Outputs: November 15, 2023
-
         const selectedEmployeeData = employeeData.find((employee) => employee.employee_id === selectedEmployee);
         console.log(selectedEmployeeData);
 
@@ -130,7 +127,7 @@ const ManageAccount = () => {
                 console.log("starting export");
                 const url = URL.createObjectURL(blob);
                 link.setAttribute("href", url);
-                link.setAttribute("download", `${selectedEmployeeData.first_name} ${selectedEmployeeData.last_name}.csv`);
+                link.setAttribute("download", `${selectedEmployeeData.first_name} ${selectedEmployeeData.last_name} ${formattedStartDate} ${formattedEndDate}.csv`);
                 link.style.visibility = "hidden";
                 document.body.appendChild(link);
                 link.click();
