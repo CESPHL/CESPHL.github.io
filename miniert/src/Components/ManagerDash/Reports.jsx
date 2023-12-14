@@ -92,16 +92,30 @@ const ManageAccount = () => {
     };
 
     const handleExport = () => {
-        const startDate = document.getElementById("startDate").value;
-        const endDate = document.getElementById("endDate").value;
-        console.log(startDate);
-        console.log(endDate);
+        const startDateString = document.getElementById("startDate").value;
+        const endDateString = document.getElementById("endDate").value;
+        console.log(startDateString);
+        console.log(endDateString);
         console.log(employeeData);
         console.log(selectedEmployee);
 
-        const selectedEmployeeData = employeeData.filter((employee) => employee.employee_id === selectedEmployee);
-        console.log(selectedEmployeeData);
-        const csv = Papa.unparse(selectedEmployeeData);
+        const startDate = new Date(startDateString);
+        const endDate = new Date(endDateString);
+
+        console.log(startDate);
+        console.log(endDate);
+
+        const filteredData = data.map((employee) => {
+            const filteredAttendance = employee.attendance.filter((record) => {
+              const recordDate = new Date(record.date);
+              return recordDate >= startDate && recordDate <= endDate;
+            });
+          
+            // Return a new object with filtered attendance
+            return { ...employee, attendance: filteredAttendance };
+          });
+        console.log(filteredData);
+        const csv = Papa.unparse(filteredData);
         // Create a Blob containing the CSV data
         const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
 
@@ -109,7 +123,7 @@ const ManageAccount = () => {
         if (link.download !== undefined) {
             const url = URL.createObjectURL(blob);
             link.setAttribute("href", url);
-            link.setAttribute("download", "exported_data.csv");
+            link.setAttribute("download", `${selectedEmployee.first_name} ${selectedEmployee.last_name}.csv`);
             link.style.visibility = "hidden";
             document.body.appendChild(link);
             link.click();
