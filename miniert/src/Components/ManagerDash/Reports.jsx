@@ -14,7 +14,8 @@ import axios from "axios";
 import Modal from "../Modals/Modal.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./reports.css"
+import "./reports.css";
+import Papa from "papaparse";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -100,6 +101,22 @@ const ManageAccount = () => {
 
         const selectedEmployeeData = employeeData.filter((employee) => employee.employee_id === selectedEmployee);
         console.log(selectedEmployeeData);
+        const csv = Papa.unparse(selectedEmployeeData);
+        // Create a Blob containing the CSV data
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+
+        const link = document.createElement("a");
+        if (link.download !== undefined) {
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "exported_data.csv");
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            alert("Your browser does not support the download attribute.");
+        }
     };
 
     return (
