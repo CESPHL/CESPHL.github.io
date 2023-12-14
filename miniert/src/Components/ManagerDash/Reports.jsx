@@ -14,6 +14,7 @@ import axios from "axios";
 import Modal from "../Modals/Modal.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./reports.css"
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -98,7 +99,7 @@ const ManageAccount = () => {
         console.log(selectedEmployee);
 
         const selectedEmployeeData = employeeData.filter((employee) => employee.employee_id === selectedEmployee);
-        console.log(selectedEmployeeData)
+        console.log(selectedEmployeeData);
     };
 
     return (
