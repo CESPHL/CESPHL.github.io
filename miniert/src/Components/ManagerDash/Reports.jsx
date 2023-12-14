@@ -103,9 +103,10 @@ const ManageAccount = () => {
         const endDate = new Date(endDateString);
 
         console.log(startDate);
-        
+        console.log(endDate);
 
         const selectedEmployeeData = employeeData.filter((employee) => employee.employee_id === selectedEmployee);
+        console.log(selectedEmployeeData);
         // const filteredData = data.map((employee) => {
         //     const filteredAttendance = employee.attendance.filter((record) => {
         //       const recordDate = new Date(record.date);
