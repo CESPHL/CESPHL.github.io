@@ -39,6 +39,7 @@ const ManageAccount = () => {
     const employee_id = localStorage.getItem('employee_id');
     const [employeeData, setEmployeeData] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [selectedEmployee, setSelectedEmployee] = useState();
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents`)
@@ -79,8 +80,10 @@ const ManageAccount = () => {
             });
     }, [employee_id]);
 
-    const handleOpenModal = () => {
+    const handleOpenModal = (employee_id) => {
         setShowModal(true);
+        setSelectedEmployee(employee_id);
+        console.log(selectedEmployee);
     };
 
     const handleCloseModal = () => {
@@ -88,15 +91,12 @@ const ManageAccount = () => {
     };
 
     const handleExport = () => {
-        console.log('Export');
-        console.log(document.getElementById("startDate").value);
-        console.log(document.getElementById("endDate").value);
-        console.log(document.getElementById("startDate"));
-        console.log(document.getElementById("endDate"));
         const startDate = document.getElementById("startDate").value;
         const endDate = document.getElementById("endDate").value;
         console.log(startDate);
         console.log(endDate);
+        console.log(employeeData);
+        console.log(selectedEmployee);
     };
 
     return (
@@ -183,7 +183,7 @@ const ManageAccount = () => {
                                 <p>{employee.email}</p>
                                 <p>{employee.contact_number}</p>
                                 <p>
-                                    <button className="delete-btn" onClick={handleOpenModal} ><img src={exporticon} alt="export" /></button>
+                                    <button className="delete-btn" onClick={() => handleOpenModal(employee.employee_id)} ><img src={exporticon} alt="export" /></button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
