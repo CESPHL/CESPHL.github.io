@@ -83,7 +83,6 @@ const ManageAccount = () => {
     const handleOpenModal = (employee_id) => {
         setShowModal(true);
         setSelectedEmployee(employee_id);
-        console.log(selectedEmployee);
     };
 
     const handleCloseModal = () => {
@@ -97,6 +96,9 @@ const ManageAccount = () => {
         console.log(endDate);
         console.log(employeeData);
         console.log(selectedEmployee);
+
+        const selectedEmployeeData = employeeData.filter((employee) => employee.employee_id === selectedEmployee);
+        console.log(selectedEmployeeData)
     };
 
     return (
