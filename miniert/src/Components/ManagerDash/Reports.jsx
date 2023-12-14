@@ -110,6 +110,7 @@ const ManageAccount = () => {
                 return recordDate >= startDate && recordDate <= endDate;
             });
             if (filteredAttendance.length === 0) {
+                console.log("No attendance data found.");
                 toast.error('No attendance data found.', {
                     position: toast.POSITION.TOP_CENTER,
                     autoClose: 5000,
