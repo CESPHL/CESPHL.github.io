@@ -107,12 +107,19 @@ const ManageAccount = () => {
 
         const selectedEmployeeData = employeeData.filter((employee) => employee.employee_id === selectedEmployee);
         console.log(selectedEmployeeData);
+
+        const filteredAttendance = selectedEmployee.attendance.filter((record) => {
+            const recordDate = new Date(record.date);
+            return recordDate >= startDate && recordDate <= endDate;
+        });
+        console.log(filteredAttendance);
+
         // const filteredData = data.map((employee) => {
         //     const filteredAttendance = employee.attendance.filter((record) => {
         //       const recordDate = new Date(record.date);
         //       return recordDate >= startDate && recordDate <= endDate;
         //     });
-          
+
         //     // Return a new object with filtered attendance
         //     return { ...employee, attendance: filteredAttendance };
         //   });
