@@ -127,9 +127,10 @@ const ManageAccount = () => {
 
             const link = document.createElement("a");
             if (link.download !== undefined) {
+                console.log("starting export");
                 const url = URL.createObjectURL(blob);
                 link.setAttribute("href", url);
-                link.setAttribute("download", `exported_data.csv`);
+                link.setAttribute("download", `${selectedEmployeeData.first_name} ${selectedEmployeeData.last_name}.csv`);
                 link.style.visibility = "hidden";
                 document.body.appendChild(link);
                 link.click();
