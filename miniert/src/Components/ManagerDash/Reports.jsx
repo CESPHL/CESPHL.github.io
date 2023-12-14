@@ -121,36 +121,25 @@ const ManageAccount = () => {
                 return recordDate >= startDate && recordDate <= endDate;
             });
             console.log(filteredAttendance);
+            const csv = Papa.unparse(filteredAttendance);
+            // Create a Blob containing the CSV data
+            const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+
+            const link = document.createElement("a");
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", `exported_data.csv`);
+                link.style.visibility = "hidden";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert("Your browser does not support the download attribute.");
+            }
         } else {
             console.log("Selected employee not found in the data.");
         }
-
-        // const filteredData = data.map((employee) => {
-        //     const filteredAttendance = employee.attendance.filter((record) => {
-        //       const recordDate = new Date(record.date);
-        //       return recordDate >= startDate && recordDate <= endDate;
-        //     });
-
-        //     // Return a new object with filtered attendance
-        //     return { ...employee, attendance: filteredAttendance };
-        //   });
-        // console.log(selectedEmployeeData);
-        // const csv = Papa.unparse(selectedEmployeeData);
-        // // Create a Blob containing the CSV data
-        // const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-
-        // const link = document.createElement("a");
-        // if (link.download !== undefined) {
-        //     const url = URL.createObjectURL(blob);
-        //     link.setAttribute("href", url);
-        //     link.setAttribute("download", `exported_data.csv`);
-        //     link.style.visibility = "hidden";
-        //     document.body.appendChild(link);
-        //     link.click();
-        //     document.body.removeChild(link);
-        // } else {
-        //     alert("Your browser does not support the download attribute.");
-        // }
     };
 
     return (
