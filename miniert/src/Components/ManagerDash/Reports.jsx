@@ -105,7 +105,7 @@ const ManageAccount = () => {
         console.log(startDate);
         console.log(endDate);
 
-        const filteredData = data.map((employee) => {
+        const filteredData = employeeData.map((employee) => {
             const filteredAttendance = employee.attendance.filter((record) => {
               const recordDate = new Date(record.date);
               return recordDate >= startDate && recordDate <= endDate;
