@@ -94,49 +94,63 @@ const ManageAccount = () => {
     const handleExport = () => {
         const startDateString = document.getElementById("startDate").value;
         const endDateString = document.getElementById("endDate").value;
-        console.log(startDateString);
-        console.log(endDateString);
-        console.log(employeeData);
-        console.log(selectedEmployee);
-
         const startDate = new Date(startDateString);
         const endDate = new Date(endDateString);
-
         const formatDate = (date) => {
             return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
         };
-
         const formattedStartDate = formatDate(startDate);
         const formattedEndDate = formatDate(endDate);
 
         const selectedEmployeeData = employeeData.find((employee) => employee.employee_id === selectedEmployee);
-        console.log(selectedEmployeeData);
 
         if (selectedEmployeeData) {
             const filteredAttendance = selectedEmployeeData.attendance.filter((record) => {
                 const recordDate = new Date(record.date);
                 return recordDate >= startDate && recordDate <= endDate;
             });
-            console.log(filteredAttendance);
-            const csv = Papa.unparse(filteredAttendance);
-            // Create a Blob containing the CSV data
-            const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-
-            const link = document.createElement("a");
-            if (link.download !== undefined) {
-                console.log("starting export");
-                const url = URL.createObjectURL(blob);
-                link.setAttribute("href", url);
-                link.setAttribute("download", `${selectedEmployeeData.first_name} ${selectedEmployeeData.last_name} ${formattedStartDate} ${formattedEndDate}.csv`);
-                link.style.visibility = "hidden";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            } else {
-                alert("Your browser does not support the download attribute.");
+            if (!filteredAttendance) {
+                toast.error('No attendance data found.', {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
             }
-        } else {
-            console.log("Selected employee not found in the data.");
+            else {
+                const csv = Papa.unparse(filteredAttendance);
+                // Create a Blob containing the CSV data
+                const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+
+                const link = document.createElement("a");
+                if (link.download !== undefined) {
+                    const url = URL.createObjectURL(blob);
+                    link.setAttribute("href", url);
+                    link.setAttribute("download", `${selectedEmployeeData.first_name} ${selectedEmployeeData.last_name} ${formattedStartDate} ${formattedEndDate}.csv`);
+                    link.style.visibility = "hidden";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    alert("Your browser does not support the download attribute.");
+                }
+            }
+        } 
+        else {
+            toast.error('Selected employee not found in the data.', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            });
         }
     };
 
