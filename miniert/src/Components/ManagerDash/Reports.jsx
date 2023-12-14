@@ -89,6 +89,10 @@ const ManageAccount = () => {
 
     const handleExport = () => {
         console.log('Export');
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+        console.log(startDate);
+        console.log(endDate);
     };
 
     return (
@@ -161,7 +165,7 @@ const ManageAccount = () => {
                         </form>
                     </div>
                     <div className="table-container">
-                        <div className="table-header">
+                        <div className="table-header five-cols">
                             <h1>ID</h1>
                             <h1>Talent Name</h1>
                             <h1>Email</h1>
@@ -169,27 +173,29 @@ const ManageAccount = () => {
                             <h1>Actions</h1>
                         </div>
                         {employeeData ? employeeData.map((employee) => (
-                            <div className="table-content" key={employee.employee_id}>
+                            <div className="table-content five-cols" key={employee.employee_id}>
                                 <p>{employee.employee_id}</p>
                                 <p>{`${employee.first_name} ${employee.last_name}`}</p>
                                 <p>{employee.email}</p>
                                 <p>{employee.contact_number}</p>
                                 <p>
-                                    <button className="delete-btn" onClick={handleOpenModal} ><img src={exporticon} alt="export"/></button>
+                                    <button className="delete-btn" onClick={handleOpenModal} ><img src={exporticon} alt="export" /></button>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
                     </div>
                 </div>
             </div>
-            <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
+            <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal} className="export-modal">
                 <div>
                     <p>Export</p>
                     <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                 </div>
                 <form>
-                    <input type="date" id="startDate" />
-                    <input type="date" id="endDate" />
+                    <label for="startDate">Start Date</label>
+                    <input type="date" name="startDate" id="startDate" />
+                    <label for="endDate">End Date</label>
+                    <input type="date" name="endDate" id="endDate" />
                 </form>
                 <div>
                     <button className="btn btn-close" onClick={handleCloseModal}>Cancel</button>

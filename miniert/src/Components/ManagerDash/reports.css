@@ -1,0 +1,9 @@
+.export-modal > form > input[type=date] {
+    padding: 0.5rem;
+    border-radius: 7px;
+    border: 1px solid #D0D5DD;
+}
+
+.five-cols {
+    grid-template-columns: 1fr 2fr 3fr 1fr 1fr !important;
+}
