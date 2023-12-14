@@ -109,9 +109,7 @@ const ManageAccount = () => {
                 const recordDate = new Date(record.date);
                 return recordDate >= startDate && recordDate <= endDate;
             });
-            console.log(filteredAttendance);
-            console.log(filteredAttendance.length == 0);
-            if (filteredAttendance.length == 0) {
+            if (filteredAttendance.length === 0) {
                 toast.error('No attendance data found.', {
                     position: toast.POSITION.TOP_CENTER,
                     autoClose: 5000,
