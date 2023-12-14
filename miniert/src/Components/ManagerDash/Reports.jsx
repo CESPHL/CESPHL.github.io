@@ -89,6 +89,10 @@ const ManageAccount = () => {
 
     const handleExport = () => {
         console.log('Export');
+        console.log(document.getElementById("startDate").value);
+        console.log(document.getElementById("endDate").value);
+        console.log(document.getElementById("startDate"));
+        console.log(document.getElementById("endDate"));
         const startDate = document.getElementById("startDate").value;
         const endDate = document.getElementById("endDate").value;
         console.log(startDate);
