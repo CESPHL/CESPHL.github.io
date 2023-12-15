@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import './changepass.css';
-import hourglass from '../Assets/hourglass.svg';
-import logicon from '../Assets/logout.svg';
-import dashicn from '../Assets/inactive-dash.svg';
-import clock from '../Assets/inactive-clock.svg';
-import profile from '../Assets/active-profile.svg';
-import ChangePassModal from '../../Components/DashModal/ChangePassModal.jsx';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import hourglass from "../Assets/hourglass.svg";
+import logicon from "../Assets/logout.svg";
+import accIcon from "../Assets/acc-active.svg";
+import talents from "../Assets/mng-talent-inactive.svg";
+import profile from "../Assets/inactive-profile.svg";
+import users from "../Assets/users-inactive.svg";
+import axios from "axios";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -151,25 +149,25 @@ const Profile = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/manage-accounts">
+                            <NavLink to="/admin/manage-accounts">
                                 <img src={accIcon} alt="dashboard icon" />
                                 <span className="inactive">Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manage-talents">
-                                <img src={talents} alt="users icon" />
+                            <NavLink to="/admin/manage-users">
+                                <img src={users} alt="users icon" />
+                                <span className="inactive">Manage Users</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/admin/manage-talents">
+                                <img src={talents} alt="clock icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/reports">
-                                <img src={reports} alt="clock icon" />
-                                <span className="inactive">Reports</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/manager/profile">
+                            <NavLink to="/admin/profile">
                                 <img src={profile} alt="profile icon" activeclassname="active" />
                                 <span>Profile</span>
                             </NavLink>

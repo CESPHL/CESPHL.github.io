@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import './changepass.css';
-import hourglass from '../Assets/hourglass.svg';
-import logicon from '../Assets/logout.svg';
-import dashicn from '../Assets/inactive-dash.svg';
-import clock from '../Assets/inactive-clock.svg';
-import profile from '../Assets/active-profile.svg';
-import ChangePassModal from '../../Components/DashModal/ChangePassModal.jsx';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import "./managerDash.css";
+import hourglass from "../Assets/hourglass.svg";
+import logicon from "../Assets/logout.svg";
+import accIcon from "../Assets/acc-active.svg";
+import talents from "../Assets/mng-talent-inactive.svg";
+import reports from "../Assets/report-inactive.svg";
+import profile from "../Assets/inactive-profile.svg";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());

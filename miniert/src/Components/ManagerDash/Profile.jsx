@@ -7,8 +7,6 @@ import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import reports from "../Assets/report-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
-import view from "../Assets/view-icn.svg";
-import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
