@@ -10,6 +10,8 @@ import profile from "../Assets/inactive-profile.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -33,6 +35,31 @@ const CurrentDate = () => {
 
 const Profile = () => {
     const employee_id = localStorage.getItem("employee_id");
+
+    const [employeeData, setEmployeeData] = useState([]);
+
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+            .then((response) => {
+                setEmployeeData(response.data)
+            })
+            .catch ((err) => {
+                toast.error('Account not found.', {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
+            });
+    }, [employee_id]);
+
+    useEffect(() => {
+        console.log(employeeData);
+    }, [employeeData]);
 
     return (
         <div className="dashboard">

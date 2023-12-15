@@ -19,6 +19,7 @@ import AddTalent from "./Components/ManagerDash/AddTalent.jsx";
 // Manager pages
 import Reports from "./Components/ManagerDash/Reports.jsx";
 import ManagerProfile from "./Components/ManagerDash/Profile.jsx";
+import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
 
 // Admin pages
 import AdminManageAccounts from "./Components/Admin/ManageAccounts.jsx";
@@ -28,6 +29,7 @@ import AdminViewUser from "./Components/Admin/ViewUser.jsx";
 import AdminEditUser from"./Components/Admin/EditUser.jsx";
 import AdminManageTalents from "./Components/Admin/ManageTalents";
 import AdminProfile from "./Components/Admin/Profile.jsx";
+import AdminChangePass from "./Components/Admin/ChangePassword.jsx";
 
 function App() {
   return (
@@ -49,6 +51,7 @@ function App() {
         <Route path="/manage-talents/add-account" element={<AddTalent />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/manager/profile" element={<ManagerProfile />} />
+        <Route path="/manager/profile/changepass" element={<ManagerChangePass />} />
         <Route path="/admin/manage-accounts" element={<AdminManageAccounts />} />
         <Route path="/admin/manage-users" element={<AdminManageUsers />} />
         <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />
@@ -56,6 +59,7 @@ function App() {
         <Route path="/admin/manage-users/edit-user/:employee_id" element={<AdminEditUser />} />
         <Route path="/admin/manage-talents" element={<AdminManageTalents />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
+        <Route path="/admin/profile/changepass" element={<AdminChangePass />} />
       </Routes>
     </Router>
   );
