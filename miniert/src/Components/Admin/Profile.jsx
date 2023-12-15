@@ -30,6 +30,30 @@ const CurrentDate = () => {
 
 const Profile = () => {
     const employee_id = localStorage.getItem("employee_id");
+    const [employeeData, setEmployeeData] = useState([]);
+
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${employee_id}`)
+            .then((response) => {
+                setEmployeeData(response.data)
+            })
+            .catch ((err) => {
+                toast.error('Account not found.', {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
+            });
+    }, [employee_id]);
+
+    useEffect(() => {
+        console.log(employeeData);
+    }, [employeeData]);
 
     return (
         <div className="dashboard">
