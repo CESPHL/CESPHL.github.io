@@ -7,6 +7,8 @@ import talents from "../Assets/mng-talent-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
 import users from "../Assets/users-inactive.svg";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import ChangePassModal from '../DashModal/ChangePassModal';
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());

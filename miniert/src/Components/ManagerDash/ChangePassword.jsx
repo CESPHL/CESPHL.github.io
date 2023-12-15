@@ -10,6 +10,7 @@ import profile from "../Assets/inactive-profile.svg";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ChangePassModal from "../DashModal/ChangePassModal";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
