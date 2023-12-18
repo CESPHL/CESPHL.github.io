@@ -16,25 +16,28 @@ const getOneManager = async (req, res) => {
     }
 }
 
-// Update own profile
-const updateManager = async (req, res) => {
+// Add client to own account
+const addClient = async (req, res) => {
     const { employee_id } = req.params;
-
     try {
-        const manager = await Manager.findOneAndUpdate({ employee_id: employee_id }, {
-            ...req.body
-        });
+        const manager = await Manager.findOne({ employee_id });
         if (!manager) {
-            return res.status(404).json({ error: "Manager not found."});
+            return res.status(404).json({ message: "Manager not found." });
         }
-        res.status(200).json(manager);
+        else {
+            manager.clients.push(req.body);
+            const result = await manager.save();
+            console.log("Client data inserted successfully.", result);
+            return res.status(200).json({ message: "Client data inserted successfully." });
+        }
     }
-    catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+    catch (err) {
+        console.log("Error inserting client data.", err);
+        return res.status(500).json({ message: "Error inserting client data. "});
     }
 }
 
 module.exports = {
     getOneManager,
-    updateManager
+    addClient
 }
