@@ -8,10 +8,11 @@ import talents from '../Assets/mng-talent-inactive.svg';
 import profile from '../Assets/inactive-profile.svg'
 import users from "../Assets/users-inactive.svg";
 import Modal from "../Modals/Modal.jsx";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const CurrentDate = () => {
-    const employee_id = localStorage.getItem("employee_id");
     const [currentDate, setCurrentDate] = useState(new Date());
 
     useEffect(() => {
@@ -31,6 +32,7 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 }
 const AddAccount = () => {
+    const employee_id = localStorage.getItem("employee_id");
     const [showModal, setShowModal] = useState(false);
 
     const handleOpenModal = () => {
@@ -85,11 +87,21 @@ const AddAccount = () => {
                 });
             });
         console.log(clientData);
-
-
     }
     return (
         <div className="dashboard">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="dash-navbar">
                 <div className="dash-main">
                     <img src={hourglass} alt="" />
