@@ -49,9 +49,9 @@ const AddAccount = () => {
             client_poc_name: document.getElementById("clientPOCName").value,
             client_poc_email: document.getElementById("clientPOCEmail").value,
             projects: [{
-                client_project_name: document.getElementById("clientProjectName").value,
-                client_project_workshift: document.getElementById("clientProjectWorkshift").value,
-                client_project_coretime: document.getElementById("clientProjectCoretime").value
+                project_name: document.getElementById("clientProjectName").value,
+                workshift: document.getElementById("clientProjectWorkshift").value,
+                coretime: document.getElementById("clientProjectCoretime").value
             }]
         };
         console.log(clientData);
