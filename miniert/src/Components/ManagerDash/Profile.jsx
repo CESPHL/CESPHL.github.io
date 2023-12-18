@@ -69,6 +69,18 @@ const Profile = () => {
 
     return (
         <div className="dashboard">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="dash-navbar">
                 <div className="dash-main">
                     <img src={hourglass} alt="" />
