@@ -11,6 +11,7 @@ import Modal from "../Modals/Modal.jsx";
 
 
 const CurrentDate = () => {
+    const employee_id = localStorage.getItem("employee_id");
     const [currentDate, setCurrentDate] = useState(new Date());
 
     useEffect(() => {
@@ -54,7 +55,38 @@ const AddAccount = () => {
                 coretime: document.getElementById("clientProjectCoretime").value
             }]
         };
+
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`, clientData)
+            .then((response) => {
+                console.log(response);
+                toast.success("Added data successfully.", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                handleCloseModal();
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Internal server error. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
         console.log(clientData);
+
+
     }
     return (
         <div className="dashboard">
