@@ -14,8 +14,12 @@ const managerSchema = new Schema({
     clients: [{
         "client_id": { type: String, required: true },
         "client_name": { type: String, required: true },
+        "client_poc_name": { type: String, required: true },
+        "client_poc_email": { type: String, required: true},
         "projects": [{
-            "project_name": { type: String, required: true }
+            "project_name": { type: String, required: true },
+            "workshift": { type: String, required: true },
+            "coretime": { type: String, required: true }
         }]
     }],
 }, { timestamps: true });
