@@ -48,10 +48,11 @@ const AddAccount = () => {
             client_address: document.getElementById("clientAddress").value,
             client_poc_name: document.getElementById("clientPOCName").value,
             client_poc_email: document.getElementById("clientPOCEmail").value,
-            client_sdm_name: document.getElementById("clientSDMName").value,
-            client_sdm_email: document.getElementById("clientSDMEmail").value,
-            client_sdm_contact: document.getElementById("clientSDMContact").value,
-            client_project: document.getElementById("clientProject").value
+            projects: [{
+                client_project_name: document.getElementById("clientProjectName").value,
+                client_project_workshift: document.getElementById("clientProjectWorkshift").value,
+                client_project_coretime: document.getElementById("clientProjectCoretime").value
+            }]
         };
         console.log(clientData);
     }
@@ -118,9 +119,9 @@ const AddAccount = () => {
                         <span>Location</span><br /><input type="text" placeholder="Enter client address" id="clientAddress" required /><br />
                         <span>Client POC Name</span><br /><input type="text" placeholder="Enter client POC name" id="clientPOCName" required /><br />
                         <span>Client POC Email</span><br /><input type="text" placeholder="Enter client POC email" id="clientPOCEmail" required /><br />
-                        <span>SDM/SDL</span><br /><input type="text" placeholder="Enter SDM/SDL" id="clientSDMName" required /><br />
-                        <span>SDM/SDL Email</span><br /><input type="text" placeholder="Enter SDM/SDL email" id="clientSDMEmail" required /><br />
-                        <span>SDM/SDL Contact No.</span><br /><input type="text" placeholder="Enter SDM/SDL Contact No." id="clientSDMContact" required /><br />
+                        <span>Project name</span><br /><input type="text" placeholder="Enter project name" id="clientProjectName" required /><br />
+                        <span>Project Workshift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
+                        <span>Project Coretime</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
                         <NavLink to="/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
