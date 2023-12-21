@@ -103,19 +103,19 @@ const Profile = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/manage-accounts">
+                            <NavLink to="/manager/manage-accounts">
                                 <img src={accIcon} alt="dashboard icon" />
                                 <span className="inactive">Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manage-talents">
+                            <NavLink to="/manager/manage-talents">
                                 <img src={talents} alt="users icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/reports">
+                            <NavLink to="/manager/reports">
                                 <img src={reports} alt="clock icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
@@ -144,7 +144,7 @@ const Profile = () => {
                 </div>
                 <div className="mainContent">
                     <h3>User Details</h3>
-                    <NavLink to="/profile/changepass">
+                    <NavLink to="/manager/profile/changepass">
                         <button className="change-pass-btn">Change Password</button>
                     </NavLink>
                     <form>

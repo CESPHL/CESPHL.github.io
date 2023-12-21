@@ -17,6 +17,7 @@ import ManageTalent from "./Components/ManagerDash/ManageTalent.jsx";
 import AddTalent from "./Components/ManagerDash/AddTalent.jsx";
 
 // Manager pages
+import ManagerViewAccount from "./Components/ManagerDash/ViewAccount.jsx";
 import Reports from "./Components/ManagerDash/Reports.jsx";
 import ManagerProfile from "./Components/ManagerDash/Profile.jsx";
 import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
@@ -44,14 +45,16 @@ function App() {
         <Route path="/timesheet" element={<Timesheet />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/changepass" element={<ChangePass />} />
-        <Route path="/manage-accounts" element={<ManagerDashboard />} />
-        <Route path="/manage-accounts/add-account" element={<AddAccount />} />
-        <Route path="/manage-accounts/edit-account" element={<EditAccount />} />
-        <Route path="/manage-talents" element={<ManageTalent />} />
-        <Route path="/manage-talents/add-account" element={<AddTalent />} />
-        <Route path="/reports" element={<Reports />} />
+        {/* Manager pages */}
+        <Route path="/manager/manage-accounts" element={<ManagerDashboard />} />
+        <Route path="/manager/manage-accounts/add-account" element={<AddAccount />} />
+        <Route path="/manager/manage-accounts/edit-account" element={<EditAccount />} />
+        <Route path="/manager/manage-talents" element={<ManageTalent />} />
+        <Route path="/manager/manage-talents/add-account" element={<AddTalent />} />
+        <Route path="/manager/reports" element={<Reports />} />
         <Route path="/manager/profile" element={<ManagerProfile />} />
         <Route path="/manager/profile/changepass" element={<ManagerChangePass />} />
+        {/* Admin pages */}
         <Route path="/admin/manage-accounts" element={<AdminManageAccounts />} />
         <Route path="/admin/manage-users" element={<AdminManageUsers />} />
         <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />

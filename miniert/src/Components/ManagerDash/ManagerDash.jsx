@@ -73,19 +73,19 @@ const ManageAccount = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/manage-accounts">
+                            <NavLink to="/manager/manage-accounts">
                                 <img src={accIcon} alt="dashboard icon" activeclassname="active" />
                                 <span>Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manage-talents">
+                            <NavLink to="/manager/manage-talents">
                                 <img src={talents} alt="talents icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/reports">
+                            <NavLink to="/manager/reports">
                                 <img src={reports} alt="reports icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
@@ -119,7 +119,7 @@ const ManageAccount = () => {
                         </form>
                         <div className="buttons">
                             <button className="upload-btn">Upload</button>
-                            <NavLink to="/manage-accounts/add-account">
+                            <NavLink to="/manager/manage-accounts/add-account">
                                 <button className="add-btn">Add</button>
                             </NavLink>
                         </div>
@@ -142,7 +142,7 @@ const ManageAccount = () => {
                                 <p>{client.sdm_sdl_contact}</p>
                                 <p>
                                     <img src={view} />
-                                    <NavLink to="/manage-accounts/edit-account">
+                                    <NavLink to="/manager/manage-accounts/edit-account">
                                         <img src={edit} />
                                     </NavLink>
                                 </p>

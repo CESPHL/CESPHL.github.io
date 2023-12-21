@@ -28,6 +28,7 @@ const CurrentDate = () => {
 
     return <p>{formattedDate}</p>;
 }
+
 const ViewAccount = () => {
     return (
         <div className="dashboard">
@@ -46,19 +47,19 @@ const ViewAccount = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/manage-accounts">
+                            <NavLink to="/manager/manage-accounts">
                                 <img src={accIcon} alt="dashboard icon" activeclassname="active" />
                                 <span>Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manage-talents">
+                            <NavLink to="/manager/manage-talents">
                                 <img src={talents} alt="talents icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/reports">
+                            <NavLink to="/manager/reports">
                                 <img src={reports} alt="reports icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
@@ -101,7 +102,7 @@ const ViewAccount = () => {
                             <span>SDM/SDL Email</span><br /><input type="text" placeholder="Enter SDM/SDL email" required /><br />
                             <span>SDM/SDL Contact No.</span><br /><input type="text" placeholder="Enter SDM/SDL Contact No." required /><br />
                             <span>Project</span><br /><input type="text" placeholder="Enter Project" required /><br />
-                            <NavLink to="/manage-accounts">
+                            <NavLink to="/manager/manage-accounts">
                                 <button>Cancel</button>
                             </NavLink>
                             <input type="submit" value="Add" class="add-btn1" onClick={handleOpenModal} />

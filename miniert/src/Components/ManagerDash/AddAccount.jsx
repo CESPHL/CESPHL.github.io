@@ -118,20 +118,20 @@ const AddAccount = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/manage-accounts">
+                            <NavLink to="/manager/manage-accounts">
                                 <img src={accIcon} alt="dashboard icon" activeclassname="active" />
                                 <span>Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manage-talents">
-                                <img src={users} alt="users icon" />
+                            <NavLink to="/manager/manage-talents">
+                                <img src={talents} alt="talents icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/reports">
-                                <img src={talents} alt="clock icon" />
+                            <NavLink to="/manager/reports">
+                                <img src={reports} alt="reports icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
                         </li>
@@ -167,7 +167,7 @@ const AddAccount = () => {
                         <span>Project name</span><br /><input type="text" placeholder="Enter project name" id="clientProjectName" required /><br />
                         <span>Project Workshift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
                         <span>Project Coretime</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
-                        <NavLink to="/manage-accounts">
+                        <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
                         <input type="button" value="Add" class="add-btn1" onClick={handleOpenModal} />
