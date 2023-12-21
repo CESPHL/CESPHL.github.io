@@ -49,19 +49,19 @@ const ManageAccount = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/manage-accounts">
+                            <NavLink to="/manager/manage-accounts">
                                 <img src={accIcon} alt="dashboard icon" />
                                 <span className="inactive">Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manage-talents">
+                            <NavLink to="/manager/manage-talents">
                                 <img src={talents} alt="talents icon" activeclassname="active" />
                                 <span>Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/reports">
+                            <NavLink to="/manager/reports">
                                 <img src={reports} alt="reports icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
@@ -107,7 +107,7 @@ const ManageAccount = () => {
                         </div>
                         <div className="buttons">
                             <button className="upload-btn">Upload</button>
-                            <NavLink to="/manage-talents/add-account">
+                            <NavLink to="/manager/manage-talents/add-account">
                                 <button className="add-btn">
                                     Add
                                 </button>
