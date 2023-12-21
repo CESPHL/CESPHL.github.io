@@ -11,6 +11,7 @@ const adminSchema = new Schema({
     username: { type: String, required: true },
     password: { type: String, required: true },
     user_level: { type: String, required: true },
+    manager_name: {type: String, required: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Admin', adminSchema);

@@ -23,6 +23,7 @@ const managerSchema = new Schema({
             "coretime": { type: String, required: true }
         }]
     }],
+    manager_name: {type: String, required: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Manager', managerSchema);
