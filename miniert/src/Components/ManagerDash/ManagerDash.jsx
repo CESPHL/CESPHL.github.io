@@ -128,9 +128,9 @@ const ManageAccount = () => {
                         <div className="customTableHeader">
                             <h1>Client ID</h1>
                             <h1>Client Name</h1>
-                            <h1>SDM/SDL</h1>
-                            <h1>SDM/SDL Email</h1>
-                            <h1>SDM/SDL Contact</h1>
+                            <h1>Client POC Name</h1>
+                            <h1>Client POC Email</h1>
+                            <h1>Projects</h1>
                             <h1>Actions</h1>
                         </div>
                         {clientData.clients ? clientData.clients.map((client) => (
