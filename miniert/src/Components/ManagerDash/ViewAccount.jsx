@@ -7,7 +7,7 @@ import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
-
+import axios from "axios";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -90,23 +90,6 @@ const ViewAccount = () => {
                     <div className="top-content">
                         <h3>Account Details</h3>
                         <button className="edit-btn">Edit</button>
-                    </div>
-                    <div className="add-mainContent">
-                        <form>
-                            <span>Client ID</span><br /><input type="text" placeholder="Enter client ID" required /><br />
-                            <span>Client Name</span><br /><input type="text" placeholder="Enter client name" required /><br />
-                            <span>Location</span><br /><input type="text" placeholder="Enter client address" required /><br />
-                            <span>Client POC Name</span><br /><input type="text" placeholder="Enter client POC name" required /><br />
-                            <span>Client POC Email</span><br /><input type="text" placeholder="Enter client POC email" required /><br />
-                            <span>SDM/SDL</span><br /><input type="text" placeholder="Enter SDM/SDL" required /><br />
-                            <span>SDM/SDL Email</span><br /><input type="text" placeholder="Enter SDM/SDL email" required /><br />
-                            <span>SDM/SDL Contact No.</span><br /><input type="text" placeholder="Enter SDM/SDL Contact No." required /><br />
-                            <span>Project</span><br /><input type="text" placeholder="Enter Project" required /><br />
-                            <NavLink to="/manager/manage-accounts">
-                                <button>Cancel</button>
-                            </NavLink>
-                            <input type="submit" value="Add" class="add-btn1" onClick={handleOpenModal} />
-                        </form>
                     </div>
                 </div>
             </div>

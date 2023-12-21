@@ -6,7 +6,7 @@ import logicon from '../Assets/logout.svg';
 import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import profile from '../Assets/inactive-profile.svg'
-import users from "../Assets/users-inactive.svg";
+import reports from "../Assets/report-inactive.svg";
 import Modal from "../Modals/Modal.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,7 +38,7 @@ const AddAccount = () => {
 
     const handleOpenModal = () => {
         setShowModal(true);
-    }
+    };
 
     const handleCloseModal = () => {
         setShowModal(false);
