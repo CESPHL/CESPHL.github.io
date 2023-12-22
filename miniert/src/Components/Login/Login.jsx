@@ -40,6 +40,8 @@ const Login = () => {
                 const full_name = responseData.first_name + " " + responseData.last_name;
                 const user_email = responseData.email;
 
+                console.log(responseData);
+
                 //set the token to the local storage
                 localStorage.setItem("token", token);
                 localStorage.setItem("employee_id", employee_id);
@@ -60,24 +62,24 @@ const Login = () => {
                 const validationData = await validationResponse.json();
                 const isTokenValid = validationData.isValid;
 
-                if (isTokenValid) {
-                    // navigate('/dashboard');
-                    console.log("Token is valid");
-                    console.log(user_level);
-                    if (user_level === "Talent") {
-                        navigate("/dashboard");
-                    }
-                    else if (user_level === "Manager") {
-                        navigate("/manager/manage-accounts");
-                    }
-                    else if (user_level === "Admin") {
-                        navigate("/admin/manage-accounts");
-                    }
-                }
-                else {
-                    console.log("Token validation failed");
-                }
-            } else {
+                // if (isTokenValid) {
+                //     console.log("Token is valid");
+                //     console.log(user_level);
+                //     if (user_level === "Talent") {
+                //         navigate("/dashboard");
+                //     }
+                //     else if (user_level === "Manager") {
+                //         navigate("/manager/manage-accounts");
+                //     }
+                //     else if (user_level === "Admin") {
+                //         navigate("/admin/manage-accounts");
+                //     }
+                // }
+                // else {
+                //     console.log("Token validation failed");
+                // }
+            }
+            else {
                 //Failed login
                 console.log("Failed login");
                 // Make an error message.
