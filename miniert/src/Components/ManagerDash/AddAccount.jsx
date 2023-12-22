@@ -34,8 +34,31 @@ const CurrentDate = () => {
 }
 const AddAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
-    const full_name = localStorage.getItem("fullName");
-    const user_email = localStorage.getItem("email");
+    const [managerData, setManagerData] = useState([]);
+
+    // Check for account
+    // To be used for security purposes to prevent url manipulation
+    // In this page, this is also used to retrieve data to add manager info when adding client
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+        .then((response) => {
+            setManagerData(response.data);
+        })
+        .catch((err) => {
+            toast.error("Account not found. Please login again.", {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            console.log(err);
+            window.location.href = "/";
+        });
+    }, [employee_id]);
 
     console.log(full_name + user_email);
     const [showModal, setShowModal] = useState(false);
@@ -50,10 +73,15 @@ const AddAccount = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
+        console.log(managerData);
+        const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
+        const sdmEmail = managerData.email;
         const clientData = {
             client_id: document.getElementById("clientID").value,
             client_name: document.getElementById("clientName").value,
             client_address: document.getElementById("clientAddress").value,
+            client_sdm_name: sdmFullName,
+            client_sdm_email: sdmEmail,
             client_poc_name: document.getElementById("clientPOCName").value,
             client_poc_email: document.getElementById("clientPOCEmail").value,
             projects: [{
