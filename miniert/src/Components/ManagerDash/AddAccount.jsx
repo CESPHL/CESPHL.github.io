@@ -34,6 +34,10 @@ const CurrentDate = () => {
 }
 const AddAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
+    const full_name = localStorage.getItem("fullName");
+    const user_email = localStorage.getItem("email");
+
+    console.log(full_name + user_email);
     const [showModal, setShowModal] = useState(false);
 
     const handleOpenModal = () => {

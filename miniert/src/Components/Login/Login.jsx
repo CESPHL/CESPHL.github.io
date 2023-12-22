@@ -37,11 +37,15 @@ const Login = () => {
                 const token = responseData.token;
                 const employee_id = responseData.employee_id;
                 const user_level = responseData.user_level;
+                const full_name = responseData.first_name + " " + responseData.last_name;
+                const user_email = responseData.email;
 
                 //set the token to the local storage
                 localStorage.setItem("token", token);
                 localStorage.setItem("employee_id", employee_id);
                 localStorage.setItem("user_level", user_level);
+                localStorage.setItem("fullName", full_name);
+                localStorage.setItem("email", user_email);
 
                 //Validate the token by sending request to the backend
                 const validationResponse = await fetch("https://cesphl-github-io-backend.vercel.app/validate-token", {
