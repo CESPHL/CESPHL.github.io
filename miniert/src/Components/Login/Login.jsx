@@ -64,7 +64,7 @@ const Login = () => {
                         navigate("/dashboard");
                     }
                     else if (user_level === "Manager") {
-                        navigate("/manage-accounts");
+                        navigate("/manager/manage-accounts");
                     }
                     else if (user_level === "Admin") {
                         navigate("/admin/manage-accounts");

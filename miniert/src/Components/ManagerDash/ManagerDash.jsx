@@ -137,8 +137,8 @@ const ManageAccount = () => {
                             <div className="customTableContent" key={client.client_id}>
                                 <p>{client.client_id}</p>
                                 <p>{client.client_name}</p>
-                                <p>{client.sdm_sdl_name}</p>
-                                <p>{client.sdm_sdl_email}</p>
+                                <p>{client.client_poc_name}</p>
+                                <p>{client.client_poc_email}</p>
                                 <p>{client.sdm_sdl_contact}</p>
                                 <p>
                                     <img src={view} />
