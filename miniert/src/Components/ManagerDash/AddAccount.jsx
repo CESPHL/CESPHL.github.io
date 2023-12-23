@@ -60,7 +60,6 @@ const AddAccount = () => {
         });
     }, [employee_id]);
 
-    console.log(full_name + user_email);
     const [showModal, setShowModal] = useState(false);
 
     const handleOpenModal = () => {
