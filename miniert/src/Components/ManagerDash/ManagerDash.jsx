@@ -141,8 +141,10 @@ const ManageAccount = () => {
                                 <p>{client.client_poc_email}</p>
                                 <p>{client.sdm_sdl_contact}</p>
                                 <p>
-                                    <img src={view} />
-                                    <NavLink to="/manager/manage-accounts/edit-account">
+                                    <NavLink to={`/manager/manage-accounts/view-account/${client.client_id}`}>
+                                        <img src={view} />
+                                    </NavLink>
+                                    <NavLink to={`/manager/manage-accounts/edit-account/${client.client_id}`}>
                                         <img src={edit} />
                                     </NavLink>
                                 </p>
