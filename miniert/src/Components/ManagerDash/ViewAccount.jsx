@@ -50,14 +50,7 @@ const ViewAccount = () => {
                 console.log(response.data);
                 const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
                 console.log(filteredClients);
-
-                if (filteredClients.length > 0) {
-                    // Update state with the first client's projects
-                    setClientData(filteredClients[0].projects);
-                } else {
-                    // No matching client found
-                    setClientData([]);
-                }
+                setClientData(filteredClients);
             })
             .catch((err) => {
                 console.error("Error retrieving client info.", err);
@@ -72,7 +65,7 @@ const ViewAccount = () => {
                     theme: "light",
                 });
             });
-    }, [employee_id, accountId]);
+    }, [employee_id]);
 
     console.log(clientData);
     console.log(clientData[0]);
