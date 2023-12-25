@@ -8,6 +8,8 @@ import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -30,8 +32,51 @@ const CurrentDate = () => {
 }
 
 const ViewAccount = () => {
+
+    const employee_id = localStorage.getItem("employee_id");
+    const [clientData, setClientData] = useState([]);
+    const url = new URL('https://cesphl-github-io-frontend.vercel.app/manager/manage-accounts/view-account/101');
+    const accountId = url.pathname.split('/').pop();
+
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+            .then((response) => {
+                console.log(response.data);
+                const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
+                console.log(filteredClients);
+                setClientData(filteredClients);
+            })
+            .catch((err) => {
+                console.error("Error retrieving client info.", err);
+                toast.error("Error retrieving client info. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
+    }, [employee_id]);
+
+    console.log(clientData);
+
     return (
         <div className="dashboard">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="dash-navbar">
                 <div className="dash-main">
                     <img src={hourglass} alt="" />
@@ -90,6 +135,22 @@ const ViewAccount = () => {
                     <div className="top-content">
                         <h3>Account Details</h3>
                         <button className="edit-btn">Edit</button>
+                    </div>
+                    <div className="clientInfo">
+
+                    </div>
+                    <div className="filters-row">
+
+                    </div>
+                    <div className="project-table">
+                        <div className="project-header">
+                            <h1>ID</h1>
+                            <h1>Project Name</h1>
+                            <h1>Work Shift</h1>
+                            <h1>Core Time</h1>
+                            <h1>Status</h1>
+                            <h1>Actions</h1>
+                        </div>
                     </div>
                 </div>
             </div>
