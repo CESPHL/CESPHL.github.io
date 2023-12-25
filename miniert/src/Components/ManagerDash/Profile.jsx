@@ -57,6 +57,9 @@ const Profile = () => {
 
     useEffect(() => {
         console.log(employeeData);
+        if (!employeeData || !employeeData.clients) {
+            return <p>Loading...</p>; // or any other placeholder or loading indicator
+        }
         const clientNames = employeeData.clients.map((client) => client.client_name).join(', ');
         const clientsWithProjects = employeeData.clients.map((client) => {
             const projectNames = client.projects.map((project) => project.project_name).join(', ');
