@@ -181,12 +181,15 @@ const ViewAccount = () => {
                         {clientData.flatMap((client) =>
                             client.projects.map((project) => (
                                 <div key={project._id}>
-                                    <p>Project ID: {project.project_id}</p>
-                                    <p>Project Name: {project.project_name}</p>
-                                    <p>Workshift: {project.workshift}</p>
-                                    <p>Core Time: {project.coretime}</p>
-                                    <p>Status: {project.status}</p>
-                                    {/* Add any other project information you want to display */}
+                                    <p>{project.project_id}</p>
+                                    <p>{project.project_name}</p>
+                                    <p>{project.workshift}</p>
+                                    <p>{project.coretime}</p>
+                                    <p>{project.status}</p>
+                                    <p>
+                                        <img src={view} />
+                                        <img src={edit} />
+                                    </p>
                                 </div>
                             ))
                         )}
