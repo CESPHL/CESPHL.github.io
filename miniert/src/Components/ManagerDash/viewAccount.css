@@ -5,6 +5,8 @@
 .top-content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .top-content h3 {
@@ -22,14 +24,21 @@
 
 .project-table {
    border: 1px solid #D0D5DD;
+   border-radius: 7px;
 }
 
 .project-header, .project-content {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+    padding: 1rem;
+}
+
+.project-header {
+    background-color: #F9FAFB;
 }
 
 .project-header h1 {
     margin: 0;
     font-size: 16px;
+    color: #656B75;
 }

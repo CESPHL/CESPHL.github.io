@@ -142,9 +142,20 @@ const ViewAccount = () => {
                         <h3>Account Details</h3>
                         <button className="edit-btn">Edit</button>
                     </div>
-                    <div className="clientInfo">
-
-                    </div>
+                    {clientData[0] ? clientData[0].map((client) => {
+                        <div className="clientInfo">
+                            <label for="clientName">Client Name</label>
+                            <input type="text" name="clientName" id="clientName" value={`${client.client_name}`} disabled />
+                            <label for="clientAddress">Client Address</label>
+                            <input type="text" name="clientAddress" id="clientAddress" value={`${client.client_address}`} disabled />
+                            <label for="sdmName">SDM / SDL</label>
+                            <input type="text" name="sdmName" id="sdmName" value={`${client.client_sdm_name}`} disabled />
+                            <label for="sdmEmail">SDM / SDL Email</label>
+                            <input type="text" name="sdmEmail" id="sdmEmail" value={`${client.client_sdm_email}`} disabled />
+                            <label for="sdmContact">SDM / SDL Contact No.</label>
+                            <input type="text" name="sdmContact" id="sdmContact" value={`${client.client_sdm_contact}`} disabled />
+                        </div>
+                    }) : (<p>Loading...</p>)}
                     <div className="filters-row">
 
                     </div>
@@ -157,7 +168,7 @@ const ViewAccount = () => {
                             <h1>Status</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData.projects? clientData.projects.map((project) => (
+                        {clientData[0].projects ? clientData[0].projects.map((project) => (
                             <div className="project-content">
                                 <p>{project.project_id}</p>
                                 <p>{project.project_name}</p>
@@ -165,7 +176,7 @@ const ViewAccount = () => {
                                 <p>{project.status}</p>
                                 <p>
                                     <img src={view} />
-                                    <img src={edit} />    
+                                    <img src={edit} />
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
