@@ -178,19 +178,21 @@ const ViewAccount = () => {
                             <h1>Status</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData && clientData.projects ? (
-                            clientData.projects.map((project) => (
-                                <div className="project-content" key={project._id.$oid}>
-                                    <p>{project.project_id}</p>
-                                    <p>{project.project_name}</p>
-                                    <p>{project.workshift}</p>
-                                    <p>{project.status}</p>
-                                    <p>
-                                        <img src={view} alt="View" />
-                                        <img src={edit} alt="Edit" />
-                                    </p>
-                                </div>
-                            ))
+                        {clientData && clientData.clients ? (
+                            clientData.clients.map((client) =>
+                                client.projects.map((project) => (
+                                    <div className="project-content" key={project._id.$oid}>
+                                        <p>{project.project_id}</p>
+                                        <p>{project.project_name}</p>
+                                        <p>{project.workshift}</p>
+                                        <p>{project.status}</p>
+                                        <p>
+                                            <img src={view} alt="View" />
+                                            <img src={edit} alt="Edit" />
+                                        </p>
+                                    </div>
+                                ))
+                            )
                         ) : (
                             <p>Loading...</p>
                         )}
