@@ -145,7 +145,7 @@ const ViewAccount = () => {
                     </div>
                     {clientData ? (
                         clientData.map(({ client_id, client_name, client_address, client_sdm_name, client_sdm_email, client_sdm_contact }) => (
-                            <div className="clientInfo" key={client_id}>
+                            <div className="client-info" key={client_id}>
                                 <label htmlFor="clientName">Client Name</label>
                                 <input type="text" name="clientName" id="clientName" value={client_name} disabled />
 
@@ -180,7 +180,7 @@ const ViewAccount = () => {
                         </div>
                         {clientData.flatMap((client) =>
                             client.projects.map((project) => (
-                                <div key={project._id}>
+                                <div key={project._id} className="project-content">
                                     <p>{project.project_id}</p>
                                     <p>{project.project_name}</p>
                                     <p>{project.workshift}</p>

@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .top-content h3 {
@@ -22,6 +22,14 @@
     color: #FFF;
 }
 
+.client-info {
+    margin-bottom: 2rem;
+}
+
+.filters-row {
+    margin-bottom: 1rem;
+}
+
 .project-table {
    border: 1px solid #D0D5DD;
    border-radius: 7px;
@@ -35,10 +43,15 @@
 
 .project-header {
     background-color: #F9FAFB;
+    border-bottom: 1px solid #D0D5DD;
 }
 
 .project-header h1 {
     margin: 0;
     font-size: 16px;
     color: #656B75;
+}
+
+.project-content {
+    background-color: #FFF;
 }
