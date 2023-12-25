@@ -68,6 +68,7 @@ const ViewAccount = () => {
     }, [employee_id]);
 
     console.log(clientData);
+    console.log(clientData[0]);
 
     return (
         <div className="dashboard">
@@ -168,7 +169,7 @@ const ViewAccount = () => {
                             <h1>Status</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData[0].projects ? clientData[0].projects.map((project) => (
+                        {clientData.projects ? clientData.projects.map((project) => (
                             <div className="project-content">
                                 <p>{project.project_id}</p>
                                 <p>{project.project_name}</p>
