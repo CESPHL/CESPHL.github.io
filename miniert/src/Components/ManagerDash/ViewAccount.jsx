@@ -180,18 +180,22 @@ const ViewAccount = () => {
                         </div>
                         {clientData && clientData.clients ? (
                             clientData.clients.map((client) =>
-                                client.projects.map((project) => (
-                                    <div className="project-content" key={project._id.$oid}>
-                                        <p>{project.project_id}</p>
-                                        <p>{project.project_name}</p>
-                                        <p>{project.workshift}</p>
-                                        <p>{project.status}</p>
-                                        <p>
-                                            <img src={view} alt="View" />
-                                            <img src={edit} alt="Edit" />
-                                        </p>
-                                    </div>
-                                ))
+                                client.projects ? (
+                                    client.projects.map((project) => (
+                                        <div className="project-content" key={project._id.$oid}>
+                                            <p>{project.project_id}</p>
+                                            <p>{project.project_name}</p>
+                                            <p>{project.workshift}</p>
+                                            <p>{project.status}</p>
+                                            <p>
+                                                <img src={view} alt="View" />
+                                                <img src={edit} alt="Edit" />
+                                            </p>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No projects for this client</p>
+                                )
                             )
                         ) : (
                             <p>Loading...</p>
