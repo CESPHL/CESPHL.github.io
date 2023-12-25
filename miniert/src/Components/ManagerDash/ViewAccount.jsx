@@ -178,28 +178,21 @@ const ViewAccount = () => {
                             <h1>Status</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData && clientData.clients ? (
-                            clientData.clients.map((client) =>
-                                client.projects ? (
-                                    client.projects.map((project) => (
-                                        <div className="project-content" key={project._id.$oid}>
-                                            <p>{project.project_id}</p>
-                                            <p>{project.project_name}</p>
-                                            <p>{project.workshift}</p>
-                                            <p>{project.status}</p>
-                                            <p>
-                                                <img src={view} alt="View" />
-                                                <img src={edit} alt="Edit" />
-                                            </p>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p>No projects for this client</p>
-                                )
-                            )
-                        ) : (
-                            <p>Loading...</p>
-                        )}
+                        {clientData.map((client) => (
+                            <div key={client.client_id}>
+                                <h2>{client.client_name} - Projects</h2>
+                                {client.projects.map((project) => (
+                                    <div key={project._id}>
+                                        <p>Project ID: {project.project_id}</p>
+                                        <p>Project Name: {project.project_name}</p>
+                                        <p>Workshift: {project.workshift}</p>
+                                        <p>Core Time: {project.coretime}</p>
+                                        <p>Status: {project.status}</p>
+                                        {/* Add any other project information you want to display */}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
