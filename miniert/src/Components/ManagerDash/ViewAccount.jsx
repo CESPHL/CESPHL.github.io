@@ -144,7 +144,7 @@ const ViewAccount = () => {
                         <button className="edit-btn">Edit</button>
                     </div>
                     {clientData ? (
-                        clientData.map(({ client_name, client_address, client_sdm_name, client_sdm_email, client_sdm_contact }) => (
+                        clientData.map(({ client_id, client_name, client_address, client_sdm_name, client_sdm_email, client_sdm_contact }) => (
                             <div className="clientInfo" key={ client_id }>
                                 <label htmlFor="clientName">Client Name</label>
                                 <input type="text" name="clientName" id="clientName" value={client_name} disabled />
