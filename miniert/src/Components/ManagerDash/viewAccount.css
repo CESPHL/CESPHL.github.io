@@ -54,9 +54,13 @@
 
 .project-content {
     background-color: #FFF;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
     padding: 0.5rem 1rem;
 }
 
 .project-content p {
     margin: 0;
+    display: flex;
+    align-items: center;
 }
