@@ -57,8 +57,8 @@ const Profile = () => {
 
     useEffect(() => {
         console.log(employeeData);
-        const clientNames = employeeData.clients.map((client) => client.client_name).join(', ');
-        const clientsWithProjects = employeeData.clients.map((client) => {
+        const clientNames = employeeData?.clients.map((client) => client.client_name).join(', ');
+        const clientsWithProjects = employeeData?.clients.map((client) => {
             const projectNames = client.projects.map((project) => project.project_name).join(', ');
             return `${client.client_name} (${projectNames})`;
         }).join(', ');
