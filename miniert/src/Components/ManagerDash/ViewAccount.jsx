@@ -169,7 +169,7 @@ const ViewAccount = () => {
                             <h1>Status</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData ? clientData[0].projects.map((project) => (
+                        {clientData ? clientData.projects.map((project) => (
                             <div className="project-content">
                                 <p>{project.project_id}</p>
                                 <p>{project.project_name}</p>
