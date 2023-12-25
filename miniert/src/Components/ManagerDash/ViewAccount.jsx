@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './addAccount.css';
+import './viewAccount.css';
 
 // Icons
 import hourglass from '../Assets/hourglass.svg';
