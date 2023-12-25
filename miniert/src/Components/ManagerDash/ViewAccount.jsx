@@ -145,7 +145,7 @@ const ViewAccount = () => {
                     </div>
                     {clientData ? (
                         clientData.map(({ client_id, client_name, client_address, client_sdm_name, client_sdm_email, client_sdm_contact }) => (
-                            <div className="clientInfo" key={ client_id }>
+                            <div className="clientInfo" key={client_id}>
                                 <label htmlFor="clientName">Client Name</label>
                                 <input type="text" name="clientName" id="clientName" value={client_name} disabled />
 
@@ -178,18 +178,22 @@ const ViewAccount = () => {
                             <h1>Status</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData ? clientData.projects.map((project) => (
-                            <div className="project-content">
-                                <p>{project.project_id}</p>
-                                <p>{project.project_name}</p>
-                                <p>{project.workshift}</p>
-                                <p>{project.status}</p>
-                                <p>
-                                    <img src={view} />
-                                    <img src={edit} />
-                                </p>
-                            </div>
-                        )) : (<p>Loading...</p>)}
+                        {clientData && clientData.projects ? (
+                            clientData.projects.map((project) => (
+                                <div className="project-content" key={project._id.$oid}>
+                                    <p>{project.project_id}</p>
+                                    <p>{project.project_name}</p>
+                                    <p>{project.workshift}</p>
+                                    <p>{project.status}</p>
+                                    <p>
+                                        <img src={view} alt="View" />
+                                        <img src={edit} alt="Edit" />
+                                    </p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>Loading...</p>
+                        )}
                     </div>
                 </div>
             </div>
