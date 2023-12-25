@@ -57,22 +57,33 @@ const Profile = () => {
 
     useEffect(() => {
         console.log(employeeData);
+
         if (!employeeData || !employeeData.clients) {
-            return <p>Loading...</p>; // or any other placeholder or loading indicator
+            document.getElementById("employeeID").value = "N/A";
+            document.getElementById("employeeName").value = "N/A";
+            document.getElementById("emailAdd").value = "N/A";
+            document.getElementById("contactNum").value = "N/A";
+            document.getElementById("clientName").value = "N/A";
+            document.getElementById("projectName").value = "N/A";
+            document.getElementById("managerName").value = "N/A";
+            document.getElementById("userLevel").value = "N/A";
+        } 
+        else {
+            const clientNames = employeeData.clients.map((client) => client.client_name).join(', ');
+            const clientsWithProjects = employeeData.clients.map((client) => {
+                const projectNames = client.projects.map((project) => project.project_name).join(', ');
+                return `${client.client_name} (${projectNames})`;
+            }).join(', ');
+
+            document.getElementById("employeeID").value = employeeData.employee_id ? employeeData.employee_id : "N/A";
+            document.getElementById("employeeName").value = employeeData ? `${employeeData.first_name} ${employeeData.last_name}` : "N/A";
+            document.getElementById("emailAdd").value = employeeData.email ? employeeData.email : "N/A";
+            document.getElementById("contactNum").value = employeeData.contact_number ? employeeData.contact_number : "N/A";
+            document.getElementById("clientName").value = employeeData ? clientNames : "N/A";
+            document.getElementById("projectName").value = employeeData ? clientsWithProjects : "N/A";
+            document.getElementById("managerName").value = employeeData ? employeeData.manager_name : "N/A";
+            document.getElementById("userLevel").value = employeeData.user_level ? employeeData.user_level : "N/A";
         }
-        const clientNames = employeeData.clients.map((client) => client.client_name).join(', ');
-        const clientsWithProjects = employeeData.clients.map((client) => {
-            const projectNames = client.projects.map((project) => project.project_name).join(', ');
-            return `${client.client_name} (${projectNames})`;
-        }).join(', ');
-        document.getElementById("employeeID").value = employeeData.employee_id ? employeeData.employee_id : "N/A";
-        document.getElementById("employeeName").value = employeeData ? `${employeeData.first_name} ${employeeData.last_name}` : "N/A";
-        document.getElementById("emailAdd").value = employeeData.email ? employeeData.email : "N/A";
-        document.getElementById("contactNum").value = employeeData.contact_number ? employeeData.contact_number : "N/A";
-        document.getElementById("clientName").value = employeeData ? clientNames : "N/A";
-        document.getElementById("projectName").value = employeeData ? clientsWithProjects : "N/A";
-        document.getElementById("managerName").value = employeeData ? employeeData.manager_name : "N/A";
-        document.getElementById("userLevel").value = employeeData.user_level ? employeeData.user_level : "N/A";
     }, [employeeData]);
 
     return (
