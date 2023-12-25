@@ -143,7 +143,7 @@ const ViewAccount = () => {
                         <h3>Account Details</h3>
                         <button className="edit-btn">Edit</button>
                     </div>
-                    {clientData[0] ? clientData[0].map((client) => {
+                    {clientData ? clientData.map((client) => {
                         <div className="clientInfo">
                             <label for="clientName">Client Name</label>
                             <input type="text" name="clientName" id="clientName" value={`${client.client_name}`} disabled />
@@ -169,7 +169,7 @@ const ViewAccount = () => {
                             <h1>Status</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData.projects ? clientData.projects.map((project) => (
+                        {clientData ? clientData[0].projects.map((project) => (
                             <div className="project-content">
                                 <p>{project.project_id}</p>
                                 <p>{project.project_name}</p>
