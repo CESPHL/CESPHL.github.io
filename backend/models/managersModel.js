@@ -17,6 +17,7 @@ const managerSchema = new Schema({
         "client_address": { type: String, required: true },
         "client_sdm_name": { type: String, required: true },
         "client_sdm_email": { type: String, required: true },
+        "client_sdm_contact": { type: String, required: true},
         "client_poc_name": { type: String, required: true },
         "client_poc_email": { type: String, required: true},
         "projects": [{

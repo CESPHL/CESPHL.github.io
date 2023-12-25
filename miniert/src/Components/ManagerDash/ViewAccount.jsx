@@ -152,7 +152,7 @@ const ViewAccount = () => {
                                 <label htmlFor="clientAddress">Client Address</label>
                                 <input type="text" name="clientAddress" id="clientAddress" value={client_address} disabled />
 
-                                <label htmlFor="sdmName">SDM / SDL</label>
+                                <label htmlFor="sdmName">SDM / SDL Name</label>
                                 <input type="text" name="sdmName" id="sdmName" value={client_sdm_name} disabled />
 
                                 <label htmlFor="sdmEmail">SDM / SDL Email</label>

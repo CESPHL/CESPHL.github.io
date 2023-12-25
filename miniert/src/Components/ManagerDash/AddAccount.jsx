@@ -75,12 +75,14 @@ const AddAccount = () => {
         console.log(managerData);
         const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
         const sdmEmail = managerData.email;
+        const sdmContact = managerData.contact_number;
         const clientData = {
             client_id: document.getElementById("clientID").value,
             client_name: document.getElementById("clientName").value,
             client_address: document.getElementById("clientAddress").value,
             client_sdm_name: sdmFullName,
             client_sdm_email: sdmEmail,
+            client_sdm_contact: sdmContact,
             client_poc_name: document.getElementById("clientPOCName").value,
             client_poc_email: document.getElementById("clientPOCEmail").value,
             projects: [{
