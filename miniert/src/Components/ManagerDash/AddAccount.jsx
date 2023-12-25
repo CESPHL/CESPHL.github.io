@@ -86,9 +86,11 @@ const AddAccount = () => {
             client_poc_name: document.getElementById("clientPOCName").value,
             client_poc_email: document.getElementById("clientPOCEmail").value,
             projects: [{
+                project_id: document.getElementById("clientProjectID").value,
                 project_name: document.getElementById("clientProjectName").value,
                 workshift: document.getElementById("clientProjectWorkshift").value,
-                coretime: document.getElementById("clientProjectCoretime").value
+                coretime: document.getElementById("clientProjectCoretime").value,
+                status: document.getElementById("clientProjectStatus").value
             }]
         };
 
@@ -197,9 +199,11 @@ const AddAccount = () => {
                         <span>Location</span><br /><input type="text" placeholder="Enter client address" id="clientAddress" required /><br />
                         <span>Client POC Name</span><br /><input type="text" placeholder="Enter client POC name" id="clientPOCName" required /><br />
                         <span>Client POC Email</span><br /><input type="text" placeholder="Enter client POC email" id="clientPOCEmail" required /><br />
-                        <span>Project name</span><br /><input type="text" placeholder="Enter project name" id="clientProjectName" required /><br />
+                        <span>Project ID</span><br /><input type="text" placeholder="Enter project ID" id="clientProjectID" required /><br />
+                        <span>Project Name</span><br /><input type="text" placeholder="Enter project name" id="clientProjectName" required /><br />
                         <span>Project Workshift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
                         <span>Project Coretime</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
+                        <span>Project Status</span><br /><input type="text" placeholder="Enter project status" id="clientProjectStatus" required /><br />
                         <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
