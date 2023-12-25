@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './addAccount.css';
+
+// Icons
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
+import view from "../Assets/view-icn.svg";
+import edit from "../Assets/edit-icn.svg";
+
+// External functionalities
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -35,8 +41,8 @@ const ViewAccount = () => {
 
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
-    const url = new URL('https://cesphl-github-io-frontend.vercel.app/manager/manage-accounts/view-account/101');
-    const accountId = url.pathname.split('/').pop();
+    const currentUrl = new URL(window.location.href);
+    const accountId = currentUrl.pathname.split('/').pop();
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
@@ -151,6 +157,18 @@ const ViewAccount = () => {
                             <h1>Status</h1>
                             <h1>Actions</h1>
                         </div>
+                        {clientData.projects? clientData.projects.map((project) => (
+                            <div className="project-content">
+                                <p>{project.project_id}</p>
+                                <p>{project.project_name}</p>
+                                <p>{project.workshift}</p>
+                                <p>{project.status}</p>
+                                <p>
+                                    <img src={view} />
+                                    <img src={edit} />    
+                                </p>
+                            </div>
+                        )) : (<p>Loading...</p>)}
                     </div>
                 </div>
             </div>

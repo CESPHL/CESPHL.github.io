@@ -1,0 +1,35 @@
+.view-content {
+    margin: 2rem 3rem;
+}
+
+.top-content {
+    display: flex;
+    align-items: center;
+}
+
+.top-content h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.edit-btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    background-color: #684CE2;
+    color: #FFF;
+}
+
+.project-table {
+   border: 1px solid #D0D5DD;
+}
+
+.project-header, .project-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+}
+
+.project-header h1 {
+    margin: 0;
+    font-size: 16px;
+}
