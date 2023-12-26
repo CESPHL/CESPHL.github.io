@@ -46,7 +46,7 @@
     font-weight: bold;
 }
 
-.client-info > div > div > input {
+.client-info > div > div > input, .client-info > div > div > textarea {
     font-size: 14px;
     padding: 0.5rem;
     color: #667085;
