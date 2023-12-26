@@ -10,7 +10,7 @@ import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
 
 // Files
-import EditAccModal from '../../Components/DashModal/EditAccModal.jsx';
+import Modal from "../Modals/Modal.jsx";
 import './EditAccount.css';
 
 // External functionalities
@@ -49,7 +49,6 @@ const AddAccount = () => {
             .then((response) => {
                 console.log(response.data);
                 const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
-                console.log(filteredClients);
                 setClientData(filteredClients);
             })
             .catch((err) => {
@@ -69,6 +68,17 @@ const AddAccount = () => {
 
     console.log(clientData);
 
+    useEffect(() => {
+        document.getElementById("clientID").value = clientData.client_id;
+        document.getElementById("clientName").value = clientData.client_name;
+        document.getElementById("clientLocation").value = clientData.client_address;
+        document.getElementById("clientPOCName").value = clientData.client_poc_name;
+        document.getElementById("clientPOCEmail").value = clientData.client_poc_email;
+        document.getElementById("clientSDMName").value = clientData.client_sdm_name;
+        document.getElementById("clientSDMEmail").value = clientData.client_sdm_email;
+        document.getElementById("clientSDMContact").value = clientData.client_sdm_contact;
+    }, [clientData]);
+
     const handleOpenModal = () => {
         setShowModal(true);
     }
@@ -80,8 +90,21 @@ const AddAccount = () => {
     const handleSave = async (e) => {
         e.preventDefault();
     }
+
     return (
         <div className="dashboard">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="dash-navbar">
                 <div className="dash-main">
                     <img src={hourglass} alt="" />
@@ -140,28 +163,28 @@ const AddAccount = () => {
                     <h3>Account Details</h3>
                     <form>
                         <span>Client ID</span><br />
-                        <textarea rows="1" cols="50" required></textarea><br />
+                        <textarea id="clientID" rows="1" cols="50" required></textarea><br />
 
                         <span>Client Name</span><br />
-                        <textarea rows="1" cols="50" required></textarea><br />
+                        <textarea id="clientName" rows="1" cols="50" required></textarea><br />
 
                         <span>Location</span><br />
-                        <textarea rows="4" cols="50" style={{ resize: 'none', height: '50px' }} required></textarea><br />
+                        <textarea id="clientLocation" rows="4" cols="50" style={{ resize: 'none', height: '50px' }} required></textarea><br />
 
                         <span>Client POC Name</span><br />
-                        <textarea rows="1" cols="50" required></textarea><br />
+                        <textarea id="clientPOCName" rows="1" cols="50" required></textarea><br />
 
                         <span>Client POC Email</span><br />
-                        <textarea rows="1" cols="50" required></textarea><br />
+                        <textarea id="clientPOCEmail" rows="1" cols="50" required></textarea><br />
 
                         <span>SDM/SDL</span><br />
-                        <textarea rows="1" cols="50" required></textarea><br />
+                        <textarea id="clientSDMName" rows="1" cols="50" required></textarea><br />
 
                         <span>SDM/SDL Email</span><br />
-                        <textarea rows="1" cols="50" required></textarea><br />
+                        <textarea id="clientSDMEmail" rows="1" cols="50" required></textarea><br />
 
                         <span>SDM/SDL Contact No.</span><br />
-                        <textarea rows="1" cols="50" required></textarea><br />
+                        <textarea id="clientSDMContact" rows="1" cols="50" required></textarea><br />
 
                         <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
@@ -169,17 +192,17 @@ const AddAccount = () => {
                         <input type="submit" value="Save" className="custom-add-btn1" onClick={handleOpenModal} />
                     </form>
                 </div>
-                {/*add conditions for when the modal opens.
-				for now, it shows upon clicking the yes button*/}
-                <EditAccModal
-                    show={showModal}
-                    handleClose={handleCloseModal}
-                    handleSave={handleSave}>
-                    <p>Edit Account</p>
-                    <span>Clicking yes will update all the changes made to this account.
-                        <br />Do you wish to continue?
-                    </span>
-                </EditAccModal>
+                <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
+                    <div>
+                        <p>Add Account</p>
+                        <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
+                    </div>
+                    <p className="modal-description">Clicking yes will add the account details and its project to the system. Do you wish to continue?</p>
+                    <div>
+                        <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
+                        <button className="btn btn-save" onClick={handleSave}>Yes, Save</button>
+                    </div>
+                </Modal>
             </div>
         </div>
     );
