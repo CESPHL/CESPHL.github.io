@@ -146,20 +146,26 @@ const ViewAccount = () => {
                     {clientData ? (
                         clientData.map(({ client_id, client_name, client_address, client_sdm_name, client_sdm_email, client_sdm_contact }) => (
                             <div className="client-info" key={client_id}>
-                                <label htmlFor="clientName">Client Name</label>
-                                <input type="text" name="clientName" id="clientName" value={client_name} disabled />
-
-                                <label htmlFor="clientAddress">Client Address</label>
-                                <input type="text" name="clientAddress" id="clientAddress" value={client_address} disabled />
-
-                                <label htmlFor="sdmName">SDM / SDL Name</label>
-                                <input type="text" name="sdmName" id="sdmName" value={client_sdm_name} disabled />
-
-                                <label htmlFor="sdmEmail">SDM / SDL Email</label>
-                                <input type="text" name="sdmEmail" id="sdmEmail" value={client_sdm_email} disabled />
-
-                                <label htmlFor="sdmContact">SDM / SDL Contact No.</label>
-                                <input type="text" name="sdmContact" id="sdmContact" value={client_sdm_contact} disabled />
+                                <div>
+                                    <label htmlFor="clientName">Client Name</label><br />
+                                    <input type="text" name="clientName" id="clientName" value={client_name} disabled />
+                                </div>
+                                <div>
+                                    <label htmlFor="clientAddress">Client Address</label><br />
+                                    <input type="text" name="clientAddress" id="clientAddress" value={client_address} disabled />
+                                </div>
+                                <div>
+                                    <label htmlFor="sdmName">SDM / SDL Name</label><br />
+                                    <input type="text" name="sdmName" id="sdmName" value={client_sdm_name} disabled />
+                                </div>
+                                <div>
+                                    <label htmlFor="sdmEmail">SDM / SDL Email</label><br />
+                                    <input type="text" name="sdmEmail" id="sdmEmail" value={client_sdm_email} disabled />
+                                </div>
+                                <div>
+                                    <label htmlFor="sdmContact">SDM / SDL Contact No.</label><br />
+                                    <input type="text" name="sdmContact" id="sdmContact" value={client_sdm_contact} disabled />
+                                </div>
                             </div>
                         ))
                     ) : (
