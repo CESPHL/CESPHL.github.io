@@ -49,6 +49,8 @@ const ManageAccount = () => {
             });
     }, [employee_id]);
 
+    console.log(clientData);
+
     return (
         <div className="dashboard">
             <div className="dash-navbar">

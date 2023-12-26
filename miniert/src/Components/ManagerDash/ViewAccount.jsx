@@ -153,7 +153,7 @@ const ViewAccount = () => {
                                     </div>
                                     <div>
                                         <label htmlFor="clientAddress">Client Address</label>
-                                        <textarea name="clientAddress" id="clientAddress" value={client_address} rows="3" disabled />
+                                        <textarea name="clientAddress" id="clientAddress" value={client_address} rows="5" disabled />
                                     </div>
                                 </div>
                                 <div>
