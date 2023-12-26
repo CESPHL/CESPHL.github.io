@@ -69,14 +69,16 @@ const AddAccount = () => {
     console.log(clientData);
 
     useEffect(() => {
-        document.getElementById("clientID").value = clientData.client_id;
-        document.getElementById("clientName").value = clientData.client_name;
-        document.getElementById("clientLocation").value = clientData.client_address;
-        document.getElementById("clientPOCName").value = clientData.client_poc_name;
-        document.getElementById("clientPOCEmail").value = clientData.client_poc_email;
-        document.getElementById("clientSDMName").value = clientData.client_sdm_name;
-        document.getElementById("clientSDMEmail").value = clientData.client_sdm_email;
-        document.getElementById("clientSDMContact").value = clientData.client_sdm_contact;
+        if (clientData) {
+            document.getElementById("clientID").value = clientData.client_id ? clientData.client_id : "Loading...";
+            document.getElementById("clientName").value = clientData.client_name ? clientData.client_name : "Loading...";
+            document.getElementById("clientLocation").value = clientData.client_address ? clientData.client_address : "Loading...";
+            document.getElementById("clientPOCName").value = clientData.client_poc_name ? clientData.client_poc_name : "Loading...";
+            document.getElementById("clientPOCEmail").value = clientData.client_poc_email ? clientData.client_poc_email : "Loading...";
+            document.getElementById("clientSDMName").value = clientData.client_sdm_name ? clientData.client_sdm_name : "Loading...";
+            document.getElementById("clientSDMEmail").value = clientData.client_sdm_email ? clientData.client_sdm_email : "Loading...";
+            document.getElementById("clientSDMContact").value = clientData.client_sdm_contact ? clientData.client_sdm_contact : "Loading...";
+        }
     }, [clientData]);
 
     const handleOpenModal = () => {
@@ -189,7 +191,7 @@ const AddAccount = () => {
                         <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
-                        <input type="submit" value="Save" className="custom-add-btn1" onClick={handleOpenModal} />
+                        <input type="button" value="Save" className="custom-add-btn1" onClick={handleOpenModal} />
                     </form>
                 </div>
                 <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
@@ -197,7 +199,7 @@ const AddAccount = () => {
                         <p>Add Account</p>
                         <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                     </div>
-                    <p className="modal-description">Clicking yes will add the account details and its project to the system. Do you wish to continue?</p>
+                    <p className="modal-description">Clicking yes will edit the account details in the system. Do you wish to continue?</p>
                     <div>
                         <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
                         <button className="btn btn-save" onClick={handleSave}>Yes, Save</button>
