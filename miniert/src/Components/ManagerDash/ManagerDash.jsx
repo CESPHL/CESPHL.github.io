@@ -141,7 +141,14 @@ const ManageAccount = () => {
                                 <p>{client.client_name}</p>
                                 <p>{client.client_poc_name}</p>
                                 <p>{client.client_poc_email}</p>
-                                <p>{client.sdm_sdl_contact}</p>
+                                <p>
+                                    {client.projects ? (
+                                        client.projects.map((project) => (
+                                            <span key={project._id}>{project.project_name}, </span>
+                                        ))
+                                    ) : (
+                                        "No projects"
+                                    )}</p>
                                 <p>
                                     <NavLink to={`/manager/manage-accounts/view-account/${client.client_id}`}>
                                         <img src={view} />
