@@ -49,7 +49,7 @@ const AddAccount = () => {
             .then((response) => {
                 console.log(response.data);
                 const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
-                setClientData(filteredClients);
+                setClientData(filteredClients.length > 0 ? filteredClients[0] : null);
             })
             .catch((err) => {
                 console.error("Error retrieving client info.", err);
@@ -64,7 +64,7 @@ const AddAccount = () => {
                     theme: "light",
                 });
             });
-    }, [employee_id]);
+    }, [employee_id, accountId]);
 
     console.log(clientData);
 
@@ -196,7 +196,7 @@ const AddAccount = () => {
                 </div>
                 <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                     <div>
-                        <p>Add Account</p>
+                        <p>Edit Account</p>
                         <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                     </div>
                     <p className="modal-description">Clicking yes will edit the account details in the system. Do you wish to continue?</p>
