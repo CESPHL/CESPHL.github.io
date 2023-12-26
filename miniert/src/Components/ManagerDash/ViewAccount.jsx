@@ -38,7 +38,6 @@ const CurrentDate = () => {
 }
 
 const ViewAccount = () => {
-
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);

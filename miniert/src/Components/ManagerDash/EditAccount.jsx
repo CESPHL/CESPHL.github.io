@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './EditAccount.css';
+
+// Icons
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
-import EditAccModal from '../../Components/DashModal/EditAccModal.jsx';
 
+// Files
+import EditAccModal from '../../Components/DashModal/EditAccModal.jsx';
+import './EditAccount.css';
+
+// External functionalities
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -30,7 +38,36 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 }
 const AddAccount = () => {
+    const employee_id = localStorage.getItem("employee_id");
+    const [clientData, setClientData] = useState([]);
+    const currentUrl = new URL(window.location.href);
+    const accountId = currentUrl.pathname.split('/').pop();
     const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+            .then((response) => {
+                console.log(response.data);
+                const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
+                console.log(filteredClients);
+                setClientData(filteredClients);
+            })
+            .catch((err) => {
+                console.error("Error retrieving client info.", err);
+                toast.error("Error retrieving client info. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
+    }, [employee_id]);
+
+    console.log(clientData);
 
     const handleOpenModal = () => {
         setShowModal(true);
@@ -124,9 +161,6 @@ const AddAccount = () => {
                         <textarea rows="1" cols="50" required></textarea><br />
 
                         <span>SDM/SDL Contact No.</span><br />
-                        <textarea rows="1" cols="50" required></textarea><br />
-
-                        <span>Project</span><br />
                         <textarea rows="1" cols="50" required></textarea><br />
 
                         <NavLink to="/manager/manage-accounts">
