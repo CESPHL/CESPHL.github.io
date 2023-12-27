@@ -164,7 +164,7 @@ const AddProject = () => {
                         <CurrentDate />
                     </span>
                 </div>
-                <div className="custom-add-mainContent">
+                <div id="addProjectContainer">
                     <form>
                         <div className="project-details">
                             <span>Project ID</span><br /><input type="text" placeholder="Enter project ID" id="clientProjectID" required /><br />
