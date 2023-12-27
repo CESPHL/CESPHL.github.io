@@ -70,8 +70,41 @@ const editClient = async (req, res) => {
 
 }
 
+const addProject = async (req, res) => {
+    const { employee_id, client_id } = req.params;
+    const { project_id, project_name, workshift, coretime, status } = req.body;
+
+    try {
+        // Find the manager using the employee_id
+        const manager = await Manager.findOne({ employee_id });
+
+        if (!manager) {
+            return res.status(404).json({ error: 'Manager not found' });
+        }
+
+        // Find the specified client by client_id
+        const client = manager.clients.find(client => client.client_id === client_id);
+
+        if (!client) {
+            return res.status(404).json({ error: 'Client not found' });
+        }
+
+        // Add the new project to the client's projects array
+        client.projects.push({ project_id, project_name, workshift, coretime, status });
+
+        // Save the changes to the database
+        await manager.save();
+
+        return res.status(200).json({ message: 'Project added successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 module.exports = {
     getOneManager,
     addClient,
-    editClient
+    editClient,
+    addProject
 }

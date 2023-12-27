@@ -91,6 +91,45 @@ const AddProject = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
+
+        const projectInfo = {
+            project_id: document.getElementById("clientProjectID").value,
+            project_name: document.getElementById("clientProjectName").value,
+            workshift: document.getElementById("clientProjectWorkshift").value,
+            coretime: document.getElementById("clientProjectCoretime").value,
+            status: document.getElementById("clientProjectStatus").value
+        }
+
+        console.log(projectInfo);
+
+        axios.post(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}`, projectInfo)
+            .then((response) => {
+                console.log(response);
+                toast.success("Added project successfully.", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                handleCloseModal();
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Internal server error. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
     }
 
     return (
