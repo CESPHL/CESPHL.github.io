@@ -210,4 +210,4 @@ const AddProject = () => {
     );
 };
 
-export default AddAccount;
+export default AddProject;
