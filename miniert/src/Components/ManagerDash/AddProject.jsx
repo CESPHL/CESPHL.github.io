@@ -71,6 +71,7 @@ const AddProject = () => {
     }, [employee_id, accountId]);
 
     useEffect(() => {
+        console.log(clientData);
         if (clientData && clientData.length > 0) {
             const client = clientData[0];
             console.log(client);
