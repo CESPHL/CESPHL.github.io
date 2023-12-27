@@ -73,6 +73,8 @@ const AddProject = () => {
     useEffect(() => {
         if (clientData && clientData.length > 0) {
             const client = clientData[0];
+            console.log(client);
+            console.log(client.client_id);
             document.getElementById("clientID").value = client.client_id || "Loading...";
             document.getElementById("clientName").value = client.client_name || "Loading...";
             document.getElementById("clientLocation").value = client.client_address || "Loading...";
