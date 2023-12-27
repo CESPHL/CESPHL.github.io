@@ -41,7 +41,8 @@ const AddProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
-    const accountId = currentUrl.pathname.split('/').pop();
+    const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== ''); // Remove empty segments
+    const accountId = pathSegments.pop();
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
