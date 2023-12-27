@@ -164,34 +164,24 @@ const AddProject = () => {
                 <div className="custom-add-mainContent">
                     <h3>Account Details</h3>
                     <form>
-                        <span>Project ID</span><br />
-                        <textarea id="clientID" rows="1" cols="50" required></textarea><br />
-
-                        <span>Project Name</span><br />
-                        <textarea id="clientName" rows="1" cols="50" required></textarea><br />
-
-                        <span>Location</span><br />
-                        <textarea id="clientLocation" rows="4" cols="50" style={{ resize: 'none', height: '50px' }} required></textarea><br />
-
-                        <span>Client POC Name</span><br />
-                        <textarea id="clientPOCName" rows="1" cols="50" required></textarea><br />
-
-                        <span>Client POC Email</span><br />
-                        <textarea id="clientPOCEmail" rows="1" cols="50" required></textarea><br />
-
-                        <span>SDM/SDL</span><br />
-                        <textarea id="clientSDMName" rows="1" cols="50" required></textarea><br />
-
-                        <span>SDM/SDL Email</span><br />
-                        <textarea id="clientSDMEmail" rows="1" cols="50" required></textarea><br />
-
-                        <span>SDM/SDL Contact No.</span><br />
-                        <textarea id="clientSDMContact" rows="1" cols="50" required></textarea><br />
-
+                        <div>
+                            <span>Project ID</span><br /><input type="text" placeholder="Enter project ID" id="clientProjectID" required /><br />
+                            <span>Project Name</span><br /><input type="text" placeholder="Enter project name" id="clientProjectName" required /><br />
+                            <span>Work Shift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
+                            <span>Core Time</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
+                            <span>Status</span><br /><input type="text" placeholder="Enter project status" id="clientProjectStatus" required /><br />
+                        </div>
+                        <div>
+                            <span>Client ID</span><br /><input type="text" id="clientID" disabled /><br />
+                            <span>Client Name</span><br /><input type="text" id="clientName" disabled /><br />
+                            <span>SDM / SDL</span><br /><input type="text" id="clientSDMName" disabled /><br />
+                            <span>SDM / SDL Email</span><br /><input type="text" id="clientSDMEmail" disabled /><br />
+                            <span>SDM / SDL Contact No.</span><br /><input type="text" id="clientSDMContact" disabled /><br />
+                        </div>
                         <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
-                        <input type="button" value="Save" className="custom-add-btn1" onClick={handleOpenModal} />
+                        <input type="button" value="Add" class="add-btn1" onClick={handleOpenModal} />
                     </form>
                 </div>
                 <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
