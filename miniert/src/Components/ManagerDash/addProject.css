@@ -35,3 +35,19 @@
     display: flex;
     justify-content: flex-end;
 }
+
+#addProjectContainer > div > button {
+    padding: 0.5rem 1rem;
+}
+
+#cancelButton {
+    border: 1px solid #D0D5DD;
+    background-color: #FFFFFF;
+    color: #344054;
+}
+
+#addButton {
+    border: 1px solid #684CE2;
+    color: #FFFFFF;
+    background-color: #684CE2;
+}
