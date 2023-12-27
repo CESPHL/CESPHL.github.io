@@ -49,6 +49,7 @@ const AddProject = () => {
             .then((response) => {
                 console.log(response.data);
                 const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
+                console.log(filteredClients);
                 setClientData(filteredClients.length > 0 ? filteredClients[0] : null);
             })
             .catch((err) => {
@@ -69,16 +70,17 @@ const AddProject = () => {
     console.log(clientData);
 
     useEffect(() => {
-        if (clientData) {
-            document.getElementById("clientID").value = clientData.client_id ? clientData.client_id : "Loading...";
-            document.getElementById("clientName").value = clientData.client_name ? clientData.client_name : "Loading...";
-            document.getElementById("clientLocation").value = clientData.client_address ? clientData.client_address : "Loading...";
-            document.getElementById("clientPOCName").value = clientData.client_poc_name ? clientData.client_poc_name : "Loading...";
-            document.getElementById("clientPOCEmail").value = clientData.client_poc_email ? clientData.client_poc_email : "Loading...";
-            document.getElementById("clientSDMName").value = clientData.client_sdm_name ? clientData.client_sdm_name : "Loading...";
-            document.getElementById("clientSDMEmail").value = clientData.client_sdm_email ? clientData.client_sdm_email : "Loading...";
-            document.getElementById("clientSDMContact").value = clientData.client_sdm_contact ? clientData.client_sdm_contact : "Loading...";
-        }
+        console.log(clientData);
+        // if (clientData) {
+        //     document.getElementById("clientID").value = clientData.client_id ? clientData.client_id : "Loading...";
+        //     document.getElementById("clientName").value = clientData.client_name ? clientData.client_name : "Loading...";
+        //     document.getElementById("clientLocation").value = clientData.client_address ? clientData.client_address : "Loading...";
+        //     document.getElementById("clientPOCName").value = clientData.client_poc_name ? clientData.client_poc_name : "Loading...";
+        //     document.getElementById("clientPOCEmail").value = clientData.client_poc_email ? clientData.client_poc_email : "Loading...";
+        //     document.getElementById("clientSDMName").value = clientData.client_sdm_name ? clientData.client_sdm_name : "Loading...";
+        //     document.getElementById("clientSDMEmail").value = clientData.client_sdm_email ? clientData.client_sdm_email : "Loading...";
+        //     document.getElementById("clientSDMContact").value = clientData.client_sdm_contact ? clientData.client_sdm_contact : "Loading...";
+        // }
     }, [clientData]);
 
     const handleOpenModal = () => {
