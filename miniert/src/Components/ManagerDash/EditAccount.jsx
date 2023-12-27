@@ -97,7 +97,7 @@ const AddAccount = () => {
             client_poc_email: document.getElementById("clientPOCEmail").value
         }
 
-        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/`, clientInfo)
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}`, clientInfo)
             .then((res) => {
                 console.log(res);
                 toast.success("Added data successfully.", {
