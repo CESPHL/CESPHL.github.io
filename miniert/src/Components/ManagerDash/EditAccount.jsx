@@ -100,7 +100,7 @@ const AddAccount = () => {
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}`, clientInfo)
             .then((res) => {
                 console.log(res);
-                toast.success("Added data successfully.", {
+                toast.success("Edit client info successfully.", {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,

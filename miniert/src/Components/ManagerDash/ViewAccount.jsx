@@ -140,7 +140,9 @@ const ViewAccount = () => {
                 <div className="view-content">
                     <div className="top-content">
                         <h3>Account Details</h3>
-                        <button className="edit-btn">Edit</button>
+                        <NavLink to={`/manager/manage-accounts/edit-account/${accountId}`}>
+                            <button className="edit-btn">Edit</button>
+                        </NavLink>
                     </div>
                     {clientData ? (
                         clientData.map(({ client_id, client_name, client_address, client_sdm_name, client_sdm_email, client_sdm_contact }) => (
