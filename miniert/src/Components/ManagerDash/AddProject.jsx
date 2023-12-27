@@ -70,18 +70,17 @@ const AddProject = () => {
             });
     }, [employee_id, accountId]);
 
-    console.log(clientData);
-
     useEffect(() => {
-        if (clientData) {
-            document.getElementById("clientID").value = clientData.client_id ? clientData.client_id : "Loading...";
-            document.getElementById("clientName").value = clientData.client_name ? clientData.client_name : "Loading...";
-            document.getElementById("clientLocation").value = clientData.client_address ? clientData.client_address : "Loading...";
-            document.getElementById("clientPOCName").value = clientData.client_poc_name ? clientData.client_poc_name : "Loading...";
-            document.getElementById("clientPOCEmail").value = clientData.client_poc_email ? clientData.client_poc_email : "Loading...";
-            document.getElementById("clientSDMName").value = clientData.client_sdm_name ? clientData.client_sdm_name : "Loading...";
-            document.getElementById("clientSDMEmail").value = clientData.client_sdm_email ? clientData.client_sdm_email : "Loading...";
-            document.getElementById("clientSDMContact").value = clientData.client_sdm_contact ? clientData.client_sdm_contact : "Loading...";
+        if (clientData && clientData.length > 0) {
+            const client = clientData[0];
+            document.getElementById("clientID").value = client.client_id || "Loading...";
+            document.getElementById("clientName").value = client.client_name || "Loading...";
+            document.getElementById("clientLocation").value = client.client_address || "Loading...";
+            document.getElementById("clientPOCName").value = client.client_poc_name || "Loading...";
+            document.getElementById("clientPOCEmail").value = client.client_poc_email || "Loading...";
+            document.getElementById("clientSDMName").value = client.client_sdm_name || "Loading...";
+            document.getElementById("clientSDMEmail").value = client.client_sdm_email || "Loading...";
+            document.getElementById("clientSDMContact").value = client.client_sdm_contact || "Loading...";
         }
     }, [clientData]);
 
