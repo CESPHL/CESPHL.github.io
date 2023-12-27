@@ -1,4 +1,9 @@
-.project-details input {
+.project-details > input {
     padding: 0.5rem 0.3rem;
     border: 1px solid #D0D5DD;
+    margin-bottom: 0.6rem;
+}
+
+.project-details > label {
+    margin-bottom: 0.3rem;
 }
