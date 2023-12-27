@@ -18,6 +18,7 @@ import AddTalent from "./Components/ManagerDash/AddTalent.jsx";
 
 // Manager pages
 import ManagerViewAccount from "./Components/ManagerDash/ViewAccount.jsx";
+import ManagerAddProject from "./Components/ManagerDash/AddProject.jsx";
 import Reports from "./Components/ManagerDash/Reports.jsx";
 import ManagerProfile from "./Components/ManagerDash/Profile.jsx";
 import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
@@ -50,6 +51,7 @@ function App() {
         <Route path="/manager/manage-accounts/add-account" element={<AddAccount />} />
         <Route path="/manager/manage-accounts/edit-account/:accountid" element={<EditAccount />} />
         <Route path="/manager/manage-accounts/view-account/:accountid" element={<ManagerViewAccount />} />
+        <Route path="/manager/manage-accounts/edit-account/:accountid/addproject" element={ManagerAddProject} />
         <Route path="/manager/manage-talents" element={<ManageTalent />} />
         <Route path="/manager/manage-talents/add-account" element={<AddTalent />} />
         <Route path="/manager/reports" element={<Reports />} />

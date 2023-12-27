@@ -33,11 +33,45 @@ const addClient = async (req, res) => {
     }
     catch (err) {
         console.log("Error inserting client data.", err);
-        return res.status(500).json({ message: "Error inserting client data. "});
+        return res.status(500).json({ message: "Error inserting client data. " });
     }
+}
+
+// Edit client info
+const editClient = async (req, res) => {
+    console.log("Edit client");
+
+    const { employee_id, client_id } = req.params;
+
+    try {
+        const manager = await ManagerModel.findOne({ employee_id });
+
+        if (!manager) {
+            return res.status(404).json({ error: 'Manager not found' });
+        }
+
+        const clientToUpdate = manager.clients.find((client) => client.client_id === client_id);
+
+        if (!clientToUpdate) {
+            return res.status(404).json({ error: 'Client not found' });
+        }
+
+        // Update the client data
+        Object.assign(clientToUpdate, updatedClientData);
+
+        await manager.save();
+
+        return res.status(200).json({ message: 'Client updated successfully' });
+    }
+    catch (error) {
+        console.error('Error updating client:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
 }
 
 module.exports = {
     getOneManager,
-    addClient
+    addClient,
+    editClient
 }
