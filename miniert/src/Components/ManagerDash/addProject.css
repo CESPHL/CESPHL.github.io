@@ -1,9 +1,15 @@
+.custom-add-mainContent > form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-details {
+    display: flex;
+    flex-direction: column;
+}
+
 .project-details > input {
     padding: 0.5rem 0.3rem;
     border: 1px solid #D0D5DD;
     margin-bottom: 0.6rem;
-}
-
-.project-details > label {
-    margin-bottom: 0.3rem;
 }

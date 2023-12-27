@@ -180,11 +180,13 @@ const AddProject = () => {
                             <span>SDM / SDL Email</span><br /><input type="text" id="clientSDMEmail" disabled /><br />
                             <span>SDM / SDL Contact No.</span><br /><input type="text" id="clientSDMContact" disabled /><br />
                         </div>
+                    </form>
+                    <div>
                         <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
                         <input type="button" value="Add" class="add-btn1" onClick={handleOpenModal} />
-                    </form>
+                    </div>
                 </div>
                 <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                     <div>
