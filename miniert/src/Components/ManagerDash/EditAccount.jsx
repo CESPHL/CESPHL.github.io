@@ -91,6 +91,43 @@ const AddAccount = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
+
+        const clientInfo = {
+            client_id: document.getElementById("clientID").value,
+            client_name: document.getElementById("clientName").value,
+            client_address: document.getElementById("clientLocation").value,
+            client_poc_name: document.getElementById("clientPOCName").value,
+            client_poc_email: document.getElementById("clientPOCEmail").value
+        }
+
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/`, clientInfo)
+            .then((res) => {
+                console.log(res);
+                toast.success("Added data successfully.", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                handleCloseModal();
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Internal server error. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
     }
 
     return (
@@ -178,15 +215,6 @@ const AddAccount = () => {
 
                         <span>Client POC Email</span><br />
                         <textarea id="clientPOCEmail" rows="1" cols="50" required></textarea><br />
-
-                        <span>SDM/SDL</span><br />
-                        <textarea id="clientSDMName" rows="1" cols="50" required></textarea><br />
-
-                        <span>SDM/SDL Email</span><br />
-                        <textarea id="clientSDMEmail" rows="1" cols="50" required></textarea><br />
-
-                        <span>SDM/SDL Contact No.</span><br />
-                        <textarea id="clientSDMContact" rows="1" cols="50" required></textarea><br />
 
                         <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
