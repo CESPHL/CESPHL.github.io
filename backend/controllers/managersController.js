@@ -42,9 +42,10 @@ const editClient = async (req, res) => {
     console.log("Edit client");
 
     const { employee_id, client_id } = req.params;
+    const updatedClientData = req.body;
 
     try {
-        const manager = await ManagerModel.findOne({ employee_id });
+        const manager = await Manager.findOne({ employee_id });
 
         if (!manager) {
             return res.status(404).json({ error: 'Manager not found' });
