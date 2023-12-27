@@ -218,7 +218,7 @@ const AddProject = () => {
                         </div>
                     </form>
                     <div>
-                        <NavLink to="/manager/manage-accounts">
+                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}`}>
                             <button id="cancelButton">Cancel</button>
                         </NavLink>
                         <button id="addButton" onClick={handleOpenModal}>Add</button>
