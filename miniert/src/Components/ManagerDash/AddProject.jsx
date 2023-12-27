@@ -75,9 +75,6 @@ const AddProject = () => {
         if (clientData.client_id) {
             document.getElementById("clientID").value = clientData.client_id || "Loading...";
             document.getElementById("clientName").value = clientData.client_name || "Loading...";
-            document.getElementById("clientLocation").value = clientData.client_address || "Loading...";
-            document.getElementById("clientPOCName").value = clientData.client_poc_name || "Loading...";
-            document.getElementById("clientPOCEmail").value = clientData.client_poc_email || "Loading...";
             document.getElementById("clientSDMName").value = clientData.client_sdm_name || "Loading...";
             document.getElementById("clientSDMEmail").value = clientData.client_sdm_email || "Loading...";
             document.getElementById("clientSDMContact").value = clientData.client_sdm_contact || "Loading...";
