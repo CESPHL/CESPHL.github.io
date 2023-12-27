@@ -48,6 +48,7 @@ const AddProject = () => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
             .then((response) => {
                 console.log(response.data);
+                console.log(accountId);
                 const filteredClients = response.data.clients.filter(client => String(client.client_id) === String(accountId));
                 console.log(filteredClients);
                 setClientData(filteredClients.length > 0 ? filteredClients[0] : null);
