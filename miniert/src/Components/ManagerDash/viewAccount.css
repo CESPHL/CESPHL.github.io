@@ -57,6 +57,28 @@
 
 .filters-row {
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters-row input, .filters-row select, .filters-row button {
+    padding: 0.5rem 0.3rem;
+    border-radius: 10px;
+    border: 1px solid #D0D5DD;
+}
+
+.filters-row input, .filters-row select {
+    margin-right: 0.5rem;
+}
+
+#uploadButton {
+    margin-right: 1rem;
+}
+
+#addButton {
+    border: 1px solid #684CE2 !important;
+    color: #FFFFFF;
+    background-color: #684CE2;
 }
 
 .project-table {
