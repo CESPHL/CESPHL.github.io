@@ -176,7 +176,26 @@ const ViewAccount = () => {
                     )}
 
                     <div className="filters-row">
-
+                        <div>
+                            <form>
+                                <input type="text" name="searchProject" id="searchProject" placeholder="Search project name" />
+                                <select>
+                                    <option>Work Shift</option>
+                                </select>
+                                <select>
+                                    <option>Core Time</option>
+                                </select>
+                                <select>
+                                    <option>Status</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div>
+                            <button id="uploadButton">Upload</button>
+                            <NavLink to="/manager/manage-accounts">
+                                <button>Add Project</button>
+                            </NavLink>
+                        </div>
                     </div>
                     <div className="project-table">
                         <div className="project-header">

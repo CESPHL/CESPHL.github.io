@@ -51,7 +51,7 @@ function App() {
         <Route path="/manager/manage-accounts/add-account" element={<AddAccount />} />
         <Route path="/manager/manage-accounts/edit-account/:accountid" element={<EditAccount />} />
         <Route path="/manager/manage-accounts/view-account/:accountid" element={<ManagerViewAccount />} />
-        <Route path="/manager/manage-accounts/edit-account/:accountid/addproject" element={ManagerAddProject} />
+        <Route path="/manager/manage-accounts/edit-account/:accountid/addproject" element={<ManagerAddProject />} />
         <Route path="/manager/manage-talents" element={<ManageTalent />} />
         <Route path="/manager/manage-talents/add-account" element={<AddTalent />} />
         <Route path="/manager/reports" element={<Reports />} />
