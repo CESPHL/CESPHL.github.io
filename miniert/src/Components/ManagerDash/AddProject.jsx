@@ -11,7 +11,7 @@ import profile from '../Assets/inactive-profile.svg';
 
 // Files
 import Modal from "../Modals/Modal.jsx";
-import './EditAccount.css';
+import './addAccount.css';
 
 // External functionalities
 import axios from "axios";
@@ -158,22 +158,21 @@ const AddProject = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>Edit Account</h4>
+                    <h4>Add Project</h4>
                     <span>
                         <CurrentDate />
                     </span>
                 </div>
                 <div className="custom-add-mainContent">
-                    <h3>Account Details</h3>
                     <form>
-                        <div>
+                        <div className="project-details">
                             <span>Project ID</span><br /><input type="text" placeholder="Enter project ID" id="clientProjectID" required /><br />
                             <span>Project Name</span><br /><input type="text" placeholder="Enter project name" id="clientProjectName" required /><br />
                             <span>Work Shift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
                             <span>Core Time</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
                             <span>Status</span><br /><input type="text" placeholder="Enter project status" id="clientProjectStatus" required /><br />
                         </div>
-                        <div>
+                        <div className="client-details">
                             <span>Client ID</span><br /><input type="text" id="clientID" disabled /><br />
                             <span>Client Name</span><br /><input type="text" id="clientName" disabled /><br />
                             <span>SDM / SDL</span><br /><input type="text" id="clientSDMName" disabled /><br />
@@ -188,13 +187,13 @@ const AddProject = () => {
                 </div>
                 <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                     <div>
-                        <p>Edit Account</p>
+                        <p>Add Project</p>
                         <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                     </div>
-                    <p className="modal-description">Clicking yes will edit the account details in the system. Do you wish to continue?</p>
+                    <p className="modal-description">Clicking yes will add the project details in the system. Do you wish to continue?</p>
                     <div>
                         <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
-                        <button className="btn btn-save" onClick={handleSave}>Yes, Save</button>
+                        <button className="btn btn-save" onClick={handleSave}>Yes, Add</button>
                     </div>
                 </Modal>
             </div>
