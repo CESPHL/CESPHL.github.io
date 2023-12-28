@@ -217,8 +217,12 @@ const ViewAccount = () => {
                                     <p>{project.coretime}</p>
                                     <p>{project.status}</p>
                                     <p>
-                                        <img src={view} />
-                                        <img src={edit} />
+                                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/view-project`}>
+                                            <img src={view} />
+                                        </NavLink>
+                                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/edit-project`}>
+                                            <img src={edit} />
+                                        </NavLink>
                                     </p>
                                 </div>
                             ))
