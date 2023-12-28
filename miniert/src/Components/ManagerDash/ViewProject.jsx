@@ -39,7 +39,10 @@ const ViewProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
-    const accountId = currentUrl.pathname.split('/').pop();
+    const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
+    const accountIdIndex = pathSegments.indexOf('edit-account') + 1;
+    const accountId = pathSegments[accountIdIndex];
+    console.log(accountId);
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
