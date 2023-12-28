@@ -233,8 +233,6 @@ const changePassword = async (req, res) => {
         if (user) {
             const passwordMatch = await bcrypt.compare(oldPassword, user.password);
 
-            // Password is qwerty12345!@
-
             if (passwordMatch === true && oldPassword != password) {
                 const hashedPassword = await bcrypt.hash(password, 10);
                 user.password = hashedPassword;

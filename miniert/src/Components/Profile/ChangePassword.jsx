@@ -64,7 +64,7 @@ const Profile = () => {
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify({ oldPassword, password, password2 }),
+					body: JSON.stringify({ oldPassword, password }),
 				});
 				if (response.ok) {
 					// If response is ok, show a toast

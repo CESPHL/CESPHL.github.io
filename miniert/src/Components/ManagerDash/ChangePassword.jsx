@@ -59,7 +59,7 @@ const Profile = () => {
         e.preventDefault();
         try {
             if (isPasswordValid() === true) {
-                const response = await fetch(`https://cesphl-github-io-backend.vercel.app/api/talents/changepass/${employee_id}`, {
+                const response = await fetch(`https://cesphl-github-io-backend.vercel.app/api/managers/changepass/${employee_id}`, {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -152,20 +152,20 @@ const Profile = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/manage-accounts">
+                            <NavLink to="/manager/manage-accounts">
                                 <img src={accIcon} alt="dashboard icon" />
                                 <span className="inactive">Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manage-talents">
-                                <img src={talents} alt="users icon" />
+                            <NavLink to="/manager/manage-talents">
+                                <img src={talents} alt="talents icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/reports">
-                                <img src={reports} alt="clock icon" />
+                            <NavLink to="/manager/reports">
+                                <img src={reports} alt="reports icon" />
                                 <span className="inactive">Reports</span>
                             </NavLink>
                         </li>
