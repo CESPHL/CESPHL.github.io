@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './viewAccount.css';
+import './viewProject.css';
 
 // Icons
 import hourglass from '../Assets/hourglass.svg';
@@ -9,8 +9,6 @@ import accIcon from '../Assets/acc-active.svg';
 import talents from '../Assets/mng-talent-inactive.svg';
 import reports from '../Assets/report-inactive.svg';
 import profile from '../Assets/inactive-profile.svg';
-import view from "../Assets/view-icn.svg";
-import edit from "../Assets/edit-icn.svg";
 
 // External functionalities
 import axios from "axios";
@@ -37,7 +35,7 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 }
 
-const ViewAccount = () => {
+const ViewProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
@@ -68,6 +66,10 @@ const ViewAccount = () => {
 
     console.log(clientData);
     console.log(clientData[0]);
+
+    useEffect(() => {
+        console.log(clientData);
+    }, [clientData]);
 
     return (
         <div className="dashboard">
@@ -144,85 +146,66 @@ const ViewAccount = () => {
                             <button className="edit-btn">Edit</button>
                         </NavLink>
                     </div>
-                    {clientData ? (
-                        clientData.map(({ client_id, client_name, client_address, client_sdm_name, client_sdm_email, client_sdm_contact }) => (
-                            <div className="client-info" key={client_id}>
-                                <div>
-                                    <div>
-                                        <label htmlFor="clientName">Client Name</label>
-                                        <input type="text" name="clientName" id="clientName" value={client_name} disabled />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="clientAddress">Client Address</label>
-                                        <textarea name="clientAddress" id="clientAddress" value={client_address} rows="5" disabled />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <label htmlFor="sdmName">SDM / SDL Name</label>
-                                        <input type="text" name="sdmName" id="sdmName" value={client_sdm_name} disabled />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="sdmEmail">SDM / SDL Email</label>
-                                        <input type="text" name="sdmEmail" id="sdmEmail" value={client_sdm_email} disabled />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="sdmContact">SDM / SDL Contact No.</label>
-                                        <input type="text" name="sdmContact" id="sdmContact" value={client_sdm_contact} disabled />
-                                    </div>
-                                </div>
+                    <div className="project-info">
+                        <div>
+                            <div>
+                                <label for="projectId">Project ID</label>
+                                <input type="text" name="projectId" id="projectId" disabled />
                             </div>
-                        ))
-                    ) : (
-                        <p>Loading...</p>
-                    )}
+                            <div>
+                                <label for="projectName">Project Name</label>
+                                <input type="text" name="projectName" id="projectName" disabled />
+                            </div>
+                            <div>
+                                <label for="clientName">Client Name</label>
+                                <input type="text" name="clientName" id="clientName" disabled />
+                            </div>
+                            <div>
+                                <label for="sdmName">SDM / SDL Name</label>
+                                <input type="text" name="sdmName" id="sdmName" disabled />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <label for="sdmEmail">SDM / SDL Email</label>
+                                <input type="text" name="sdmEmail" id="sdmEmail" disabled />
+                            </div>
+                            <div>
+                                <label for="projectWorkShift">Work Shift</label>
+                                <input type="text" name="projectWorkShift" id="projectWorkShift" disabled />
+                            </div>
+                            <div>
+                                <label for="projectCoreTime">Core Time</label>
+                                <input type="text" name="projectCoreTime" id="projectCoreTime" disabled />
+                            </div>
+                            <div>
+                                <label for="projectStatus">Status</label>
+                                <input type="text" name="projectStatus" id="projectStatus" disabled />
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="filters-row">
                         <div>
                             <form>
-                                <input type="text" name="searchProject" id="searchProject" placeholder="Search project name" />
+                                <input type="text" name="searchProject" id="searchProject" placeholder="Enter talent" />
                                 <select>
-                                    <option>Work Shift</option>
+                                    <option>Role</option>
                                 </select>
                                 <select>
-                                    <option>Core Time</option>
-                                </select>
-                                <select>
-                                    <option>Status</option>
+                                    <option>Sort</option>
                                 </select>
                             </form>
-                        </div>
-                        <div>
-                            <button id="uploadButton">Upload</button>
-                            <NavLink to={`/manager/manage-accounts/edit-account/${accountId}/addproject`}>
-                                <button id="addButton">Add Project</button>
-                            </NavLink>
                         </div>
                     </div>
                     <div className="project-table">
                         <div className="project-header">
                             <h1>ID</h1>
-                            <h1>Project Name</h1>
-                            <h1>Work Shift</h1>
-                            <h1>Core Time</h1>
-                            <h1>Status</h1>
-                            <h1>Actions</h1>
+                            <h1>Talent Name</h1>
+                            <h1>Email</h1>
+                            <h1>Contact No</h1>
+                            <h1>Role</h1>
                         </div>
-                        {clientData.flatMap((client) =>
-                            client.projects.map((project) => (
-                                <div key={project._id} className="project-content">
-                                    <p>{project.project_id}</p>
-                                    <p>{project.project_name}</p>
-                                    <p>{project.workshift}</p>
-                                    <p>{project.coretime}</p>
-                                    <p>{project.status}</p>
-                                    <p>
-                                        <img src={view} />
-                                        <img src={edit} />
-                                    </p>
-                                </div>
-                            ))
-                        )}
                     </div>
                 </div>
             </div>
@@ -230,4 +213,4 @@ const ViewAccount = () => {
     );
 };
 
-export default ViewAccount;
+export default ViewProject;
