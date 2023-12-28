@@ -19,7 +19,7 @@ import AddTalent from "./Components/ManagerDash/AddTalent.jsx";
 // Manager pages
 import ManagerViewAccount from "./Components/ManagerDash/ViewAccount.jsx";
 import ManagerAddProject from "./Components/ManagerDash/AddProject.jsx";
-import ManagerViewProject from "./Components/ManagerDash/ViewProject.jsx";
+import ManagerViewProject from "./Components/ManagerDash/View.jsx";
 import Reports from "./Components/ManagerDash/Reports.jsx";
 import ManagerProfile from "./Components/ManagerDash/Profile.jsx";
 import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
