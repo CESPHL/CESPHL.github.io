@@ -72,12 +72,14 @@ const ViewProject = () => {
     console.log(clientData[0]);
 
     useEffect(() => {
-        console.log(clientData);
-        console.log(clientData.projects);
-        // console.log(clientData.projects.filter(function(project) {
-        //     return project.project_id == "P1";
-        // }));
-    }, [clientData]);
+        if (clientData && clientData.projects) {
+            console.log(clientData);
+            console.log(clientData.projects);
+            // console.log(clientData.projects.filter(function(project) {
+            //     return project.project_id == "P1";
+            // }));
+        }
+    }, [clientData]);    
 
     return (
         <div className="dashboard">
