@@ -5,7 +5,7 @@
 }
 
 .project-info > div {
-    flex-basis: 45%;
+    flex-basis: 48%;
 }
 
 .project-info > div > div {
@@ -24,4 +24,5 @@
     padding: 0.5rem 1rem;
     border-radius: 7px;
     border: 1px solid #D0D5DD;
+    margin-bottom: 0.5rem;
 }

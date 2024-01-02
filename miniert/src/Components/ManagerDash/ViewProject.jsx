@@ -80,25 +80,26 @@ const ViewProject = () => {
             document.getElementById("sdmName").value = firstClient.client_sdm_name;
             document.getElementById("sdmEmail").value = firstClient.client_sdm_email;
             if (firstClient.projects) {
-                console.log(firstClient);
-                console.log(firstClient.projects);
                 const projectlist = firstClient.projects.map(project => project.project_id);
-                console.log(projectlist);
                 console.log(projectlist);
                 const projectArray = firstClient.projects.filter(project => project.project_id === projectId);
                 console.log(projectArray);
                 console.log(projectArray[0]);
                 setProjectData(projectArray[0]);
                 console.log(projectData);
-                document.getElementById("projectId").value = projectData.project_id;
-                document.getElementById("projectName").value = projectData.project_name;
-                document.getElementById("projectWorkShift").value = projectData.workshift;
-                document.getElementById("projectCoreTime").value = projectData.coretime;
-                document.getElementById("projectStatus").value = projectData.status;
             }
         }
     }, [clientData]);
 
+    useEffect(() => {
+        if (projectData && Object.keys(projectData).length > 0) {
+            document.getElementById("projectId").value = projectData.project_id;
+            document.getElementById("projectName").value = projectData.project_name;
+            document.getElementById("projectWorkShift").value = projectData.workshift;
+            document.getElementById("projectCoreTime").value = projectData.coretime;
+            document.getElementById("projectStatus").value = projectData.status;
+        }
+    }, [projectData])
 
     return (
         <div className="dashboard">
