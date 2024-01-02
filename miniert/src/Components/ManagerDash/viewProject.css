@@ -1,0 +1,16 @@
+.project-info {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-info > div > div > label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #344054;
+}
+
+.project-info > div > div > input {
+    padding: 1rem 2rem;
+    border-radius: 7px;
+}

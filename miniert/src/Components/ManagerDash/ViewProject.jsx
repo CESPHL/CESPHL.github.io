@@ -78,12 +78,21 @@ const ViewProject = () => {
     useEffect(() => {
         if (clientData && clientData.length > 0) {
             const firstClient = clientData[0];
+            document.getElementById("clientName").value = firstClient.client_name;
+            document.getElementById("sdmName").value = firstClient.client_sdm_name;
+            document.getElementById("sdmEmail").value = firstClient.client_sdm_email;
 
             if (firstClient.projects) {
                 console.log(firstClient);
                 console.log(firstClient.projects);
                 const projectArray = firstClient.projects.filter(project => project.project_id === projectId);
                 setProjectData(projectArray[0]);
+                console.log(projectData);
+                document.getElementById("projectId").value = projectData.project_id;
+                document.getElementById("projectName").value = projectData.project_name;
+                document.getElementById("projectWorkShift").value = projectData.workshift;
+                document.getElementById("projectCoreTime").value = projectData.coretime;
+                document.getElementById("projectStatus").value = projectData.status;
             }
         }
     }, [clientData]);
@@ -167,37 +176,37 @@ const ViewProject = () => {
                     <div className="project-info">
                         <div>
                             <div>
-                                <label for="projectId">Project ID</label>
+                                <label for="projectId">Project ID</label><br/>
                                 <input type="text" name="projectId" id="projectId" disabled />
                             </div>
                             <div>
-                                <label for="projectName">Project Name</label>
+                                <label for="projectName">Project Name</label><br/>
                                 <input type="text" name="projectName" id="projectName" disabled />
                             </div>
                             <div>
-                                <label for="clientName">Client Name</label>
+                                <label for="clientName">Client Name</label><br/>
                                 <input type="text" name="clientName" id="clientName" disabled />
                             </div>
                             <div>
-                                <label for="sdmName">SDM / SDL Name</label>
+                                <label for="sdmName">SDM / SDL Name</label><br/>
                                 <input type="text" name="sdmName" id="sdmName" disabled />
                             </div>
                         </div>
                         <div>
                             <div>
-                                <label for="sdmEmail">SDM / SDL Email</label>
+                                <label for="sdmEmail">SDM / SDL Email</label><br/>
                                 <input type="text" name="sdmEmail" id="sdmEmail" disabled />
                             </div>
                             <div>
-                                <label for="projectWorkShift">Work Shift</label>
+                                <label for="projectWorkShift">Work Shift</label><br/>
                                 <input type="text" name="projectWorkShift" id="projectWorkShift" disabled />
                             </div>
                             <div>
-                                <label for="projectCoreTime">Core Time</label>
+                                <label for="projectCoreTime">Core Time</label><br/>
                                 <input type="text" name="projectCoreTime" id="projectCoreTime" disabled />
                             </div>
                             <div>
-                                <label for="projectStatus">Status</label>
+                                <label for="projectStatus">Status</label><br/>
                                 <input type="text" name="projectStatus" id="projectStatus" disabled />
                             </div>
                         </div>
