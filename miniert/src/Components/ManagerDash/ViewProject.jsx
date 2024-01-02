@@ -38,6 +38,7 @@ const CurrentDate = () => {
 const ViewProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
+    const [projectData, setProjectData] = useState([]);
     const currentUrl = new URL(window.location.href);
     const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
     const accountIdIndex = pathSegments.indexOf('view-account') + 1;
@@ -72,6 +73,10 @@ const ViewProject = () => {
 
     useEffect(() => {
         console.log(clientData);
+        console.log(clientData.projects);
+        console.log(clientData.projects.filter(function(project) {
+            return project.project_id == "P1";
+        }));
     }, [clientData]);
 
     return (
