@@ -72,14 +72,18 @@ const ViewProject = () => {
     console.log(clientData[0]);
 
     useEffect(() => {
-        if (clientData && clientData.projects) {
-            console.log(clientData);
-            console.log(clientData.projects);
-            // console.log(clientData.projects.filter(function(project) {
-            //     return project.project_id == "P1";
-            // }));
+        if (clientData && clientData.length > 0) {
+            const firstClient = clientData[0];
+    
+            if (firstClient.projects) {
+                console.log(firstClient);
+                console.log(firstClient.projects);
+                // Access individual projects using array methods or filter
+                // console.log(firstClient.projects.filter(project => project.project_id === "P1"));
+            }
         }
-    }, [clientData]);    
+    }, [clientData]);
+     
 
     return (
         <div className="dashboard">
