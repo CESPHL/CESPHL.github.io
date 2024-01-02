@@ -43,7 +43,11 @@ const ViewProject = () => {
     const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
     const accountIdIndex = pathSegments.indexOf('view-account') + 1;
     const accountId = pathSegments[accountIdIndex];
+    const projectIdIndex = pathSegments.indexOf('view-project') + 1;
+    const projectId = pathSegments[projectIdIndex];
+
     console.log(accountId);
+    console.log(projectId);
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
@@ -74,16 +78,16 @@ const ViewProject = () => {
     useEffect(() => {
         if (clientData && clientData.length > 0) {
             const firstClient = clientData[0];
-    
+
             if (firstClient.projects) {
                 console.log(firstClient);
                 console.log(firstClient.projects);
                 // Access individual projects using array methods or filter
-                // console.log(firstClient.projects.filter(project => project.project_id === "P1"));
+                console.log(firstClient.projects.filter(project => project.project_id === projectId));
             }
         }
     }, [clientData]);
-     
+
 
     return (
         <div className="dashboard">
