@@ -38,7 +38,7 @@ const CurrentDate = () => {
 const ViewProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
-    const [projectData, setProjectData] = useState([]);
+    const [projectData, setProjectData] = useState({});
     const currentUrl = new URL(window.location.href);
     const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
     const accountIdIndex = pathSegments.indexOf('view-account') + 1;
@@ -82,8 +82,8 @@ const ViewProject = () => {
             if (firstClient.projects) {
                 console.log(firstClient);
                 console.log(firstClient.projects);
-                // Access individual projects using array methods or filter
-                console.log(firstClient.projects.filter(project => project.project_id === projectId));
+                const projectArray = firstClient.projects.filter(project => project.project_id === projectId);
+                setProjectData(projectArray[0]);
             }
         }
     }, [clientData]);
