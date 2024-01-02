@@ -74,9 +74,9 @@ const ViewProject = () => {
     useEffect(() => {
         console.log(clientData);
         console.log(clientData.projects);
-        console.log(clientData.projects.filter(function(project) {
-            return project.project_id == "P1";
-        }));
+        // console.log(clientData.projects.filter(function(project) {
+        //     return project.project_id == "P1";
+        // }));
     }, [clientData]);
 
     return (
