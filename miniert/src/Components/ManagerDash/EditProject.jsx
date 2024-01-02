@@ -37,7 +37,7 @@ const CurrentDate = () => {
 
     return <p>{formattedDate}</p>;
 }
-const AddProject = () => {
+const EditProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
@@ -240,4 +240,4 @@ const AddProject = () => {
     );
 };
 
-export default AddProject;
+export default EditProject;
