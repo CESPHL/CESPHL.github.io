@@ -40,7 +40,7 @@ const ViewProject = () => {
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
     const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
-    const accountIdIndex = pathSegments.indexOf('edit-account') + 1;
+    const accountIdIndex = pathSegments.indexOf('view-account') + 1;
     const accountId = pathSegments[accountIdIndex];
     console.log(accountId);
 
