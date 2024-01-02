@@ -173,7 +173,7 @@ const ViewProject = () => {
                 <div className="view-content">
                     <div className="top-content">
                         <h3>Project Details</h3>
-                        <NavLink to={`/manager/manage-accounts/edit-account/${accountId}`}>
+                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/edit-project/${projectId}`}>
                             <button className="edit-btn">Edit</button>
                         </NavLink>
                     </div>

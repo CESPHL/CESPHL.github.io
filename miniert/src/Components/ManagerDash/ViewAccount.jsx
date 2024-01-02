@@ -220,7 +220,7 @@ const ViewAccount = () => {
                                         <NavLink to={`/manager/manage-accounts/view-account/${accountId}/view-project/${project.project_id}`}>
                                             <img src={view} />
                                         </NavLink>
-                                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/edit-project${project.project_id}`}>
+                                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/edit-project/${project.project_id}`}>
                                             <img src={edit} />
                                         </NavLink>
                                     </p>
