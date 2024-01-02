@@ -52,9 +52,7 @@ const ViewProject = () => {
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
             .then((response) => {
-                console.log(response.data);
                 const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
-                console.log(filteredClients);
                 setClientData(filteredClients);
             })
             .catch((err) => {
@@ -72,12 +70,10 @@ const ViewProject = () => {
             });
     }, [employee_id]);
 
-    console.log(clientData);
-    console.log(clientData[0]);
-
     useEffect(() => {
         if (clientData && clientData.length > 0) {
             const firstClient = clientData[0];
+            console.log("1st condition passed.");
             console.log(firstClient);
             console.log(firstClient.projects);
             document.getElementById("clientName").value = firstClient.client_name;
@@ -177,37 +173,37 @@ const ViewProject = () => {
                     <div className="project-info">
                         <div>
                             <div>
-                                <label for="projectId">Project ID</label><br/>
+                                <label for="projectId">Project ID</label>
                                 <input type="text" name="projectId" id="projectId" disabled />
                             </div>
                             <div>
-                                <label for="projectName">Project Name</label><br/>
+                                <label for="projectName">Project Name</label>
                                 <input type="text" name="projectName" id="projectName" disabled />
                             </div>
                             <div>
-                                <label for="clientName">Client Name</label><br/>
+                                <label for="clientName">Client Name</label>
                                 <input type="text" name="clientName" id="clientName" disabled />
                             </div>
                             <div>
-                                <label for="sdmName">SDM / SDL Name</label><br/>
+                                <label for="sdmName">SDM / SDL Name</label>
                                 <input type="text" name="sdmName" id="sdmName" disabled />
                             </div>
                         </div>
                         <div>
                             <div>
-                                <label for="sdmEmail">SDM / SDL Email</label><br/>
+                                <label for="sdmEmail">SDM / SDL Email</label>
                                 <input type="text" name="sdmEmail" id="sdmEmail" disabled />
                             </div>
                             <div>
-                                <label for="projectWorkShift">Work Shift</label><br/>
+                                <label for="projectWorkShift">Work Shift</label>
                                 <input type="text" name="projectWorkShift" id="projectWorkShift" disabled />
                             </div>
                             <div>
-                                <label for="projectCoreTime">Core Time</label><br/>
+                                <label for="projectCoreTime">Core Time</label>
                                 <input type="text" name="projectCoreTime" id="projectCoreTime" disabled />
                             </div>
                             <div>
-                                <label for="projectStatus">Status</label><br/>
+                                <label for="projectStatus">Status</label>
                                 <input type="text" name="projectStatus" id="projectStatus" disabled />
                             </div>
                         </div>
