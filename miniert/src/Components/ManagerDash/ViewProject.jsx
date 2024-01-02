@@ -82,7 +82,12 @@ const ViewProject = () => {
             if (firstClient.projects) {
                 console.log(firstClient);
                 console.log(firstClient.projects);
+                const projectlist = firstClient.projects.map(project => project.project_id);
+                console.log(projectlist);
+                console.log(projectlist);
                 const projectArray = firstClient.projects.filter(project => project.project_id === projectId);
+                console.log(projectArray);
+                console.log(projectArray[0]);
                 setProjectData(projectArray[0]);
                 console.log(projectData);
                 document.getElementById("projectId").value = projectData.project_id;
