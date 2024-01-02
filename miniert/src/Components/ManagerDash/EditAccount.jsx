@@ -213,7 +213,7 @@ const AddAccount = () => {
                         <span>Client POC Email</span><br />
                         <textarea id="clientPOCEmail" rows="1" cols="50" required></textarea><br />
 
-                        <NavLink to="/manager/manage-accounts">
+                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}`}>
                             <button>Cancel</button>
                         </NavLink>
                         <input type="button" value="Save" className="custom-add-btn1" onClick={handleOpenModal} />

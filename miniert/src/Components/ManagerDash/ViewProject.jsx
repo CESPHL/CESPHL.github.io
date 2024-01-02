@@ -92,6 +92,7 @@ const ViewProject = () => {
     }, [clientData]);
 
     useEffect(() => {
+        // Display the project data to the front end
         if (projectData && Object.keys(projectData).length > 0) {
             document.getElementById("projectId").value = projectData.project_id;
             document.getElementById("projectName").value = projectData.project_name;

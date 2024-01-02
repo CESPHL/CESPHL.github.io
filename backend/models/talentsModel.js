@@ -30,7 +30,11 @@ const talentSchema = new Schema({
         "client_name": { type: String, required: true },
         "sdm_sdl_name": { type: String, required: true },
         "projects": [{
-            "project_name": { type: String, required: true }
+            "project_id": { type: String, required: true },
+            "project_name": { type: String, required: true },
+            "workshift": { type: String, required: true },
+            "coretime": { type: String, required: true },
+            "status": { type: String, required: true },
         }]
     }],
     manager_name: {type: String, required: false },

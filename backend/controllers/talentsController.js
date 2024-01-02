@@ -260,6 +260,26 @@ const changePassword = async (req, res) => {
     }
 }
 
+const addClient = async (req, res) => {
+    const { employee_id } = req.params;
+    try {
+        const talent = await Talent.findOne({ employee_id });
+        if (!talent) {
+            return res.status(404).json({ message: "Manager not found." });
+        }
+        else {
+            talent.clients.push(req.body);
+            const result = await talent.save();
+            console.log("Client data inserted successfully.", result);
+            return res.status(200).json({ message: "Client data inserted successfully." });
+        }
+    }
+    catch (err) {
+        console.log("Error inserting client data.", err);
+        return res.status(500).json({ message: "Error inserting client data. " });
+    }
+}
+
 module.exports = {
     getTalents,
     getOneTalent,
@@ -269,5 +289,6 @@ module.exports = {
     timeOut,
     timeInOT,
     timeOutOT,
-    changePassword
+    changePassword,
+    addClient
 }
