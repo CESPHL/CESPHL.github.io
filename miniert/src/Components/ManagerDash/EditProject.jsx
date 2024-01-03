@@ -122,7 +122,7 @@ const EditProject = () => {
 
         console.log(projectInfo);
 
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}/edit-project/${projectId}`, projectInfo)
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}/edit-project/${projectId}`, projectInfo)
             .then((response) => {
                 console.log(response);
                 toast.success("Project info updated.", {
