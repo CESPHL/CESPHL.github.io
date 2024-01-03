@@ -140,9 +140,9 @@ const ManageAccount = () => {
                             <div className="customTableContent" key={client.client_id}>
                                 <p>{client.client_id}</p>
                                 <p>{client.client_name}</p>
-                                <p>{client.sdm_name}</p>
-                                <p>{client.sdm_mail}</p>
-                                <p>{client.sdm_contact}</p>
+                                <p>{client.client_sdm_name}</p>
+                                <p>{client.client_sdm_mail}</p>
+                                <p>{client.client_sdm_contact}</p>
                                 <p>
                                     <img src={view} />
                                     <NavLink to="/manage-accounts/edit-account">
