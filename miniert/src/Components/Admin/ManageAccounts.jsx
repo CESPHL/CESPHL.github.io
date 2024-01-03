@@ -37,7 +37,7 @@ const ManageAccount = () => {
     useEffect(() => {
         axios
             .get(
-                `https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`
+                `https://cesphl-github-io-backend.vercel.app/api/admin/clients`
             )
             .then((response) => {
                 const data = response.data;

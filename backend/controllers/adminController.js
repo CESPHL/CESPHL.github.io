@@ -144,10 +144,33 @@ const deleteUser = async (req, res) => {
     }
 }
 
+// Get all clients
+const getAllClients = async (req, res) => {
+    try {
+        const managers = await Manager.find({}).sort({ createdAt: -1 });
+
+        if (managers) {
+            const allClients = managers.reduce((clients, manager) => {
+                const managerClients = manager.clients.map(client => {
+                    // Convert Mongoose document to plain JavaScript object
+                    const plainClient = client.toObject();
+                    return { ...plainClient };
+                });
+                return [...clients, ...managerClients];
+            }, []);
+
+            return res.status(200).json(allClients);
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error. " });
+    }
+}
+
 module.exports = {
     getUsers,
     getOneUser,
     addUser,
     editUser,
-    deleteUser
+    deleteUser,
+    getAllClients
 }
