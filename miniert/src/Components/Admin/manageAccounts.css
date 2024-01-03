@@ -1,0 +1,24 @@
+/* In the future, maybe this can be transferred into one css file */
+
+.table-container {
+    border-radius: 7px;
+    border: 1px solid #D0D5DD;
+}
+
+.six-col {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 1fr 1fr;
+}
+
+.header {
+    background-color: #F9FAFB;
+}
+
+.header > h1 {
+    font-weight: 600;
+    color: #656B75;
+}
+
+.data > p {
+    color: #656B75;
+}

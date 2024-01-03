@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+// Icons
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
@@ -8,6 +10,11 @@ import profile from "../Assets/inactive-profile.svg";
 import users from "../Assets/users-inactive.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
+
+// Local files
+import "./manageAccounts.css";
+
+// External libraries
 import axios from "axios";
 
 const CurrentDate = () => {
@@ -127,8 +134,8 @@ const ManageAccount = () => {
                             </NavLink>
                         </div>
                     </div>
-                    <div className="customTableContainer">
-                        <div className="customTableHeader">
+                    <div className="table-container">
+                        <div className="six-col header">
                             <h1>Client ID</h1>
                             <h1>Client Name</h1>
                             <h1>SDM/SDL</h1>
@@ -137,11 +144,11 @@ const ManageAccount = () => {
                             <h1>Actions</h1>
                         </div>
                         {clientData ? clientData.map((client) => (
-                            <div className="customTableContent" key={client.client_id}>
+                            <div className="six-col data" key={client.client_id}>
                                 <p>{client.client_id}</p>
                                 <p>{client.client_name}</p>
                                 <p>{client.client_sdm_name}</p>
-                                <p>{client.client_sdm_mail}</p>
+                                <p>{client.client_sdm_email}</p>
                                 <p>{client.client_sdm_contact}</p>
                                 <p>
                                     <img src={view} />
