@@ -23,6 +23,8 @@
     font-weight: 600;
     font-size: 16px;
     color: #656B75;
+    display: flex;
+    align-items: center;
 }
 
 .data {
@@ -35,10 +37,16 @@
     margin: 0;
     display: flex;
     align-items: center;
-    padding: 0.5rem 0   ;
+    padding: 0.5rem 0;
 }
+
+.header >h1:last-of-type, .data > p:last-of-type {
+    justify-content: center;
+}
+
 
 .data:last-of-type {
     border-radius: 0 0 10px 10px;
     border-bottom: 0;
+
 }
