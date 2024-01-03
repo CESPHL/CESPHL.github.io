@@ -8,11 +8,12 @@
 .six-col {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 2fr 1fr 1fr;
+    border-bottom: 1px solid #D0D5DD;
 }
 
 .header {
     background-color: #F9FAFB;
-    border-radius: 7px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .header > h1 {
@@ -31,5 +32,5 @@
 }
 
 .data:last-of-type {
-    border-radius: 0 0 7px 7px;
+    border-radius: 0 0 10px 10px;
 }
