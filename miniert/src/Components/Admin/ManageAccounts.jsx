@@ -137,12 +137,12 @@ const ManageAccount = () => {
                             <h1>Actions</h1>
                         </div>
                         {clientData ? clientData.map((client) => (
-                            <div>
+                            <div className="customTableContent" key={client.client_id}>
                                 <p>{client.client_id}</p>
                                 <p>{client.client_name}</p>
-                                <p>{client.sdm_sdl_name}</p>
-                                <p>{client.sdm_sdl_email}</p>
-                                <p>{client.sdm_sdl_contact}</p>
+                                <p>{client.sdm_name}</p>
+                                <p>{client.sdm_mail}</p>
+                                <p>{client.sdm_contact}</p>
                                 <p>
                                     <img src={view} />
                                     <NavLink to="/manage-accounts/edit-account">
