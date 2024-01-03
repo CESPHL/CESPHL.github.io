@@ -21,6 +21,10 @@
     color: #656B75;
 }
 
+.data {
+    background-color: #FFFFFF;
+}
+
 .data > p {
     font-size: 16px;
     color: #656B75;
