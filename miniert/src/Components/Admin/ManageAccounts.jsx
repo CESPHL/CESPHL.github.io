@@ -48,6 +48,10 @@ const ManageAccount = () => {
             });
     }, [employee_id]);
 
+    useEffect(() => {
+        console.log(clientData);
+    }, [clientData]);
+
     return (
         <div className="dashboard">
             <div className="dash-navbar">
@@ -132,8 +136,8 @@ const ManageAccount = () => {
                             <h1>SDM/SDL Contact</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData.clients ? clientData.clients.map((client) => (
-                            <div className="customTableContent" key={client.client_id}>
+                        {clientData ? clientData.map((client) => (
+                            <div>
                                 <p>{client.client_id}</p>
                                 <p>{client.client_name}</p>
                                 <p>{client.sdm_sdl_name}</p>
