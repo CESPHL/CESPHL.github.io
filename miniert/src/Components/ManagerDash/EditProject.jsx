@@ -40,11 +40,13 @@ const CurrentDate = () => {
 const EditProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
-    const [projectData, setProjectData] = useState([]);
+    const [projectData, setProjectData] = useState({});
     const currentUrl = new URL(window.location.href);
     const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
     const accountIdIndex = pathSegments.indexOf('view-account') + 1;
     const accountId = pathSegments[accountIdIndex];
+    const projectIdIndex = pathSegments.indexOf('edit-project') + 1;
+    const projectId = pathSegments[projectIdIndex];
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -80,8 +82,16 @@ const EditProject = () => {
             document.getElementById("clientSDMEmail").value = clientData.client_sdm_email || "Loading...";
             document.getElementById("clientSDMContact").value = clientData.client_sdm_contact || "Loading...";
             console.log(clientData);
+            const projectArray = clientData.projects.filter(project => project.project_id === projectId);
+            console.log(projectArray);
+            console.log(projectArray[0]);
+            setProjectData(projectArray[0]);
         }
     }, [clientData]);
+
+    useEffect(() => {
+        console.log(projectData);
+    }, [projectData])
 
     const handleOpenModal = () => {
         setShowModal(true);
