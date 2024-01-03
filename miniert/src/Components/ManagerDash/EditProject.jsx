@@ -91,6 +91,14 @@ const EditProject = () => {
 
     useEffect(() => {
         console.log(projectData);
+        // Display the project data to the front end
+        if (projectData && Object.keys(projectData).length > 0) {
+            document.getElementById("projectId").value = projectData.project_id;
+            document.getElementById("projectName").value = projectData.project_name;
+            document.getElementById("projectWorkShift").value = projectData.workshift;
+            document.getElementById("projectCoreTime").value = projectData.coretime;
+            document.getElementById("projectStatus").value = projectData.status;
+        }
     }, [projectData])
 
     const handleOpenModal = () => {
