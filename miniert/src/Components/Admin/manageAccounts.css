@@ -12,13 +12,20 @@
 
 .header {
     background-color: #F9FAFB;
+    border-radius: 7px;
 }
 
 .header > h1 {
     font-weight: 600;
+    font-size: 16px;
     color: #656B75;
 }
 
 .data > p {
+    font-size: 16px;
     color: #656B75;
+}
+
+.data:last-of-type {
+    border-radius: 0 0 7px 7px;
 }
