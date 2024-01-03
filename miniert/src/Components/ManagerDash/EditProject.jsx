@@ -40,6 +40,7 @@ const CurrentDate = () => {
 const EditProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
+    const [projectData, setProjectData] = useState([]);
     const currentUrl = new URL(window.location.href);
     const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
     const accountIdIndex = pathSegments.indexOf('view-account') + 1;
@@ -78,6 +79,7 @@ const EditProject = () => {
             document.getElementById("clientSDMName").value = clientData.client_sdm_name || "Loading...";
             document.getElementById("clientSDMEmail").value = clientData.client_sdm_email || "Loading...";
             document.getElementById("clientSDMContact").value = clientData.client_sdm_contact || "Loading...";
+            console.log(clientData);
         }
     }, [clientData]);
 
@@ -221,18 +223,18 @@ const EditProject = () => {
                         <NavLink to={`/manager/manage-accounts/view-account/${accountId}`}>
                             <button id="cancelButton">Cancel</button>
                         </NavLink>
-                        <button id="addButton" onClick={handleOpenModal}>Add</button>
+                        <button id="addButton" onClick={handleOpenModal}>Edit</button>
                     </div>
                 </div>
                 <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                     <div>
-                        <p>Add Project</p>
+                        <p>Edit Project</p>
                         <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                     </div>
-                    <p className="modal-description">Clicking yes will add the project details in the system. Do you wish to continue?</p>
+                    <p className="modal-description">Clicking yes will edit the project details in the system. Do you wish to continue?</p>
                     <div>
                         <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
-                        <button className="btn btn-save" onClick={handleSave}>Yes, Add</button>
+                        <button className="btn btn-save" onClick={handleSave}>Yes, Edit</button>
                     </div>
                 </Modal>
             </div>
