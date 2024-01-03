@@ -141,10 +141,43 @@ const changePasswordManager = async (req, res) => {
     }
 }
 
+const editProject = async (req, res) => {
+    console.log("Edit project");
+    const { employee_id, account_id, project_id } = req.params;
+    const updatedProjectData = req.body;
+
+    try {
+        const manager = await Manager.findOne({ employee_id });
+
+        if (!manager) {
+            return res.status(404).json({ error: 'Manager not found' });
+        }
+
+        const clientToUpdate = manager.clients.find((client) => client.client_id === account_id);
+
+        if (!clientToUpdate) {
+            return res.status(404).json({ error: 'Client not found' });
+        }
+
+        const clientProjectToUpdate = clientToUpdate.projects.find((project) => project.project_id === project_id);
+
+        Object.assign(clientProjectToUpdate, updatedProjectData);
+
+        await manager.save();
+
+        return res.status(200).json({ message: 'Project info updated successfully.' });
+    }
+    catch (error) {
+        console.error("Error updating client: ", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
 module.exports = {
     getOneManager,
     addClient,
     editClient,
     addProject,
-    changePasswordManager
+    changePasswordManager,
+    editProject
 }

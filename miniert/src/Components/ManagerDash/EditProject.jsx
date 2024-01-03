@@ -113,19 +113,19 @@ const EditProject = () => {
         e.preventDefault();
 
         const projectInfo = {
-            project_id: document.getElementById("clientProjectID").value,
-            project_name: document.getElementById("clientProjectName").value,
-            workshift: document.getElementById("clientProjectWorkshift").value,
-            coretime: document.getElementById("clientProjectCoretime").value,
-            status: document.getElementById("clientProjectStatus").value
+            project_id: document.getElementById("projectId").value,
+            project_name: document.getElementById("projectName").value,
+            workshift: document.getElementById("projectWorkShift").value,
+            coretime: document.getElementById("projectCoreTime").value,
+            status: document.getElementById("projectStatus").value
         }
 
         console.log(projectInfo);
 
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}`, projectInfo)
+        axios.post(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}/edit-project/${projectId}`, projectInfo)
             .then((response) => {
                 console.log(response);
-                toast.success("Added project successfully.", {
+                toast.success("Project info updated.", {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -223,11 +223,11 @@ const EditProject = () => {
                 <div id="addProjectContainer">
                     <form>
                         <div className="project-details">
-                            <span>Project ID</span><br /><input type="text" placeholder="Enter project ID" id="clientProjectID" required /><br />
-                            <span>Project Name</span><br /><input type="text" placeholder="Enter project name" id="clientProjectName" required /><br />
-                            <span>Work Shift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
-                            <span>Core Time</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
-                            <span>Status</span><br /><input type="text" placeholder="Enter project status" id="clientProjectStatus" required /><br />
+                            <span>Project ID</span><br /><input type="text" placeholder="Enter project ID" id="projectId" required /><br />
+                            <span>Project Name</span><br /><input type="text" placeholder="Enter project name" id="projectName" required /><br />
+                            <span>Work Shift</span><br /><input type="text" placeholder="Enter project workshift" id="projectWorkShift" required /><br />
+                            <span>Core Time</span><br /><input type="text" placeholder="Enter project core time" id="projectCoreTime" required /><br />
+                            <span>Status</span><br /><input type="text" placeholder="Enter project status" id="projectStatus" required /><br />
                         </div>
                         <div className="client-details">
                             <span>Client ID</span><br /><input type="text" id="clientID" disabled /><br />
