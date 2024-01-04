@@ -109,6 +109,7 @@ const AddAccount = () => {
         e.preventDefault();
         const managerIdSelected = document.getElementById("managerDropdown").value;
         const managerData = managerList.find(manager => manager.employee_id === parseInt(managerIdSelected, 10));
+        const sdmId = managerData.employee_id;
         const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
         const sdmEmail = managerData.email;
         const sdmContact = managerData.contact_number;
@@ -116,6 +117,7 @@ const AddAccount = () => {
             client_id: document.getElementById("clientID").value,
             client_name: document.getElementById("clientName").value,
             client_address: document.getElementById("clientAddress").value,
+            client_sdm_id: sdmId,
             client_sdm_name: sdmFullName,
             client_sdm_email: sdmEmail,
             client_sdm_contact: sdmContact,
