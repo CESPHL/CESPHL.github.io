@@ -51,7 +51,7 @@ const ViewAccount = () => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
                 console.log(response.data);
-                console.log(clients.data.clients);
+                console.log(response.data.clients);
                 response.data.clients.forEach((client) => console.log(typeof client.client_id));
                 const filteredClients = response.data.clients.filter(client => client.client_id === account_id);
                 console.log(filteredClients);
