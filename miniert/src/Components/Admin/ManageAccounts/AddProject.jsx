@@ -40,12 +40,12 @@ const CurrentDate = () => {
 const AddProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
+    const [showModal, setShowModal] = useState(false);
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
     const parts = path.split('/');
     const manager_id = parts[3];
     const account_id = parts[5];
-    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)

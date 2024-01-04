@@ -41,21 +41,18 @@ const EditProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
-    const currentUrl = new URL(window.location.href);
-    const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
-    const accountIdIndex = pathSegments.indexOf('view-account') + 1;
-    const accountId = pathSegments[accountIdIndex];
-    const projectIdIndex = pathSegments.indexOf('edit-project') + 1;
-    const projectId = pathSegments[projectIdIndex];
     const [showModal, setShowModal] = useState(false);
+    const currentUrl = new URL(window.location.href);
+    const path = currentUrl.pathname;
+    const parts = path.split('/');
+    const manager_id = parts[3];
+    const account_id = parts[5];
+    const project_id = parts[7];
 
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
-                console.log(response.data);
-                console.log(accountId);
-                const filteredClients = response.data.clients.filter(client => String(client.client_id) === String(accountId));
-                console.log(filteredClients);
+                const filteredClients = response.data.clients.filter(client => String(client.client_id) === String(account_id));
                 setClientData(filteredClients.length > 0 ? filteredClients[0] : null);
             })
             .catch((err) => {
@@ -71,20 +68,16 @@ const EditProject = () => {
                     theme: "light",
                 });
             });
-    }, [employee_id, accountId]);
+    }, [employee_id, account_id]);
 
     useEffect(() => {
-        console.log(clientData);
         if (clientData.client_id) {
             document.getElementById("clientID").value = clientData.client_id || "Loading...";
             document.getElementById("clientName").value = clientData.client_name || "Loading...";
             document.getElementById("clientSDMName").value = clientData.client_sdm_name || "Loading...";
             document.getElementById("clientSDMEmail").value = clientData.client_sdm_email || "Loading...";
-            document.getElementById("clientSDMContact").value = clientData.client_sdm_contact || "Loading...";
-            console.log(clientData);
-            const projectArray = clientData.projects.filter(project => project.project_id === projectId);
-            console.log(projectArray);
-            console.log(projectArray[0]);
+            document.getElementById("clientSDMContact").value = clientData.client_sdm_contact || "Loading..."
+            const projectArray = clientData.projects.filter(project => project.project_id === project_id);
             setProjectData(projectArray[0]);
         }
     }, [clientData]);
@@ -122,7 +115,7 @@ const EditProject = () => {
 
         console.log(projectInfo);
 
-        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}/edit-project/${projectId}`, projectInfo)
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}/clients/${account_id}/edit-project/${project_id}`, projectInfo)
             .then((response) => {
                 console.log(response);
                 toast.success("Project info updated.", {
@@ -238,7 +231,7 @@ const EditProject = () => {
                         </div>
                     </form>
                     <div>
-                        <NavLink to={`/admin/manage-accounts/view-account/${accountId}`}>
+                        <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}`}>
                             <button id="cancelButton">Cancel</button>
                         </NavLink>
                         <button id="addButton" onClick={handleOpenModal}>Edit</button>
