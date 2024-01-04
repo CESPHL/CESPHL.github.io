@@ -35,6 +35,7 @@ const talentSchema = new Schema({
             "workshift": { type: String, required: true },
             "coretime": { type: String, required: true },
             "status": { type: String, required: true },
+            "role": { type: String, required: true }
         }]
     }],
     manager_name: {type: String, required: false },

@@ -39,6 +39,7 @@ const ViewProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
+    const [talentList, setTalentList] = useState([]);
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
     const parts = path.split('/');
@@ -225,15 +226,22 @@ const ViewProject = () => {
                                 </select>
                             </form>
                         </div>
+                        <div>
+                            <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}/edit-project/${project_id}/add-talent`}>
+                                <button className="edit-btn">Add</button>
+                            </NavLink>
+                        </div>
                     </div>
-                    <div className="project-table">
-                        <div className="project-header">
+                    <div className="table-container">
+                        <div className="six-col header">
                             <h1>ID</h1>
                             <h1>Talent Name</h1>
                             <h1>Email</h1>
                             <h1>Contact No</h1>
                             <h1>Role</h1>
+                            <h1>Actions</h1>
                         </div>
+                        
                     </div>
                 </div>
             </div>

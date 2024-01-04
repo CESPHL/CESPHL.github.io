@@ -26,7 +26,8 @@ const managerSchema = new Schema({
             "project_name": { type: String, required: true },
             "workshift": { type: String, required: true },
             "coretime": { type: String, required: true },
-            "status": { type: String, required: true}
+            "status": { type: String, required: true},
+            "talents": [{ type: String, required: false }]
         }]
     }],
     manager_name: {type: String, required: false },
