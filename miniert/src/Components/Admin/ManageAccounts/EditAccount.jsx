@@ -156,25 +156,25 @@ const AddAccount = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/manager/manage-accounts">
-                                <img src={accIcon} alt="dashboard icon" activeclassname="active" />
+                            <NavLink to="/admin/manage-accounts" activeclassname="active">
+                                <img src={accIcon} alt="dashboard icon" />
                                 <span>Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manager/manage-talents">
-                                <img src={talents} alt="talents icon" />
+                            <NavLink to="/admin/manage-users">
+                                <img src={users} alt="users icon" />
+                                <span className="inactive">Manage Users</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/admin/manage-talents">
+                                <img src={talents} alt="clock icon" />
                                 <span className="inactive">Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/manager/reports">
-                                <img src={reports} alt="reports icon" />
-                                <span className="inactive">Reports</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/manager/profile">
+                            <NavLink to="/admin/profile">
                                 <img src={profile} alt="profile icon" />
                                 <span className="inactive">Profile</span>
                             </NavLink>
@@ -213,7 +213,7 @@ const AddAccount = () => {
                         <span>Client POC Email</span><br />
                         <textarea id="clientPOCEmail" rows="1" cols="50" required></textarea><br />
 
-                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}`}>
+                        <NavLink to={`/admin/manage-accounts/view-account/${accountId}`}>
                             <button>Cancel</button>
                         </NavLink>
                         <input type="button" value="Save" className="custom-add-btn1" onClick={handleOpenModal} />
