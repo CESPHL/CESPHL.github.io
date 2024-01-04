@@ -87,6 +87,16 @@ const AddAccount = () => {
             });
     }, []);
 
+    useEffect(() => {
+        const managerDropdown = document.getElementById("managerDropdown");
+        managerList.forEach(manager => {
+            const optionElement = document.createElement('option');
+            optionElement.textContent = manager.manager_name;
+            optionElement.value = manager._id;
+            managerDropdown.appendChild(optionElement);
+        });
+    }, [managerList]);
+
     const [showModal, setShowModal] = useState(false);
 
     const handleOpenModal = () => {
@@ -99,7 +109,12 @@ const AddAccount = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        // console.log(managerData);
+        const managerIdSelected = document.getElementById("managerDropdown").value;
+        console.log(managerIdSelected)
+        const managerData = (managerIdSelected) => {
+            return managers.find(manager => manager._id === managerIdSelected);
+        };
+        console.log(managerData);
         // const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
         // const sdmEmail = managerData.email;
         // const sdmContact = managerData.contact_number;
@@ -231,6 +246,7 @@ const AddAccount = () => {
                         <span>Project Workshift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
                         <span>Project Coretime</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
                         <span>Project Status</span><br /><input type="text" placeholder="Enter project status" id="clientProjectStatus" required /><br />
+                        <span>Assign To:</span><select id="managerDropdown"></select>
                         <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
@@ -240,7 +256,7 @@ const AddAccount = () => {
             </div>
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                 <div>
-                    <p>Add Account</p>
+                    <p>Add Account to Manager</p>
                     <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                 </div>
                 <p className="modal-description">Clicking yes will add the account details and its project to the system. Do you wish to continue?</p>
