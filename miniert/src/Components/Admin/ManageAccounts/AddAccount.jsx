@@ -68,8 +68,6 @@ const AddAccount = () => {
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/managers/get`)
             .then((response) => {
-                console.log(response);
-                console.log(response.data);
                 setManagerList(response.data);
             })
             .catch((err) => {
@@ -111,7 +109,8 @@ const AddAccount = () => {
         e.preventDefault();
         const managerIdSelected = document.getElementById("managerDropdown").value;
         console.log(managerIdSelected)
-        const managerData = managerList.find(manager => manager.employee_id === managerIdSelected);
+        console.log(managerList);
+        const managerData = managerList.find(manager => manager.employee_id === parseInt(managerIdSelected, 10));
         console.log(managerData);
         // const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
         // const sdmEmail = managerData.email;
