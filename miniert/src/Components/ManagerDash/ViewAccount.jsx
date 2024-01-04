@@ -43,7 +43,9 @@ const ViewAccount = () => {
     const currentUrl = new URL(window.location.href);
     const parts = currentUrl.split('/');
     const managerId = parts[6];
+    console.log(managerId);
     const clientId = parts[8];
+    console.log(clientId);
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${managerId}`)
