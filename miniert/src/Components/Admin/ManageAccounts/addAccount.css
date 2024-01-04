@@ -240,4 +240,5 @@ body {
 
 .add-mainContent>form>select {
     width: 422px;
+    padding: 8px;
 }

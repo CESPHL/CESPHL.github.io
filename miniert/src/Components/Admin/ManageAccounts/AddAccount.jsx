@@ -130,7 +130,7 @@ const AddAccount = () => {
             }]
         };
 
-        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`, clientData)
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${managerIdSelected}`, clientData)
             .then((response) => {
                 console.log(response);
                 toast.success("Added data successfully.", {
