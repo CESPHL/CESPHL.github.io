@@ -41,36 +41,30 @@ const ViewAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
-    const parts = currentUrl.split('/');
-    console.log(currentUrl);
-    console.log(parts);
-    const managerId = parts[6];
-    console.log(managerId);
-    const clientId = parts[8];
-    console.log(clientId);
+    const accountId = currentUrl.pathname.split('/').pop();
 
-    // useEffect(() => {
-    //     axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${managerId}`)
-    //         .then((response) => {
-    //             console.log(response.data);
-    //             const filteredClients = response.data.clients.filter(client => client.client_id === clientId);
-    //             console.log(filteredClients);
-    //             setClientData(filteredClients);
-    //         })
-    //         .catch((err) => {
-    //             console.error("Error retrieving client info.", err);
-    //             toast.error("Error retrieving client info. Please try again later.", {
-    //                 position: toast.POSITION.TOP_CENTER,
-    //                 autoClose: 5000,
-    //                 hideProgressBar: false,
-    //                 closeOnClick: true,
-    //                 pauseOnHover: true,
-    //                 draggable: true,
-    //                 progress: undefined,
-    //                 theme: "light",
-    //             });
-    //         });
-    // }, [employee_id]);
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+            .then((response) => {
+                console.log(response.data);
+                const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
+                console.log(filteredClients);
+                setClientData(filteredClients);
+            })
+            .catch((err) => {
+                console.error("Error retrieving client info.", err);
+                toast.error("Error retrieving client info. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
+    }, [employee_id]);
 
     console.log(clientData);
     console.log(clientData[0]);
@@ -146,7 +140,7 @@ const ViewAccount = () => {
                 <div className="view-content">
                     <div className="top-content">
                         <h3>Account Details</h3>
-                        <NavLink to={`/manager/manage-accounts/edit-account/${clientId}`}>
+                        <NavLink to={`/manager/manage-accounts/edit-account/${accountId}`}>
                             <button className="edit-btn">Edit</button>
                         </NavLink>
                     </div>
@@ -200,7 +194,7 @@ const ViewAccount = () => {
                         </div>
                         <div>
                             <button id="uploadButton">Upload</button>
-                            <NavLink to={`/manager/manage-accounts/edit-account/${clientId}/addproject`}>
+                            <NavLink to={`/manager/manage-accounts/edit-account/${accountId}/addproject`}>
                                 <button id="addButton">Add Project</button>
                             </NavLink>
                         </div>
@@ -223,10 +217,10 @@ const ViewAccount = () => {
                                     <p>{project.coretime}</p>
                                     <p>{project.status}</p>
                                     <p>
-                                        <NavLink to={`/manager/manage-accounts/view-account/${clientId}/view-project/${project.project_id}`}>
+                                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/view-project/${project.project_id}`}>
                                             <img src={view} />
                                         </NavLink>
-                                        <NavLink to={`/manager/manage-accounts/view-account/${clientId}/edit-project/${project.project_id}`}>
+                                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/edit-project/${project.project_id}`}>
                                             <img src={edit} />
                                         </NavLink>
                                     </p>

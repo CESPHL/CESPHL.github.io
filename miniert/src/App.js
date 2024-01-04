@@ -79,11 +79,11 @@ function App() {
             {/* Manage Accounts */}
                 <Route path="/admin/manage-accounts" element={<AdminManageAccounts />} />
                 <Route path="/admin/manage-accounts/add-account" element={<AdminAddAccount />} />
-                <Route path="/admin/manage-accounts/:manager_id/view-account/:accountid" element={<AdminViewAccount />} />
-                <Route path="/admin/manage-accounts/:manager_id/edit-account/:accountid" element={<AdminEditAccount />} />
-                <Route path="/admin/manage-accounts/:manager_id/edit-account/:accountid/addproject" element={<AdminAddProject />} />
-                <Route path="/admin/manage-accounts/:manager_id/view-account/:accountid/view-project/:projectid" element={<AdminViewProject />} />
-                <Route path="/admin/manage-accounts/:manager_id/view-account/:accountid/edit-project/:projectid" element={<AdminEditProject />} />
+                <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id" element={<AdminViewAccount />} />
+                <Route path="/admin/manage-accounts/:manager_id/edit-account/:account_id" element={<AdminEditAccount />} />
+                <Route path="/admin/manage-accounts/:manager_id/edit-account/:account_id/addproject" element={<AdminAddProject />} />
+                <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/view-project/:projectid" element={<AdminViewProject />} />
+                <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/edit-project/:projectid" element={<AdminEditProject />} />
             {/* Manage Accounts */}
                 <Route path="/admin/manage-users" element={<AdminManageUsers />} />
                 <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />
