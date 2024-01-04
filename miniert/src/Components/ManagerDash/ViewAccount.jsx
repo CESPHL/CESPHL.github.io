@@ -41,13 +41,15 @@ const ViewAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
-    const accountId = currentUrl.pathname.split('/').pop();
+    const parts = currentUrl.split('/');
+    const managerId = parts[6];
+    const clientId = parts[8];
 
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${managerId}`)
             .then((response) => {
                 console.log(response.data);
-                const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
+                const filteredClients = response.data.clients.filter(client => client.client_id === clientId);
                 console.log(filteredClients);
                 setClientData(filteredClients);
             })
