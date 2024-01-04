@@ -41,14 +41,17 @@ const AddAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
-    const accountId = currentUrl.pathname.split('/').pop();
+    const path = currentUrl.pathname;
+    const parts = path.split('/');
+    const manager_id = parts[3];
+    const account_id = parts[5];
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
                 console.log(response.data);
-                const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
+                const filteredClients = response.data.clients.filter(client => client.client_id === account_id);
                 setClientData(filteredClients.length > 0 ? filteredClients[0] : null);
             })
             .catch((err) => {
@@ -64,7 +67,7 @@ const AddAccount = () => {
                     theme: "light",
                 });
             });
-    }, [employee_id, accountId]);
+    }, [employee_id, account_id]);
 
     console.log(clientData);
 
@@ -97,7 +100,7 @@ const AddAccount = () => {
             client_poc_email: document.getElementById("clientPOCEmail").value
         }
 
-        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}`, clientInfo)
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}/clients/${account_id}`, clientInfo)
             .then((res) => {
                 console.log(res);
                 toast.success("Edit client info successfully.", {
@@ -156,7 +159,7 @@ const AddAccount = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/admin/manage-accounts" activeclassname="active">
+                            <NavLink to="/admin/manage-accounts/" activeclassname="active">
                                 <img src={accIcon} alt="dashboard icon" />
                                 <span>Manage Accounts</span>
                             </NavLink>
@@ -213,7 +216,7 @@ const AddAccount = () => {
                         <span>Client POC Email</span><br />
                         <textarea id="clientPOCEmail" rows="1" cols="50" required></textarea><br />
 
-                        <NavLink to={`/admin/manage-accounts/view-account/${accountId}`}>
+                        <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}`}>
                             <button>Cancel</button>
                         </NavLink>
                         <input type="button" value="Save" className="custom-add-btn1" onClick={handleOpenModal} />

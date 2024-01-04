@@ -45,16 +45,11 @@ const ViewAccount = () => {
     const parts = path.split('/');
     const manager_id = parts[3];
     const account_id = parts[5];
-    console.log(typeof account_id);
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
-                console.log(response.data);
-                console.log(response.data.clients);
-                response.data.clients.forEach((client) => console.log(typeof client.client_id));
                 const filteredClients = response.data.clients.filter(client => client.client_id === account_id);
-                console.log(filteredClients);
                 setClientData(filteredClients);
             })
             .catch((err) => {
