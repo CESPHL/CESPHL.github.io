@@ -7,7 +7,7 @@ import logicon from '../../Assets/logout.svg';
 import accIcon from '../../Assets/acc-active.svg';
 import talents from '../../Assets/mng-talent-inactive.svg';
 import profile from '../../Assets/inactive-profile.svg'
-import reports from "../../Assets/report-inactive.svg";
+import users from "../../Assets/users-inactive.svg";
 
 // Files
 import './addAccount.css';
