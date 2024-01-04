@@ -41,18 +41,15 @@ const AddProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
-    const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
-    const accountIdIndex = pathSegments.indexOf('edit-account') + 1;
-    const accountId = pathSegments[accountIdIndex];
-    const [showModal, setShowModal] = useState(false);
+    const path = currentUrl.pathname;
+    const parts = path.split('/');
+    const manager_id = parts[3];
+    const account_id = parts[5];
 
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
-                console.log(response.data);
-                console.log(accountId);
-                const filteredClients = response.data.clients.filter(client => String(client.client_id) === String(accountId));
-                console.log(filteredClients);
+                const filteredClients = response.data.clients.filter(client => String(client.client_id) === String(account_id));
                 setClientData(filteredClients.length > 0 ? filteredClients[0] : null);
             })
             .catch((err) => {
@@ -68,7 +65,7 @@ const AddProject = () => {
                     theme: "light",
                 });
             });
-    }, [employee_id, accountId]);
+    }, [employee_id, account_id]);
 
     useEffect(() => {
         console.log(clientData);
@@ -102,7 +99,7 @@ const AddProject = () => {
 
         console.log(projectInfo);
 
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}/clients/${accountId}`, projectInfo)
+        axios.post(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}/clients/${account_id}`, projectInfo)
             .then((response) => {
                 console.log(response);
                 toast.success("Added project successfully.", {
@@ -218,7 +215,7 @@ const AddProject = () => {
                         </div>
                     </form>
                     <div>
-                        <NavLink to={`/admin/manage-accounts/view-account/${accountId}`}>
+                        <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}`}>
                             <button id="cancelButton">Cancel</button>
                         </NavLink>
                         <button id="addButton" onClick={handleOpenModal}>Add</button>

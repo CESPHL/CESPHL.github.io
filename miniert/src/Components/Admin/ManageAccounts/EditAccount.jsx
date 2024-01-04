@@ -50,7 +50,6 @@ const AddAccount = () => {
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
-                console.log(response.data);
                 const filteredClients = response.data.clients.filter(client => client.client_id === account_id);
                 setClientData(filteredClients.length > 0 ? filteredClients[0] : null);
             })
@@ -102,7 +101,6 @@ const AddAccount = () => {
 
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}/clients/${account_id}`, clientInfo)
             .then((res) => {
-                console.log(res);
                 toast.success("Edit client info successfully.", {
                     position: "top-center",
                     autoClose: 5000,

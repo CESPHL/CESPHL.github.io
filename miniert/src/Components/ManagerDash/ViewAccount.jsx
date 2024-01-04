@@ -194,7 +194,7 @@ const ViewAccount = () => {
                         </div>
                         <div>
                             <button id="uploadButton">Upload</button>
-                            <NavLink to={`/manager/manage-accounts/edit-account/${accountId}/addproject`}>
+                            <NavLink to={`/manager/manage-accounts/edit-account/${accountId}/add-project`}>
                                 <button id="addButton">Add Project</button>
                             </NavLink>
                         </div>
