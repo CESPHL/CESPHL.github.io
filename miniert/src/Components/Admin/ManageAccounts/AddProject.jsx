@@ -45,6 +45,7 @@ const AddProject = () => {
     const parts = path.split('/');
     const manager_id = parts[3];
     const account_id = parts[5];
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
