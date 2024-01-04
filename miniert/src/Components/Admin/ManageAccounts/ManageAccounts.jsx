@@ -129,7 +129,7 @@ const ManageAccount = () => {
                         </form>
                         <div className="buttons">
                             <button className="upload-btn">Upload</button>
-                            <NavLink to="/manage-accounts/add-account">
+                            <NavLink to="admin/manage-accounts/add-account">
                                 <button className="add-btn">Add</button>
                             </NavLink>
                         </div>
