@@ -43,6 +43,7 @@ const ViewAccount = () => {
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
     const parts = path.split('/');
+    console.log(parts);
     const manager_id = parts[5];
     const account_id = parts[7];
 
