@@ -5,13 +5,16 @@ const {
     addUser,
     editUser,
     deleteUser,
-    getAllClients
+    getAllClients,
+    getAllManagers
 } = require('../controllers/adminController'); 
 
 const router = express.Router();
 
 // Get clients
 router.get('/clients/', getAllClients); // Must be defined first before get specified user. Don't understand why.
+
+router.get('/managers/get', getAllManagers);
 
 // Get all users
 router.get('/', getUsers);

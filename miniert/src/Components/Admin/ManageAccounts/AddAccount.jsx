@@ -40,31 +40,52 @@ const CurrentDate = () => {
 }
 const AddAccount = () => {
     const employee_id = localStorage.getItem("employee_id");
-    const [managerData, setManagerData] = useState([]);
+    const [managerList, setManagerList] = useState([]);
 
     // Check for account
     // To be used for security purposes to prevent url manipulation
-    // In this page, this is also used to retrieve data to add manager info when adding client
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
-        .then((response) => {
-            setManagerData(response.data);
-        })
-        .catch((err) => {
-            toast.error("Account not found. Please login again.", {
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${employee_id}`)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                toast.error("Account not found. Please login again.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                console.error(err);
+                window.location.href = "/";
             });
-            console.log(err);
-            window.location.href = "/";
-        });
     }, [employee_id]);
+
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/managers/get`)
+            .then((response) => {
+                console.log(response);
+                console.log(response.data);
+                setManagerList(response.data);
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Error retrieving list of managers. Try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
+    }, []);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -78,57 +99,57 @@ const AddAccount = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        console.log(managerData);
-        const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
-        const sdmEmail = managerData.email;
-        const sdmContact = managerData.contact_number;
-        const clientData = {
-            client_id: document.getElementById("clientID").value,
-            client_name: document.getElementById("clientName").value,
-            client_address: document.getElementById("clientAddress").value,
-            client_sdm_name: sdmFullName,
-            client_sdm_email: sdmEmail,
-            client_sdm_contact: sdmContact,
-            client_poc_name: document.getElementById("clientPOCName").value,
-            client_poc_email: document.getElementById("clientPOCEmail").value,
-            projects: [{
-                project_id: document.getElementById("clientProjectID").value,
-                project_name: document.getElementById("clientProjectName").value,
-                workshift: document.getElementById("clientProjectWorkshift").value,
-                coretime: document.getElementById("clientProjectCoretime").value,
-                status: document.getElementById("clientProjectStatus").value
-            }]
-        };
+        // console.log(managerData);
+        // const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
+        // const sdmEmail = managerData.email;
+        // const sdmContact = managerData.contact_number;
+        // const clientData = {
+        //     client_id: document.getElementById("clientID").value,
+        //     client_name: document.getElementById("clientName").value,
+        //     client_address: document.getElementById("clientAddress").value,
+        //     client_sdm_name: sdmFullName,
+        //     client_sdm_email: sdmEmail,
+        //     client_sdm_contact: sdmContact,
+        //     client_poc_name: document.getElementById("clientPOCName").value,
+        //     client_poc_email: document.getElementById("clientPOCEmail").value,
+        //     projects: [{
+        //         project_id: document.getElementById("clientProjectID").value,
+        //         project_name: document.getElementById("clientProjectName").value,
+        //         workshift: document.getElementById("clientProjectWorkshift").value,
+        //         coretime: document.getElementById("clientProjectCoretime").value,
+        //         status: document.getElementById("clientProjectStatus").value
+        //     }]
+        // };
 
-        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`, clientData)
-            .then((response) => {
-                console.log(response);
-                toast.success("Added data successfully.", {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    });
-                handleCloseModal();
-            })
-            .catch((err) => {
-                console.error(err);
-                toast.error("Internal server error. Please try again later.", {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            });
-        console.log(clientData);
+        // axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`, clientData)
+        //     .then((response) => {
+        //         console.log(response);
+        //         toast.success("Added data successfully.", {
+        //             position: "top-center",
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //             theme: "light",
+        //             });
+        //         handleCloseModal();
+        //     })
+        //     .catch((err) => {
+        //         console.error(err);
+        //         toast.error("Internal server error. Please try again later.", {
+        //             position: toast.POSITION.TOP_CENTER,
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //             theme: "light",
+        //         });
+        //     });
+        // console.log(clientData);
     }
     return (
         <div className="dashboard">

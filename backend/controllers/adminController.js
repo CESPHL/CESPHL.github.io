@@ -166,11 +166,18 @@ const getAllClients = async (req, res) => {
     }
 }
 
+// Get all managers
+const getAllManagers = async (req, res) => {
+    const managers = await Manager.find({}).sort({ createdAt: -1 });
+    return res.status(200).json(managers);
+}
+
 module.exports = {
     getUsers,
     getOneUser,
     addUser,
     editUser,
     deleteUser,
-    getAllClients
+    getAllClients,
+    getAllManagers
 }
