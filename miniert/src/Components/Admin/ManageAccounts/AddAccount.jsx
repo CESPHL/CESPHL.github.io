@@ -111,9 +111,7 @@ const AddAccount = () => {
         e.preventDefault();
         const managerIdSelected = document.getElementById("managerDropdown").value;
         console.log(managerIdSelected)
-        const managerData = (managerIdSelected) => {
-            return managerList.find(manager => manager.employee_id === managerIdSelected);
-        };
+        const managerData = managerList.find(manager => manager.employee_id === managerIdSelected);
         console.log(managerData);
         // const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
         // const sdmEmail = managerData.email;
