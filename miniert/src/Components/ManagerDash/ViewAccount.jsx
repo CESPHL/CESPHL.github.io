@@ -142,7 +142,7 @@ const ViewAccount = () => {
                 <div className="view-content">
                     <div className="top-content">
                         <h3>Account Details</h3>
-                        <NavLink to={`/manager/manage-accounts/edit-account/${accountId}`}>
+                        <NavLink to={`/manager/manage-accounts/edit-account/${clientId}`}>
                             <button className="edit-btn">Edit</button>
                         </NavLink>
                     </div>
@@ -196,7 +196,7 @@ const ViewAccount = () => {
                         </div>
                         <div>
                             <button id="uploadButton">Upload</button>
-                            <NavLink to={`/manager/manage-accounts/edit-account/${accountId}/addproject`}>
+                            <NavLink to={`/manager/manage-accounts/edit-account/${clientId}/addproject`}>
                                 <button id="addButton">Add Project</button>
                             </NavLink>
                         </div>
@@ -219,10 +219,10 @@ const ViewAccount = () => {
                                     <p>{project.coretime}</p>
                                     <p>{project.status}</p>
                                     <p>
-                                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/view-project/${project.project_id}`}>
+                                        <NavLink to={`/manager/manage-accounts/view-account/${clientId}/view-project/${project.project_id}`}>
                                             <img src={view} />
                                         </NavLink>
-                                        <NavLink to={`/manager/manage-accounts/view-account/${accountId}/edit-project/${project.project_id}`}>
+                                        <NavLink to={`/manager/manage-accounts/view-account/${clientId}/edit-project/${project.project_id}`}>
                                             <img src={edit} />
                                         </NavLink>
                                     </p>
