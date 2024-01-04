@@ -91,8 +91,8 @@ const AddAccount = () => {
         const managerDropdown = document.getElementById("managerDropdown");
         managerList.forEach(manager => {
             const optionElement = document.createElement('option');
-            optionElement.textContent = manager.manager_name;
-            optionElement.value = manager._id;
+            optionElement.textContent = `${manager.first_name} ${manager.last_name}`;
+            optionElement.value = manager.employee_id;
             managerDropdown.appendChild(optionElement);
         });
     }, [managerList]);
