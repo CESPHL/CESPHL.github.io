@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Icons
-import hourglass from '../Assets/hourglass.svg';
-import logicon from '../Assets/logout.svg';
-import accIcon from '../Assets/acc-active.svg';
-import talents from '../Assets/mng-talent-inactive.svg';
-import profile from '../Assets/inactive-profile.svg'
-import reports from "../Assets/report-inactive.svg";
+import hourglass from '../../Assets/hourglass.svg';
+import logicon from '../../Assets/logout.svg';
+import accIcon from '../../Assets/acc-active.svg';
+import talents from '../../Assets/mng-talent-inactive.svg';
+import profile from '../../Assets/inactive-profile.svg'
+import reports from "../../Assets/report-inactive.svg";
 
 // Files
 import './addAccount.css';
-import Modal from "../Modals/Modal.jsx";
+import Modal from "../../Modals/Modal.jsx";
 
 // External functionalities
 import { toast, ToastContainer } from "react-toastify";
