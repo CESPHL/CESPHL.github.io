@@ -83,7 +83,6 @@ const EditProject = () => {
     }, [clientData]);
 
     useEffect(() => {
-        console.log(projectData);
         // Display the project data to the front end
         if (projectData && Object.keys(projectData).length > 0) {
             document.getElementById("projectId").value = projectData.project_id;

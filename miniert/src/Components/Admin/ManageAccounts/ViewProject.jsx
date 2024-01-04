@@ -40,19 +40,16 @@ const ViewProject = () => {
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
     const currentUrl = new URL(window.location.href);
-    const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
-    const accountIdIndex = pathSegments.indexOf('view-account') + 1;
-    const accountId = pathSegments[accountIdIndex];
-    const projectIdIndex = pathSegments.indexOf('view-project') + 1;
-    const projectId = pathSegments[projectIdIndex];
-
-    console.log(accountId);
-    console.log(projectId);
+    const path = currentUrl.pathname;
+    const parts = path.split('/');
+    const manager_id = parts[3];
+    const account_id = parts[5];
+    const project_id = parts[7];
 
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
-                const filteredClients = response.data.clients.filter(client => client.client_id === accountId);
+                const filteredClients = response.data.clients.filter(client => client.client_id === account_id);
                 setClientData(filteredClients);
             })
             .catch((err) => {
@@ -82,7 +79,7 @@ const ViewProject = () => {
             if (firstClient.projects) {
                 const projectlist = firstClient.projects.map(project => project.project_id);
                 console.log(projectlist);
-                const projectArray = firstClient.projects.filter(project => project.project_id === projectId);
+                const projectArray = firstClient.projects.filter(project => project.project_id === project_id);
                 console.log(projectArray);
                 console.log(projectArray[0]);
                 setProjectData(projectArray[0]);
@@ -173,7 +170,7 @@ const ViewProject = () => {
                 <div className="view-content">
                     <div className="top-content">
                         <h3>Project Details</h3>
-                        <NavLink to={`/admin/manage-accounts/view-account/${accountId}/edit-project/${projectId}`}>
+                        <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}/edit-project/${project_id}`}>
                             <button className="edit-btn">Edit</button>
                         </NavLink>
                     </div>
