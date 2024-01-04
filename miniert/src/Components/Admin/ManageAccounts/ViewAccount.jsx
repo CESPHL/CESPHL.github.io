@@ -142,7 +142,7 @@ const ViewAccount = () => {
                 <div className="view-content">
                     <div className="top-content">
                         <h3>Account Details</h3>
-                        <NavLink to={`/admin/manage-accounts/edit-account/${accountId}`}>
+                        <NavLink to={`/admin/manage-accounts/${manager_id}/edit-account/${account_id}`}>
                             <button className="edit-btn">Edit</button>
                         </NavLink>
                     </div>
@@ -196,7 +196,7 @@ const ViewAccount = () => {
                         </div>
                         <div>
                             <button id="uploadButton">Upload</button>
-                            <NavLink to={`/admin/manage-accounts/edit-account/${accountId}/addproject`}>
+                            <NavLink to={`/admin/manage-accounts/${manager_id}/edit-account/${account_id}/addproject`}>
                                 <button id="addButton">Add Project</button>
                             </NavLink>
                         </div>
@@ -219,10 +219,10 @@ const ViewAccount = () => {
                                     <p>{project.coretime}</p>
                                     <p>{project.status}</p>
                                     <p>
-                                        <NavLink to={`/admin/manage-accounts/view-account/${accountId}/view-project/${project.project_id}`}>
+                                        <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}/view-project/${project.project_id}`}>
                                             <img src={view} />
                                         </NavLink>
-                                        <NavLink to={`/admin/manage-accounts/view-account/${accountId}/edit-project/${project.project_id}`}>
+                                        <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}/edit-project/${project.project_id}`}>
                                             <img src={edit} />
                                         </NavLink>
                                     </p>
