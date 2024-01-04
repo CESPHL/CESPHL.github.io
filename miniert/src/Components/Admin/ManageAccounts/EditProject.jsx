@@ -7,7 +7,7 @@ import logicon from '../../Assets/logout.svg';
 import accIcon from '../../Assets/acc-active.svg';
 import talents from '../../Assets/mng-talent-inactive.svg';
 import reports from '../../Assets/report-inactive.svg';
-import profile from '.././Assets/inactive-profile.svg';
+import profile from '../../Assets/inactive-profile.svg';
 
 // Files
 import Modal from "../../Modals/Modal.jsx";
