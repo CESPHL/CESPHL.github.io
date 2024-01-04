@@ -108,60 +108,57 @@ const AddAccount = () => {
     const handleSave = async (e) => {
         e.preventDefault();
         const managerIdSelected = document.getElementById("managerDropdown").value;
-        console.log(managerIdSelected)
-        console.log(managerList);
         const managerData = managerList.find(manager => manager.employee_id === parseInt(managerIdSelected, 10));
-        console.log(managerData);
-        // const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
-        // const sdmEmail = managerData.email;
-        // const sdmContact = managerData.contact_number;
-        // const clientData = {
-        //     client_id: document.getElementById("clientID").value,
-        //     client_name: document.getElementById("clientName").value,
-        //     client_address: document.getElementById("clientAddress").value,
-        //     client_sdm_name: sdmFullName,
-        //     client_sdm_email: sdmEmail,
-        //     client_sdm_contact: sdmContact,
-        //     client_poc_name: document.getElementById("clientPOCName").value,
-        //     client_poc_email: document.getElementById("clientPOCEmail").value,
-        //     projects: [{
-        //         project_id: document.getElementById("clientProjectID").value,
-        //         project_name: document.getElementById("clientProjectName").value,
-        //         workshift: document.getElementById("clientProjectWorkshift").value,
-        //         coretime: document.getElementById("clientProjectCoretime").value,
-        //         status: document.getElementById("clientProjectStatus").value
-        //     }]
-        // };
+        const sdmFullName = `${managerData.first_name} ${managerData.last_name}`;
+        const sdmEmail = managerData.email;
+        const sdmContact = managerData.contact_number;
+        const clientData = {
+            client_id: document.getElementById("clientID").value,
+            client_name: document.getElementById("clientName").value,
+            client_address: document.getElementById("clientAddress").value,
+            client_sdm_name: sdmFullName,
+            client_sdm_email: sdmEmail,
+            client_sdm_contact: sdmContact,
+            client_poc_name: document.getElementById("clientPOCName").value,
+            client_poc_email: document.getElementById("clientPOCEmail").value,
+            projects: [{
+                project_id: document.getElementById("clientProjectID").value,
+                project_name: document.getElementById("clientProjectName").value,
+                workshift: document.getElementById("clientProjectWorkshift").value,
+                coretime: document.getElementById("clientProjectCoretime").value,
+                status: document.getElementById("clientProjectStatus").value
+            }]
+        };
 
-        // axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`, clientData)
-        //     .then((response) => {
-        //         console.log(response);
-        //         toast.success("Added data successfully.", {
-        //             position: "top-center",
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //             });
-        //         handleCloseModal();
-        //     })
-        //     .catch((err) => {
-        //         console.error(err);
-        //         toast.error("Internal server error. Please try again later.", {
-        //             position: toast.POSITION.TOP_CENTER,
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //         });
-        //     });
-        // console.log(clientData);
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`, clientData)
+            .then((response) => {
+                console.log(response);
+                toast.success("Added data successfully.", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                handleCloseModal();
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Internal server error. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
+        console.log(clientData);
     }
     return (
         <div className="dashboard">
@@ -243,7 +240,7 @@ const AddAccount = () => {
                         <span>Project Workshift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
                         <span>Project Coretime</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
                         <span>Project Status</span><br /><input type="text" placeholder="Enter project status" id="clientProjectStatus" required /><br />
-                        <span>Assign To:</span><select id="managerDropdown"></select>
+                        <span>Assign To:</span><br /><select id="managerDropdown"></select><br />
                         <NavLink to="/manager/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
