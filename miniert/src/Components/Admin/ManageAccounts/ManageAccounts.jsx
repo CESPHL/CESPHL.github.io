@@ -129,7 +129,7 @@ const ManageAccount = () => {
                         </form>
                         <div className="buttons">
                             <button className="upload-btn">Upload</button>
-                            <NavLink to="manage-accounts/add-account">
+                            <NavLink to="add-account">
                                 <button className="add-btn">Add</button>
                             </NavLink>
                         </div>
@@ -152,7 +152,7 @@ const ManageAccount = () => {
                                 <p>{client.client_sdm_contact}</p>
                                 <p>
                                     <img src={view} />
-                                    <NavLink to="/manage-accounts/edit-account">
+                                    <NavLink to="edit-account">
                                         <img src={edit} />
                                     </NavLink>
                                 </p>
