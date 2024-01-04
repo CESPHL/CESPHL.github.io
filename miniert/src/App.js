@@ -1,3 +1,5 @@
+// Some routes could be optimized for clarity
+
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -26,14 +28,26 @@ import ManagerProfile from "./Components/ManagerDash/Profile.jsx";
 import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
 
 // Admin pages
-import AdminManageAccounts from "./Components/Admin/ManageAccounts.jsx";
-import AdminManageUsers from "./Components/Admin/ManageUsers.jsx";
-import AdminAddUsers from "./Components/Admin/AddUser.jsx";
-import AdminViewUser from "./Components/Admin/ViewUser.jsx";
-import AdminEditUser from"./Components/Admin/EditUser.jsx";
-import AdminManageTalents from "./Components/Admin/ManageTalents";
-import AdminProfile from "./Components/Admin/Profile.jsx";
-import AdminChangePass from "./Components/Admin/ChangePassword.jsx";
+    // Manage accounts
+        import AdminManageAccounts from "./Components/Admin/ManageAccounts/ManageAccounts.jsx";
+        import AdminAddAccount from "./Components/Admin/ManageAccounts/AddAccount.jsx";
+        import AdminViewAccount from "./Components/Admin/ManageAccounts/ViewAccount.jsx";
+        import AdminEditAccount from "./Components/Admin/ManageAccounts/EditAccount.jsx";
+        import AdminAddProject from "./Components/Admin/ManageAccounts/AddProject.jsx";
+        import AdminViewProject from "./Components/Admin/ManageAccounts/ViewProject.jsx";
+        import AdminEditProject from "./Components/Admin/ManageAccounts/EditProject.jsx";
+
+    // Manage users
+        import AdminManageUsers from "./Components/Admin/ManageUsers.jsx";
+        import AdminAddUsers from "./Components/Admin/AddUser.jsx";
+        import AdminViewUser from "./Components/Admin/ViewUser.jsx";
+        import AdminEditUser from"./Components/Admin/EditUser.jsx";
+
+    // Manage Talents
+        import AdminManageTalents from "./Components/Admin/ManageTalents";
+
+    import AdminProfile from "./Components/Admin/Profile.jsx";
+    import AdminChangePass from "./Components/Admin/ChangePassword.jsx";
 
 function App() {
   return (
@@ -62,11 +76,19 @@ function App() {
         <Route path="/manager/profile" element={<ManagerProfile />} />
         <Route path="/manager/profile/changepass" element={<ManagerChangePass />} />
         {/* Admin pages */}
-        <Route path="/admin/manage-accounts" element={<AdminManageAccounts />} />
-        <Route path="/admin/manage-users" element={<AdminManageUsers />} />
-        <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />
-        <Route path="/admin/manage-users/view-user/:employee_id" element={<AdminViewUser />} />
-        <Route path="/admin/manage-users/edit-user/:employee_id" element={<AdminEditUser />} />
+            {/* Manage Accounts */}
+                <Route path="/admin/manage-accounts" element={<AdminManageAccounts />} />
+                <Route path="/admin/manage-accounts/add-account" element={<AdminAddAccount />} />
+                <Route path="/admin/manage-accounts/view-account/:accountid" element={<AdminViewAccount />} />
+                <Route path="/admin/manage-accounts/edit-account/:accountid" element={<AdminEditAccount />} />
+                <Route path="/admin/manage-accounts/edit-account/:accountid/addproject" element={<AdminAddProject />} />
+                <Route path="/admin/manage-accounts/view-account/:accountid/view-project/:projectid" element={<AdminViewProject />} />
+                <Route path="/admin/manage-accounts/view-account/:accountid/edit-project/:projectid" element={<AdminEditProject />} />
+            {/* Manage Accounts */}
+                <Route path="/admin/manage-users" element={<AdminManageUsers />} />
+                <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />
+                <Route path="/admin/manage-users/view-user/:employee_id" element={<AdminViewUser />} />
+                <Route path="/admin/manage-users/edit-user/:employee_id" element={<AdminEditUser />} />
         <Route path="/admin/manage-talents" element={<AdminManageTalents />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/profile/changepass" element={<AdminChangePass />} />

@@ -1,0 +1,130 @@
+.view-content {
+    margin: 2rem 3rem;
+}
+
+.top-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.top-content h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.edit-btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    background-color: #684CE2;
+    color: #FFF;
+}
+
+.client-info {
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+
+.client-info > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.client-info > div > div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.client-info > div > div > label {
+    color: #344054;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.client-info > div > div > input, .client-info > div > div > textarea {
+    font-size: 14px;
+    padding: 0.5rem;
+    color: #667085;
+    border-radius: 7px;
+    background-color: #F4F5F5;
+    border: 1px solid #D0D5DD;
+}
+
+.filters-row {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters-row input, .filters-row select, .filters-row button {
+    padding: 0.5rem 0.7rem;
+    border-radius: 7px;
+    border: 1px solid #D0D5DD;
+}
+
+.filters-row input, .filters-row select {
+    margin-right: 0.5rem;
+}
+
+#uploadButton, #addButton {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+#uploadButton {
+    margin-right: 1rem;
+    background-color: #FFF;
+    color: #344054;
+}
+
+#addButton {
+    border: 1px solid #684CE2 !important;
+    color: #FFFFFF;
+    background-color: #684CE2;
+}
+
+#addButton:hover {
+    background-color: #2d0fb1;
+}
+
+.project-table {
+   border: 1px solid #D0D5DD;
+   border-radius: 7px;
+}
+
+.project-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+    padding: 1rem;
+}
+
+.project-header {
+    background-color: #F9FAFB;
+    border-bottom: 1px solid #D0D5DD;
+}
+
+.project-header h1 {
+    margin: 0;
+    font-size: 16px;
+    color: #656B75;
+}
+
+.project-content {
+    background-color: #FFF;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #D0D5DD;
+}
+
+.project-content p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    color: #656B75;
+}
