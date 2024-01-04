@@ -43,12 +43,12 @@ const ViewAccount = () => {
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
     const parts = path.split('/');
-    const manager_id = parts[4];
-    const account_id = parts[6];
-    console.log(currentUrl);
+    const manager_id = parts[5];
+    const account_id = parts[7];
 
-    console.log(manager_id);
-    console.log(account_id);
+    console.log("Manager ID:", manager_id);
+    console.log("Account ID:", account_id);
+
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
