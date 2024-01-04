@@ -21,11 +21,6 @@ let isClockInOTDisabled =
 let isClockOutOTDisabled =
     JSON.parse(localStorage.getItem("isClockOutOTDisabled")) ?? true;
 
-console.log("isClockInDisabled: " + isClockInDisabled);
-console.log("isClockOutDisabled: " + isClockOutDisabled);
-console.log("isClockInOTDisabled: " + isClockInOTDisabled);
-console.log("isClockOutOTDisabled: " + isClockOutOTDisabled);
-
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
 

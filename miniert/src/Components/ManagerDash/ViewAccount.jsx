@@ -42,33 +42,35 @@ const ViewAccount = () => {
     const [clientData, setClientData] = useState([]);
     const currentUrl = new URL(window.location.href);
     const parts = currentUrl.split('/');
+    console.log(currentUrl);
+    console.log(parts);
     const managerId = parts[6];
     console.log(managerId);
     const clientId = parts[8];
     console.log(clientId);
 
-    useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${managerId}`)
-            .then((response) => {
-                console.log(response.data);
-                const filteredClients = response.data.clients.filter(client => client.client_id === clientId);
-                console.log(filteredClients);
-                setClientData(filteredClients);
-            })
-            .catch((err) => {
-                console.error("Error retrieving client info.", err);
-                toast.error("Error retrieving client info. Please try again later.", {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            });
-    }, [employee_id]);
+    // useEffect(() => {
+    //     axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${managerId}`)
+    //         .then((response) => {
+    //             console.log(response.data);
+    //             const filteredClients = response.data.clients.filter(client => client.client_id === clientId);
+    //             console.log(filteredClients);
+    //             setClientData(filteredClients);
+    //         })
+    //         .catch((err) => {
+    //             console.error("Error retrieving client info.", err);
+    //             toast.error("Error retrieving client info. Please try again later.", {
+    //                 position: toast.POSITION.TOP_CENTER,
+    //                 autoClose: 5000,
+    //                 hideProgressBar: false,
+    //                 closeOnClick: true,
+    //                 pauseOnHover: true,
+    //                 draggable: true,
+    //                 progress: undefined,
+    //                 theme: "light",
+    //             });
+    //         });
+    // }, [employee_id]);
 
     console.log(clientData);
     console.log(clientData[0]);
