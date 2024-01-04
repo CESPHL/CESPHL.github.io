@@ -151,10 +151,10 @@ const ManageAccount = () => {
                                 <p>{client.client_sdm_email}</p>
                                 <p>{client.client_sdm_contact}</p>
                                 <p>
-                                    <NavLink to={`view-account/${client.client_id}`}>
+                                    <NavLink to={`${client.client_sdm_id}/view-account/${client.client_id}`}>
                                         <img src={view} />
                                     </NavLink>
-                                    <NavLink to={`edit-account/${client.client_id}`}>
+                                    <NavLink to={`${client.client_sdm_id}/edit-account/${client.client_id}`}>
                                         <img src={edit} />
                                     </NavLink>
                                 </p>

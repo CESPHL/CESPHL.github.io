@@ -242,8 +242,8 @@ const AddAccount = () => {
                         <span>Project Workshift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
                         <span>Project Coretime</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
                         <span>Project Status</span><br /><input type="text" placeholder="Enter project status" id="clientProjectStatus" required /><br />
-                        <span>Assign To:</span><br /><select id="managerDropdown"></select><br />
-                        <NavLink to="/manager/manage-accounts">
+                        <span>Assign To</span><br /><select id="managerDropdown"></select><br />
+                        <NavLink to="/admin/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
                         <input type="button" value="Add" class="add-btn1" onClick={handleOpenModal} />
