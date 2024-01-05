@@ -116,6 +116,10 @@ const ViewProject = () => {
             })
     }, [talentsId]);
 
+    useEffect(() => {
+        console.log(talentList);
+    }, [talentList])
+
     return (
         <div className="dashboard">
             <ToastContainer
