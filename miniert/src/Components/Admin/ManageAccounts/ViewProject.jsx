@@ -96,23 +96,24 @@ const ViewProject = () => {
 
     useEffect(() => {
         console.log(talentsId);
-        // axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
-        //     .then((response) => {
-                
-        //     })
-        //     .catch((err) => {
-        //         console.error("Error retrieving talent info", err);
-        //         toast.error("Error retrieving client info. Please try again later.", {
-        //             position: toast.POSITION.TOP_CENTER,
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //         });
-        //     })
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
+            .then((response) => {
+                const filteredData = response.data.filter(employee => employeeIdsToFilter.includes(parseInt(employee.employee_id, 10)));
+                setTalentList(filteredData);
+            })
+            .catch((err) => {
+                console.error("Error retrieving talent info", err);
+                toast.error("Error retrieving client info. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
     }, [talentsId]);
 
     return (
