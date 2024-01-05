@@ -98,17 +98,9 @@ const ViewProject = () => {
         console.log(talentsId);
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
             .then((response) => {
-                console.log(response.data);
-
                 // Convert talentsId array elements to integers
                 const talentsIdIntegers = talentsId.map(id => parseInt(id, 10));
-
-                // Log the parsed employee_id values for troubleshooting
-                const employeeIds = response.data.map(employee => employee.employee_id, 10);
-                console.log("Parsed Employee IDs:", employeeIds);
-
                 const filteredData = response.data.filter(employee => talentsIdIntegers.includes(employee.employee_id));
-                console.log(filteredData);
                 setTalentList(filteredData);
             })
             .catch((err) => {
@@ -125,11 +117,6 @@ const ViewProject = () => {
                 });
             })
     }, [talentsId]);
-
-
-    useEffect(() => {
-        console.log(talentList);
-    }, [talentList])
 
     return (
         <div className="dashboard">
@@ -272,7 +259,23 @@ const ViewProject = () => {
                             <h1>Role</h1>
                             <h1>Actions</h1>
                         </div>
-
+                        {talentList ? talentList.map((talent) => (
+                            <div className="six-col data" key={talent.employee_id}>
+                                <p>{talent.employee_id}</p>
+                                <p>{`${talent.first_name} ${talent.last_name}`}</p>
+                                <p>{talent.email}</p>
+                                <p>{talent.contact_number}</p>
+                                <p>{/*role*/}</p>
+                                <p>
+                                    <NavLink to={``}>
+                                        <img src={view} />
+                                    </NavLink>
+                                    <NavLink to={``}>
+                                        <img src={edit} />
+                                    </NavLink>
+                                </p>
+                            </div>
+                        )) : (<p>Loading...</p>)}
                     </div>
                 </div>
             </div>
