@@ -38,11 +38,17 @@ const CurrentDate = () => {
 }
 
 const ViewProject = () => {
+    // Variables for data
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
     const [talentsId, setTalentsId] = useState([]);
     const [talentList, setTalentList] = useState([]);
+
+    // Variables for components
+    const [showModal, setShowModal] = useState(false);
+
+    // Variables from URL
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
     const parts = path.split('/');
@@ -97,7 +103,6 @@ const ViewProject = () => {
     }, [projectData]);
 
     useEffect(() => {
-        console.log(talentsId);
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
             .then((response) => {
                 // Convert talentsId array elements to integers

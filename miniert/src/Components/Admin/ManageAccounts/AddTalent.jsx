@@ -38,10 +38,16 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 }
 const AddTalent = () => {
+    // Variables for data
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
+    const [talentList, setTalentList] = useState([]);
+
+    // Variables for components
     const [showModal, setShowModal] = useState(false);
+
+    // Variables from URL
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
     const parts = path.split('/');
@@ -90,6 +96,36 @@ const AddTalent = () => {
             document.getElementById("projectStatus").value = projectData.status;
         }
     }, [projectData])
+
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
+            .then((response) => {
+                setTalentList(response.data);
+            })
+            .catch((err) => {
+                console.error("Error retrieving talent info", err);
+                toast.error("Error retrieving client info. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+    }, []);
+
+    useEffect(() => {
+        const talentDropdown = document.getElementById("employeeDropdown");
+        talentList.forEach((talent) => {
+            const optionElement = document.createElement('option');
+            optionElement.textContent = `${talent.first_name} ${talent.last_name}`;
+            optionElement.value = talent.employee_id;
+            talentDropdown.appendChild(optionElement);
+        });
+    }, [talentList])
 
     const handleOpenModal = () => {
         setShowModal(true);
@@ -212,20 +248,24 @@ const AddTalent = () => {
                 </div>
                 <div className="add-mainContent">
                     <form>
-                        <span>Employee</span><br /><select id="employeeDropdown"></select><br />
-                        <span>Employee ID</span><br /><input type="text" id="talentId" required disabled /><br />
-                        <span>Name</span><br /><input type="text" id="talentName" required disabled /><br />
-                        <span>Email</span><br /><input type="text" id="talentEmail" required disabled /><br />
-                        <span>Contact No</span><br /><input type="text" id="clientPOCEmail" required disabled /><br />
-                        <span>Client ID</span><br /><input type="text" id="clientID" required disabled /><br />
-                        <span>Client Name</span><br /><input type="text" id="clientName" required disabled /><br />
-                        <span>SDM Name</span><br /><input type="text" id="clientSDMName" required disabled /><br />
-                        <span>Project ID</span><br /><input type="text" id="projectId" required disabled /><br />
-                        <span>Project Name</span><br /><input type="text" id="projectName" required disabled /><br />
-                        <span>Workshift</span><br /><input type="text" id="projectWorkShift" required disabled /><br />
-                        <span>Coretime</span><br /><input type="text" id="projectCoreTime" required disabled /><br />
-                        <span>Status</span><br /><input type="text" id="projectStatus" required disabled /><br />
-                        <span>Role</span><br /><input type="text" id="projectRole" required /><br />
+                        <div>
+                            <span>Employee</span><br /><select id="employeeDropdown"></select><br />
+                            <span>Employee ID</span><br /><input type="text" id="talentId" required disabled /><br />
+                            <span>Name</span><br /><input type="text" id="talentName" required disabled /><br />
+                            <span>Email</span><br /><input type="text" id="talentEmail" required disabled /><br />
+                            <span>Contact No</span><br /><input type="text" id="clientPOCEmail" required disabled /><br />
+                        </div>
+                        <div>
+                            <span>Client ID</span><br /><input type="text" id="clientID" required disabled /><br />
+                            <span>Client Name</span><br /><input type="text" id="clientName" required disabled /><br />
+                            <span>SDM Name</span><br /><input type="text" id="clientSDMName" required disabled /><br />
+                            <span>Project ID</span><br /><input type="text" id="projectId" required disabled /><br />
+                            <span>Project Name</span><br /><input type="text" id="projectName" required disabled /><br />
+                            <span>Workshift</span><br /><input type="text" id="projectWorkShift" required disabled /><br />
+                            <span>Coretime</span><br /><input type="text" id="projectCoreTime" required disabled /><br />
+                            <span>Status</span><br /><input type="text" id="projectStatus" required disabled /><br />
+                            <span>Role</span><br /><input type="text" id="projectRole" required /><br />
+                        </div>
                         <NavLink to="/admin/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
