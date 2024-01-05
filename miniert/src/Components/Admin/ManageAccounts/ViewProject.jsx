@@ -99,7 +99,15 @@ const ViewProject = () => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
             .then((response) => {
                 console.log(response.data);
-                const filteredData = response.data.filter(employee => talentsId.includes(parseInt(employee.employee_id, 10)));
+
+                // Convert talentsId array elements to integers
+                const talentsIdIntegers = talentsId.map(id => parseInt(id, 10));
+
+                // Log the parsed employee_id values for troubleshooting
+                const employeeIds = response.data.map(employee => employee.employee_id, 10);
+                console.log("Parsed Employee IDs:", employeeIds);
+
+                const filteredData = response.data.filter(employee => talentsIdIntegers.includes(employee.employee_id));
                 console.log(filteredData);
                 setTalentList(filteredData);
             })
@@ -117,6 +125,7 @@ const ViewProject = () => {
                 });
             })
     }, [talentsId]);
+
 
     useEffect(() => {
         console.log(talentList);
