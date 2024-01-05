@@ -247,10 +247,10 @@ const ViewProject = () => {
                             </form>
                         </div>
                         <div>
-                            <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}/edit-project/${project_id}/add-talent`}>
+                            <NavLink to={``}>
                                 <button className="edit-btn">Upload</button>
                             </NavLink>
-                            <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}/edit-project/${project_id}/add-talent`}>
+                            <NavLink to={`/admin/manage-accounts/${manager_id}/account/${account_id}/project/${project_id}/talents/add`}>
                                 <button className="edit-btn">Add</button>
                             </NavLink>
                         </div>
