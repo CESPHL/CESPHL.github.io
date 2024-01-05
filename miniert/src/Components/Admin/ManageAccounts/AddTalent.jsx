@@ -40,11 +40,11 @@ const CurrentDate = () => {
 const AddTalent = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
+    const [projectData, setProjectData] = useState({});
     const [showModal, setShowModal] = useState(false);
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
     const parts = path.split('/');
-    console.log(parts);
     const manager_id = parts[3];
     const account_id = parts[5];
     const project_id = parts[7];
@@ -71,15 +71,25 @@ const AddTalent = () => {
     }, [employee_id, account_id]);
 
     useEffect(() => {
-        console.log(clientData);
         if (clientData.client_id) {
             document.getElementById("clientID").value = clientData.client_id || "Loading...";
             document.getElementById("clientName").value = clientData.client_name || "Loading...";
             document.getElementById("clientSDMName").value = clientData.client_sdm_name || "Loading...";
-            document.getElementById("clientSDMEmail").value = clientData.client_sdm_email || "Loading...";
-            document.getElementById("clientSDMContact").value = clientData.client_sdm_contact || "Loading...";
+            const projectArray = clientData.projects.filter(project => project.project_id === project_id);
+            setProjectData(projectArray[0]);
         }
     }, [clientData]);
+
+    useEffect(() => {
+        // Display the project data to the front end
+        if (projectData && Object.keys(projectData).length > 0) {
+            document.getElementById("projectId").value = projectData.project_id;
+            document.getElementById("projectName").value = projectData.project_name;
+            document.getElementById("projectWorkShift").value = projectData.workshift;
+            document.getElementById("projectCoreTime").value = projectData.coretime;
+            document.getElementById("projectStatus").value = projectData.status;
+        }
+    }, [projectData])
 
     const handleOpenModal = () => {
         setShowModal(true);
@@ -203,19 +213,19 @@ const AddTalent = () => {
                 <div className="add-mainContent">
                     <form>
                         <span>Employee</span><br /><select id="employeeDropdown"></select><br />
-                        <span>Employee ID</span><br /><input type="text" id="clientName" required disabled /><br />
-                        <span>Name</span><br /><input type="text" id="clientAddress" required disabled /><br />
-                        <span>Email</span><br /><input type="text" id="clientPOCName" required disabled /><br />
+                        <span>Employee ID</span><br /><input type="text" id="talentId" required disabled /><br />
+                        <span>Name</span><br /><input type="text" id="talentName" required disabled /><br />
+                        <span>Email</span><br /><input type="text" id="talentEmail" required disabled /><br />
                         <span>Contact No</span><br /><input type="text" id="clientPOCEmail" required disabled /><br />
-                        <span>Client ID</span><br /><input type="text" id="clientProjectID" required disabled /><br />
-                        <span>Client Name</span><br /><input type="text" id="clientProjectName" required disabled /><br />
-                        <span>SDM Name</span><br /><input type="text" id="clientProjectWorkshift" required disabled /><br />
-                        <span>Project ID</span><br /><input type="text" id="clientProjectCoretime" required disabled /><br />
-                        <span>Project Name</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
-                        <span>Workshift</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
-                        <span>Coretime</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
-                        <span>Status</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
-                        <span>Role</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
+                        <span>Client ID</span><br /><input type="text" id="clientID" required disabled /><br />
+                        <span>Client Name</span><br /><input type="text" id="clientName" required disabled /><br />
+                        <span>SDM Name</span><br /><input type="text" id="clientSDMName" required disabled /><br />
+                        <span>Project ID</span><br /><input type="text" id="projectId" required disabled /><br />
+                        <span>Project Name</span><br /><input type="text" id="projectName" required disabled /><br />
+                        <span>Workshift</span><br /><input type="text" id="projectWorkShift" required disabled /><br />
+                        <span>Coretime</span><br /><input type="text" id="projectCoreTime" required disabled /><br />
+                        <span>Status</span><br /><input type="text" id="projectStatus" required disabled /><br />
+                        <span>Role</span><br /><input type="text" id="projectRole" required /><br />
                         <NavLink to="/admin/manage-accounts">
                             <button>Cancel</button>
                         </NavLink>
