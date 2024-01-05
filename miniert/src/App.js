@@ -36,6 +36,7 @@ import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
         import AdminAddProject from "./Components/Admin/ManageAccounts/AddProject.jsx";
         import AdminViewProject from "./Components/Admin/ManageAccounts/ViewProject.jsx";
         import AdminEditProject from "./Components/Admin/ManageAccounts/EditProject.jsx";
+        import AdminAddTalent from "./Components/Admin/ManageAccounts/AddTalent.jsx";
 
     // Manage users
         import AdminManageUsers from "./Components/Admin/ManageUsers.jsx";
@@ -85,7 +86,7 @@ function App() {
                 <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/view-project/:projectid" element={<AdminViewProject />} />
                 <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/edit-project/:projectid" element={<AdminEditProject />} />
                 <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/edit-project/:projectid" element={<AdminEditProject />} />
-                <Route path="/admin/manage-accounts/:manager_id/account/:account_id/project/:projectid/talents/add" element={<AdminEditProject />} />
+                <Route path="/admin/manage-accounts/:manager_id/account/:account_id/project/:projectid/talents/add" element={<AdminAddTalent />} />
             {/* Manage Accounts */}
                 <Route path="/admin/manage-users" element={<AdminManageUsers />} />
                 <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />
