@@ -44,8 +44,10 @@ const AddTalent = () => {
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
     const parts = path.split('/');
+    console.log(parts);
     const manager_id = parts[3];
     const account_id = parts[5];
+    const project_id = parts[7];
 
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
@@ -193,47 +195,45 @@ const AddTalent = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>Add Project</h4>
+                    <h4>Add Talent</h4>
                     <span>
                         <CurrentDate />
                     </span>
                 </div>
-                <div id="addProjectContainer">
+                <div className="add-mainContent">
                     <form>
-                        <div className="project-details">
-                            <span>Project ID</span><br /><input type="text" placeholder="Enter project ID" id="clientProjectID" required /><br />
-                            <span>Project Name</span><br /><input type="text" placeholder="Enter project name" id="clientProjectName" required /><br />
-                            <span>Work Shift</span><br /><input type="text" placeholder="Enter project workshift" id="clientProjectWorkshift" required /><br />
-                            <span>Core Time</span><br /><input type="text" placeholder="Enter project core time" id="clientProjectCoretime" required /><br />
-                            <span>Status</span><br /><input type="text" placeholder="Enter project status" id="clientProjectStatus" required /><br />
-                        </div>
-                        <div className="client-details">
-                            <span>Client ID</span><br /><input type="text" id="clientID" disabled /><br />
-                            <span>Client Name</span><br /><input type="text" id="clientName" disabled /><br />
-                            <span>SDM / SDL</span><br /><input type="text" id="clientSDMName" disabled /><br />
-                            <span>SDM / SDL Email</span><br /><input type="text" id="clientSDMEmail" disabled /><br />
-                            <span>SDM / SDL Contact No.</span><br /><input type="text" id="clientSDMContact" disabled /><br />
-                        </div>
-                    </form>
-                    <div>
-                        <NavLink to={`/admin/manage-accounts/${manager_id}/view-account/${account_id}`}>
-                            <button id="cancelButton">Cancel</button>
+                        <span>Employee</span><br /><select id="employeeDropdown"></select><br />
+                        <span>Employee ID</span><br /><input type="text" id="clientName" required disabled /><br />
+                        <span>Name</span><br /><input type="text" id="clientAddress" required disabled /><br />
+                        <span>Email</span><br /><input type="text" id="clientPOCName" required disabled /><br />
+                        <span>Contact No</span><br /><input type="text" id="clientPOCEmail" required disabled /><br />
+                        <span>Client ID</span><br /><input type="text" id="clientProjectID" required disabled /><br />
+                        <span>Client Name</span><br /><input type="text" id="clientProjectName" required disabled /><br />
+                        <span>SDM Name</span><br /><input type="text" id="clientProjectWorkshift" required disabled /><br />
+                        <span>Project ID</span><br /><input type="text" id="clientProjectCoretime" required disabled /><br />
+                        <span>Project Name</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
+                        <span>Workshift</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
+                        <span>Coretime</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
+                        <span>Status</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
+                        <span>Role</span><br /><input type="text" id="clientProjectStatus" required disabled /><br />
+                        <NavLink to="/admin/manage-accounts">
+                            <button>Cancel</button>
                         </NavLink>
-                        <button id="addButton" onClick={handleOpenModal}>Add</button>
-                    </div>
+                        <input type="button" value="Add" class="add-btn1" onClick={handleOpenModal} />
+                    </form>
                 </div>
-                <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
-                    <div>
-                        <p>Add Project</p>
-                        <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
-                    </div>
-                    <p className="modal-description">Clicking yes will add the project details in the system. Do you wish to continue?</p>
-                    <div>
-                        <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
-                        <button className="btn btn-save" onClick={handleSave}>Yes, Add</button>
-                    </div>
-                </Modal>
             </div>
+            <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
+                <div>
+                    <p>Add Talent</p>
+                    <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
+                </div>
+                <p className="modal-description">Clicking yes will add the talent details in the system. Do you wish to continue?</p>
+                <div>
+                    <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
+                    <button className="btn btn-save" onClick={handleSave}>Yes, Add</button>
+                </div>
+            </Modal>
         </div>
     );
 };
