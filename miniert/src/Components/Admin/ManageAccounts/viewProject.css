@@ -26,3 +26,7 @@
     border: 1px solid #D0D5DD;
     margin-bottom: 0.5rem;
 }
+
+.center-flex-text {
+    justify-content: center;
+}

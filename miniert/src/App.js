@@ -1,4 +1,4 @@
-// Some routes could be optimized for clarity
+// Routes could be optimized for clarity
 
 import "./App.css";
 import React, { useState, useEffect } from "react";
@@ -84,6 +84,8 @@ function App() {
                 <Route path="/admin/manage-accounts/:manager_id/edit-account/:account_id/add-project" element={<AdminAddProject />} />
                 <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/view-project/:projectid" element={<AdminViewProject />} />
                 <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/edit-project/:projectid" element={<AdminEditProject />} />
+                <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/edit-project/:projectid" element={<AdminEditProject />} />
+                <Route path="/admin/manage-accounts/:manager_id/account/:account_id/project/:projectid/talents/add" element={<AdminEditProject />} />
             {/* Manage Accounts */}
                 <Route path="/admin/manage-users" element={<AdminManageUsers />} />
                 <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />

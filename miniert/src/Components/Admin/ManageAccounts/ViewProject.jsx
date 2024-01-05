@@ -257,7 +257,7 @@ const ViewProject = () => {
                             <h1>ID</h1>
                             <h1>Talent Name</h1>
                             <h1>Email</h1>
-                            <h1>Contact No</h1>
+                            <h1 className="center-flex-text">Contact No</h1>
                             <h1>Role</h1>
                             <h1>Actions</h1>
                         </div>
@@ -266,7 +266,7 @@ const ViewProject = () => {
                                 <p>{talent.employee_id}</p>
                                 <p>{`${talent.first_name} ${talent.last_name}`}</p>
                                 <p>{talent.email}</p>
-                                <p>{talent.contact_number}</p>
+                                <p className="center-flex-text">{talent.contact_number}</p>
                                 <p>{/*role*/}</p>
                                 <p>
                                     <NavLink to={``}>
