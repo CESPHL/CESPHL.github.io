@@ -98,7 +98,9 @@ const ViewProject = () => {
         console.log(talentsId);
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
             .then((response) => {
+                console.log(response.data);
                 const filteredData = response.data.filter(employee => talentsId.includes(parseInt(employee.employee_id, 10)));
+                console.log(filteredData);
                 setTalentList(filteredData);
             })
             .catch((err) => {
