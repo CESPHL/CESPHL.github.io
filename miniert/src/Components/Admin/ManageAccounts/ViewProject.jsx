@@ -39,6 +39,7 @@ const ViewProject = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
+    const [talentsId, setTalentsId] = useState([]);
     const [talentList, setTalentList] = useState([]);
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
@@ -71,20 +72,13 @@ const ViewProject = () => {
     useEffect(() => {
         if (clientData && clientData.length > 0) {
             const firstClient = clientData[0];
-            console.log("1st condition passed.");
-            console.log(firstClient);
-            console.log(firstClient.projects);
             document.getElementById("clientName").value = firstClient.client_name;
             document.getElementById("sdmName").value = firstClient.client_sdm_name;
             document.getElementById("sdmEmail").value = firstClient.client_sdm_email;
             if (firstClient.projects) {
-                const projectlist = firstClient.projects.map(project => project.project_id);
-                console.log(projectlist);
                 const projectArray = firstClient.projects.filter(project => project.project_id === project_id);
-                console.log(projectArray);
-                console.log(projectArray[0]);
                 setProjectData(projectArray[0]);
-                console.log(projectData);
+                setTalentsId(projectArray[0].talents);
             }
         }
     }, [clientData]);
@@ -98,7 +92,28 @@ const ViewProject = () => {
             document.getElementById("projectCoreTime").value = projectData.coretime;
             document.getElementById("projectStatus").value = projectData.status;
         }
-    }, [projectData])
+    }, [projectData]);
+
+    useEffect(() => {
+        console.log(talentsId);
+        // axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
+        //     .then((response) => {
+                
+        //     })
+        //     .catch((err) => {
+        //         console.error("Error retrieving talent info", err);
+        //         toast.error("Error retrieving client info. Please try again later.", {
+        //             position: toast.POSITION.TOP_CENTER,
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //             theme: "light",
+        //         });
+        //     })
+    }, [talentsId]);
 
     return (
         <div className="dashboard">
@@ -241,7 +256,7 @@ const ViewProject = () => {
                             <h1>Role</h1>
                             <h1>Actions</h1>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
