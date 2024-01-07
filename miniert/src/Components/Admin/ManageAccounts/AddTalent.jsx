@@ -43,7 +43,7 @@ const AddTalent = () => {
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
     const [talentList, setTalentList] = useState([]);
-    const [selectedTalent, setSelectedTalent] = useState({});
+    const [selectedTalent, setSelectedTalent] = useState(null);
 
     // Variables for components
     const [showModal, setShowModal] = useState(false);
@@ -134,8 +134,9 @@ const AddTalent = () => {
 
     const handleSelectedTalent = (event) => {
         const value = event.target.value;
-        setSelectedTalent(value);
-        console.log(selectedTalent);
+        const selectedTalentObject = talentList.find(talent => talent.employee_id === value);
+        setSelectedTalent(selectedTalentObject);
+        console.log(selectedTalentObject);
     };
 
     const handleOpenModal = () => {
@@ -162,35 +163,6 @@ const AddTalent = () => {
                 role: document.getElementById("projectRole").value
             }]
         }
-
-        // axios.post(`https://cesphl-github-io-backend.vercel.app/api/talents/${manager_id}/clients/${account_id}`, saveToTalent)
-        //     .then((response) => {
-        //         console.log(response);
-        //         toast.success("Added project successfully.", {
-        //             position: "top-center",
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //         });
-        //         handleCloseModal();
-        //     })
-        //     .catch((err) => {
-        //         console.error(err);
-        //         toast.error("Internal server error. Please try again later.", {
-        //             position: toast.POSITION.TOP_CENTER,
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //         });
-        //     });
     }
 
     return (
@@ -264,7 +236,14 @@ const AddTalent = () => {
                 <div className="add-mainContent">
                     <form>
                         <div>
-                            <span>Employee</span><br /><select id="employeeDropdown" onClick={handleSelectedTalent} value={selectedTalent}></select><br />
+                            <span>Employee</span><br />
+                            <select id="employeeDropdown" onChange={handleSelectedTalent} value={selectedTalent ? selectedTalent.employee_id : ''}>
+                                {talentList.map(talent => (
+                                    <option key={talent.employee_id} value={talent.employee_id}>
+                                        {`${talent.first_name} ${talent.last_name}`}
+                                    </option>
+                                ))}
+                            </select><br />
                             <span>Employee ID</span><br /><input type="text" id="talentId" required disabled /><br />
                             <span>Name</span><br /><input type="text" id="talentName" required disabled /><br />
                             <span>Email</span><br /><input type="text" id="talentEmail" required disabled /><br />
