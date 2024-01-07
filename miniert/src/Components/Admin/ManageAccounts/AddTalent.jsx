@@ -121,17 +121,6 @@ const AddTalent = () => {
             })
     }, []);
 
-    // Put list of talents in dropdown list
-    useEffect(() => {
-        const talentDropdown = document.getElementById("employeeDropdown");
-        talentList.forEach((talent) => {
-            const optionElement = document.createElement('option');
-            optionElement.textContent = `${talent.first_name} ${talent.last_name}`;
-            optionElement.value = talent.employee_id;
-            talentDropdown.appendChild(optionElement);
-        });
-    }, [talentList])
-
     const handleSelectedTalent = (event) => {
         const value = event.target.value;
         const selectedTalentObject = talentList.find(talent => talent.employee_id === value);
@@ -237,7 +226,12 @@ const AddTalent = () => {
                     <form>
                         <div>
                             <span>Employee</span><br />
-                            <select id="employeeDropdown" onChange={handleSelectedTalent} value={selectedTalent ? selectedTalent.employee_id : ''}>
+                            <select
+                                id="employeeDropdown"
+                                onChange={handleSelectedTalent}
+                                value={selectedTalent ? selectedTalent.employee_id : ''}
+                            >
+                                <option value="" disabled>Select Employee</option>
                                 {talentList.map(talent => (
                                     <option key={talent.employee_id} value={talent.employee_id}>
                                         {`${talent.first_name} ${talent.last_name}`}
