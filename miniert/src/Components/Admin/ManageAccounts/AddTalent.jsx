@@ -240,13 +240,13 @@ const AddTalent = () => {
                                 ))}
                             </select><br />
                             <span>Employee ID</span><br />
-                            <input type="text" id="talentId" value={selectedTalent.employee_id} required disabled /><br />
+                            <input type="text" id="talentId" value={selectedTalent ? selectedTalent.employee_id : ""} required disabled /><br />
                             <span>Name</span><br />
-                            <input type="text" id="talentName" value={`${selectedTalent.first_name} ${selectedTalent.last_name}`} required disabled /><br />
+                            <input type="text" id="talentName" value={selectedTalent ? `${selectedTalent.first_name} ${selectedTalent.last_name}` : ""} required disabled /><br />
                             <span>Email</span><br />
-                            <input type="text" id="talentEmail" value={selectedTalent.email} required disabled /><br />
+                            <input type="text" id="talentEmail" value={selectedTalent ? selectedTalent.email : ""} required disabled /><br />
                             <span>Contact No</span><br />
-                            <input type="text" id="talentContactNo" value={selectedTalent.contact_number} required disabled /><br />
+                            <input type="text" id="talentContactNo" value={selectedTalent ? selectedTalent.contact_number : ""} required disabled /><br />
                         </div>
                         <div>
                             <span>Client ID</span><br /><input type="text" id="clientID" required disabled /><br />
