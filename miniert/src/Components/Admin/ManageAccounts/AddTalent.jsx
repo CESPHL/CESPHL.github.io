@@ -122,13 +122,12 @@ const AddTalent = () => {
     }, []);
 
     const handleSelectedTalent = (event) => {
-        const value = event.target.value;
-        console.log(value);
-        console.log(talentList);
+        const value = Number(event.target.value);
         const selectedTalentObject = talentList.find(talent => talent.employee_id === value);
         setSelectedTalent(selectedTalentObject);
         console.log(selectedTalentObject);
     };
+    
     
 
     const handleOpenModal = () => {
