@@ -43,6 +43,7 @@ const AddTalent = () => {
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
     const [talentList, setTalentList] = useState([]);
+    const [selectedTalent, setSelectedTalent] = useState({});
 
     // Variables for components
     const [showModal, setShowModal] = useState(false);
@@ -55,6 +56,7 @@ const AddTalent = () => {
     const account_id = parts[5];
     const project_id = parts[7];
 
+    // Get list of clients and filter it according to specified client id
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
@@ -76,6 +78,7 @@ const AddTalent = () => {
             });
     }, [employee_id, account_id]);
 
+    // Render client data and find specified project data
     useEffect(() => {
         if (clientData.client_id) {
             document.getElementById("clientID").value = clientData.client_id || "Loading...";
@@ -86,8 +89,8 @@ const AddTalent = () => {
         }
     }, [clientData]);
 
+    // Display the project data to the front end
     useEffect(() => {
-        // Display the project data to the front end
         if (projectData && Object.keys(projectData).length > 0) {
             document.getElementById("projectId").value = projectData.project_id;
             document.getElementById("projectName").value = projectData.project_name;
@@ -97,6 +100,7 @@ const AddTalent = () => {
         }
     }, [projectData])
 
+    // Get list of talents for dropdown list
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
             .then((response) => {
@@ -117,6 +121,7 @@ const AddTalent = () => {
             })
     }, []);
 
+    // Put list of talents in dropdown list
     useEffect(() => {
         const talentDropdown = document.getElementById("employeeDropdown");
         talentList.forEach((talent) => {
@@ -127,9 +132,15 @@ const AddTalent = () => {
         });
     }, [talentList])
 
+    const handleSelectedTalent = (event) => {
+        const value = event.target.value;
+        setSelectedTalent(value);
+        console.log(selectedTalent);
+    };
+
     const handleOpenModal = () => {
         setShowModal(true);
-    }
+    };
 
     const handleCloseModal = () => {
         setShowModal(false);
@@ -138,17 +149,23 @@ const AddTalent = () => {
     const handleSave = async (e) => {
         e.preventDefault();
 
-        const projectInfo = {
-            project_id: document.getElementById("clientProjectID").value,
-            project_name: document.getElementById("clientProjectName").value,
-            workshift: document.getElementById("clientProjectWorkshift").value,
-            coretime: document.getElementById("clientProjectCoretime").value,
-            status: document.getElementById("clientProjectStatus").value
+        const saveToTalent = {
+            client_id: document.getElementById("").value,
+            client_name: document.getElementById("").value,
+            client_sdm_name: document.getElementById("").value,
+            projects: [{
+                project_id: document.getElementById("projectId").value,
+                project_name: document.getElementById("projectName").value,
+                workshift: document.getElementById("projectWorkShift").value,
+                coretime: document.getElementById("projectCoreTime").value,
+                status: document.getElementById("projectStatus").value,
+                role: document.getElementById("projectRole").value
+            }]
         }
 
         console.log(projectInfo);
 
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}/clients/${account_id}`, projectInfo)
+        axios.post(`https://cesphl-github-io-backend.vercel.app/api/talents/${manager_id}/clients/${account_id}`, projectInfo)
             .then((response) => {
                 console.log(response);
                 toast.success("Added project successfully.", {
@@ -249,7 +266,7 @@ const AddTalent = () => {
                 <div className="add-mainContent">
                     <form>
                         <div>
-                            <span>Employee</span><br /><select id="employeeDropdown"></select><br />
+                            <span>Employee</span><br /><select id="employeeDropdown" onClick={handleSelectedTalent} value={selectedTalent}></select><br />
                             <span>Employee ID</span><br /><input type="text" id="talentId" required disabled /><br />
                             <span>Name</span><br /><input type="text" id="talentName" required disabled /><br />
                             <span>Email</span><br /><input type="text" id="talentEmail" required disabled /><br />
