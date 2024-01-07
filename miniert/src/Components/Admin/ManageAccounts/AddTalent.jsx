@@ -127,8 +127,6 @@ const AddTalent = () => {
         setSelectedTalent(selectedTalentObject);
         console.log(selectedTalentObject);
     };
-    
-    
 
     const handleOpenModal = () => {
         setShowModal(true);
@@ -142,9 +140,9 @@ const AddTalent = () => {
         e.preventDefault();
 
         const saveToTalent = {
-            client_id: document.getElementById("").value,
-            client_name: document.getElementById("").value,
-            client_sdm_name: document.getElementById("").value,
+            client_id: document.getElementById("clientID").value,
+            client_name: document.getElementById("clientName").value,
+            client_sdm_name: document.getElementById("clientSDMName").value,
             projects: [{
                 project_id: document.getElementById("projectId").value,
                 project_name: document.getElementById("projectName").value,
@@ -154,6 +152,7 @@ const AddTalent = () => {
                 role: document.getElementById("projectRole").value
             }]
         }
+        console.log(saveToTalent);
     }
 
     return (
@@ -240,10 +239,14 @@ const AddTalent = () => {
                                     </option>
                                 ))}
                             </select><br />
-                            <span>Employee ID</span><br /><input type="text" id="talentId" required disabled /><br />
-                            <span>Name</span><br /><input type="text" id="talentName" required disabled /><br />
-                            <span>Email</span><br /><input type="text" id="talentEmail" required disabled /><br />
-                            <span>Contact No</span><br /><input type="text" id="clientPOCEmail" required disabled /><br />
+                            <span>Employee ID</span><br />
+                            <input type="text" id="talentId" value={selectedTalent.employee_id} required disabled /><br />
+                            <span>Name</span><br />
+                            <input type="text" id="talentName" value={`${selectedTalent.first_name} ${selectedTalent.last_name}`} required disabled /><br />
+                            <span>Email</span><br />
+                            <input type="text" id="talentEmail" value={selectedTalent.email} required disabled /><br />
+                            <span>Contact No</span><br />
+                            <input type="text" id="talentContactNo" value={selectedTalent.contact_number} required disabled /><br />
                         </div>
                         <div>
                             <span>Client ID</span><br /><input type="text" id="clientID" required disabled /><br />
