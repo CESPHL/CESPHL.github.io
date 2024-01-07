@@ -163,36 +163,34 @@ const AddTalent = () => {
             }]
         }
 
-        console.log(projectInfo);
-
-        axios.post(`https://cesphl-github-io-backend.vercel.app/api/talents/${manager_id}/clients/${account_id}`, projectInfo)
-            .then((response) => {
-                console.log(response);
-                toast.success("Added project successfully.", {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                handleCloseModal();
-            })
-            .catch((err) => {
-                console.error(err);
-                toast.error("Internal server error. Please try again later.", {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            });
+        // axios.post(`https://cesphl-github-io-backend.vercel.app/api/talents/${manager_id}/clients/${account_id}`, saveToTalent)
+        //     .then((response) => {
+        //         console.log(response);
+        //         toast.success("Added project successfully.", {
+        //             position: "top-center",
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //             theme: "light",
+        //         });
+        //         handleCloseModal();
+        //     })
+        //     .catch((err) => {
+        //         console.error(err);
+        //         toast.error("Internal server error. Please try again later.", {
+        //             position: toast.POSITION.TOP_CENTER,
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //             theme: "light",
+        //         });
+        //     });
     }
 
     return (
