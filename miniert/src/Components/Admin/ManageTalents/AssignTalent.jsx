@@ -55,7 +55,6 @@ const ManageTalents = () => {
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${employee_id}`)
             .then((response) => {
-                console.log(response.data);
             })
             .catch((err) => {
                 toast.error("Account not found. Please login again.", {
@@ -339,7 +338,7 @@ const ManageTalents = () => {
                             <span>Project Name</span><br /><input type="text" value={selectedProject ? selectedProject.project_name : ""} id="projectName" required disabled /><br />
                             <span>Workshift</span><br /><input type="text" value={selectedProject ? selectedProject.workshift : ""} id="projectWorkShift" required disabled /><br />
                             <span>Coretime</span><br /><input type="text" value={selectedProject ? selectedProject.coretime : ""} id="projectCoreTime" required disabled /><br />
-                            <span>Status</span><br /><input type="text" value={selectedProject ? selectedClient.status : ""} id="projectStatus" required disabled /><br />
+                            <span>Status</span><br /><input type="text" value={selectedProject ? selectedProject.status : ""} id="projectStatus" required disabled /><br />
                             <span>Role</span><br /><input type="text" id="projectRole" required /><br />
                         </div>
                         <NavLink to="/admin/manage-accounts">
