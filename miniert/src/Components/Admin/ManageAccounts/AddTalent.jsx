@@ -142,7 +142,7 @@ const AddTalent = () => {
         const saveToTalent = {
             client_id: document.getElementById("clientID").value,
             client_name: document.getElementById("clientName").value,
-            client_sdm_name: document.getElementById("clientSDMName").value,
+            sdm_sdl_name: document.getElementById("clientSDMName").value,
             projects: [{
                 project_id: document.getElementById("projectId").value,
                 project_name: document.getElementById("projectName").value,
@@ -152,7 +152,33 @@ const AddTalent = () => {
                 role: document.getElementById("projectRole").value
             }]
         }
-        console.log(saveToTalent);
+        
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/clients/${selectedTalent.employee_id}`, saveToTalent)
+        .then((response) => {
+            toast.success("User added successfully.", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        })
+        .catch((err) => {
+            console.error("Error adding project to talent.", err);
+            toast.error("Error adding project to talent. Please try again later.", {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        });
     }
 
     return (

@@ -262,23 +262,53 @@ const changePassword = async (req, res) => {
 
 const addClient = async (req, res) => {
     const { employee_id } = req.params;
+
     try {
         const talent = await Talent.findOne({ employee_id });
+
         if (!talent) {
-            return res.status(404).json({ message: "Manager not found." });
+            return res.status(404).json({ message: "Talent not found." });
+        } else {
+            const { client_id, projects } = req.body;
+            let projectExists = false;
+
+            // Check if the project already exists in any client's projects
+            talent.clients.forEach(client => {
+                if (client.client_id === client_id) {
+                    client.projects.forEach(existingProject => {
+                        if (existingProject.project_id === projects[0].project_id) {
+                            // Project already exists, set flag to true
+                            projectExists = true;
+                        }
+                    });
+                }
+            });
+
+            if (projectExists) {
+                return res.status(400).json({ message: "Project already exists." });
+            } else {
+                // Find the client and add the new project to its projects array
+                const existingClient = talent.clients.find(client => client.client_id === client_id);
+
+                if (existingClient) {
+                    existingClient.projects.push(projects[0]);
+                } else {
+                    // If the client doesn't exist, add a new client with the project
+                    talent.clients.push(req.body);
+                }
+
+                const result = await talent.save();
+                console.log("Client data inserted successfully.", result);
+                return res.status(200).json({ message: "Client data inserted successfully." });
+            }
         }
-        else {
-            talent.clients.push(req.body);
-            const result = await talent.save();
-            console.log("Client data inserted successfully.", result);
-            return res.status(200).json({ message: "Client data inserted successfully." });
-        }
-    }
-    catch (err) {
+    } catch (err) {
         console.log("Error inserting client data.", err);
-        return res.status(500).json({ message: "Error inserting client data. " });
+        return res.status(500).json({ message: "Error inserting client data." });
     }
-}
+};
+
+
 
 module.exports = {
     getTalents,
