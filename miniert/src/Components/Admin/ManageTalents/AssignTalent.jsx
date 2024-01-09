@@ -129,6 +129,10 @@ const ManageTalents = () => {
     // To update variable based on dropdown list selection
     const handleSelectedClient = (event) => {
         const value = Number(event.target.value);
+        console.log("Dropdown list value:");
+        console.log(value);
+        console.log("Client list: ");
+        console.log(clientList);
         const selectedClientObject = clientList.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
         console.log("Selected client: ");
