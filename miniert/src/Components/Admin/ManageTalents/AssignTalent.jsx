@@ -41,9 +41,9 @@ const CurrentDate = () => {
 
 const ManageTalents = () => {
     const employee_id = localStorage.getItem("employee_id");
-    const [clientData, setClientData] = useState([]);
-    const [projectData, setProjectData] = useState({});
     const [talentList, setTalentList] = useState([]);
+    const [clientList, setClientList] = useState([]);
+    const [clientProjectList, setClientProjectList] = useState([]);
     const [selectedTalent, setSelectedTalent] = useState(null);
     const [selectedClient, setSelectedClient] = useState(null);
     const [selectedProject, setSelectedProject] = useState(null);
@@ -100,7 +100,7 @@ const ManageTalents = () => {
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/clients`)
             .then((response) => {
-                setClientData(response.data);
+                setClientList(response.data);
             })
             .catch((err) => {
                 console.error("Error retrieving talent info", err);
@@ -118,9 +118,9 @@ const ManageTalents = () => {
     }, [employee_id]);
 
     useEffect(() => {
-        console.log(clientData);
         console.log(talentList);
-    }, [clientData, talentList])
+        console.log(clientList);
+    }, [clientList, talentList])
 
 
     // To update variable based on dropdown list selection

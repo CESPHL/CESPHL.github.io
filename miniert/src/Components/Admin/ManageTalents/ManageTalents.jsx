@@ -186,7 +186,7 @@ const ManageTalents = () => {
                             <h1>ID</h1>
                             <h1>Talent Name</h1>
                             <h1>Email</h1>
-                            <h1 className="center-flex-text">Contact No</h1>
+                            <h1>Contact No</h1>
                             <h1>Actions</h1>
                         </div>
                         {talentList ? talentList.map((talent) => (
