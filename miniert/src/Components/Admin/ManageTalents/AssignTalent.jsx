@@ -8,8 +8,6 @@ import accIcon from "../../Assets/acc-active.svg";
 import talents from "../../Assets/mng-talent-inactive.svg";
 import profile from "../../Assets/inactive-profile.svg";
 import users from "../../Assets/users-inactive.svg";
-import view from "../../Assets/view-icn.svg";
-import edit from "../../Assets/edit-icn.svg";
 
 // Files
 import "./assignTalent.css";
@@ -118,17 +116,13 @@ const ManageTalents = () => {
             });
     }, [employee_id]);
 
-    useEffect(() => {
-        console.log(talentList);
-        console.log(clientList);
-    }, [clientList, talentList])
-
 
     // To update variable based on dropdown list selection
     const handleSelectedTalent = (event) => {
         const value = Number(event.target.value);
         const selectedTalentObject = talentList.find(talent => talent.employee_id === value);
         setSelectedTalent(selectedTalentObject);
+        console.log("Selected talent: ");
         console.log(selectedTalentObject);
     };
 
@@ -137,6 +131,7 @@ const ManageTalents = () => {
         const value = Number(event.target.value);
         const selectedClientObject = talentList.find(talent => talent.employee_id === value);
         setSelectedClient(selectedClientObject);
+        console.log("Selected client: ");
         console.log(selectedClientObject);
     };
 
@@ -145,6 +140,7 @@ const ManageTalents = () => {
         const value = Number(event.target.value);
         const selectedProjectObject = talentList.find(talent => talent.employee_id === value);
         setSelectedProject(selectedProjectObject);
+        console.log("Selected project: ");
         console.log(selectedProjectObject);
     };
 
@@ -292,7 +288,7 @@ const ManageTalents = () => {
                 <div className="main-content">
                     <form>
                         <div>
-                            <span>Employee</span><br />
+                            <span>Talent</span><br />
                             <select
                                 id="employeeDropdown"
                                 onChange={handleSelectedTalent}
@@ -318,12 +314,12 @@ const ManageTalents = () => {
                             <span>Client</span><br /><select
                                 id="clientDropdown"
                                 onChange={handleSelectedClient}
-                                value={selectedTalent ? selectedTalent.employee_id : ''}
+                                value={selectedClient ? selectedClient.client_id : ''}
                             >
                                 <option value="" disabled>Select Employee</option>
-                                {talentList.map(talent => (
-                                    <option key={talent.employee_id} value={talent.employee_id}>
-                                        {`${talent.first_name} ${talent.last_name}`}
+                                {clientList.map(client => (
+                                    <option key={client.client_id} value={client.client_id}>
+                                        {`${client_name}`}
                                     </option>
                                 ))}
                             </select><br />
