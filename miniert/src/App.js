@@ -46,7 +46,7 @@ import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
 
     // Manage Talents
         import AdminManageTalents from "./Components/Admin/ManageTalents/ManageTalents.jsx";
-
+        import AdminAssignTalents from "./Components/Admin/ManageTalents/AssignTalent.jsx";
     import AdminProfile from "./Components/Admin/Profile.jsx";
     import AdminChangePass from "./Components/Admin/ChangePassword.jsx";
 
@@ -87,12 +87,14 @@ function App() {
                 <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/edit-project/:projectid" element={<AdminEditProject />} />
                 <Route path="/admin/manage-accounts/:manager_id/view-account/:account_id/edit-project/:projectid" element={<AdminEditProject />} />
                 <Route path="/admin/manage-accounts/:manager_id/account/:account_id/project/:projectid/talents/add" element={<AdminAddTalent />} />
-            {/* Manage Accounts */}
+            {/* Manage Users */}
                 <Route path="/admin/manage-users" element={<AdminManageUsers />} />
                 <Route path="/admin/manage-users/add-user" element={<AdminAddUsers />} />
                 <Route path="/admin/manage-users/view-user/:employee_id" element={<AdminViewUser />} />
                 <Route path="/admin/manage-users/edit-user/:employee_id" element={<AdminEditUser />} />
-        <Route path="/admin/manage-talents" element={<AdminManageTalents />} />
+            {/* Manage Talents */}
+                <Route path="/admin/manage-talents" element={<AdminManageTalents />} />
+                <Route path="/admin/manage-talents/assign-talent" element={<AdminAssignTalents />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/profile/changepass" element={<AdminChangePass />} />
       </Routes>

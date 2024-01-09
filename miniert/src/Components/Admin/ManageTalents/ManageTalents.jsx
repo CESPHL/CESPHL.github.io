@@ -176,7 +176,7 @@ const ManageTalents = () => {
                             <NavLink to={``}>
                                 <button id="uploadBtn">Upload</button>
                             </NavLink>
-                            <NavLink to={``}>
+                            <NavLink to={`/admin/manage-talents/assign-talent`}>
                                 <button id="assignBtn">Assign</button>
                             </NavLink>
                         </div>
