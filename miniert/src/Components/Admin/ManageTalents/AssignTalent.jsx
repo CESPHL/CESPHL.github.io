@@ -13,7 +13,7 @@ import edit from "../../Assets/edit-icn.svg";
 
 // Files
 import "./assignTalent.css";
-import Modal from "../Modals/Modal.jsx";
+import Modal from "../../Modals/Modal.jsx";
 
 // External functionalities
 import { toast, ToastContainer } from "react-toastify";
