@@ -45,7 +45,7 @@ import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
         import AdminEditUser from"./Components/Admin/EditUser.jsx";
 
     // Manage Talents
-        import AdminManageTalents from "./Components/Admin/ManageTalents";
+        import AdminManageTalents from "./Components/Admin/ManageTalents/ManageTalents.jsx";
 
     import AdminProfile from "./Components/Admin/Profile.jsx";
     import AdminChangePass from "./Components/Admin/ChangePassword.jsx";
