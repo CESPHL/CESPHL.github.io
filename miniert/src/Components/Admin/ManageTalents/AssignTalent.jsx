@@ -129,7 +129,7 @@ const ManageTalents = () => {
     // To update variable based on dropdown list selection
     const handleSelectedClient = (event) => {
         const value = Number(event.target.value);
-        const selectedClientObject = talentList.find(talent => talent.employee_id === value);
+        const selectedClientObject = clientList.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
         console.log("Selected client: ");
         console.log(selectedClientObject);
@@ -316,7 +316,7 @@ const ManageTalents = () => {
                                 onChange={handleSelectedClient}
                                 value={selectedClient ? selectedClient.client_id : ''}
                             >
-                                <option value="" disabled>Select Employee</option>
+                                <option value="" disabled>Select Client</option>
                                 {clientList.map(client => (
                                     <option key={client.client_id} value={client.client_id}>
                                         {`${client.client_name}`}
@@ -331,7 +331,7 @@ const ManageTalents = () => {
                                 onChange={handleSelectedProject}
                                 value={selectedTalent ? selectedTalent.employee_id : ''}
                             >
-                                <option value="" disabled>Select Employee</option>
+                                <option value="" disabled>Select Project</option>
                                 {talentList.map(talent => (
                                     <option key={talent.employee_id} value={talent.employee_id}>
                                         {`${talent.first_name} ${talent.last_name}`}
