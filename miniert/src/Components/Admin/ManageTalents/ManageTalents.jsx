@@ -12,6 +12,7 @@ import view from "../../Assets/view-icn.svg";
 import edit from "../../Assets/edit-icn.svg";
 
 // Files
+import "./manageTalents.css";
 
 // External functionalities
 import { toast, ToastContainer } from "react-toastify";
@@ -84,10 +85,22 @@ const ManageTalents = () => {
                     theme: "light",
                 });
             })
-    }, []);
+    }, [employee_id]);
 
     return (
         <div className="dashboard">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="dash-navbar">
                 <div className="dash-main">
                     <img src={hourglass} alt="" />
@@ -149,50 +162,50 @@ const ManageTalents = () => {
                         <CurrentDate />
                     </span>
                 </div>
-                <div className="filters-row">
-                    <div>
-                        <form>
-                            <input type="text" name="searchProject" id="searchProject" placeholder="Enter talent" />
-                            <select>
-                                <option>Sort</option>
-                            </select>
-                        </form>
-                    </div>
-                    <div>
-                        <NavLink to={``}>
-                            <button className="edit-btn">Upload</button>
-                        </NavLink>
-                        <NavLink to={``}>
-                            <button className="edit-btn">Add</button>
-                        </NavLink>
-                    </div>
-                </div>
-                <div className="table-container">
-                    <div className="six-col header">
-                        <h1>ID</h1>
-                        <h1>Talent Name</h1>
-                        <h1>Email</h1>
-                        <h1 className="center-flex-text">Contact No</h1>
-                        <h1>Role</h1>
-                        <h1>Actions</h1>
-                    </div>
-                    {talentList ? talentList.map((talent) => (
-                        <div className="six-col data" key={talent.employee_id}>
-                            <p>{talent.employee_id}</p>
-                            <p>{`${talent.first_name} ${talent.last_name}`}</p>
-                            <p>{talent.email}</p>
-                            <p className="center-flex-text">{talent.contact_number}</p>
-                            <p>{/*role*/}</p>
-                            <p>
-                                <NavLink to={``}>
-                                    <img src={view} />
-                                </NavLink>
-                                <NavLink to={``}>
-                                    <img src={edit} />
-                                </NavLink>
-                            </p>
+                <div className="main-content">
+                    <div className="filters-row">
+                        <div>
+                            <form>
+                                <input type="text" name="searchProject" id="searchProject" placeholder="Enter talent" />
+                                <select>
+                                    <option>Sort</option>
+                                </select>
+                            </form>
                         </div>
-                    )) : (<p>Loading...</p>)}
+                        <div>
+                            <NavLink to={``}>
+                                <button id="uploadBtn">Upload</button>
+                            </NavLink>
+                            <NavLink to={``}>
+                                <button id="assignBtn">Assign</button>
+                            </NavLink>
+                        </div>
+                    </div>
+                    <div className="table-container">
+                        <div className="five-col header">
+                            <h1>ID</h1>
+                            <h1>Talent Name</h1>
+                            <h1>Email</h1>
+                            <h1 className="center-flex-text">Contact No</h1>
+                            <h1>Actions</h1>
+                        </div>
+                        {talentList ? talentList.map((talent) => (
+                            <div className="five-col data" key={talent.employee_id}>
+                                <p>{talent.employee_id}</p>
+                                <p>{`${talent.first_name} ${talent.last_name}`}</p>
+                                <p>{talent.email}</p>
+                                <p>{talent.contact_number}</p>
+                                <p>
+                                    <NavLink to={``}>
+                                        <img src={view} />
+                                    </NavLink>
+                                    <NavLink to={``}>
+                                        <img src={edit} />
+                                    </NavLink>
+                                </p>
+                            </div>
+                        )) : (<p>Loading...</p>)}
+                    </div>
                 </div>
             </div>
         </div>
