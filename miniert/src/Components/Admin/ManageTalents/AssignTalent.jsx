@@ -319,7 +319,7 @@ const ManageTalents = () => {
                                 <option value="" disabled>Select Employee</option>
                                 {clientList.map(client => (
                                     <option key={client.client_id} value={client.client_id}>
-                                        {`${client_name}`}
+                                        {`${client.client_name}`}
                                     </option>
                                 ))}
                             </select><br />
