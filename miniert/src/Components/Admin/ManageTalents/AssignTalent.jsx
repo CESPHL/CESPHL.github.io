@@ -122,27 +122,20 @@ const ManageTalents = () => {
         const value = Number(event.target.value);
         const selectedTalentObject = talentList.find(talent => talent.employee_id === value);
         setSelectedTalent(selectedTalentObject);
-        console.log("Selected talent: ");
-        console.log(selectedTalentObject);
     };
 
     // To update variable based on dropdown list selection
     const handleSelectedClient = (event) => {
         const value = event.target.value;
-        console.log("Dropdown list value:");
-        console.log(value);
-        console.log("Client list: ");
-        console.log(clientList);
         const selectedClientObject = clientList.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
-        console.log("Selected client: ");
-        console.log(selectedClientObject);
+        setClientProjectList( selectedClientObject ? selectedClientObject.projects : [] );
     };
 
     // To update variable based on dropdown list selection
     const handleSelectedProject = (event) => {
-        const value = Number(event.target.value);
-        const selectedProjectObject = talentList.find(talent => talent.employee_id === value);
+        const value = event.target.value;
+        const selectedProjectObject = clientProjectList.find(project => project.project_id === value);
         setSelectedProject(selectedProjectObject);
         console.log("Selected project: ");
         console.log(selectedProjectObject);
@@ -327,18 +320,18 @@ const ManageTalents = () => {
                                     </option>
                                 ))}
                             </select><br />
-                            <span>Client ID</span><br /><input type="text" id="clientID" required disabled /><br />
-                            <span>Client Name</span><br /><input type="text" id="clientName" required disabled /><br />
-                            <span>SDM Name</span><br /><input type="text" id="clientSDMName" required disabled /><br />
+                            <span>Client ID</span><br /><input type="text" value={selectedClient ? selectedClient.client_id : ""} id="clientID" required disabled /><br />
+                            <span>Client Name</span><br /><input type="text" value={selectedClient ? selectedClient.client_name : ""} id="clientName" required disabled /><br />
+                            <span>SDM Name</span><br /><input type="text" value={selectedClient ? selectedClient.client_sdm_name : ""} id="clientSDMName" required disabled /><br />
                             <span>Project</span><br /><select
                                 id="projectDropdown"
                                 onChange={handleSelectedProject}
-                                value={selectedTalent ? selectedTalent.employee_id : ''}
+                                value={selectedProject ? selectedProject.project_id : ''}
                             >
                                 <option value="" disabled>Select Project</option>
-                                {talentList.map(talent => (
-                                    <option key={talent.employee_id} value={talent.employee_id}>
-                                        {`${talent.first_name} ${talent.last_name}`}
+                                {clientProjectList.map(project => (
+                                    <option key={project.project_id} value={project.project_id}>
+                                        {`${project.project_name}`}
                                     </option>
                                 ))}
                             </select><br />
