@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+// Icons
 import hourglass from "../../Assets/hourglass.svg"
 import logicon from "../../Assets/logout.svg";
 import accIcon from "../../Assets/acc-active.svg";
@@ -8,6 +10,12 @@ import profile from "../../Assets/inactive-profile.svg";
 import users from "../../Assets/users-inactive.svg";
 import view from "../../Assets/view-icn.svg";
 import edit from "../../Assets/edit-icn.svg";
+
+// Files
+
+// External functionalities
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 const CurrentDate = () => {
@@ -154,7 +162,7 @@ const ManageTalents = () => {
                         <NavLink to={``}>
                             <button className="edit-btn">Upload</button>
                         </NavLink>
-                        <NavLink to={`/admin/manage-accounts/${manager_id}/account/${account_id}/project/${project_id}/talents/add`}>
+                        <NavLink to={``}>
                             <button className="edit-btn">Add</button>
                         </NavLink>
                     </div>
