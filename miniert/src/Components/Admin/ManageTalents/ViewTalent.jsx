@@ -39,13 +39,11 @@ const CurrentDate = () => {
 
 const ViewTalent = () => {
     const employee_id = localStorage.getItem("employee_id");
-    console.log(employee_id);
     const [talentData, setTalentData] = useState(null);
 
     const currentUrl = new URL(window.location.href);
     const parts = currentUrl.pathname.split("/");
     const talentId = parts[parts.length - 1];
-    console.log(talentId);
 
     // Check for account
     // To be used for security purposes to prevent url manipulation
@@ -168,20 +166,20 @@ const ViewTalent = () => {
                     </span>
                 </div>
                 <div className="view-content">
-                    {/* <p>Employee ID</p>
-                    <input type="text" value={talentData.employee_id} />
+                    <p>Employee ID</p>
+                    <input type="text" value={ talentData ? talentData.employee_id : "" } />
                     <p>Employee Name</p>
-                    <input type="text" value={`${talentData.first_name} ${talentData.last_name}`} />
+                    <input type="text" value={ talentData ? `${talentData.first_name} ${talentData.last_name}` : "" } />
                     <p>Email Address</p>
-                    <input type="text" value={talentData.email} />
+                    <input type="text" value={talentData ? talentData.email : "" } />
                     <p>Contact Number</p>
-                    <input type="text" value={talentData.contact_number} />
+                    <input type="text" value={talentData ? talentData.contact_number : "" } />
                     <p>Clients Assigned</p>
-                    <input type="text" value={talentData.employee_id} />
+                    <input type="text" value={talentData ? talentData.employee_id : "" } />
                     <p>Projects Assigned</p>
-                    <input type="text" value={talentData.employee_id} />
+                    <input type="text" value={talentData ? talentData.employee_id : "" } />
                     <p>Reporting Manager</p>
-                    <input type="text" value={talentData.manager_name} /> */}
+                    <input type="text" value={talentData ? talentData.manager_name : "" } />
                 </div>
             </div>
         </div>
