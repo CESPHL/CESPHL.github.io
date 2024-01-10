@@ -166,7 +166,7 @@ const ManageTalents = () => {
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/clients/${selectedTalent.employee_id}`, saveToTalent)
             .then((response) => {
                 if (response.status === 200) {
-                    return axios.patch(`https://another-api-endpoint.com`, someData);
+                    // return axios.patch(`https://another-api-endpoint.com`, someData);
                 } else {
                     toast.error(response.data.message, {
                         position: "top-center",
