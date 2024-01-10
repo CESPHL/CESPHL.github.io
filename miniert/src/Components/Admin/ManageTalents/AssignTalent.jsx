@@ -136,8 +136,6 @@ const ManageTalents = () => {
         const value = event.target.value;
         const selectedProjectObject = clientProjectList.find(project => project.project_id === value);
         setSelectedProject(selectedProjectObject);
-        console.log("Selected project: ");
-        console.log(selectedProjectObject);
     };
 
     const handleOpenModal = () => {
@@ -168,16 +166,7 @@ const ManageTalents = () => {
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/clients/${selectedTalent.employee_id}`, saveToTalent)
             .then((response) => {
                 if (response.status === 200) {
-                    toast.success(response.data.message, {
-                        position: "top-center",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
+                    return axios.patch(`https://another-api-endpoint.com`, someData);
                 } else {
                     toast.error(response.data.message, {
                         position: "top-center",

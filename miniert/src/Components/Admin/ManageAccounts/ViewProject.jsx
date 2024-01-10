@@ -45,9 +45,6 @@ const ViewProject = () => {
     const [talentsId, setTalentsId] = useState([]);
     const [talentList, setTalentList] = useState([]);
 
-    // Variables for components
-    const [showModal, setShowModal] = useState(false);
-
     // Variables from URL
     const currentUrl = new URL(window.location.href);
     const path = currentUrl.pathname;
@@ -56,6 +53,7 @@ const ViewProject = () => {
     const account_id = parts[5];
     const project_id = parts[7];
 
+    // Get client info, filter it according to id, then store it to variable
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${manager_id}`)
             .then((response) => {
@@ -77,9 +75,11 @@ const ViewProject = () => {
             });
     }, [employee_id]);
 
+    // Read clientData variable, filter it to find selected project, then store it to the variable
     useEffect(() => {
         if (clientData && clientData.length > 0) {
             const firstClient = clientData[0];
+            console.log(firstClient);
             document.getElementById("clientName").value = firstClient.client_name;
             document.getElementById("sdmName").value = firstClient.client_sdm_name;
             document.getElementById("sdmEmail").value = firstClient.client_sdm_email;
@@ -91,8 +91,8 @@ const ViewProject = () => {
         }
     }, [clientData]);
 
+    // Display the project data to the front end
     useEffect(() => {
-        // Display the project data to the front end
         if (projectData && Object.keys(projectData).length > 0) {
             document.getElementById("projectId").value = projectData.project_id;
             document.getElementById("projectName").value = projectData.project_name;
@@ -102,6 +102,7 @@ const ViewProject = () => {
         }
     }, [projectData]);
 
+    // Find all talents from array provided from client data then store it to variable
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
             .then((response) => {

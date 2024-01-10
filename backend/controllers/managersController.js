@@ -173,6 +173,11 @@ const editProject = async (req, res) => {
     }
 }
 
+const assignTalentToProject = async (req, res) => {
+    console.log("Assigning talent");
+    
+}
+
 module.exports = {
     getOneManager,
     addClient,
