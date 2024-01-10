@@ -167,19 +167,40 @@ const ViewTalent = () => {
                 </div>
                 <div className="view-content">
                     <p>Employee ID</p>
-                    <input type="text" value={ talentData ? talentData.employee_id : "" } disabled />
+                    <input type="text" value={talentData ? talentData.employee_id : ""} disabled />
                     <p>Employee Name</p>
-                    <input type="text" value={ talentData ? `${talentData.first_name} ${talentData.last_name}` : "" } disabled />
+                    <input
+                        type="text"
+                        value={talentData ? `${talentData.first_name} ${talentData.last_name}` : ""}
+                        disabled
+                    />
                     <p>Email Address</p>
-                    <input type="text" value={talentData ? talentData.email : "" } disabled />
+                    <input type="text" value={talentData ? talentData.email : ""} disabled />
                     <p>Contact Number</p>
-                    <input type="text" value={talentData ? talentData.contact_number : "" } disabled />
+                    <input type="text" value={talentData ? talentData.contact_number : ""} disabled />
                     <p>Clients Assigned</p>
-                    <input type="text" value={talentData ? talentData.clients.map((client) => { client.client_name }) : "" } disabled />
+                    <input
+                        type="text"
+                        value={talentData ? talentData.clients.map((client) => client.client_name).join(", ") : ""}
+                        disabled
+                    />
                     <p>Projects Assigned</p>
-                    <input type="text" value={talentData ? talentData.clients.map((client) => { client.projects.map((project) => { project.project_name }) }) : "" } disabled />
+                    <input
+                        type="text"
+                        value={
+                            talentData
+                                ? talentData.clients
+                                    .map(
+                                        (client) =>
+                                            client.projects.map((project) => `${client.client_name} - ${project.project_name}`).join(", ")
+                                    )
+                                    .join(", ")
+                                : ""
+                        }
+                        disabled
+                    />
                     <p>Reporting Manager</p>
-                    <input type="text" value={talentData ? talentData.manager_name : "" } disabled />
+                    <input type="text" value={talentData ? talentData.manager_name : ""} disabled />
                 </div>
             </div>
         </div>
