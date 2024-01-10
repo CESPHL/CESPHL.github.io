@@ -1,15 +1,10 @@
 .main-content {
     display: flex;
-    flex-direction: column;
 }
 
 .main-content > form {
     display: flex;
-    justify-content: space-evenly;
-}
-
-.main-content > form > div {
-    flex-basis: 45%;
+    justify-content: space-between;
 }
 
 .main-content > form > div > input {
@@ -52,10 +47,4 @@
     height: 40px;
     margin-left: 10px;
     width: 100px;
-}
-
-.button-row {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
 }
