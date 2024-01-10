@@ -121,7 +121,7 @@ const EditTalent = () => {
         console.log(talentData.employee_id);
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${talentData.employee_id}`, talentData)
         .then((response) => {
-            toast.success(response.data.message, {
+            toast.success("Talent info updated successfully.", {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,

@@ -1,0 +1,14 @@
+.edit-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-content > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+}
