@@ -180,6 +180,7 @@ const ManageTalents = () => {
                                 progress: undefined,
                                 theme: "light",
                             });
+                            setShowModal(false);
                         })
                         .catch((err) => {
                             console.error("Error assigning talent to project.", err);

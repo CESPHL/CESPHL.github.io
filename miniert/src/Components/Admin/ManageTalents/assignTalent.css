@@ -1,0 +1,41 @@
+.main-content > form > div > input {
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding: 8px 8px 8px 12px;
+    width: 400px;
+    height: 15px;
+}
+
+.main-content > form > div > select {
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding: 8px;
+    width: 422px;
+}
+
+.cancel-btn, .add-btn {
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: #fff;
+    border: 1px solid #d0d5dd;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+}
+
+.add-btn {
+    background-color: #684ce2;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    height: 40px;
+    margin-left: 10px;
+    width: 100px;
+}
