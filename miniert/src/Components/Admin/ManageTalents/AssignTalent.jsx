@@ -151,75 +151,75 @@ const ManageTalents = () => {
         console.log(`Talent: ${selectedTalent.employee_id}`);
         console.log(`Client: ${selectedClient.client_id}`);
         console.log(`Client: ${selectedProject.project_id}`);
-        // const saveToTalent = {
-        //     client_id: document.getElementById("clientID").value,
-        //     client_name: document.getElementById("clientName").value,
-        //     sdm_sdl_name: document.getElementById("clientSDMName").value,
-        //     projects: [{
-        //         project_id: document.getElementById("projectId").value,
-        //         project_name: document.getElementById("projectName").value,
-        //         workshift: document.getElementById("projectWorkShift").value,
-        //         coretime: document.getElementById("projectCoreTime").value,
-        //         status: document.getElementById("projectStatus").value,
-        //         role: document.getElementById("projectRole").value
-        //     }]
-        // }
+        const saveToTalent = {
+            client_id: document.getElementById("clientID").value,
+            client_name: document.getElementById("clientName").value,
+            sdm_sdl_name: document.getElementById("clientSDMName").value,
+            projects: [{
+                project_id: document.getElementById("projectId").value,
+                project_name: document.getElementById("projectName").value,
+                workshift: document.getElementById("projectWorkShift").value,
+                coretime: document.getElementById("projectCoreTime").value,
+                status: document.getElementById("projectStatus").value,
+                role: document.getElementById("projectRole").value
+            }]
+        }
 
-        // axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/clients/${selectedTalent.employee_id}`, saveToTalent)
-        //     .then((response) => {
-        //         if (response.status === 200) {
-        //             axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/clients/${selectedClient.client_id}/projects/${selectedProject.project_id}/assign-talent`, selectedTalent.employee_id)
-        //                 .then((response) => {
-        //                     toast.success(response.data.message, {
-        //                         position: "top-center",
-        //                         autoClose: 5000,
-        //                         hideProgressBar: false,
-        //                         closeOnClick: true,
-        //                         pauseOnHover: true,
-        //                         draggable: true,
-        //                         progress: undefined,
-        //                         theme: "light",
-        //                     });
-        //                 })
-        //                 .catch((err) => {
-        //                     console.error("Error assigning talent to project.", err);
-        //                     toast.error("Error adding project to talent. Please try again later.", {
-        //                         position: toast.POSITION.TOP_CENTER,
-        //                         autoClose: 5000,
-        //                         hideProgressBar: false,
-        //                         closeOnClick: true,
-        //                         pauseOnHover: true,
-        //                         draggable: true,
-        //                         progress: undefined,
-        //                         theme: "light",
-        //                     });
-        //                 })
-        //         } else {
-        //             toast.error(response.data.message, {
-        //                 position: "top-center",
-        //                 autoClose: 5000,
-        //                 hideProgressBar: false,
-        //                 closeOnClick: true,
-        //                 pauseOnHover: true,
-        //                 draggable: true,
-        //                 progress: undefined,
-        //                 theme: "light",
-        //             });
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.error("Error adding project to talent.", err);
-        //         toast.error("Error adding project to talent. Please try again later.", {
-        //             position: toast.POSITION.TOP_CENTER,
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //         });
-        //     });
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/clients/${selectedTalent.employee_id}`, saveToTalent)
+            .then((response) => {
+                if (response.status === 200) {
+                    axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/clients/${selectedClient.client_id}/projects/${selectedProject.project_id}/assign-talent`, { employee_id: selectedTalent.employee_id })
+                        .then((response) => {
+                            toast.success(response.data.message, {
+                                position: "top-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                        })
+                        .catch((err) => {
+                            console.error("Error assigning talent to project.", err);
+                            toast.error("Error adding project to talent. Please try again later.", {
+                                position: toast.POSITION.TOP_CENTER,
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                        })
+                } else {
+                    toast.error(response.data.message, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            })
+            .catch((err) => {
+                console.error("Error adding project to talent.", err);
+                toast.error("Error adding project to talent. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
     }
 
     return (
