@@ -37,7 +37,7 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 };
 
-const ManageTalents = () => {
+const ViewTalent = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [talentList, setTalentList] = useState([]);
 
@@ -179,4 +179,4 @@ const ManageTalents = () => {
     );
 };
 
-export default ManageTalents;
+export default ViewTalent;
