@@ -128,7 +128,7 @@ const ManageTalents = () => {
         const value = event.target.value;
         const selectedClientObject = clientList.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
-        setClientProjectList( selectedClientObject ? selectedClientObject.projects : [] );
+        setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
     };
 
     // To update variable based on dropdown list selection
@@ -166,7 +166,35 @@ const ManageTalents = () => {
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/clients/${selectedTalent.employee_id}`, saveToTalent)
             .then((response) => {
                 if (response.status === 200) {
-                    return axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/clients/${selectedClient.client_id}/projects/${selectedProject.project_id}/assign-talent`, selectedTalent.employee_id);
+                    console.log(`Talent: ${selectedTalent.employee_id}`);
+                    console.log(`Client: ${selectedClient.client_id}`);
+                    console.log(`Client: ${selectedProject.project_id}`);
+                    axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/clients/${selectedClient.client_id}/projects/${selectedProject.project_id}/assign-talent`, selectedTalent.employee_id)
+                        .then((response) => {
+                            toast.success(response.data.message, {
+                                position: "top-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                        })
+                        .catch((err) => {
+                            console.error("Error assigning talent to project.", err);
+                            toast.error("Error adding project to talent. Please try again later.", {
+                                position: toast.POSITION.TOP_CENTER,
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                        })
                 } else {
                     toast.error(response.data.message, {
                         position: "top-center",
