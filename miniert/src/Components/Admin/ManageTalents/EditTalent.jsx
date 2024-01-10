@@ -135,7 +135,7 @@ const EditTalent = () => {
         })
         .catch((err) => {
             console.error("There was a problem updating the talent info.", err);
-            toast.error(response.data.message, {
+            toast.error("There was a problem updating the talent info.", {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 5000,
                 hideProgressBar: false,
