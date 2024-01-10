@@ -117,7 +117,35 @@ const EditTalent = () => {
     };
 
     const handleSave = async (e) => {
-        console.log()
+        console.log(talentData);
+        console.log(talentData.employee_id);
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${talentData.employee_id}`, talentData)
+        .then((response) => {
+            toast.success(response.data.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setShowModal(false);
+        })
+        .catch((err) => {
+            console.error("There was a problem updating the talent info.", err);
+            toast.error(response.data.message, {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        })
     };
 
     const handleChange = (e) => {
