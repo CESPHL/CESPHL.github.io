@@ -196,7 +196,7 @@ const ManageTalents = () => {
                                 <p>{talent.email}</p>
                                 <p>{talent.contact_number}</p>
                                 <p>
-                                    <NavLink to={`/admin/manage-talents/edit-talent/${talent.employee_id}`}>
+                                    <NavLink to={`/admin/manage-talents/view-talent/${talent.employee_id}`}>
                                         <img src={view} />
                                     </NavLink>
                                     <NavLink to={`/admin/manage-talents/edit-talent/${talent.employee_id}`}>
