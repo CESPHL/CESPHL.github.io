@@ -39,9 +39,15 @@ const CurrentDate = () => {
 };
 
 const EditTalent = () => {
+
+    // Variables for data
     const employee_id = localStorage.getItem("employee_id");
     const [talentData, setTalentData] = useState(null);
 
+    // Variables for components
+    const [showModal, setShowModal] = useState(false);
+    
+    // Variables from URL
     const currentUrl = new URL(window.location.href);
     const parts = currentUrl.pathname.split("/");
     const talentId = parts[parts.length - 1];
