@@ -152,12 +152,54 @@ const AddTalent = () => {
                 role: document.getElementById("projectRole").value
             }]
         }
-        
+
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/clients/${selectedTalent.employee_id}`, saveToTalent)
-        .then((response) => {
-            if (response.status === 200) {
-                toast.success(response.data.message, {
-                    position: "top-center",
+            .then((response) => {
+                if (response.status === 200) {
+                    axios.patch(`https://cesphl-github-io-backend.vercel.app/api/managers/clients/${clientData.client_id}/projects/${projectData.project_id}/assign-talent`, { employee_id: selectedTalent.employee_id })
+                        .then((response) => {
+                            toast.success(response.data.message, {
+                                position: "top-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                            setShowModal(false);
+                        })
+                        .catch((err) => {
+                            console.error("Error assigning talent to project.", err);
+                            toast.error("Error adding project to talent. Please try again later.", {
+                                position: toast.POSITION.TOP_CENTER,
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                        })
+                } else {
+                    toast.error(response.data.message, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            })
+            .catch((err) => {
+                console.error("Error adding project to talent.", err);
+                toast.error("Error adding project to talent. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -166,32 +208,7 @@ const AddTalent = () => {
                     progress: undefined,
                     theme: "light",
                 });
-            } else {
-                toast.error(response.data.message, {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            }
-        })
-        .catch((err) => {
-            console.error("Error adding project to talent.", err);
-            toast.error("Error adding project to talent. Please try again later.", {
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
             });
-        });
     }
 
     return (
