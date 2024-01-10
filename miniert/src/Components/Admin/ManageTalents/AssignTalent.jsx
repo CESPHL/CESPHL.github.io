@@ -359,10 +359,12 @@ const ManageTalents = () => {
                             <span>Role</span><br /><input type="text" id="projectRole" required /><br />
                         </div>
                     </form>
-                    <NavLink to="/admin/manage-accounts">
-                        <button className="cancel-btn">Cancel</button>
-                    </NavLink>
-                    <input type="button" value="Add" className="add-btn" onClick={handleOpenModal} />
+                    <div className="button-row">
+                        <NavLink to="/admin/manage-accounts">
+                            <button className="cancel-btn">Cancel</button>
+                        </NavLink>
+                        <input type="button" value="Assign" className="add-btn" onClick={handleOpenModal} />
+                    </div>
                 </div>
             </div>
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>

@@ -51,6 +51,7 @@
 
 .search-bar {
     display: flex;
+    align-items: flex-end;
 }
 
 .buttons {

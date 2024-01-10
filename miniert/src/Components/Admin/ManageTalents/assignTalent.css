@@ -1,3 +1,7 @@
+.main-content {
+    display: flex;
+}
+
 .main-content > form {
     display: flex;
     justify-content: space-between;
@@ -43,4 +47,10 @@
     height: 40px;
     margin-left: 10px;
     width: 100px;
+}
+
+.button-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
