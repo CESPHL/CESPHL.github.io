@@ -1,0 +1,15 @@
+.view-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.view-content > p {
+    font-weight: 600;
+    color: #344054;
+}
+
+.view-content > input {
+    border: 1px solid #D0D5DD;
+    border-radius: 7px;
+    padding: 0.5rem 0.7rem;
+}

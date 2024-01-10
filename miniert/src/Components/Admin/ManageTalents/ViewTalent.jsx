@@ -39,6 +39,11 @@ const CurrentDate = () => {
 
 const ViewTalent = () => {
     const employee_id = localStorage.getItem("employee_id");
+    const [talentData, setTalentData] = useState(null);
+
+    const currentUrl = new URL(window.location.href);
+    const parts = currentUrl.split("/");
+    const talentId = parts[parts.length - 1];
 
     // Check for account
     // To be used for security purposes to prevent url manipulation
@@ -60,6 +65,28 @@ const ViewTalent = () => {
                 });
                 console.error(err);
                 window.location.href = "/";
+            });
+    }, [employee_id]);
+
+    // Get talent data and save it to variable
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/${talentId}`)
+            .then((response) => {
+                setTalentData(response.data);
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.error("Error retrieving talent info.", err);
+                toast.error("Error retrieving talent info. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             });
     }, [employee_id]);
 
@@ -138,7 +165,21 @@ const ViewTalent = () => {
                         <CurrentDate />
                     </span>
                 </div>
-                <div className="main-content">
+                <div className="view-content">
+                    <p>Employee ID</p>
+                    <input type="text" value={ talentData.employee_id } />
+                    <p>Employee Name</p>
+                    <input type="text" value={ `${talentData.first_name} ${talentData.last_name }` } />
+                    <p>Email Address</p>
+                    <input type="text" value={ talentData.email } />
+                    <p>Contact Number</p>
+                    <input type="text" value={ talentData.contact_number } />
+                    <p>Clients Assigned</p>
+                    <input type="text" value={ talentData.employee_id } />
+                    <p>Projects Assigned</p>
+                    <input type="text" value={ talentData.employee_id } />
+                    <p>Reporting Manager</p>
+                    <input type="text" value={ talentData.manager_name } />
                 </div>
             </div>
         </div>
