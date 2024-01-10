@@ -5,7 +5,8 @@ const {
     editClient,
     addProject,
     changePasswordManager,
-    editProject
+    editProject,
+    assignTalentToProject
 } = require('../controllers/managersController');
 
 const router = express.Router();
@@ -27,5 +28,8 @@ router.post('/changepass/:employee_id', changePasswordManager);
 
 // Edit project info
 router.patch('/:employee_id/clients/:account_id/edit-project/:project_id', editProject);
+
+// Assign talent to client
+router.patch('/clients/:client_id/projects/:project_id/assign-talent', assignTalentToProject);
 
 module.exports = router;

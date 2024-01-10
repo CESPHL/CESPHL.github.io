@@ -175,7 +175,36 @@ const editProject = async (req, res) => {
 
 const assignTalentToProject = async (req, res) => {
     console.log("Assigning talent");
-    
+    const { client_id, project_id } = req.params;
+    const { employee_id } = req.body; // Talent id supplied from the page
+    try {
+        const manager = await Manager.findOne({
+            'clients.client_id': client_id,
+            'clients.projects.project_id': project_id
+        });
+
+        if (!manager) {
+            console.error('Manager not found');
+            return res.status(404).json({ message: "Client not found." });
+        }
+
+        const clientIndex = manager.clients.findIndex(client => client.client_id === client_id);
+        const projectIndex = manager.clients[clientIndex].projects.findIndex(project => project.project_id === project_id);
+
+        if (projectIndex === -1) {
+            console.error('Project not found');
+            return res.status(404).json({ message: "Client not found." });
+        }
+
+        manager.clients[clientIndex].projects[projectIndex].talents.push(employee_id);
+
+        const result = await manager.save();
+        console.log('Talent added successfully:', result);
+        return res.status(200).json({ message: "Talent added to project successfully." });
+    } catch (err) {
+        console.log("Error adding talent to project.", err);
+        return res.status(500).json({ message: "Error adding talent to project." });
+    }
 }
 
 module.exports = {
@@ -184,5 +213,6 @@ module.exports = {
     editClient,
     addProject,
     changePasswordManager,
-    editProject
+    editProject,
+    assignTalentToProject
 }
