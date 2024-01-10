@@ -8,15 +8,11 @@ import accIcon from "../../Assets/acc-active.svg";
 import talents from "../../Assets/mng-talent-inactive.svg";
 import profile from "../../Assets/inactive-profile.svg";
 import users from "../../Assets/users-inactive.svg";
-import view from "../../Assets/view-icn.svg";
-import edit from "../../Assets/edit-icn.svg";
 
 // Files
-import "./manageTalents.css";
+import "./assignTalent.css";
 
 // External functionalities
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 const CurrentDate = () => {
@@ -48,7 +44,6 @@ const ManageTalents = () => {
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${employee_id}`)
             .then((response) => {
-                console.log(response.data);
             })
             .catch((err) => {
                 toast.error("Account not found. Please login again.", {
@@ -66,7 +61,7 @@ const ManageTalents = () => {
             });
     }, [employee_id]);
 
-    // Get list of talents for table
+    // Get talent data
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
             .then((response) => {
@@ -74,7 +69,7 @@ const ManageTalents = () => {
             })
             .catch((err) => {
                 console.error("Error retrieving talent info", err);
-                toast.error("Error retrieving client info. Please try again later.", {
+                toast.error("Error retrieving talent info. Please try again later.", {
                     position: toast.POSITION.TOP_CENTER,
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -157,55 +152,25 @@ const ManageTalents = () => {
             </div>
             <div className="dashboard-content">
                 <div className="dash-text">
-                    <h4>Manage Talents</h4>
+                    <h4>View Talent</h4>
                     <span>
                         <CurrentDate />
                     </span>
                 </div>
                 <div className="main-content">
-                    <div className="filters-row">
-                        <div>
-                            <form>
-                                <input type="text" name="searchProject" id="searchProject" placeholder="Enter talent" />
-                                <select>
-                                    <option>Sort</option>
-                                </select>
-                            </form>
-                        </div>
-                        <div>
-                            <NavLink to={``}>
-                                <button id="uploadBtn">Upload</button>
-                            </NavLink>
-                            <NavLink to={`/admin/manage-talents/assign-talent`}>
-                                <button id="assignBtn">Assign</button>
-                            </NavLink>
-                        </div>
-                    </div>
-                    <div className="table-container">
-                        <div className="five-col header">
-                            <h1>ID</h1>
-                            <h1>Talent Name</h1>
-                            <h1>Email</h1>
-                            <h1>Contact No</h1>
-                            <h1>Actions</h1>
-                        </div>
-                        {talentList ? talentList.map((talent) => (
-                            <div className="five-col data" key={talent.employee_id}>
-                                <p>{talent.employee_id}</p>
-                                <p>{`${talent.first_name} ${talent.last_name}`}</p>
-                                <p>{talent.email}</p>
-                                <p>{talent.contact_number}</p>
-                                <p>
-                                    <NavLink to={`/admin/manage-talents/edit-talent/${talent.employee_id}`}>
-                                        <img src={view} />
-                                    </NavLink>
-                                    <NavLink to={`/admin/manage-talents/edit-talent/${talent.employee_id}`}>
-                                        <img src={edit} />
-                                    </NavLink>
-                                </p>
-                            </div>
-                        )) : (<p>Loading...</p>)}
-                    </div>
+                    <form>
+                        <span>Employee ID</span><br />
+                        <input type="text" id="talentId" required disabled /><br />
+                        <span>Name</span><br />
+                        <input type="text" id="talentName" required disabled /><br />
+                        <span>Email</span><br />
+                        <input type="text" id="talentEmail" required disabled /><br />
+                        <span>Contact No</span><br />
+                        <input type="text" id="talentContactNo" required disabled /><br />
+                        <span>Clients Assigned</span><br /><input type="text" id="clientID" required disabled /><br />
+                        <span>Projects Assigned</span><br /><input type="text" id="projectId" required disabled /><br />
+                        <span>Reporting Manager</span><br /><input type="text" id="projectName" required disabled /><br />
+                    </form>
                 </div>
             </div>
         </div>

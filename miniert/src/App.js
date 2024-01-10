@@ -47,6 +47,8 @@ import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
     // Manage Talents
         import AdminManageTalents from "./Components/Admin/ManageTalents/ManageTalents.jsx";
         import AdminAssignTalents from "./Components/Admin/ManageTalents/AssignTalent.jsx";
+        import AdminViewTalents from "./Components/Admin/ManageTalents/ViewTalent.jsx";
+        import AdminEditTalents from "./Components/Admin/ManageTalents/EditTalent.jsx";
     import AdminProfile from "./Components/Admin/Profile.jsx";
     import AdminChangePass from "./Components/Admin/ChangePassword.jsx";
 
@@ -95,6 +97,8 @@ function App() {
             {/* Manage Talents */}
                 <Route path="/admin/manage-talents" element={<AdminManageTalents />} />
                 <Route path="/admin/manage-talents/assign-talent" element={<AdminAssignTalents />} />
+                <Route path="/admin/manage-talents/view-talent/:talent_id" element={<AdminViewTalents />} />
+                <Route path="/admin/manage-talents/edit-talent/:talent_id" element={<AdminEditTalents />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/profile/changepass" element={<AdminChangePass />} />
       </Routes>

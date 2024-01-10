@@ -359,9 +359,9 @@ const ManageTalents = () => {
                             <span>Role</span><br /><input type="text" id="projectRole" required /><br />
                         </div>
                         <NavLink to="/admin/manage-accounts">
-                            <button>Cancel</button>
+                            <button className="cancel-btn">Cancel</button>
                         </NavLink>
-                        <input type="button" value="Add" class="add-btn1" onClick={handleOpenModal} />
+                        <input type="button" value="Add" className="add-btn" onClick={handleOpenModal} />
                     </form>
                 </div>
             </div>
