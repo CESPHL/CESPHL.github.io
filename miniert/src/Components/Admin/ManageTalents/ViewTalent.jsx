@@ -168,7 +168,7 @@ const ViewTalent = () => {
                     </span>
                 </div>
                 <div className="view-content">
-                    <p>Employee ID</p>
+                    {/* <p>Employee ID</p>
                     <input type="text" value={talentData.employee_id} />
                     <p>Employee Name</p>
                     <input type="text" value={`${talentData.first_name} ${talentData.last_name}`} />
@@ -181,7 +181,7 @@ const ViewTalent = () => {
                     <p>Projects Assigned</p>
                     <input type="text" value={talentData.employee_id} />
                     <p>Reporting Manager</p>
-                    <input type="text" value={talentData.manager_name} />
+                    <input type="text" value={talentData.manager_name} /> */}
                 </div>
             </div>
         </div>
