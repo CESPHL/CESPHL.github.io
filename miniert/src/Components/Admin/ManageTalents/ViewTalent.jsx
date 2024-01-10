@@ -13,6 +13,8 @@ import users from "../../Assets/users-inactive.svg";
 import "./assignTalent.css";
 
 // External functionalities
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 const CurrentDate = () => {
