@@ -120,7 +120,7 @@ const ManageAccount = () => {
                     </span>
                 </div>
                 <div className="manage-content">
-                    <div className="search-bar">
+                    <div className="search-bar" style="display: flex;">
                         <form action=" ">
                             <input type="text" placeholder="Search Client" />
                         </form>
