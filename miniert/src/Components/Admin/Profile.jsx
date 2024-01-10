@@ -138,14 +138,14 @@ const Profile = () => {
                         <button className="change-pass-btn">Change Password</button>
                     </NavLink>
                     <form>
-                        <span>Employee ID</span><br /><input type="text" name="employeeID" id="employeeID" disabled="disabled" value="---" /><br />
-                        <span>Employee Name</span><br /><input type="text" name="employeeName" id="employeeName" disabled="disabled" value="---" /><br />
-                        <span>Email Address</span><br /><input type="text" name="emailAdd" id="emailAdd" disabled="disabled" value="---" /><br />
-                        <span>Contact Number</span><br /><input type="text" name="contactNum" id="contactNum" disabled="disabled" value="---" /><br />
-                        <span>Client Assigned</span><br /><input type="text" name="clientName" id="clientName" disabled="disabled" value="---" /><br />
-                        <span>Project Assigned</span><br /><input type="text" name="projectName" id="projectName" disabled="disabled" value="---" /><br />
-                        <span>Reporting Manager</span><br /><input type="text" name="managerName" id="managerName" disabled="disabled" value="---" /><br />
-                        <span>User Level</span><br /><input type="text" name="userLevel" id="userLevel" disabled="disabled" value="---" /><br />
+                        <span>Employee ID</span><br /><input type="text" name="employeeID" id="employeeID" disabled="disabled" value={ employeeData ? employeeData.employee_id : "N/A" } /><br />
+                        <span>Employee Name</span><br /><input type="text" name="employeeName" id="employeeName" disabled="disabled" value={ employeeData ? `${employeeData.first_name} ${employeeData.last_name}` : "N/A" } /><br />
+                        <span>Email Address</span><br /><input type="text" name="emailAdd" id="emailAdd" disabled="disabled" value={ employeeData ? employeeData.email : "N/A" } /><br />
+                        <span>Contact Number</span><br /><input type="text" name="contactNum" id="contactNum" disabled="disabled" value={ employeeData ? employeeData.contact_number : "N/A" } /><br />
+                        <span>Client Assigned</span><br /><input type="text" name="clientName" id="clientName" disabled="disabled" value={ employeeData ? employeeData.employee_id : "N/A" } /><br />
+                        <span>Project Assigned</span><br /><input type="text" name="projectName" id="projectName" disabled="disabled" value={ employeeData ? employeeData.employee_id : "N/A" } /><br />
+                        <span>Reporting Manager</span><br /><input type="text" name="managerName" id="managerName" disabled="disabled" value={ employeeData ? employeeData.employee_id : "N/A" } /><br />
+                        <span>User Level</span><br /><input type="text" name="userLevel" id="userLevel" disabled="disabled" value={ employeeData ? employeeData.user_level : "N/A" } /><br />
                     </form>
                 </div>
             </div>
