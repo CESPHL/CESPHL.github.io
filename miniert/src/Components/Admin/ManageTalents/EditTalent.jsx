@@ -42,11 +42,17 @@ const EditTalent = () => {
 
     // Variables for data
     const employee_id = localStorage.getItem("employee_id");
-    const [talentData, setTalentData] = useState(null);
+    const [talentData, setTalentData] = useState({
+        employee_id: "",
+        name: "",
+        email: "",
+        contact_number: "",
+        manager_name: "",
+    });
 
     // Variables for components
     const [showModal, setShowModal] = useState(false);
-    
+
     // Variables from URL
     const currentUrl = new URL(window.location.href);
     const parts = currentUrl.pathname.split("/");
@@ -79,8 +85,13 @@ const EditTalent = () => {
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/${talentId}`)
             .then((response) => {
-                setTalentData(response.data);
-                console.log(response.data);
+                setTalentData({
+                    employee_id: response.data.employee_id,
+                    name: `${response.data.first_name} ${response.data.last_name}`,
+                    email: response.data.email,
+                    contact_number: response.data.contact_number,
+                    manager_name: response.data.manager_name,
+                });
             })
             .catch((err) => {
                 console.error("Error retrieving talent info.", err);
@@ -95,7 +106,7 @@ const EditTalent = () => {
                     theme: "light",
                 });
             });
-    }, [employee_id]);
+    }, [employee_id, talentId]);
 
     const handleOpenModal = () => {
         setShowModal(true);
@@ -106,7 +117,15 @@ const EditTalent = () => {
     };
 
     const handleSave = async (e) => {
+        console.log()
+    };
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setTalentData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     };
 
     return (
@@ -185,30 +204,60 @@ const EditTalent = () => {
                     </span>
                 </div>
                 <div className="edit-content">
-                    <p>Employee ID</p>
-                    <input type="text" value={talentData ? talentData.employee_id : ""} />
-                    <p>Employee Name</p>
-                    <input
-                        type="text"
-                        value={talentData ? `${talentData.first_name} ${talentData.last_name}` : ""}
-                    />
-                    <p>Email Address</p>
-                    <input type="text" value={talentData ? talentData.email : ""} />
-                    <p>Contact Number</p>
-                    <input type="text" value={talentData ? talentData.contact_number : ""} />
-                    <p>Reporting Manager</p>
-                    <input type="text" value={talentData ? talentData.manager_name : ""} />
+                    <div>
+                        <p>Employee ID</p>
+                        <input
+                            type="text"
+                            name="employee_id"
+                            value={talentData.employee_id}
+                            onChange={handleChange}
+                        />
+                        <p>Employee Name</p>
+                        <input
+                            type="text"
+                            name="name"
+                            value={talentData.name}
+                            onChange={handleChange}
+                        />
+                        <p>Email Address</p>
+                        <input
+                            type="text"
+                            name="email"
+                            value={talentData.email}
+                            onChange={handleChange}
+                        />
+                        <p>Contact Number</p>
+                        <input
+                            type="text"
+                            name="contact_number"
+                            value={talentData.contact_number}
+                            onChange={handleChange}
+                        />
+                        <p>Reporting Manager</p>
+                        <input
+                            type="text"
+                            name="manager_name"
+                            value={talentData.manager_name}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="button-row">
+                        <NavLink to="/admin/manage-talents">
+                            <button className="cancel-btn">Cancel</button>
+                        </NavLink>
+                        <input type="button" value="Assign" className="add-btn" onClick={handleOpenModal} />
+                    </div>
                 </div>
             </div>
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
                 <div>
-                    <p>Assign Talent</p>
+                    <p>Edit Talent</p>
                     <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
                 </div>
-                <p className="modal-description">Clicking yes will assign the talent to the selected client and project in the system. Do you wish to continue?</p>
+                <p className="modal-description">Clicking yes will update the talent information in the system. Do you wish to continue?</p>
                 <div>
                     <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
-                    <button className="btn btn-save" onClick={handleSave}>Yes, Add</button>
+                    <button className="btn btn-save" onClick={handleSave}>Yes, Save</button>
                 </div>
             </Modal>
         </div>
