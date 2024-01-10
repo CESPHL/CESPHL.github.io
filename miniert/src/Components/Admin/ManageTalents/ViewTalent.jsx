@@ -42,7 +42,7 @@ const ViewTalent = () => {
     const [talentData, setTalentData] = useState(null);
 
     const currentUrl = new URL(window.location.href);
-    const parts = currentUrl.split("/");
+    const parts = currentUrl.pathname.split("/");
     const talentId = parts[parts.length - 1];
 
     // Check for account
@@ -167,19 +167,19 @@ const ViewTalent = () => {
                 </div>
                 <div className="view-content">
                     <p>Employee ID</p>
-                    <input type="text" value={ talentData.employee_id } />
+                    <input type="text" value={talentData.employee_id} />
                     <p>Employee Name</p>
-                    <input type="text" value={ `${talentData.first_name} ${talentData.last_name }` } />
+                    <input type="text" value={`${talentData.first_name} ${talentData.last_name}`} />
                     <p>Email Address</p>
-                    <input type="text" value={ talentData.email } />
+                    <input type="text" value={talentData.email} />
                     <p>Contact Number</p>
-                    <input type="text" value={ talentData.contact_number } />
+                    <input type="text" value={talentData.contact_number} />
                     <p>Clients Assigned</p>
-                    <input type="text" value={ talentData.employee_id } />
+                    <input type="text" value={talentData.employee_id} />
                     <p>Projects Assigned</p>
-                    <input type="text" value={ talentData.employee_id } />
+                    <input type="text" value={talentData.employee_id} />
                     <p>Reporting Manager</p>
-                    <input type="text" value={ talentData.manager_name } />
+                    <input type="text" value={talentData.manager_name} />
                 </div>
             </div>
         </div>
