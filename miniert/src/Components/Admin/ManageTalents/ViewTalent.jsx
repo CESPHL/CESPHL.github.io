@@ -39,11 +39,13 @@ const CurrentDate = () => {
 
 const ViewTalent = () => {
     const employee_id = localStorage.getItem("employee_id");
+    console.log(employee_id);
     const [talentData, setTalentData] = useState(null);
 
     const currentUrl = new URL(window.location.href);
     const parts = currentUrl.pathname.split("/");
     const talentId = parts[parts.length - 1];
+    console.log(talentId);
 
     // Check for account
     // To be used for security purposes to prevent url manipulation
