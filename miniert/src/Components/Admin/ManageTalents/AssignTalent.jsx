@@ -358,11 +358,11 @@ const ManageTalents = () => {
                             <span>Status</span><br /><input type="text" value={selectedProject ? selectedProject.status : ""} id="projectStatus" required disabled /><br />
                             <span>Role</span><br /><input type="text" id="projectRole" required /><br />
                         </div>
-                        <NavLink to="/admin/manage-accounts">
-                            <button className="cancel-btn">Cancel</button>
-                        </NavLink>
-                        <input type="button" value="Add" className="add-btn" onClick={handleOpenModal} />
                     </form>
+                    <NavLink to="/admin/manage-accounts">
+                        <button className="cancel-btn">Cancel</button>
+                    </NavLink>
+                    <input type="button" value="Add" className="add-btn" onClick={handleOpenModal} />
                 </div>
             </div>
             <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
