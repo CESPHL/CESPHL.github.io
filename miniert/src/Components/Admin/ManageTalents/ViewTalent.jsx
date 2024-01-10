@@ -39,13 +39,14 @@ const CurrentDate = () => {
 
 const ViewTalent = () => {
     const employee_id = localStorage.getItem("employee_id");
-    const [talentList, setTalentList] = useState([]);
+    const [talentList, setTalentList] = useState(null);
 
     // Check for account
     // To be used for security purposes to prevent url manipulation
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${employee_id}`)
             .then((response) => {
+                console.log(response.data);
             })
             .catch((err) => {
                 toast.error("Account not found. Please login again.", {
@@ -161,14 +162,10 @@ const ViewTalent = () => {
                 </div>
                 <div className="main-content">
                     <form>
-                        <span>Employee ID</span><br />
-                        <input type="text" id="talentId" required disabled /><br />
-                        <span>Name</span><br />
-                        <input type="text" id="talentName" required disabled /><br />
-                        <span>Email</span><br />
-                        <input type="text" id="talentEmail" required disabled /><br />
-                        <span>Contact No</span><br />
-                        <input type="text" id="talentContactNo" required disabled /><br />
+                        <span>Employee ID</span><br /><input type="text" id="talentId" required disabled /><br />
+                        <span>Name</span><br /><input type="text" id="talentName" required disabled /><br />
+                        <span>Email</span><br /><input type="text" id="talentEmail" required disabled /><br />
+                        <span>Contact No</span><br /><input type="text" id="talentContactNo" required disabled /><br />
                         <span>Clients Assigned</span><br /><input type="text" id="clientID" required disabled /><br />
                         <span>Projects Assigned</span><br /><input type="text" id="projectId" required disabled /><br />
                         <span>Reporting Manager</span><br /><input type="text" id="projectName" required disabled /><br />
