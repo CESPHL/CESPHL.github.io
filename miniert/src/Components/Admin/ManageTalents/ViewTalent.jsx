@@ -15,6 +15,7 @@ import "./viewTalent.css";
 // External functionalities
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
