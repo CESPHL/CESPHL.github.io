@@ -18,6 +18,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
+// For displaying current date
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -38,7 +39,8 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 };
 
-const ManageTalents = () => {
+// Main content functionality
+const AssignTalents = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [talentList, setTalentList] = useState([]);
     const [clientList, setClientList] = useState([]);
@@ -382,4 +384,4 @@ const ManageTalents = () => {
     );
 };
 
-export default ManageTalents;
+export default AssignTalents;
