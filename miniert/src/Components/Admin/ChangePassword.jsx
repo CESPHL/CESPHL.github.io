@@ -212,7 +212,7 @@ const ChangePassword = () => {
                     <p>Must be at least 8 characters</p>
                     <p>Must contain one special character</p>
                 </div>
-                <NavLink to="/profile">
+                <NavLink to="/admin/profile">
                     <button className="cancel-btn">Cancel</button>
                 </NavLink>
                 <button className="pass-submitbtn" onClick={handleOpenModal}>Save</button>

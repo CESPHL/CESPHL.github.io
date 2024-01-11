@@ -1,17 +1,24 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+// Icon imports
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
-import accIcon from "../Assets/acc-active.svg";
+import accIcon from "../Assets/building-inactive.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
-import users from "../Assets/users-inactive.svg";
+import users from "../Assets/users-active.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
 import deleteicon from "../Assets/trash-icon.svg";
-import axios from "axios";
+
+// Files
 import "./ManageUsers.css";
 import Modal from "../Modals/Modal.jsx";
+
+// External functionalities
+import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

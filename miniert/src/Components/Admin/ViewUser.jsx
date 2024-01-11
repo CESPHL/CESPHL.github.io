@@ -1,17 +1,22 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
+
+// Icon imports
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
-import accIcon from "../Assets/acc-active.svg";
+import accIcon from "../Assets/building-inactive.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
-import users from "../Assets/users-inactive.svg";
+import users from "../Assets/users-active.svg";
+
+// Files
+import "./viewUser.css";
+
+// External functionalities
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-
-// CSS
 import "react-toastify/dist/ReactToastify.css";
-import "./viewUser.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
