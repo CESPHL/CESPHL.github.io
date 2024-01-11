@@ -273,7 +273,7 @@ const EditTalent = () => {
                         <NavLink to="/admin/manage-talents">
                             <button className="cancel-btn">Cancel</button>
                         </NavLink>
-                        <input type="button" value="Assign" className="add-btn" onClick={handleOpenModal} />
+                        <input type="button" value="Save" className="add-btn" onClick={handleOpenModal} />
                     </div>
                 </div>
             </div>

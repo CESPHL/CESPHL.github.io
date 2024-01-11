@@ -1,18 +1,24 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "./managerDash.css";
+
+// Icon imports
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
-import accIcon from "../Assets/acc-active.svg";
+import accIcon from "../Assets/building-inactive.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import reports from "../Assets/report-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
 import exporticon from "../Assets/export.svg";
-import axios from "axios";
+
+// Files
 import Modal from "../Modals/Modal.jsx";
+import "./reports.css";
+
+// External functionalities
+import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./reports.css";
 import Papa from "papaparse";
 
 const CurrentDate = () => {
@@ -155,6 +161,18 @@ const ManageAccount = () => {
 
     return (
         <div className="dashboard">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="dash-navbar">
                 <div className="dash-main">
                     <img src={hourglass} alt="" />

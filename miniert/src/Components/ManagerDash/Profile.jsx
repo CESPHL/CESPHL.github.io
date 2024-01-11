@@ -1,12 +1,19 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "./managerDash.css";
+
+// Icons
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import reports from "../Assets/report-inactive.svg";
-import profile from "../Assets/inactive-profile.svg";
+import profile from "../Assets/active-profile.svg";
+
+// Files
+import "./managerDash.css";
+
+//External functionalities
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
