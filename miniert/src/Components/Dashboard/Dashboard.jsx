@@ -261,22 +261,15 @@ const Stopwatch = () => {
     // Stop stopwatch
     // If unsuccessful, display an error toast
     const handleTimeOut = () => {
-        const projectName = document.getElementById("projectDropdown");
-        const selectedProject = projectName.options[projectName.selectedIndex].text;
         const timeOutData = {
-            time_out: formattedTime,
+            time_in: formattedTime,
             date: formattedDate,
             day: currentDay,
-            project_name: selectedProject,
-            client_name: document.getElementById("clientName").value,
+            project_name: selectedProject.project_name,
+            client_name: selectedClient.client_name,
         };
 
-        console.log(timeOutData);
-        axios
-            .patch(
-                `https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeout`,
-                timeOutData
-            )
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeout`,timeOutData)
             .then((res) => {
                 if (res.status === 200) {
                     isClockInDisabled = false;
@@ -390,7 +383,7 @@ const Stopwatch = () => {
                     onChange={handleSelectedProject}
                     value={selectedProject ? selectedProject.project_id : ''}
                 >
-                    <option value="" disabled>Select Project</option>
+                    <option value="" disabled hidden>Select Project</option>
                     {clientProjectList ? clientProjectList.map(project => (
                         <option key={project.project_id} value={project.project_id}>
                             {`${project.project_name}`}
@@ -423,21 +416,31 @@ const Stopwatch = () => {
                     value={formattedDate + " | " + formattedTime}
                 />
                 <br />
-                <input
-                    type="text"
-                    id="clientName"
-                    name="client"
-                    disabled="disabled"
-                    value="GCash"
-                />
-                <select id="projectDropdown">
-                    <option defaultValue disabled>
-                        {" "}
-                        Select a Project
-                    </option>
-                    <option>GCash-Mynt</option>
-                    <option>Project Name</option>
+                <select
+                    id="clientDropdownTimeOut"
+                    onChange={handleSelectedClient}
+                    value={selectedClient ? selectedClient.client_id : ''}
+                >
+                    <option value="" disabled hidden>Select Client</option>
+                    {talentData && talentData.clients ? talentData.clients.map(client => (
+                        <option key={client.client_id} value={client.client_id}>
+                            {`${client.client_name}`}
+                        </option>
+                    )) : null}
                 </select>
+                <br />
+                <select
+                    id="projectDropdownTimeOut"
+                    onChange={handleSelectedProject}
+                    value={selectedProject ? selectedProject.project_id : ''}
+                >
+                    <option value="" disabled hidden>Select Project</option>
+                    {clientProjectList ? clientProjectList.map(project => (
+                        <option key={project.project_id} value={project.project_id}>
+                            {`${project.project_name}`}
+                        </option>
+                    )) : null}
+                </select><br />
             </ModalDash>
         </div>
     );
@@ -653,21 +656,14 @@ const OTStopwatch = () => {
     // Stop stopwatch
     // If unsuccessful, display an error toast
     const HandleTimeOutOT = () => {
-        const projectName = document.getElementById("projectDropdown");
-        const selectedProject = projectName.options[projectName.selectedIndex].text;
         const timeOutData = {
+            time_in: formattedTime,
             date: formattedDate,
             day: currentDay,
-            client_name: document.getElementById("clientName").value,
-            project_name: selectedProject,
-            ot_time_out: formattedTime,
+            project_name: selectedProject.project_name,
+            client_name: selectedClient.client_name,
         };
-        console.log(timeOutData);
-        axios
-            .patch(
-                `https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeoutOT`,
-                timeOutData
-            )
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeoutOT`, timeOutData)
             .then((res) => {
                 if (res.status === 200) {
                     isClockInDisabled = false;
@@ -811,21 +807,31 @@ const OTStopwatch = () => {
                     value={formattedDate + " | " + formattedTime}
                 />
                 <br />
-                <input
-                    type="text"
-                    id="clientName"
-                    name="client"
-                    disabled="disabled"
-                    value="GCash"
-                />
-                <select id="projectDropdown">
-                    <option defaultValue disabled>
-                        {" "}
-                        Select a Project
-                    </option>
-                    <option>GCash-Mynt</option>
-                    <option>Project Name</option>
+                <select
+                    id="clientDropdownTimeOutOT"
+                    onChange={handleSelectedClient}
+                    value={selectedClient ? selectedClient.client_id : ''}
+                >
+                    <option value="" disabled hidden>Select Client</option>
+                    {talentData && talentData.clients ? talentData.clients.map(client => (
+                        <option key={client.client_id} value={client.client_id}>
+                            {`${client.client_name}`}
+                        </option>
+                    )) : null}
                 </select>
+                <br />
+                <select
+                    id="projectDropdownTimeOutOT"
+                    onChange={handleSelectedProject}
+                    value={selectedProject ? selectedProject.project_id : ''}
+                >
+                    <option value="" disabled>Select Project</option>
+                    {clientProjectList ? clientProjectList.map(project => (
+                        <option key={project.project_id} value={project.project_id}>
+                            {`${project.project_name}`}
+                        </option>
+                    )) : null}
+                </select><br />
             </ModalDash>
         </div>
     );
