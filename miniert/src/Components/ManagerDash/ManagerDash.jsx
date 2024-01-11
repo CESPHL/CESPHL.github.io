@@ -43,10 +43,7 @@ const ManageAccount = () => {
     const [clientData, setClientData] = useState([]);
 
     useEffect(() => {
-        axios
-            .get(
-                `https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`
-            )
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
             .then((response) => {
                 const data = response.data;
                 setClientData(data);
@@ -55,8 +52,6 @@ const ManageAccount = () => {
                 console.error(err);
             });
     }, [employee_id]);
-
-    console.log(clientData);
 
     return (
         <div className="dashboard">
@@ -150,10 +145,10 @@ const ManageAccount = () => {
                                 <p>{client.client_sdm_email}</p>
                                 <p>{client.client_sdm_contact}</p>
                                 <p>
-                                    <NavLink to={`${client.client_sdm_id}/view-account/${client.client_id}`}>
+                                    <NavLink to={`/manager/manage-accounts/view-account/${client.client_id}`}>
                                         <img src={view} />
                                     </NavLink>
-                                    <NavLink to={`${client.client_sdm_id}/edit-account/${client.client_id}`}>
+                                    <NavLink to={`/manager/manage-accounts/edit-account/${client.client_id}`}>
                                         <img src={edit} />
                                     </NavLink>
                                 </p>
