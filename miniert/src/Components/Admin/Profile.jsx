@@ -1,11 +1,18 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+// Icon imports
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
-import profile from "../Assets/inactive-profile.svg";
+import profile from "../Assets/active-profile.svg";
 import users from "../Assets/users-inactive.svg";
+
+// Files
+
+// External functionalities
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -111,8 +118,8 @@ const Profile = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/admin/profile">
-                                <img src={profile} alt="profile icon" activeclassname="active" />
+                            <NavLink to="/admin/profile" activeclassname="active">
+                                <img src={profile} alt="profile icon" />
                                 <span>Profile</span>
                             </NavLink>
                         </li>
@@ -134,7 +141,7 @@ const Profile = () => {
                 </div>
                 <div className="mainContent">
                     <h3>User Details</h3>
-                    <NavLink to="/profile/changepass">
+                    <NavLink to="/admin/profile/changepass">
                         <button className="change-pass-btn">Change Password</button>
                     </NavLink>
                     <form>
@@ -142,9 +149,9 @@ const Profile = () => {
                         <span>Employee Name</span><br /><input type="text" name="employeeName" id="employeeName" disabled="disabled" value={ employeeData ? `${employeeData.first_name} ${employeeData.last_name}` : "N/A" } /><br />
                         <span>Email Address</span><br /><input type="text" name="emailAdd" id="emailAdd" disabled="disabled" value={ employeeData ? employeeData.email : "N/A" } /><br />
                         <span>Contact Number</span><br /><input type="text" name="contactNum" id="contactNum" disabled="disabled" value={ employeeData ? employeeData.contact_number : "N/A" } /><br />
-                        <span>Client Assigned</span><br /><input type="text" name="clientName" id="clientName" disabled="disabled" value={ employeeData ? employeeData.employee_id : "N/A" } /><br />
-                        <span>Project Assigned</span><br /><input type="text" name="projectName" id="projectName" disabled="disabled" value={ employeeData ? employeeData.employee_id : "N/A" } /><br />
-                        <span>Reporting Manager</span><br /><input type="text" name="managerName" id="managerName" disabled="disabled" value={ employeeData ? employeeData.employee_id : "N/A" } /><br />
+                        <span>Client Assigned</span><br /><input type="text" name="clientName" id="clientName" disabled="disabled" value={ "N/A" } /><br />
+                        <span>Project Assigned</span><br /><input type="text" name="projectName" id="projectName" disabled="disabled" value={ "N/A" } /><br />
+                        <span>Reporting Manager</span><br /><input type="text" name="managerName" id="managerName" disabled="disabled" value={ "N/A" } /><br />
                         <span>User Level</span><br /><input type="text" name="userLevel" id="userLevel" disabled="disabled" value={ employeeData ? employeeData.user_level : "N/A" } /><br />
                     </form>
                 </div>

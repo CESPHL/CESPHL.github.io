@@ -172,6 +172,43 @@ const getAllManagers = async (req, res) => {
     return res.status(200).json(managers);
 }
 
+// Change password
+const changePassword = async (req, res) => {
+    const { employee_id } = req.params;
+    const { oldPassword, password } = req.body;
+    try {
+        const user = await Admin.findOne({ employee_id });
+
+        if (user) {
+            const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+
+            if (passwordMatch === true && oldPassword != password) {
+                const hashedPassword = await bcrypt.hash(password, 10);
+                user.password = hashedPassword;
+                await user.save();
+                console.log("Password successfully changed.");
+                return res.status(200).json({ message: "Password successfully changed." });
+            }
+            else if (oldPassword == password) {
+                console.log("New password must be different from old password.");
+                return res.status(401).json({ message: "New password must be different from old password." });
+            }
+            else if (passwordMatch === false) {
+                console.log("Old password is incorrect.");
+                return res.status(401).json({ message: "Old password is incorrect." })
+            }
+            else {
+                console.log("Something went wrong.");
+                return res.status(400).json({ message: "Something went wrong." })
+            }
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 module.exports = {
     getUsers,
     getOneUser,
@@ -179,5 +216,6 @@ module.exports = {
     editUser,
     deleteUser,
     getAllClients,
-    getAllManagers
+    getAllManagers,
+    changePassword
 }

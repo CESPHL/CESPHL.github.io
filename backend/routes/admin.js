@@ -6,7 +6,8 @@ const {
     editUser,
     deleteUser,
     getAllClients,
-    getAllManagers
+    getAllManagers,
+    changePassword
 } = require('../controllers/adminController'); 
 
 const router = express.Router();
@@ -30,5 +31,8 @@ router.patch('/:employee_id', editUser);
 
 // Delete user
 router.delete('/:employee_id', deleteUser);
+
+// Change own password
+router.post('/changepass/:employee_id', changePassword);
 
 module.exports = router;

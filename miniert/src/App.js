@@ -37,20 +37,19 @@ import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
         import AdminViewProject from "./Components/Admin/ManageAccounts/ViewProject.jsx";
         import AdminEditProject from "./Components/Admin/ManageAccounts/EditProject.jsx";
         import AdminAddTalent from "./Components/Admin/ManageAccounts/AddTalent.jsx";
-
     // Manage users
         import AdminManageUsers from "./Components/Admin/ManageUsers.jsx";
         import AdminAddUsers from "./Components/Admin/AddUser.jsx";
         import AdminViewUser from "./Components/Admin/ViewUser.jsx";
         import AdminEditUser from"./Components/Admin/EditUser.jsx";
-
     // Manage Talents
         import AdminManageTalents from "./Components/Admin/ManageTalents/ManageTalents.jsx";
         import AdminAssignTalents from "./Components/Admin/ManageTalents/AssignTalent.jsx";
         import AdminViewTalents from "./Components/Admin/ManageTalents/ViewTalent.jsx";
         import AdminEditTalents from "./Components/Admin/ManageTalents/EditTalent.jsx";
-    import AdminProfile from "./Components/Admin/Profile.jsx";
-    import AdminChangePass from "./Components/Admin/ChangePassword.jsx";
+    // Profile
+        import AdminProfile from "./Components/Admin/Profile.jsx";
+        import AdminChangePass from "./Components/Admin/ChangePassword.jsx";
 
 function App() {
   return (
@@ -99,8 +98,9 @@ function App() {
                 <Route path="/admin/manage-talents/assign-talent" element={<AdminAssignTalents />} />
                 <Route path="/admin/manage-talents/view-talent/:talent_id" element={<AdminViewTalents />} />
                 <Route path="/admin/manage-talents/edit-talent/:talent_id" element={<AdminEditTalents />} />
-        <Route path="/admin/profile" element={<AdminProfile />} />
-        <Route path="/admin/profile/changepass" element={<AdminChangePass />} />
+            {/* Profile */}
+                <Route path="/admin/profile" element={<AdminProfile />} />
+                <Route path="/admin/profile/changepass" element={<AdminChangePass />} />
       </Routes>
     </Router>
   );

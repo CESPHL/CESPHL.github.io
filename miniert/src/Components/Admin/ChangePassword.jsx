@@ -1,14 +1,21 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+// Icon imports
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
-import profile from "../Assets/inactive-profile.svg";
+import profile from "../Assets/active-profile.svg";
 import users from "../Assets/users-inactive.svg";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+
+// Files
 import ChangePassModal from '../DashModal/ChangePassModal';
+
+// External functionalities
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -30,7 +37,7 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 };
 
-const Profile = () => {
+const ChangePassword = () => {
     const employee_id = localStorage.getItem('employee_id');
     const [showModal, setShowModal] = useState(false);
     const [oldPassword, setOldPassword] = useState('');
@@ -224,4 +231,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default ChangePassword;
