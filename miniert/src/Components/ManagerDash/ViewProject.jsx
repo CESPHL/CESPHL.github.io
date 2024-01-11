@@ -126,6 +126,20 @@ const ViewProject = () => {
             })
     }, [talentsId]);
 
+    // Function to get the role for a talent
+    const getRoleForTalent = (talent) => {
+        if (projectData && projectData.projects) {
+            const project = projectData.projects.find(p => p.project_id === projectId);
+            if (project && project.talents) {
+                const talentInfo = project.talents.find(t => t === talent.employee_id);
+                if (talentInfo) {
+                    return talentInfo.role;
+                }
+            }
+        }
+        return "N/A";
+    };
+
     return (
         <div className="dashboard">
             <ToastContainer
@@ -268,7 +282,7 @@ const ViewProject = () => {
                                 <p>{`${talent.first_name} ${talent.last_name}`}</p>
                                 <p>{talent.email}</p>
                                 <p>{talent.contact_number}</p>
-                                <p>{talent.role}</p>
+                                <p>{getRoleForTalent(talent)}</p>
                                 <p>
                                     <NavLink to={`/manager/manage-talents/view-talent/${talent.employee_id}`}>
                                         <img src={view} />
