@@ -12,7 +12,6 @@ import profile from "../Assets/inactive-profile.svg";
 // Files
 import "./Dashboard.css";
 import ModalDash from "../../Components/DashModal/Modal.jsx";
-import Modal from "../Modals/Modal.jsx";
 
 // External functionalities
 import axios from "axios";
@@ -29,6 +28,7 @@ let isClockInOTDisabled =
 let isClockOutOTDisabled =
     JSON.parse(localStorage.getItem("isClockOutOTDisabled")) ?? true;
 
+// Function for getting current date
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -49,6 +49,7 @@ const CurrentDate = () => {
     return <p>{formattedDate}</p>;
 };
 
+// Stopwatch for regular attendance
 const Stopwatch = () => {
     // Variables for data
     const [talentData, setTalentData] = useState([]);
@@ -86,6 +87,7 @@ const Stopwatch = () => {
     const [isTimeInModalVisible, setIsTimeInModalVisible] = useState(false);
     const [isTimeOutModalVisible, setIsTimeOutModalVisible] = useState(false);
 
+    // Timer functionality
     useEffect(() => {
         let interval;
         localStorage.setItem("hours", hours);
@@ -130,11 +132,13 @@ const Stopwatch = () => {
                 const data = response.data;
                 // Set the data in your component state
                 setTalentData(data);
+                console.log(data);
             })
             .catch((err) => {
                 console.log(err);
             });
     }, [employee_id]);
+
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -333,38 +337,38 @@ const Stopwatch = () => {
             >
                 <div className="modal-content">
                     <p>Confirm Clock In</p>
+                    <input
+                        type="text"
+                        id="talentName"
+                        name="name"
+                        disabled="disabled"
+                        value={talentData.first_name + " " + talentData.last_name}
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        id="timeIn"
+                        name="date-time"
+                        disabled="disabled"
+                        value={formattedDate + " | " + formattedTime}
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        id="clientName"
+                        name="client"
+                        disabled="disabled"
+                        value="GCash"
+                    />
+                    <select id="projectDropdown">
+                        <option defaultValue disabled>
+                            {" "}
+                            Select a Project
+                        </option>
+                        <option>GCash-Mynt</option>
+                        <option>Project Name</option>
+                    </select>
                 </div>
-                <input
-                    type="text"
-                    id="talentName"
-                    name="name"
-                    disabled="disabled"
-                    value={talentData.first_name + " " + talentData.last_name}
-                />
-                <br />
-                <input
-                    type="text"
-                    id="timeIn"
-                    name="date-time"
-                    disabled="disabled"
-                    value={formattedDate + " | " + formattedTime}
-                />
-                <br />
-                <input
-                    type="text"
-                    id="clientName"
-                    name="client"
-                    disabled="disabled"
-                    value="GCash"
-                />
-                <select id="projectDropdown">
-                    <option defaultValue disabled>
-                        {" "}
-                        Select a Project
-                    </option>
-                    <option>GCash-Mynt</option>
-                    <option>Project Name</option>
-                </select>
             </ModalDash>
             <ModalDash
                 id="timeOutModal"
@@ -411,6 +415,7 @@ const Stopwatch = () => {
     );
 };
 
+// Stopwatch for OT attendance
 const OTStopwatch = () => {
     // Variables for data
     const [talentData, setTalentData] = useState([]);
@@ -785,6 +790,7 @@ const OTStopwatch = () => {
     );
 };
 
+// Displaying attendance data
 const DashboardTimesheetTable = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [attendanceData, setAttendanceData] = useState([]);
