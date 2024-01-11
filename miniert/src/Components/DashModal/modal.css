@@ -34,9 +34,10 @@
 .modal-main input {
 	border-radius: 8px;
 	padding: 8px;
-	width: 80%;
+	width: 84%;
 	margin-top: 15px;
 	margin-left: 50px;
+    box-sizing: border-box;
 }
 
 .modal-main select:focus {
@@ -68,4 +69,13 @@
 	background-color: #684CE2;
 	border: 0;
 	color: #FFF;
+}
+
+#clientDropdown, #projectDropdown {
+    margin-left: 3.125rem;
+    margin-top: 0.9375rem;
+    padding: 0.5rem;
+    width: 84%;
+    box-sizing: border-box;
+    border-radius: 8px;
 }

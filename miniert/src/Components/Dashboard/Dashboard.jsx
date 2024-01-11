@@ -368,7 +368,7 @@ const Stopwatch = () => {
                     onChange={handleSelectedClient}
                     value={selectedClient ? selectedClient.client_id : ''}
                 >
-                    <option value="" disabled>Select Client</option>
+                    <option value="" disabled hidden>Select Client</option>
                     {talentData && talentData.clients ? talentData.clients.map(client => (
                         <option key={client.client_id} value={client.client_id}>
                             {`${client.client_name}`}
@@ -721,9 +721,7 @@ const OTStopwatch = () => {
                 handleClose={closeTimeInOTModal}
                 handleSave={HandleTimeInOT}
             >
-                <div className="modal-content">
-                    <p>Confirm Clock In (Overtime)</p>
-                </div>
+                <p>Confirm Clock In (Overtime)</p>
                 <input
                     type="text"
                     id="talentName"
@@ -745,7 +743,7 @@ const OTStopwatch = () => {
                     onChange={handleSelectedClient}
                     value={selectedClient ? selectedClient.client_id : ''}
                 >
-                    <option value="" disabled>Select Client</option>
+                    <option value="" disabled hidden >Select Client</option>
                     {talentData && talentData.clients ? talentData.clients.map(client => (
                         <option key={client.client_id} value={client.client_id}>
                             {`${client.client_name}`}
