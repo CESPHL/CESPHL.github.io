@@ -174,10 +174,7 @@ const Stopwatch = () => {
         const value = event.target.value;
         const selectedClientObject = talentData.clients.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
-        console.log(selectedClientObject);
         setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
-        console.log(clientProjectList);
-        console.log(selectedClientObject.projects);
     };
 
     // To update variable based on dropdown list selection
@@ -262,13 +259,12 @@ const Stopwatch = () => {
     // If unsuccessful, display an error toast
     const handleTimeOut = () => {
         const timeOutData = {
-            time_in: formattedTime,
+            time_out: formattedTime,
             date: formattedDate,
             day: currentDay,
             project_name: selectedProject.project_name,
             client_name: selectedClient.client_name,
         };
-        console.log(timeOutData);
 
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeout`,timeOutData)
             .then((res) => {
@@ -565,10 +561,7 @@ const OTStopwatch = () => {
         const value = event.target.value;
         const selectedClientObject = talentData.clients.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
-        console.log(selectedClientObject);
         setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
-        console.log(clientProjectList);
-        console.log(selectedClientObject.projects);
     };
 
     // To update variable based on dropdown list selection
@@ -656,7 +649,7 @@ const OTStopwatch = () => {
     // If unsuccessful, display an error toast
     const HandleTimeOutOT = () => {
         const timeOutData = {
-            time_in: formattedTime,
+            time_out: formattedTime,
             date: formattedDate,
             day: currentDay,
             project_name: selectedProject.project_name,
