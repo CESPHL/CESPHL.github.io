@@ -86,6 +86,7 @@ const Stopwatch = () => {
     // Dropdown related variables
     const [selectedClient, setSelectedClient] = useState(null);
     const [clientProjectList, setClientProjectList] = useState([]);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     // Variables for modals
     const [isTimeInModalVisible, setIsTimeInModalVisible] = useState(false);
@@ -176,6 +177,14 @@ const Stopwatch = () => {
         console.log(selectedClientObject);
         setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
         console.log(clientProjectList);
+        console.log(selectedClientObject.projects);
+    };
+
+    // To update variable based on dropdown list selection
+    const handleSelectedProject = (event) => {
+        const value = event.target.value;
+        const selectedProjectObject = clientProjectList.find(project => project.project_id === value);
+        setSelectedProject(selectedProjectObject);
     };
 
     // Get the user input from the modal then pass it to the api
@@ -366,7 +375,7 @@ const Stopwatch = () => {
                 />
                 <br />
                 <select
-                    id="clientDropdown"
+                    id="clientDropdownTimeIn"
                     onChange={handleSelectedClient}
                     value={selectedClient ? selectedClient.client_id : ''}
                 >
@@ -378,14 +387,18 @@ const Stopwatch = () => {
                     )) : null}
                 </select>
                 <br />
-                <select id="projectDropdown">
-                    <option defaultValue disabled>
-                        {" "}
-                        Select a Project
-                    </option>
-                    <option>GCash-Mynt</option>
-                    <option>Project Name</option>
-                </select>
+                <select
+                    id="projectDropdownTimeIn"
+                    onChange={handleSelectedProject}
+                    value={selectedProject ? selectedProject.project_id : ''}
+                >
+                    <option value="" disabled>Select Project</option>
+                    {clientProjectList ? clientProjectList.map(project => (
+                        <option key={project.project_id} value={project.project_id}>
+                            {`${project.project_name}`}
+                        </option>
+                    )) : null}
+                </select><br />
             </ModalDash>
             <ModalDash
                 id="timeOutModal"
