@@ -581,7 +581,7 @@ const OTStopwatch = () => {
     // Start stopwatch
     const HandleTimeInOT = () => {
         const timeInData = {
-            time_in: formattedTime,
+            ot_time_in: formattedTime,
             date: formattedDate,
             day: currentDay,
             project_name: selectedProject.project_name,
@@ -649,7 +649,7 @@ const OTStopwatch = () => {
     // If unsuccessful, display an error toast
     const HandleTimeOutOT = () => {
         const timeOutData = {
-            time_out: formattedTime,
+            ot_time_out: formattedTime,
             date: formattedDate,
             day: currentDay,
             project_name: selectedProject.project_name,
