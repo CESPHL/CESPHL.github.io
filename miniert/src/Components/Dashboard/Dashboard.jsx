@@ -196,7 +196,6 @@ const Stopwatch = () => {
     // Close modal
     // Start stopwatch
     const HandleTimeIn = () => {
-        console.log(selectedClient.client_name);
         const timeInData = {
             time_in: formattedTime,
             date: formattedDate,
@@ -204,53 +203,52 @@ const Stopwatch = () => {
             project_name: selectedProject.project_name,
             client_name: selectedClient.client_name,
         };
-        console.log(timeInData);
 
-        // axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timein`, timeInData)
-        //     .then((res) => {
-        //         if (res.status === 200) {
-        //             isClockInDisabled = true;
-        //             isClockOutDisabled = false;
-        //             isClockInOTDisabled = true;
-        //             isClockOutOTDisabled = true;
-        //             localStorage.setItem("isClockInDisabled", isClockInDisabled); // Used in disabling the buttons when refreshing the page
-        //             localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons when refreshing the page
-        //             localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
-        //             localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page
-        //             setHours(0);
-        //             setMinutes(0);
-        //             setSeconds(0);
-        //             localStorage.setItem("hours", 0);
-        //             localStorage.setItem("minutes", 0);
-        //             localStorage.setItem("seconds", 0);
-        //             closeTimeInModal();
-        //             window.location.reload();
-        //         } else if (res.status === 500) {
-        //             toast.error("You are only allowed one time in per day.", {
-        //                 position: toast.POSITION.TOP_CENTER,
-        //                 autoClose: 5000,
-        //                 hideProgressBar: false,
-        //                 closeOnClick: true,
-        //                 pauseOnHover: true,
-        //                 draggable: true,
-        //                 progress: undefined,
-        //                 theme: "light",
-        //             });
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.error(err);
-        //         toast.error("Internal server error. Please report manually instead.", {
-        //             position: toast.POSITION.TOP_CENTER,
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //         });
-        //     });
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timein`, timeInData)
+            .then((res) => {
+                if (res.status === 200) {
+                    isClockInDisabled = true;
+                    isClockOutDisabled = false;
+                    isClockInOTDisabled = true;
+                    isClockOutOTDisabled = true;
+                    localStorage.setItem("isClockInDisabled", isClockInDisabled); // Used in disabling the buttons when refreshing the page
+                    localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons when refreshing the page
+                    localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
+                    localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page
+                    setHours(0);
+                    setMinutes(0);
+                    setSeconds(0);
+                    localStorage.setItem("hours", 0);
+                    localStorage.setItem("minutes", 0);
+                    localStorage.setItem("seconds", 0);
+                    closeTimeInModal();
+                    window.location.reload();
+                } else if (res.status === 500) {
+                    toast.error("You are only allowed one time in per day.", {
+                        position: toast.POSITION.TOP_CENTER,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Internal server error. Please report manually instead.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            });
     };
 
     // Get the current time and date and pass it to the api
@@ -482,6 +480,7 @@ const OTStopwatch = () => {
     // Dropdown related variables
     const [selectedClient, setSelectedClient] = useState(null);
     const [clientProjectList, setClientProjectList] = useState([]);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     // Variables for modals
     const [isTimeInOTModalVisible, setIsTimeInOTModalVisible] = useState(false);
@@ -564,7 +563,17 @@ const OTStopwatch = () => {
         const value = event.target.value;
         const selectedClientObject = talentData.clients.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
+        console.log(selectedClientObject);
         setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
+        console.log(clientProjectList);
+        console.log(selectedClientObject.projects);
+    };
+
+    // To update variable based on dropdown list selection
+    const handleSelectedProject = (event) => {
+        const value = event.target.value;
+        const selectedProjectObject = clientProjectList.find(project => project.project_id === value);
+        setSelectedProject(selectedProjectObject);
     };
 
     // Get the user input from the modal then pass it to the api
@@ -576,14 +585,12 @@ const OTStopwatch = () => {
     // Close modal
     // Start stopwatch
     const HandleTimeInOT = () => {
-        const projectName = document.getElementById("projectDropdown");
-        const selectedProject = projectName.options[projectName.selectedIndex].text;
         const timeInData = {
+            time_in: formattedTime,
             date: formattedDate,
             day: currentDay,
-            client_name: document.getElementById("clientName").value,
-            project_name: selectedProject,
-            ot_time_in: formattedTime,
+            project_name: selectedProject.project_name,
+            client_name: selectedClient.client_name,
         };
 
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeinOT`, timeInData)
@@ -754,32 +761,30 @@ const OTStopwatch = () => {
                 />
                 <br />
                 <select
-                    id="clientDropdownOT"
+                    id="clientDropdownTimeInOT"
                     onChange={handleSelectedClient}
                     value={selectedClient ? selectedClient.client_id : ''}
                 >
-                    <option value="" disabled hidden >Select Client</option>
+                    <option value="" disabled hidden>Select Client</option>
                     {talentData && talentData.clients ? talentData.clients.map(client => (
                         <option key={client.client_id} value={client.client_id}>
                             {`${client.client_name}`}
                         </option>
                     )) : null}
                 </select>
-                <input
-                    type="text"
-                    id="clientName"
-                    name="client"
-                    disabled="disabled"
-                    value="GCash"
-                />
-                <select id="projectDropdown">
-                    <option defaultValue disabled>
-                        {" "}
-                        Select a Project
-                    </option>
-                    <option>GCash-Mynt</option>
-                    <option>Project Name</option>
-                </select>
+                <br />
+                <select
+                    id="projectDropdownTimeInOT"
+                    onChange={handleSelectedProject}
+                    value={selectedProject ? selectedProject.project_id : ''}
+                >
+                    <option value="" disabled>Select Project</option>
+                    {clientProjectList ? clientProjectList.map(project => (
+                        <option key={project.project_id} value={project.project_id}>
+                            {`${project.project_name}`}
+                        </option>
+                    )) : null}
+                </select><br />
             </ModalDash>
             <ModalDash
                 id="timeOutModal"
