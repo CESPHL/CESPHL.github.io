@@ -270,13 +270,24 @@ const ViewProject = () => {
                                 <p>{talent.contact_number}</p>
                                 <p>
                                     {talent.clients && talent.clients.map((client) => (
-                                        client.projects && client.projects.map((project) => (
+                                        client.projects && client.projects.map((project) => {
                                             // Add conditions for the specific project and client
-                                            (client.client_id === accountId && project.project_id === 'YOUR_DESIRED_PROJECT_ID') &&
-                                            <span key={project._id}>
-                                                {project.role}
-                                            </span>
-                                        ))
+                                            const isDesiredClient = client.client_id === accountId;
+                                            const isDesiredProject = project.project_id === projectId;
+
+                                            console.log('Client:', client.client_id, 'Project:', project.project_id);
+                                            console.log('Is Desired Client?', isDesiredClient, 'Is Desired Project?', isDesiredProject);
+
+                                            if (isDesiredClient && isDesiredProject) {
+                                                return (
+                                                    <span key={project._id}>
+                                                        {project.role} {/* Display role here */}
+                                                    </span>
+                                                );
+                                            } else {
+                                                return null;
+                                            }
+                                        })
                                     ))}
                                 </p>
                                 <p>
@@ -290,7 +301,6 @@ const ViewProject = () => {
                             </div>
                         )) : (<p>Loading...</p>)}
                     </div>
-
                 </div>
             </div>
         </div>
