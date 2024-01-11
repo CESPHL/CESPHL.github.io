@@ -12,6 +12,7 @@ import profile from "../Assets/inactive-profile.svg";
 // Files
 import "./Dashboard.css";
 import ModalDash from "../../Components/DashModal/Modal.jsx";
+import Modal from "../Modals/Modal.jsx";
 
 // External functionalities
 import axios from "axios";
