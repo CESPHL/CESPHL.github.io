@@ -132,7 +132,7 @@ const ManageAccount = () => {
                         </div>
                     </div>
                     <div className="table-container">
-                        <div className="six-col header">
+                        <div className="six-col-email-fourth header">
                             <h1>Client ID</h1>
                             <h1>Client Name</h1>
                             <h1>SDM/SDL</h1>
@@ -141,7 +141,7 @@ const ManageAccount = () => {
                             <h1>Actions</h1>
                         </div>
                         {clientData ? clientData.map((client) => (
-                            <div className="six-col data" key={client.client_id}>
+                            <div className="six-col-email-fourth data" key={client.client_id}>
                                 <p>{client.client_id}</p>
                                 <p>{client.client_name}</p>
                                 <p>{client.client_sdm_name}</p>

@@ -12,6 +12,13 @@
     padding-left: 1rem;
 }
 
+.six-col-email-fourth {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 3fr 1fr 1fr;
+    border-bottom: 1px solid #D0D5DD;
+    padding-left: 1rem;
+}
+
 .header {
     background-color: #F9FAFB;
     border-radius: 10px 10px 0px 0px;
@@ -19,7 +26,7 @@
     padding-bottom: 0.3rem;
 }
 
-.header > h1 {
+.header>h1 {
     font-weight: 600;
     font-size: 16px;
     color: #656B75;
@@ -31,7 +38,7 @@
     background-color: #FFFFFF;
 }
 
-.data > p {
+.data>p {
     font-size: 16px;
     color: #656B75;
     margin: 0;
@@ -40,7 +47,8 @@
     padding: 0.5rem 0;
 }
 
-.header >h1:last-of-type, .data > p:last-of-type {
+.header>h1:last-of-type,
+.data>p:last-of-type {
     justify-content: center;
 }
 
