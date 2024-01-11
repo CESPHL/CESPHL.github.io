@@ -7,7 +7,7 @@ import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/building-inactive.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
-import reports from "../Assets/report-inactive.svg";
+import reports from "../Assets/report-active.svg";
 import profile from "../Assets/inactive-profile.svg";
 import exporticon from "../Assets/export.svg";
 

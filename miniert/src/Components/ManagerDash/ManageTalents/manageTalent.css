@@ -1,0 +1,34 @@
+.main-content {
+    margin: 1.25rem;
+}
+
+#uploadBtn, #assignBtn {
+    border-radius: 7px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+#uploadBtn {
+    border: 1px solid #D0D5DD;
+    background-color: #FFF;
+    color: #344054;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    margin-right: 1rem;
+}
+
+#assignBtn {
+    border: 1px solid #684CE2;
+    background-color: #684CE2;
+    color: #FFF;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.five-col {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr 2fr 1fr;
+    border-bottom: 1px solid #D0D5DD;
+    padding-left: 1rem;
+}

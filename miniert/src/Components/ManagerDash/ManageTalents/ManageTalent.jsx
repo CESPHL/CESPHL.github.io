@@ -1,16 +1,16 @@
 // React imports
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 // Icons
-import hourglass from "../../Assets/hourglass.svg"
-import logicon from "../../Assets/logout.svg";
-import accIcon from "../../Assets/building-inactive.svg";
-import talents from "../../Assets/talents-active.svg";
-import profile from "../../Assets/inactive-profile.svg";
-import users from "../../Assets/users-inactive.svg";
-import view from "../../Assets/view-icn.svg";
-import edit from "../../Assets/edit-icn.svg";
+import hourglass from '../Assets/hourglass.svg';
+import logicon from '../Assets/logout.svg';
+import accIcon from '../Assets/building-inactive.svg';
+import talents from '../Assets/talents-active.svg';
+import reports from '../Assets/report-inactive.svg';
+import profile from '../Assets/inactive-profile.svg';
+import view from '../Assets/view-icn.svg';
+import edit from '../Assets/edit-icn.svg';
 
 // Files
 import "./manageTalents.css";
@@ -31,10 +31,10 @@ const CurrentDate = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    const formattedDate = currentDate.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
     });
 
     return <p>{formattedDate}</p>;
@@ -106,14 +106,7 @@ const ManageTalents = () => {
                 <div className="dash-main">
                     <img src={hourglass} alt="" />
                     <span>
-                        <span
-                            style={{
-                                fontWeight: "bold",
-                                color: "#684CE2",
-                                fontSize: "14px",
-                                paddingLeft: "0px",
-                            }}
-                        >
+                        <span style={{ fontWeight: 'bold', color: '#684CE2', fontSize: '14px', paddingLeft: '0px' }}>
                             Collabera Digital
                         </span>
                         <br />
@@ -124,25 +117,25 @@ const ManageTalents = () => {
                     <p>NAVIGATION</p>
                     <div className="dash-1">
                         <li>
-                            <NavLink to="/admin/manage-accounts">
+                            <NavLink to="/manager/manage-accounts">
                                 <img src={accIcon} alt="dashboard icon" />
                                 <span className="inactive">Manage Accounts</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/admin/manage-users">
-                                <img src={users} alt="users icon" />
-                                <span className="inactive">Manage Users</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/admin/manage-talents" activeclassname="active">
-                                <img src={talents} alt="clock icon" />
+                            <NavLink to="/manager/manage-talents">
+                                <img src={talents} alt="talents icon" activeclassname="active" />
                                 <span>Manage Talents</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/admin/profile">
+                            <NavLink to="/manager/reports">
+                                <img src={reports} alt="reports icon" />
+                                <span className="inactive">Reports</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/manager/profile">
                                 <img src={profile} alt="profile icon" />
                                 <span className="inactive">Profile</span>
                             </NavLink>

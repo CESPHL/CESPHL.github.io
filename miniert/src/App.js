@@ -15,7 +15,6 @@ import Dashboard from "./Components/Dashboard/Dashboard.jsx";
 import ManagerDashboard from "./Components/ManagerDash/ManagerDash.jsx";
 import AddAccount from "./Components/ManagerDash/AddAccount.jsx";
 import EditAccount from "./Components/ManagerDash/EditAccount.jsx";
-import ManageTalent from "./Components/ManagerDash/ManageTalent.jsx";
 import AddTalent from "./Components/ManagerDash/AddTalent.jsx";
 
 // Manager pages
@@ -23,6 +22,8 @@ import ManagerViewAccount from "./Components/ManagerDash/ViewAccount.jsx";
 import ManagerAddProject from "./Components/ManagerDash/AddProject.jsx";
 import ManagerViewProject from "./Components/ManagerDash/ViewProject.jsx";
 import ManagerEditProject from "./Components/ManagerDash/EditProject.jsx";
+    // Manage Talents
+    import ManageTalent from "./Components/ManagerDash/ManageTalents/ManageTalent.jsx";
 import Reports from "./Components/ManagerDash/Reports.jsx";
 import ManagerProfile from "./Components/ManagerDash/Profile.jsx";
 import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
