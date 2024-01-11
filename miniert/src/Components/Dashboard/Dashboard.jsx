@@ -139,7 +139,7 @@ const Stopwatch = () => {
             });
     }, [employee_id]);
 
-
+    
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentDate(new Date());
@@ -335,40 +335,38 @@ const Stopwatch = () => {
                 handleClose={closeTimeInModal}
                 handleSave={HandleTimeIn}
             >
-                <div className="modal-content">
-                    <p>Confirm Clock In</p>
-                    <input
-                        type="text"
-                        id="talentName"
-                        name="name"
-                        disabled="disabled"
-                        value={talentData.first_name + " " + talentData.last_name}
-                    />
-                    <br />
-                    <input
-                        type="text"
-                        id="timeIn"
-                        name="date-time"
-                        disabled="disabled"
-                        value={formattedDate + " | " + formattedTime}
-                    />
-                    <br />
-                    <input
-                        type="text"
-                        id="clientName"
-                        name="client"
-                        disabled="disabled"
-                        value="GCash"
-                    />
-                    <select id="projectDropdown">
-                        <option defaultValue disabled>
-                            {" "}
-                            Select a Project
-                        </option>
-                        <option>GCash-Mynt</option>
-                        <option>Project Name</option>
-                    </select>
-                </div>
+                <p>Confirm Clock In</p>
+                <input
+                    type="text"
+                    id="talentName"
+                    name="name"
+                    disabled="disabled"
+                    value={talentData.first_name + " " + talentData.last_name}
+                />
+                <br />
+                <input
+                    type="text"
+                    id="timeIn"
+                    name="date-time"
+                    disabled="disabled"
+                    value={formattedDate + " | " + formattedTime}
+                />
+                <br />
+                <input
+                    type="text"
+                    id="clientName"
+                    name="client"
+                    disabled="disabled"
+                    value="GCash"
+                />
+                <select id="projectDropdown">
+                    <option defaultValue disabled>
+                        {" "}
+                        Select a Project
+                    </option>
+                    <option>GCash-Mynt</option>
+                    <option>Project Name</option>
+                </select>
             </ModalDash>
             <ModalDash
                 id="timeOutModal"
