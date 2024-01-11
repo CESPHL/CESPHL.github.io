@@ -173,6 +173,7 @@ const Stopwatch = () => {
         const value = event.target.value;
         const selectedClientObject = talentData.clients.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
+        console.log(selectedClientObject);
         setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
         console.log(clientProjectList);
     };
