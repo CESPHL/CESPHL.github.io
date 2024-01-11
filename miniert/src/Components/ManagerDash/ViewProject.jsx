@@ -128,20 +128,19 @@ const ViewProject = () => {
 
     // Function to get the role for a talent
     const getRoleForTalent = (talent) => {
-        console.log("projectData", projectData);
         if (projectData && projectData.projects) {
             const project = projectData.projects.find(p => p.project_id === projectId);
-            console.log("project", project);
             if (project && project.talents) {
                 const talentInfo = project.talents.find(t => t === talent.employee_id);
-                console.log("talentInfo", talentInfo);
                 if (talentInfo) {
-                    console.log("Role:", talentInfo.role);
-                    return talentInfo.role;
+                    // Since project.talents contains only employee IDs, we need to find the corresponding talent in the talentList
+                    const matchingTalent = talentList.find(t => t.employee_id === talentInfo);
+                    if (matchingTalent) {
+                        return matchingTalent.role || "N/A";
+                    }
                 }
             }
         }
-        console.log("Role not found, returning 'N/A'");
         return "N/A";
     };
 
