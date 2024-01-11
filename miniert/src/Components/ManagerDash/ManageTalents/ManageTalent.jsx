@@ -47,7 +47,7 @@ const ManageTalents = () => {
     // Check for account
     // To be used for security purposes to prevent url manipulation
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/${employee_id}`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
             .then((response) => {
                 console.log(response.data);
             })
