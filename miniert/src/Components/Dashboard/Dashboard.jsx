@@ -174,6 +174,7 @@ const Stopwatch = () => {
         const selectedClientObject = talentData.clients.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
         setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
+        console.log(clientProjectList);
     };
 
     // Get the user input from the modal then pass it to the api
