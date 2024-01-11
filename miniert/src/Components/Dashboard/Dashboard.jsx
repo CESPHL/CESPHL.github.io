@@ -268,6 +268,7 @@ const Stopwatch = () => {
             project_name: selectedProject.project_name,
             client_name: selectedClient.client_name,
         };
+        console.log(timeOutData);
 
         axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeout`,timeOutData)
             .then((res) => {
