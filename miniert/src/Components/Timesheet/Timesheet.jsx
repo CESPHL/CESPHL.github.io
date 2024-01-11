@@ -1,12 +1,19 @@
+// React imports
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Timesheet.css';
+
+// Icons
 import hourglass from '../Assets/hourglass.svg';
 import logicon from '../Assets/logout.svg';
 import dashicn from '../Assets/inactive-dash.svg';
 import clock from '../Assets/active-clock.svg';
 import profile from '../Assets/inactive-profile.svg';
+
+// Files
+import './Timesheet.css';
+
+// External functionalities
 import axios from 'axios';
 
 const CurrentDate = () => {
@@ -258,13 +265,6 @@ const Timesheet = () => {
 						<span>{formatDate(groupedData[selectedWeekIndex]?.week)}</span>
 						<button onClick={handlePrevWeek} disabled={selectedWeekIndex === 0}>{'<'}</button>
 						<button onClick={handleNextWeek} disabled={selectedWeekIndex === groupedData.length - 1}>{'>'}</button>
-						<div className="dropdown">
-							<select>
-								<option value="" disabled defaultValue>Sort</option>
-								<option value="">Option 1</option>
-								<option value="">Option 2</option>
-							</select>
-						</div>
 					</div>
 					<div>
 						<TimesheetTable groupedData={groupedData} selectedWeekIndex={selectedWeekIndex} />

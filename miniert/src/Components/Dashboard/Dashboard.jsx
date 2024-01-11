@@ -1,12 +1,19 @@
+// React imports
 import React, { useState, useEffect, Component } from "react";
 import { NavLink } from "react-router-dom";
-import "./Dashboard.css";
-import ModalDash from "../../Components/DashModal/Modal.jsx";
+
+// Icons
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import dashicn from "../Assets/dashboard-icn.svg";
 import clock from "../Assets/inactive-clock.svg";
 import profile from "../Assets/inactive-profile.svg";
+
+// Files
+import "./Dashboard.css";
+import ModalDash from "../../Components/DashModal/Modal.jsx";
+
+// External functionalities
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
