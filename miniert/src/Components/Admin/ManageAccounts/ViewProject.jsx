@@ -79,7 +79,6 @@ const ViewProject = () => {
     useEffect(() => {
         if (clientData && clientData.length > 0) {
             const firstClient = clientData[0];
-            console.log(firstClient);
             document.getElementById("clientName").value = firstClient.client_name;
             document.getElementById("sdmName").value = firstClient.client_sdm_name;
             document.getElementById("sdmEmail").value = firstClient.client_sdm_email;

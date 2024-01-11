@@ -36,9 +36,14 @@ const CurrentDate = () => {
 }
 
 const ViewProject = () => {
+    // Variables for data
     const employee_id = localStorage.getItem("employee_id");
     const [clientData, setClientData] = useState([]);
     const [projectData, setProjectData] = useState({});
+    const [talentsId, setTalentsId] = useState([]);
+    const [talentList, setTalentList] = useState([]);
+
+    // Variables from URL
     const currentUrl = new URL(window.location.href);
     const pathSegments = currentUrl.pathname.split('/').filter(segment => segment !== '');
     const accountIdIndex = pathSegments.indexOf('view-account') + 1;
@@ -46,9 +51,7 @@ const ViewProject = () => {
     const projectIdIndex = pathSegments.indexOf('view-project') + 1;
     const projectId = pathSegments[projectIdIndex];
 
-    console.log(accountId);
-    console.log(projectId);
-
+    // Get client list from manager and store it to clientData
     useEffect(() => {
         axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
             .then((response) => {
@@ -70,29 +73,23 @@ const ViewProject = () => {
             });
     }, [employee_id]);
 
+    // Read client data variable, convert it to an object, display client data, then store project data to projectData
     useEffect(() => {
         if (clientData && clientData.length > 0) {
             const firstClient = clientData[0];
-            console.log("1st condition passed.");
-            console.log(firstClient);
-            console.log(firstClient.projects);
             document.getElementById("clientName").value = firstClient.client_name;
             document.getElementById("sdmName").value = firstClient.client_sdm_name;
             document.getElementById("sdmEmail").value = firstClient.client_sdm_email;
             if (firstClient.projects) {
-                const projectlist = firstClient.projects.map(project => project.project_id);
-                console.log(projectlist);
                 const projectArray = firstClient.projects.filter(project => project.project_id === projectId);
-                console.log(projectArray);
-                console.log(projectArray[0]);
                 setProjectData(projectArray[0]);
-                console.log(projectData);
+                setTalentsId(projectArray[0].talents);
             }
         }
     }, [clientData]);
 
+    // Display the project data to the front end
     useEffect(() => {
-        // Display the project data to the front end
         if (projectData && Object.keys(projectData).length > 0) {
             document.getElementById("projectId").value = projectData.project_id;
             document.getElementById("projectName").value = projectData.project_name;
@@ -101,6 +98,30 @@ const ViewProject = () => {
             document.getElementById("projectStatus").value = projectData.status;
         }
     }, [projectData])
+
+    // Find all talents from array provided from client data then store it to variable
+    useEffect(() => {
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/`)
+            .then((response) => {
+                // Convert talentsId array elements to integers
+                const talentsIdIntegers = talentsId.map(id => parseInt(id, 10));
+                const filteredData = response.data.filter(employee => talentsIdIntegers.includes(employee.employee_id));
+                setTalentList(filteredData);
+            })
+            .catch((err) => {
+                console.error("Error retrieving talent info", err);
+                toast.error("Error retrieving client info. Please try again later.", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+    }, [talentsId]);
 
     return (
         <div className="dashboard">
@@ -229,14 +250,32 @@ const ViewProject = () => {
                             </form>
                         </div>
                     </div>
-                    <div className="project-table">
-                        <div className="project-header">
+                    <div className="table-container">
+                        <div className="six-col header">
                             <h1>ID</h1>
                             <h1>Talent Name</h1>
                             <h1>Email</h1>
                             <h1>Contact No</h1>
                             <h1>Role</h1>
+                            <h1>Actions</h1>
                         </div>
+                        {talentList ? talentList.map((talent) => (
+                            <div className="six-col data" key={talent.employee_id}>
+                                <p>{talent.employee_id}</p>
+                                <p>{`${talent.first_name} ${talent.last_name}`}</p>
+                                <p>{talent.email}</p>
+                                <p>{talent.contact_number}</p>
+                                <p>{talent.role}</p>
+                                <p>
+                                    <NavLink to={`/manager/manage-talents/view-talent/${talent.employee_id}`}>
+                                        <img src={view} />
+                                    </NavLink>
+                                    <NavLink to={`/manager/manage-talents/edit-talent/${talent.employee_id}`}>
+                                        <img src={edit} />
+                                    </NavLink>
+                                </p>
+                            </div>
+                        )) : (<p>Loading...</p>)}
                     </div>
                 </div>
             </div>
