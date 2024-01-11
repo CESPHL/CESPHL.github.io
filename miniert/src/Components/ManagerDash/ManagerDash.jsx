@@ -142,7 +142,7 @@ const ManageAccount = () => {
                             <h1>SDM/SDL Contact</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData ? clientData.map((client) => (
+                        {clientData.clients ? clientData.clients.map((client) => (
                             <div className="six-col data" key={client.client_id}>
                                 <p>{client.client_id}</p>
                                 <p>{client.client_name}</p>
