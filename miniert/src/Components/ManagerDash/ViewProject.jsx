@@ -109,6 +109,7 @@ const ViewProject = () => {
                 const talentsIdIntegers = talentsId.map(id => parseInt(id, 10));
                 const filteredData = response.data.filter(employee => talentsIdIntegers.includes(employee.employee_id));
                 setTalentList(filteredData);
+                console.log(filteredData);
             })
             .catch((err) => {
                 console.error("Error retrieving talent info", err);
