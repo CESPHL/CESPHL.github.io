@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 // Icons
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
-import accIcon from "../Assets/building-active.svg";
+import accIcon from "../Assets/building-inactive.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import reports from "../Assets/report-inactive.svg";
 import profile from "../Assets/active-profile.svg";
