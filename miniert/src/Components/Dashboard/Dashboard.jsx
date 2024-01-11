@@ -369,11 +369,11 @@ const Stopwatch = () => {
                     value={selectedClient ? selectedClient.client_id : ''}
                 >
                     <option value="" disabled>Select Client</option>
-                    {talentData ? talentData.clients.map(client => (
+                    {talentData && talentData.clients ? talentData.clients.map(client => (
                         <option key={client.client_id} value={client.client_id}>
                             {`${client.client_name}`}
                         </option>
-                    )) : "" }
+                    )) : null}
                 </select>
                 <br />
                 <select id="projectDropdown">
@@ -746,11 +746,11 @@ const OTStopwatch = () => {
                     value={selectedClient ? selectedClient.client_id : ''}
                 >
                     <option value="" disabled>Select Client</option>
-                    {talentData ? talentData.clients.map(client => (
+                    {talentData && talentData.clients ? talentData.clients.map(client => (
                         <option key={client.client_id} value={client.client_id}>
                             {`${client.client_name}`}
                         </option>
-                    )) : "" }
+                    )) : null}
                 </select>
                 <input
                     type="text"
