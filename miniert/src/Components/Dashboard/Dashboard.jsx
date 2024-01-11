@@ -196,61 +196,61 @@ const Stopwatch = () => {
     // Close modal
     // Start stopwatch
     const HandleTimeIn = () => {
-        const projectName = document.getElementById("projectDropdown");
-        const selectedProject = projectName.options[projectName.selectedIndex].text;
+        console.log(selectedClient.client_name);
         const timeInData = {
             time_in: formattedTime,
             date: formattedDate,
             day: currentDay,
-            project_name: selectedProject,
-            client_name: document.getElementById("clientName").value,
+            project_name: selectedProject.project_name,
+            client_name: selectedClient.client_name,
         };
+        console.log(timeInData);
 
-        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timein`, timeInData)
-            .then((res) => {
-                if (res.status === 200) {
-                    isClockInDisabled = true;
-                    isClockOutDisabled = false;
-                    isClockInOTDisabled = true;
-                    isClockOutOTDisabled = true;
-                    localStorage.setItem("isClockInDisabled", isClockInDisabled); // Used in disabling the buttons when refreshing the page
-                    localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons when refreshing the page
-                    localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
-                    localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page
-                    setHours(0);
-                    setMinutes(0);
-                    setSeconds(0);
-                    localStorage.setItem("hours", 0);
-                    localStorage.setItem("minutes", 0);
-                    localStorage.setItem("seconds", 0);
-                    closeTimeInModal();
-                    window.location.reload();
-                } else if (res.status === 500) {
-                    toast.error("You are only allowed one time in per day.", {
-                        position: toast.POSITION.TOP_CENTER,
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                toast.error("Internal server error. Please report manually instead.", {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            });
+        // axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timein`, timeInData)
+        //     .then((res) => {
+        //         if (res.status === 200) {
+        //             isClockInDisabled = true;
+        //             isClockOutDisabled = false;
+        //             isClockInOTDisabled = true;
+        //             isClockOutOTDisabled = true;
+        //             localStorage.setItem("isClockInDisabled", isClockInDisabled); // Used in disabling the buttons when refreshing the page
+        //             localStorage.setItem("isClockOutDisabled", isClockOutDisabled); // Used in disabling the buttons when refreshing the page
+        //             localStorage.setItem("isClockInOTDisabled", isClockInOTDisabled); // Used in disabling the buttons when refreshing the page
+        //             localStorage.setItem("isClockOutOTDisabled", isClockOutOTDisabled); // Used in disabling the buttons when refreshing the page
+        //             setHours(0);
+        //             setMinutes(0);
+        //             setSeconds(0);
+        //             localStorage.setItem("hours", 0);
+        //             localStorage.setItem("minutes", 0);
+        //             localStorage.setItem("seconds", 0);
+        //             closeTimeInModal();
+        //             window.location.reload();
+        //         } else if (res.status === 500) {
+        //             toast.error("You are only allowed one time in per day.", {
+        //                 position: toast.POSITION.TOP_CENTER,
+        //                 autoClose: 5000,
+        //                 hideProgressBar: false,
+        //                 closeOnClick: true,
+        //                 pauseOnHover: true,
+        //                 draggable: true,
+        //                 progress: undefined,
+        //                 theme: "light",
+        //             });
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.error(err);
+        //         toast.error("Internal server error. Please report manually instead.", {
+        //             position: toast.POSITION.TOP_CENTER,
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //             theme: "light",
+        //         });
+        //     });
     };
 
     // Get the current time and date and pass it to the api
