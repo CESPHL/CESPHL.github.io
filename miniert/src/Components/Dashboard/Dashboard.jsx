@@ -132,14 +132,13 @@ const Stopwatch = () => {
                 const data = response.data;
                 // Set the data in your component state
                 setTalentData(data);
-                console.log(data);
             })
             .catch((err) => {
                 console.log(err);
             });
     }, [employee_id]);
 
-    
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentDate(new Date());
@@ -352,6 +351,15 @@ const Stopwatch = () => {
                     value={formattedDate + " | " + formattedTime}
                 />
                 <br />
+                <select id="employeeDropdown">
+                    <option value="" disabled>Select Employee</option>
+                    {talentList.map(talent => (
+                        <option key={talent.employee_id} value={talent.employee_id}>
+                            {`${talent.first_name} ${talent.last_name}`}
+                        </option>
+                    ))}
+                </select>
+                <br />
                 <input
                     type="text"
                     id="clientName"
@@ -420,7 +428,6 @@ const OTStopwatch = () => {
     const employee_id = localStorage.getItem("employee_id");
     const [currentDate, setCurrentDate] = useState(new Date());
     const currentTime = new Date();
-    // console.log(isTimedInOT());
     const options = { hour: "numeric", minute: "2-digit", hour12: true };
     const formattedTime = currentTime.toLocaleTimeString("en-US", options);
     const formattedDate = currentDate.toLocaleDateString("en-US", {
@@ -447,6 +454,7 @@ const OTStopwatch = () => {
     const [secondsOT, setSecondsOT] = useState(
         parseInt(localStorage.getItem("secondsOT")) || 0
     );
+    const [selectedClient, setSelectedClient] = useState(null);
 
     // Variables for modals
     const [isTimeInOTModalVisible, setIsTimeInOTModalVisible] = useState(false);
@@ -487,10 +495,7 @@ const OTStopwatch = () => {
     }, [hoursOT, minutesOT, secondsOT]);
 
     useEffect(() => {
-        axios
-            .get(
-                `https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}`
-            )
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}`)
             .then((response) => {
                 // Assuming the response is an array of objects
                 const data = response.data;
@@ -510,14 +515,6 @@ const OTStopwatch = () => {
         return () => clearInterval(intervalIdOT);
     }, []);
 
-    // console.log("Hours: " + hours);
-    // console.log("Minutes: " + minutes);
-    // console.log("Seconds: " + seconds);
-
-    // localStorage.setItem("hours", hours);
-    // localStorage.setItem("minutes", minutes);
-    // localStorage.setItem("seconds", seconds);
-
     // Opening and closing of the time in modal
     const openTimeInOTModal = () => {
         setIsTimeInOTModalVisible(true);
@@ -533,6 +530,14 @@ const OTStopwatch = () => {
 
     const closeTimeOutOTModal = () => {
         setIsTimeOutOTModalVisible(false);
+    };
+
+    // To update variable based on dropdown list selection
+    const handleSelectedClient = (event) => {
+        const value = event.target.value;
+        const selectedClientObject = clientList.find(client => client.client_id === value);
+        setSelectedClient(selectedClientObject);
+        setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
     };
 
     // Get the user input from the modal then pass it to the api
@@ -554,11 +559,7 @@ const OTStopwatch = () => {
             ot_time_in: formattedTime,
         };
 
-        axios
-            .patch(
-                `https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeinOT`,
-                timeInData
-            )
+        axios.patch(`https://cesphl-github-io-backend.vercel.app/api/talents/${employee_id}/timeinOT`, timeInData)
             .then((res) => {
                 if (res.status === 200) {
                     isClockInDisabled = true;
@@ -727,6 +728,18 @@ const OTStopwatch = () => {
                     value={formattedDate + " | " + formattedTime}
                 />
                 <br />
+                <select
+                    id="clientDropdown"
+                    onChange={handleSelectedClient}
+                    value={selectedClient ? selectedClient.client_id : ''}
+                >
+                    <option value="" disabled>Select Client</option>
+                    {talentData.clients.map(client => (
+                        <option key={client.client_id} value={client.client_id}>
+                            {`${client.client_name}`}
+                        </option>
+                    ))}
+                </select>
                 <input
                     type="text"
                     id="clientName"
