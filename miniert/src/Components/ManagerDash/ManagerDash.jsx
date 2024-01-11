@@ -1,6 +1,8 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "./managerDash.css";
+
+// Icons
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
 import accIcon from "../Assets/acc-active.svg";
@@ -9,6 +11,11 @@ import reports from "../Assets/report-inactive.svg";
 import profile from "../Assets/inactive-profile.svg";
 import view from "../Assets/view-icn.svg";
 import edit from "../Assets/edit-icn.svg";
+
+// Files
+import "./managerDash.css";
+
+// External functionalities
 import axios from "axios";
 
 const CurrentDate = () => {
@@ -116,44 +123,37 @@ const ManageAccount = () => {
                 </div>
                 <div className="manage-content">
                     <div className="search-bar">
-                        <form action=" ">
+                        <form>
                             <input type="text" placeholder="Search Client" />
                         </form>
                         <div className="buttons">
                             <button className="upload-btn">Upload</button>
-                            <NavLink to="/manager/manage-accounts/add-account">
+                            <NavLink to="add-account">
                                 <button className="add-btn">Add</button>
                             </NavLink>
                         </div>
                     </div>
-                    <div className="customTableContainer">
-                        <div className="customTableHeader">
+                    <div className="table-container">
+                        <div className="six-col header">
                             <h1>Client ID</h1>
                             <h1>Client Name</h1>
-                            <h1>Client POC Name</h1>
-                            <h1>Client POC Email</h1>
-                            <h1>Projects</h1>
+                            <h1>SDM/SDL</h1>
+                            <h1>SDM/SDL Email</h1>
+                            <h1>SDM/SDL Contact</h1>
                             <h1>Actions</h1>
                         </div>
-                        {clientData.clients ? clientData.clients.map((client) => (
-                            <div className="customTableContent" key={client.client_id}>
+                        {clientData ? clientData.map((client) => (
+                            <div className="six-col data" key={client.client_id}>
                                 <p>{client.client_id}</p>
                                 <p>{client.client_name}</p>
-                                <p>{client.client_poc_name}</p>
-                                <p>{client.client_poc_email}</p>
+                                <p>{client.client_sdm_name}</p>
+                                <p>{client.client_sdm_email}</p>
+                                <p>{client.client_sdm_contact}</p>
                                 <p>
-                                    {client.projects ? (
-                                        client.projects.map((project) => (
-                                            <span key={project._id}>{project.project_name}, </span>
-                                        ))
-                                    ) : (
-                                        "No projects"
-                                    )}</p>
-                                <p>
-                                    <NavLink to={`/manager/manage-accounts/view-account/${client.client_id}`}>
+                                    <NavLink to={`${client.client_sdm_id}/view-account/${client.client_id}`}>
                                         <img src={view} />
                                     </NavLink>
-                                    <NavLink to={`/manager/manage-accounts/edit-account/${client.client_id}`}>
+                                    <NavLink to={`${client.client_sdm_id}/edit-account/${client.client_id}`}>
                                         <img src={edit} />
                                     </NavLink>
                                 </p>
