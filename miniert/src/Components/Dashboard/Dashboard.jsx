@@ -83,6 +83,10 @@ const Stopwatch = () => {
         parseInt(localStorage.getItem("seconds")) || 0
     );
 
+    // Dropdown related variables
+    const [selectedClient, setSelectedClient] = useState(null);
+    const [clientProjectList, setClientProjectList] = useState([]);
+
     // Variables for modals
     const [isTimeInModalVisible, setIsTimeInModalVisible] = useState(false);
     const [isTimeOutModalVisible, setIsTimeOutModalVisible] = useState(false);
@@ -162,6 +166,14 @@ const Stopwatch = () => {
 
     const closeTimeOutModal = () => {
         setIsTimeOutModalVisible(false);
+    };
+
+    // To update variable based on dropdown list selection
+    const handleSelectedClient = (event) => {
+        const value = event.target.value;
+        const selectedClientObject = talentData.clients.find(client => client.client_id === value);
+        setSelectedClient(selectedClientObject);
+        setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
     };
 
     // Get the user input from the modal then pass it to the api
@@ -351,22 +363,19 @@ const Stopwatch = () => {
                     value={formattedDate + " | " + formattedTime}
                 />
                 <br />
-                <select id="employeeDropdown">
-                    <option value="" disabled>Select Employee</option>
-                    {talentList.map(talent => (
-                        <option key={talent.employee_id} value={talent.employee_id}>
-                            {`${talent.first_name} ${talent.last_name}`}
+                <select
+                    id="clientDropdown"
+                    onChange={handleSelectedClient}
+                    value={selectedClient ? selectedClient.client_id : ''}
+                >
+                    <option value="" disabled>Select Client</option>
+                    {talentData.clients.map(client => (
+                        <option key={client.client_id} value={client.client_id}>
+                            {`${client.client_name}`}
                         </option>
                     ))}
                 </select>
                 <br />
-                <input
-                    type="text"
-                    id="clientName"
-                    name="client"
-                    disabled="disabled"
-                    value="GCash"
-                />
                 <select id="projectDropdown">
                     <option defaultValue disabled>
                         {" "}
@@ -454,7 +463,10 @@ const OTStopwatch = () => {
     const [secondsOT, setSecondsOT] = useState(
         parseInt(localStorage.getItem("secondsOT")) || 0
     );
+
+    // Dropdown related variables
     const [selectedClient, setSelectedClient] = useState(null);
+    const [clientProjectList, setClientProjectList] = useState([]);
 
     // Variables for modals
     const [isTimeInOTModalVisible, setIsTimeInOTModalVisible] = useState(false);
@@ -535,7 +547,7 @@ const OTStopwatch = () => {
     // To update variable based on dropdown list selection
     const handleSelectedClient = (event) => {
         const value = event.target.value;
-        const selectedClientObject = clientList.find(client => client.client_id === value);
+        const selectedClientObject = talentData.clients.find(client => client.client_id === value);
         setSelectedClient(selectedClientObject);
         setClientProjectList(selectedClientObject ? selectedClientObject.projects : []);
     };
@@ -729,7 +741,7 @@ const OTStopwatch = () => {
                 />
                 <br />
                 <select
-                    id="clientDropdown"
+                    id="clientDropdownOT"
                     onChange={handleSelectedClient}
                     value={selectedClient ? selectedClient.client_id : ''}
                 >
