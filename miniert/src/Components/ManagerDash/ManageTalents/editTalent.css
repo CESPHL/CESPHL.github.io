@@ -1,0 +1,27 @@
+.edit-content {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+.edit-content > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-content > div > p {
+    font-weight: 600;
+    color: #344054;
+}
+
+.edit-content > div > input {
+    border: 1px solid #D0D5DD;
+    border-radius: 7px;
+    padding: 0.5rem 0.7rem;
+}
+
+.button-row {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: flex-end;
+}

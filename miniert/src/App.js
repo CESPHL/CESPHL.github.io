@@ -15,7 +15,6 @@ import Dashboard from "./Components/Dashboard/Dashboard.jsx";
 import ManagerDashboard from "./Components/ManagerDash/ManagerDash.jsx";
 import AddAccount from "./Components/ManagerDash/AddAccount.jsx";
 import EditAccount from "./Components/ManagerDash/EditAccount.jsx";
-import AddTalent from "./Components/ManagerDash/AddTalent.jsx";
 
 // Manager pages
 import ManagerViewAccount from "./Components/ManagerDash/ViewAccount.jsx";
@@ -23,7 +22,10 @@ import ManagerAddProject from "./Components/ManagerDash/AddProject.jsx";
 import ManagerViewProject from "./Components/ManagerDash/ViewProject.jsx";
 import ManagerEditProject from "./Components/ManagerDash/EditProject.jsx";
     // Manage Talents
-    import ManageTalent from "./Components/ManagerDash/ManageTalents/ManageTalent.jsx";
+    import ManagerManageTalents from "./Components/ManagerDash/ManageTalents/ManageTalent.jsx";
+    import ManagerAssignTalents from "./Components/ManagerDash/ManageTalents/AssignTalent.jsx";
+    import ManagerViewTalents from "./Components/ManagerDash/ManageTalents/ViewTalent.jsx";
+    import ManagerEditTalents from "./Components/ManagerDash/ManageTalents/EditTalent.jsx";
 import Reports from "./Components/ManagerDash/Reports.jsx";
 import ManagerProfile from "./Components/ManagerDash/Profile.jsx";
 import ManagerChangePass from "./Components/ManagerDash/ChangePassword.jsx";
@@ -56,28 +58,36 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/resetsuccess" element={<Screen4 />} />
-        <Route path="/reset-password/:token" element={<Screen3 />} />
-        <Route path="/sentemail" element={<Screen2 />} />
-        <Route path="/forgotpass" element={<Screen1 />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/timesheet" element={<Timesheet />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/changepass" element={<ChangePass />} />
+        {/* Login related pages */}
+            <Route path="/" element={<Login />} />
+            <Route path="/resetsuccess" element={<Screen4 />} />
+            <Route path="/reset-password/:token" element={<Screen3 />} />
+            <Route path="/sentemail" element={<Screen2 />} />
+            <Route path="/forgotpass" element={<Screen1 />} />
+        { /* Talent pages */ }
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/timesheet" element={<Timesheet />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/changepass" element={<ChangePass />} />
         {/* Manager pages */}
-        <Route path="/manager/manage-accounts" element={<ManagerDashboard />} />
-        <Route path="/manager/manage-accounts/add-account" element={<AddAccount />} />
-        <Route path="/manager/manage-accounts/edit-account/:accountid" element={<EditAccount />} />
-        <Route path="/manager/manage-accounts/view-account/:accountid" element={<ManagerViewAccount />} />
-        <Route path="/manager/manage-accounts/edit-account/:accountid/add-project" element={<ManagerAddProject />} />
-        <Route path="/manager/manage-accounts/view-account/:accountid/view-project/:projectid" element={<ManagerViewProject />} />
-        <Route path="/manager/manage-accounts/view-account/:accountid/edit-project/:projectid" element={<ManagerEditProject />} />
-        <Route path="/manager/manage-talents" element={<ManageTalent />} />
-        <Route path="/manager/manage-talents/add-account" element={<AddTalent />} />
-        <Route path="/manager/reports" element={<Reports />} />
-        <Route path="/manager/profile" element={<ManagerProfile />} />
-        <Route path="/manager/profile/changepass" element={<ManagerChangePass />} />
+            {/* Manage Accounts */}
+                <Route path="/manager/manage-accounts" element={<ManagerDashboard />} />
+                <Route path="/manager/manage-accounts/add-account" element={<AddAccount />} />
+                <Route path="/manager/manage-accounts/edit-account/:accountid" element={<EditAccount />} />
+                <Route path="/manager/manage-accounts/view-account/:accountid" element={<ManagerViewAccount />} />
+                <Route path="/manager/manage-accounts/edit-account/:accountid/add-project" element={<ManagerAddProject />} />
+                <Route path="/manager/manage-accounts/view-account/:accountid/view-project/:projectid" element={<ManagerViewProject />} />
+                <Route path="/manager/manage-accounts/view-account/:accountid/edit-project/:projectid" element={<ManagerEditProject />} />
+            {/* Manage Talents */}
+                <Route path="/manager/manage-talents" element={<ManagerManageTalents />} />
+                <Route path="/manager/manage-talents/assign-talent" element={<ManagerAssignTalents />} />
+                <Route path="/manager/manage-talents/view-talent/:talent_id" element={<ManagerViewTalents />} />
+                <Route path="/manager/manage-talents/edit-talent/:talent_id" element={<ManagerEditTalents />} />
+            {/* Reports */}
+                <Route path="/manager/reports" element={<Reports />} />
+            {/* Profile */}
+                <Route path="/manager/profile" element={<ManagerProfile />} />
+                <Route path="/manager/profile/changepass" element={<ManagerChangePass />} />
         {/* Admin pages */}
             {/* Manage Accounts */}
                 <Route path="/admin/manage-accounts" element={<AdminManageAccounts />} />
