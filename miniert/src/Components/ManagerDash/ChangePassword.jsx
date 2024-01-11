@@ -1,16 +1,21 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "./managerDash.css";
+
+// Icons
 import hourglass from "../Assets/hourglass.svg";
 import logicon from "../Assets/logout.svg";
-import accIcon from "../Assets/acc-active.svg";
+import accIcon from "../Assets/building-active.svg";
 import talents from "../Assets/mng-talent-inactive.svg";
 import reports from "../Assets/report-inactive.svg";
-import profile from "../Assets/inactive-profile.svg";
-import axios from "axios";
+import profile from "../Assets/active-profile.svg";
+
+// Files
+import Modal from "../Modals/Modal.jsx";
+
+//External functionalities
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ChangePassModal from "../DashModal/ChangePassModal";
 
 const CurrentDate = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -206,20 +211,21 @@ const Profile = () => {
                     <p>Must be at least 8 characters</p>
                     <p>Must contain one special character</p>
                 </div>
-                <NavLink to="/profile">
+                <NavLink to="/manager/profile">
                     <button className="cancel-btn">Cancel</button>
                 </NavLink>
                 <button className="pass-submitbtn" onClick={handleOpenModal}>Save</button>
-                <ChangePassModal
-                    show={showModal}
-                    handleClose={handleCloseModal}
-                    handleSave={handleSave}>
-                    <p>Change Password</p>
-                    <span>Clicking yes will update your
-                        current password with the new one.
-                        <br />Do you wish to continue?
-                    </span>
-                </ChangePassModal>
+                <Modal show={showModal} handleClose={handleCloseModal} handleOpen={handleOpenModal}>
+                    <div>
+                        <p>Change Password</p>
+                        <input type="button" className="header-close-btn" value="&#10006;" onClick={handleCloseModal} />
+                    </div>
+                    <p className="modal-description">Clicking yes will save your new password in the system. Do you wish to continue?</p>
+                    <div>
+                        <button className="btn btn-close" onClick={handleCloseModal}> Cancel</button>
+                        <button className="btn btn-save" onClick={handleSave}>Yes, Save</button>
+                    </div>
+                </Modal>
             </div>
         </div>
     );
