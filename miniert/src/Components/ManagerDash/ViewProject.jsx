@@ -126,24 +126,6 @@ const ViewProject = () => {
             })
     }, [talentsId]);
 
-    // Function to get the role for a talent
-    const getRoleForTalent = (talent) => {
-        if (projectData && projectData.projects) {
-            const project = projectData.projects.find(p => p.project_id === projectId);
-            if (project && project.talents) {
-                const talentInfo = project.talents.find(t => t === talent.employee_id);
-                if (talentInfo) {
-                    // Since project.talents contains only employee IDs, we need to find the corresponding talent in the talentList
-                    const matchingTalent = talentList.find(t => t.employee_id === talentInfo);
-                    if (matchingTalent) {
-                        return matchingTalent.role || "N/A";
-                    }
-                }
-            }
-        }
-        return "N/A";
-    };
-
     return (
         <div className="dashboard">
             <ToastContainer
@@ -286,18 +268,29 @@ const ViewProject = () => {
                                 <p>{`${talent.first_name} ${talent.last_name}`}</p>
                                 <p>{talent.email}</p>
                                 <p>{talent.contact_number}</p>
-                                <p>{getRoleForTalent(talent)}</p>
+                                <p>
+                                    {talent.clients && talent.clients.map((client) => (
+                                        client.projects && client.projects.map((project) => (
+                                            // Add conditions for the specific project and client
+                                            (client.client_id === accountId && project.project_id === 'YOUR_DESIRED_PROJECT_ID') &&
+                                            <span key={project._id}>
+                                                {project.role}
+                                            </span>
+                                        ))
+                                    ))}
+                                </p>
                                 <p>
                                     <NavLink to={`/manager/manage-talents/view-talent/${talent.employee_id}`}>
-                                        <img src={view} />
+                                        <img src={view} alt="View" />
                                     </NavLink>
                                     <NavLink to={`/manager/manage-talents/edit-talent/${talent.employee_id}`}>
-                                        <img src={edit} />
+                                        <img src={edit} alt="Edit" />
                                     </NavLink>
                                 </p>
                             </div>
                         )) : (<p>Loading...</p>)}
                     </div>
+
                 </div>
             </div>
         </div>
