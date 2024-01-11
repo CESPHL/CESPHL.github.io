@@ -130,9 +130,12 @@ const ViewProject = () => {
     const getRoleForTalent = (talent) => {
         if (projectData && projectData.projects) {
             const project = projectData.projects.find(p => p.project_id === projectId);
+            console.log(project);
             if (project && project.talents) {
                 const talentInfo = project.talents.find(t => t === talent.employee_id);
+                console.log(talentInfo);
                 if (talentInfo) {
+                    console.log(talentInfo.role);
                     return talentInfo.role;
                 }
             }
