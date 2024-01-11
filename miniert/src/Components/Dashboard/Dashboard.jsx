@@ -397,9 +397,7 @@ const Stopwatch = () => {
                 handleClose={closeTimeOutModal}
                 handleSave={handleTimeOut}
             >
-                <div className="modal-content">
-                    <p>Confirm Clock Out</p>
-                </div>
+                <p>Confirm Clock Out</p>
                 <input
                     type="text"
                     id="talentName"
@@ -774,7 +772,7 @@ const OTStopwatch = () => {
                     onChange={handleSelectedProject}
                     value={selectedProject ? selectedProject.project_id : ''}
                 >
-                    <option value="" disabled>Select Project</option>
+                    <option value="" disabled hidden>Select Project</option>
                     {clientProjectList ? clientProjectList.map(project => (
                         <option key={project.project_id} value={project.project_id}>
                             {`${project.project_name}`}
@@ -788,9 +786,7 @@ const OTStopwatch = () => {
                 handleClose={closeTimeOutOTModal}
                 handleSave={HandleTimeOutOT}
             >
-                <div className="modal-content">
-                    <p>Confirm Clock Out (Overtime)</p>
-                </div>
+                <p>Confirm Clock Out (Overtime)</p>
                 <input
                     type="text"
                     id="talentName"
@@ -825,7 +821,7 @@ const OTStopwatch = () => {
                     onChange={handleSelectedProject}
                     value={selectedProject ? selectedProject.project_id : ''}
                 >
-                    <option value="" disabled>Select Project</option>
+                    <option value="" disabled hidden>Select Project</option>
                     {clientProjectList ? clientProjectList.map(project => (
                         <option key={project.project_id} value={project.project_id}>
                             {`${project.project_name}`}
