@@ -98,9 +98,10 @@ const AssignTalents = () => {
 
     // Get list of clients for dropdownlist
     useEffect(() => {
-        axios.get(`https://cesphl-github-io-backend.vercel.app/api/admin/clients`)
+        axios.get(`https://cesphl-github-io-backend.vercel.app/api/managers/${employee_id}`)
             .then((response) => {
-                setClientList(response.data);
+                console.log(response.data.clients);
+                setClientList(response.data.clients);
             })
             .catch((err) => {
                 console.error("Error retrieving talent info", err);

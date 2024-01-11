@@ -7,7 +7,7 @@
 
 .six-col {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 3fr 2fr 1fr 1fr;
     border-bottom: 1px solid #D0D5DD;
     padding-left: 1rem;
 }

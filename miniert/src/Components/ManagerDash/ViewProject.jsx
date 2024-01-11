@@ -109,7 +109,6 @@ const ViewProject = () => {
                 const talentsIdIntegers = talentsId.map(id => parseInt(id, 10));
                 const filteredData = response.data.filter(employee => talentsIdIntegers.includes(employee.employee_id));
                 setTalentList(filteredData);
-                console.log(filteredData);
             })
             .catch((err) => {
                 console.error("Error retrieving talent info", err);
@@ -275,13 +274,10 @@ const ViewProject = () => {
                                             const isDesiredClient = client.client_id === accountId;
                                             const isDesiredProject = project.project_id === projectId;
 
-                                            console.log('Client:', client.client_id, 'Project:', project.project_id);
-                                            console.log('Is Desired Client?', isDesiredClient, 'Is Desired Project?', isDesiredProject);
-
                                             if (isDesiredClient && isDesiredProject) {
                                                 return (
                                                     <span key={project._id}>
-                                                        {project.role} {/* Display role here */}
+                                                        {project.role}
                                                     </span>
                                                 );
                                             } else {
