@@ -13,7 +13,6 @@ import view from '../../Assets/view-icn.svg';
 import edit from '../../Assets/edit-icn.svg';
 
 // Files
-import "./manageTalents.css";
 
 // External functionalities
 import { toast, ToastContainer } from "react-toastify";
