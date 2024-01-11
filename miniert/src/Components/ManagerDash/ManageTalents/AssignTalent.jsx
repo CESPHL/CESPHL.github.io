@@ -355,7 +355,7 @@ const AssignTalents = () => {
                         </div>
                     </form>
                     <div className="button-row">
-                        <NavLink to="/admin/manage-accounts">
+                        <NavLink to="/manager/manage-accounts">
                             <button className="cancel-btn">Cancel</button>
                         </NavLink>
                         <input type="button" value="Assign" className="add-btn" onClick={handleOpenModal} />

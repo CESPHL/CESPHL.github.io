@@ -169,7 +169,7 @@ const ManageTalents = () => {
                             <NavLink to={``}>
                                 <button id="uploadBtn">Upload</button>
                             </NavLink>
-                            <NavLink to={`/admin/manage-talents/assign-talent`}>
+                            <NavLink to={`/manager/manage-talents/assign-talent`}>
                                 <button id="assignBtn">Assign</button>
                             </NavLink>
                         </div>
@@ -189,10 +189,10 @@ const ManageTalents = () => {
                                 <p>{talent.email}</p>
                                 <p>{talent.contact_number}</p>
                                 <p>
-                                    <NavLink to={`/admin/manage-talents/view-talent/${talent.employee_id}`}>
+                                    <NavLink to={`/manager/manage-talents/view-talent/${talent.employee_id}`}>
                                         <img src={view} />
                                     </NavLink>
-                                    <NavLink to={`/admin/manage-talents/edit-talent/${talent.employee_id}`}>
+                                    <NavLink to={`/manager/manage-talents/edit-talent/${talent.employee_id}`}>
                                         <img src={edit} />
                                     </NavLink>
                                 </p>
